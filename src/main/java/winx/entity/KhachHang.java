@@ -39,5 +39,9 @@ public class KhachHang {
 	private TaiKhoan taiKhoan;
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.EAGER)
 	private Collection<CTDG> dsCTDG;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> bfe283cc1ea766677ac4b345cddff9b8cb2d46a8
 
 }
