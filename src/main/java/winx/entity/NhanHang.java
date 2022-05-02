@@ -17,7 +17,7 @@ public class NhanHang {
 	@Column(name="MaNH")
 	private String maNH;
 	@Column(name="TenNH")
-	private String teNH;
+	private String tenNH;
 	@Column(name="TrangThai")
 	private byte trangThai;
 	@Column(name = "Anh")
@@ -30,11 +30,11 @@ public class NhanHang {
 	public void setMaNH(String maNH) {
 		this.maNH = maNH;
 	}
-	public String getTeNH() {
-		return teNH;
+	public String getTenNH() {
+		return tenNH;
 	}
-	public void setTeNH(String teNH) {
-		this.teNH = teNH;
+	public void setTenNH(String tenNH) {
+		this.tenNH = tenNH;
 	}
 	public byte getTrangThai() {
 		return trangThai;
