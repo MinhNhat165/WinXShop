@@ -37,7 +37,7 @@ public class DanhGia {
 	public SanPham getSanPham() {
 		return sanPham;
 	}
-	public void setSangPham(SanPham sanPham) {
+	public void setSanPham(SanPham sanPham) {
 		this.sanPham = sanPham;
 	}
 	public List<CTDG> getDsCTDG() {
