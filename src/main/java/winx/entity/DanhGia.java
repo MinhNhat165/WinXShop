@@ -19,7 +19,7 @@ public class DanhGia {
 	@Column(name = "DiemDG")
 	private Float  diemGD;
 	@OneToOne (mappedBy = "danhGia", fetch = FetchType.EAGER )
-	private SanPham sangPham;
+	private SanPham sanPham;
 	@OneToMany(mappedBy = "danhGia", fetch = FetchType.EAGER)
 	private List<CTDG> dsCTDG;
 	public String getMaDG() {
@@ -34,11 +34,11 @@ public class DanhGia {
 	public void setDiemGD(Float diemGD) {
 		this.diemGD = diemGD;
 	}
-	public SanPham getSangPham() {
-		return sangPham;
+	public SanPham getSanPham() {
+		return sanPham;
 	}
-	public void setSangPham(SanPham sangPham) {
-		this.sangPham = sangPham;
+	public void setSangPham(SanPham sanPham) {
+		this.sanPham = sanPham;
 	}
 	public List<CTDG> getDsCTDG() {
 		return dsCTDG;
@@ -46,11 +46,11 @@ public class DanhGia {
 	public void setDsCTDG(List<CTDG> dsCTDG) {
 		this.dsCTDG = dsCTDG;
 	}
-	public DanhGia(String maDG, Float diemGD, SanPham sangPham, List<CTDG> dsCTDG) {
+	public DanhGia(String maDG, Float diemGD, SanPham sanPham, List<CTDG> dsCTDG) {
 		super();
 		this.maDG = maDG;
 		this.diemGD = diemGD;
-		this.sangPham = sangPham;
+		this.sanPham = sanPham;
 		this.dsCTDG = dsCTDG;
 	}
 	
