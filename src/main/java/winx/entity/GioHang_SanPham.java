@@ -24,5 +24,26 @@ public class GioHang_SanPham {
 	private SanPham sanPham;
 	@Column(name = "SoLuong")
 	private int soLuong;
+	public KhachHang getKhachHang() {
+		return khachHang;
+	}
+	public void setKhachHang(KhachHang khachHang) {
+		this.khachHang = khachHang;
+	}
+	public SanPham getSanPham() {
+		return sanPham;
+	}
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
+	}
+	public int getSoLuong() {
+		return soLuong;
+	}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+	
+	
+	
 
 }

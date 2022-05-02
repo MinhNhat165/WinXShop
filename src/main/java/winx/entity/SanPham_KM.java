@@ -31,5 +31,17 @@ public class SanPham_KM implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "MaKM")
 	private KhuyenMai khuyenMai;
+	public SanPham getSanPham() {
+		return sanPham;
+	}
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
+	}
+	public KhuyenMai getKhuyenMai() {
+		return khuyenMai;
+	}
+	public void setKhuyenMai(KhuyenMai khuyenMai) {
+		this.khuyenMai = khuyenMai;
+	}
 	
 }
