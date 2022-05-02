@@ -1,5 +1,6 @@
 package winx.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,10 +19,10 @@ public class DanhGia {
 	private String maDG;
 	@Column(name = "DiemDG")
 	private Float  diemGD;
-	@OneToOne (mappedBy = "danhGia", fetch = FetchType.EAGER )
+	@OneToOne (mappedBy = "danhGia")
 	private SanPham sanPham;
 	@OneToMany(mappedBy = "danhGia", fetch = FetchType.EAGER)
-	private List<CTDG> dsCTDG;
+	private Collection<CTDG> dsCTDG;
 	public String getMaDG() {
 		return maDG;
 	}
@@ -40,7 +41,7 @@ public class DanhGia {
 	public void setSanPham(SanPham sanPham) {
 		this.sanPham = sanPham;
 	}
-	public List<CTDG> getDsCTDG() {
+	public Collection<CTDG> getDsCTDG() {
 		return dsCTDG;
 	}
 	public void setDsCTDG(List<CTDG> dsCTDG) {

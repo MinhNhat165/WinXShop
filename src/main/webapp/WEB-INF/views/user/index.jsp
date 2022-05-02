@@ -229,10 +229,10 @@
 									</div>
 									<div class="product-content-wrap">
 										<div class="product-category">
-											<a href="shop-grid-right.html">Clothing</a>
+											<a href="shop-grid-right.html">${dsSP[0].nhanHang.tenNH}</a>
 										</div>
 										<h2>
-											<a href="shop-product-right.html">Colorful Pattern Shirts</a>
+											<a href="shop-product-right.html">${dsSP[0].tenSP}</a>
 										</h2>
 										<div class="rating-result" title="90%">
 											<span> <span>90%</span>
