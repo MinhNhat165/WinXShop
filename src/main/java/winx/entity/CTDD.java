@@ -26,6 +26,30 @@ public class CTDD {
 	private int soLuong;
 	@ManyToOne
 	@JoinColumn(name = "MaKM")
-	private KhuyenMai khuyenMai; 
+	private KhuyenMai khuyenMai;
+	public DonDat getDonDat() {
+		return donDat;
+	}
+	public void setDonDat(DonDat donDat) {
+		this.donDat = donDat;
+	}
+	public SanPham getSanPham() {
+		return sanPham;
+	}
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
+	}
+	public int getSoLuong() {
+		return soLuong;
+	}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+	public KhuyenMai getKhuyenMai() {
+		return khuyenMai;
+	}
+	public void setKhuyenMai(KhuyenMai khuyenMai) {
+		this.khuyenMai = khuyenMai;
+	} 
 	
 }

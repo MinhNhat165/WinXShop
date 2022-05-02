@@ -43,4 +43,76 @@ public class KhuyenMai {
 	@OneToMany(mappedBy = "khuyenMai")
 	private Collection<CTDD> dsCTDD;
 
+	public String getMaKM() {
+		return maKM;
+	}
+
+	public void setMaKM(String maKM) {
+		this.maKM = maKM;
+	}
+
+	public String getTenKM() {
+		return tenKM;
+	}
+
+	public void setTenKM(String tenKM) {
+		this.tenKM = tenKM;
+	}
+
+	public Date getNgayBD() {
+		return ngayBD;
+	}
+
+	public void setNgayBD(Date ngayBD) {
+		this.ngayBD = ngayBD;
+	}
+
+	public Date getNgayKT() {
+		return ngayKT;
+	}
+
+	public void setNgayKT(Date ngayKT) {
+		this.ngayKT = ngayKT;
+	}
+
+	public int getGiaTriKM() {
+		return giaTriKM;
+	}
+
+	public void setGiaTriKM(int giaTriKM) {
+		this.giaTriKM = giaTriKM;
+	}
+
+	public byte getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(byte trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public String getMoTa() {
+		return moTa;
+	}
+
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
+	}
+
+	public Collection<SanPham_KM> getDsSPKM() {
+		return dsSPKM;
+	}
+
+	public void setDsSPKM(Collection<SanPham_KM> dsSPKM) {
+		this.dsSPKM = dsSPKM;
+	}
+
+	public Collection<CTDD> getDsCTDD() {
+		return dsCTDD;
+	}
+
+	public void setDsCTDD(Collection<CTDD> dsCTDD) {
+		this.dsCTDD = dsCTDD;
+	}
+
 }
