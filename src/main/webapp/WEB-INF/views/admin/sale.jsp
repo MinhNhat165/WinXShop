@@ -29,16 +29,7 @@
 							</nav>
 						</div>
 					</div>
-					<!-- <div class="col-5 align-self-center">
-                        <div class="customize-input float-right">
-                            <select
-                                class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                <option selected>Aug 19</option>
-                                <option value="1">July 19</option>
-                                <option value="2">Jun 19</option>
-                            </select>
-                        </div>
-                    </div> -->
+					
 				</div>
 			</div>
 
@@ -239,13 +230,13 @@
 						</div>
 						<div class="modal-body">
 							<div
-								class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
+								class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
 								<div class="row">
 									<div class="">
 										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 											<div class="row tm-edit-product-row">
 												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
+													<div class="col-12">
 														<div class="form-group mb-3">
 															<label for="name">Mã khuyễn mãi </label> <input id="name"
 																name="name" type="text" class="form-control validate"
