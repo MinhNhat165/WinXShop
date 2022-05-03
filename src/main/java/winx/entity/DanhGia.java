@@ -1,6 +1,8 @@
 package winx.entity;
 
-import java.util.List;
+
+
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+
 
 @Entity
 @Table(name = "DANHGIA")
@@ -26,7 +28,7 @@ public class DanhGia {
 	private SanPham sanPham;
 
 	@OneToMany(mappedBy = "danhGia", fetch = FetchType.EAGER)
-	private List<CTDG> dsCTDG;
+	private Collection<CTDG> dsCTDG;
 	public String getMaDG() {
 		return maDG;
 	}
@@ -47,14 +49,14 @@ public class DanhGia {
 		this.sanPham = sanPham;
 
 	}
-	public List<CTDG> getDsCTDG() {
+	public Collection<CTDG> getDsCTDG() {
 		return dsCTDG;
 	}
-	public void setDsCTDG(List<CTDG> dsCTDG) {
+	public void setDsCTDG(Collection<CTDG> dsCTDG) {
 		this.dsCTDG = dsCTDG;
 	}
 
-	public DanhGia(String maDG, Float diemGD, SanPham sanPham, List<CTDG> dsCTDG) {
+	public DanhGia(String maDG, Float diemGD, SanPham sanPham, Collection<CTDG> dsCTDG) {
 		super();
 		this.maDG = maDG;
 		this.diemGD = diemGD;
