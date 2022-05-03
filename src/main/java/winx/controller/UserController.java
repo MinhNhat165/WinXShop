@@ -61,6 +61,7 @@ public class UserController {
 	}
 	@RequestMapping("register")
 	public String register (ModelMap model) {
+//		test
 		return "user/register";
 	}
 }
