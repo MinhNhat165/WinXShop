@@ -61,7 +61,7 @@ public class UserController {
 	}
 	@RequestMapping("register")
 	public String register (ModelMap model) {
-//		tes1
+//		tes222
 		return "user/register";
 	}
 }
