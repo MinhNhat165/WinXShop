@@ -13,23 +13,16 @@
 			<a class="nav-toggler waves-effect waves-light d-block d-md-none"
 				href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
 			<div class="navbar-brand">
-				<a href="admin/dashboard.htm"> <b class="logo-icon"> <!-- Dark Logo icon -->
+				<a href="admin/dashboard.htm"> <b class="logo-icon"> 
 						<img
-						src="<c:url value='/resources/admin/assets/images/logo-icon.png'/>"
-						alt="homepage" class="dark-logo" /> <!-- Light Logo icon --> <img
-						src="./resources/imgs/theme/logo.svg" alt="homepage"
-						class="light-logo" />
-				</b> <img
-					src="<c:url value='/resources/admin/assets/images/logo-text.png'/>"
-					class="dark-logo" alt="homepage" /> </span>
+						src="<c:url value='./resources/imgs/theme/logo.svg'/>"
+						alt="homepage" class="dark-logo" style="width: 120px;
+    min-width: 120px;"/> 
+				</b> 
 				</a>
+				
 			</div>
-			<!-- ============================================================== -->
-			<!-- End Logo -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Toggle which is visible on mobile only -->
-			<!-- ============================================================== -->
+			
 		</div>
 	</nav>
 </header>

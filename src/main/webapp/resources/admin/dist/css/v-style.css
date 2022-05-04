@@ -14,8 +14,8 @@
 
 .tc-control {
     margin: 12px;
-    background-color: var(--main-color);
-    /*c1f0db*/
+    background-color: #eaedf2;
+    
 }
 
 .btn-secondary {
@@ -581,4 +581,15 @@ h6 {
 
 #main-wrapper[data-layout=vertical][data-header-position=fixed] .v-topbar {
    width: 260px !important;
+}
+
+.sidebar-nav #sidebarnav .sidebar-item.selected>.sidebar-link { 
+	
+	 background: linear-gradient(to right,#088178,#67c5bf,#d8f4e2);
+}
+
+.page-title {box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	padding: 5px;
+	border-radius: 5px;
+	padding: 10px;
 }

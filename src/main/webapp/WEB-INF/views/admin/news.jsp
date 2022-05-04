@@ -14,39 +14,15 @@
 		<div class="page-wrapper pt-0">
 			<div class="page-breadcrumb">
 				<div class="row">
-					<div class="col-7 align-self-center">
+					<div class="col-12 align-self-center">
 						<h4
 							class="page-title text-truncate text-dark font-weight-medium mb-1">
-							Sản Phẩm</h4>
-						<div class="d-flex align-items-center">
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb m-0 p-0">
-									<li class="breadcrumb-item"><a href="index.html"
-										class="text-muted">Apps</a></li>
-									<li class="breadcrumb-item text-muted active"
-										aria-current="page">Ticket List</li>
-								</ol>
-							</nav>
-						</div>
+							Tin Mới</h4>
 					</div>
-					<!-- <div class="col-5 align-self-center">
-                        <div class="customize-input float-right">
-                            <select
-                                class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                <option selected>Aug 19</option>
-                                <option value="1">July 19</option>
-                                <option value="2">Jun 19</option>
-                            </select>
-                        </div>
-                    </div> -->
+					
 				</div>
 			</div>
-			<!-- addnew -->
-
-			<!-- end addnew -->
-			<!-- ============================================================== -->
-			<!-- End Bread crumb and right sidebar toggle -->
-			<!-- ============================================================== -->
+				<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -239,54 +215,61 @@
 								aria-hidden="true">×</button>
 						</div>
 						<div class="modal-body">
-							<div
-								class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
-								<div class="row">
-									<div class="col-12">
-										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-											<div class="row tm-edit-product-row">
-												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="form-group mb-3">
-															<label for="name">Mã tin </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Tên tin </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="description">Mô tả</label>
-															<textarea class="form-control validate" rows="3" required></textarea>
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="tm-product-img-dummy mx-auto rounded">
-															<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																onclick="document.getElementById('fileInput').click();"></i>
-														</div>
-														<div class="custom-file mt-3 mb-3">
-															<input id="fileInput" type="file" style="display: none" />
-															<input type="button"
-																class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																value="Thêm ảnh"
-																onclick="document.getElementById('fileInput').click();" />
-														</div>
-													</div>
-													<div class="col-12">
-														<button type="submit"
-															class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-															Thêm</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                            <div class="row tm-edit-product-row">
+                                                <div class="col-12">
+
+                                                    <form action="" class="tm-edit-product-form">
+                                                        <div class="row mb-4">
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Mã tin </label> <input id="name"
+                                                                        name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Tên tin </label> <input id="name"
+                                                                        name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="description">Mô tả</label>
+                                                                    <textarea class="form-control validate" rows="3"
+                                                                        required></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="tm-product-img-dummy mx-auto rounded">
+                                                                    <i class="fas fa-cloud-upload-alt tm-upload-icon"
+                                                                        onclick="document.getElementById('fileInput').click();"></i>
+                                                                </div>
+                                                                <div class="custom-file mt-3 mb-3">
+                                                                    <input id="fileInput" type="file"
+                                                                        style="display: none" />
+                                                                    <input type="button"
+                                                                        class="btn btn-primary btn-block mx-auto btn-green shadow-none"
+                                                                        value="Thêm ảnh"
+                                                                        onclick="document.getElementById('fileInput').click();" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+                                                                Thêm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -302,54 +285,61 @@
 								aria-hidden="true">×</button>
 						</div>
 						<div class="modal-body">
-							<div
-								class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
-								<div class="row">
-									<div class="col-12">
-										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-											<div class="row tm-edit-product-row">
-												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="form-group mb-3">
-															<label for="name">Mã tin </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Tên tin </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="description">Mô tả</label>
-															<textarea class="form-control validate" rows="3" required></textarea>
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="tm-product-img-dummy mx-auto rounded">
-															<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																onclick="document.getElementById('fileInput').click();"></i>
-														</div>
-														<div class="custom-file mt-3 mb-3">
-															<input id="fileInput" type="file" style="display: none" />
-															<input type="button"
-																class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																value="Thêm ảnh"
-																onclick="document.getElementById('fileInput').click();" />
-														</div>
-													</div>
-													<div class="col-12">
-														<button type="submit"
-															class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-															Chỉnh sửa</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                            <div class="row tm-edit-product-row">
+                                                <div class="col-12">
+
+                                                    <form action="" class="tm-edit-product-form">
+                                                        <div class="row mb-4">
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Mã tin </label> <input id="name"
+                                                                        name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Tên tin </label> <input id="name"
+                                                                        name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="description">Mô tả</label>
+                                                                    <textarea class="form-control validate" rows="3"
+                                                                        required></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="tm-product-img-dummy mx-auto rounded">
+                                                                    <i class="fas fa-cloud-upload-alt tm-upload-icon"
+                                                                        onclick="document.getElementById('fileInput').click();"></i>
+                                                                </div>
+                                                                <div class="custom-file mt-3 mb-3">
+                                                                    <input id="fileInput" type="file"
+                                                                        style="display: none" />
+                                                                    <input type="button"
+                                                                        class="btn btn-primary btn-block mx-auto btn-green shadow-none"
+                                                                        value="Thêm ảnh"
+                                                                        onclick="document.getElementById('fileInput').click();" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+                                                                Thêm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<!-- /.modal-dialog -->

@@ -14,39 +14,16 @@
 		<div class="page-wrapper pt-0">
 			<div class="page-breadcrumb">
 				<div class="row">
-					<div class="col-7 align-self-center">
+					<div class="col-12 align-self-center">
 						<h4
 							class="page-title text-truncate text-dark font-weight-medium mb-1">
 							Khuyến Mãi</h4>
-						<div class="d-flex align-items-center">
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb m-0 p-0">
-									<li class="breadcrumb-item"><a href="index.html"
-										class="text-muted">Apps</a></li>
-									<li class="breadcrumb-item text-muted active"
-										aria-current="page">Ticket List</li>
-								</ol>
-							</nav>
-						</div>
 					</div>
-					<!-- <div class="col-5 align-self-center">
-                        <div class="customize-input float-right">
-                            <select
-                                class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                <option selected>Aug 19</option>
-                                <option value="1">July 19</option>
-                                <option value="2">Jun 19</option>
-                            </select>
-                        </div>
-                    </div> -->
+					
 				</div>
 			</div>
 
-			<!-- ============================================================== -->
-			<!-- End Bread crumb and right sidebar toggle -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Container fluid  -->
+			
 			<!-- ============================================================== -->
 			<div class="container-fluid">
 				<!-- ============================================================== -->
@@ -82,7 +59,7 @@
 												<td>61</td>
 												<td>2011/04/25</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -93,7 +70,7 @@
 												<td>63</td>
 												<td>2011/07/25</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -104,7 +81,7 @@
 												<td>66</td>
 												<td>2009/01/12</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -115,7 +92,7 @@
 												<td>22</td>
 												<td>2012/03/29</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -126,7 +103,7 @@
 												<td>33</td>
 												<td>2008/11/28</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -137,7 +114,7 @@
 												<td>61</td>
 												<td>2012/12/02</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -148,7 +125,7 @@
 												<td>59</td>
 												<td>2012/08/06</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -159,7 +136,7 @@
 												<td>55</td>
 												<td>2010/10/14</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -170,7 +147,7 @@
 												<td>46</td>
 												<td>2011/12/06</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -181,7 +158,7 @@
 												<td>47</td>
 												<td>2011/03/21</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -192,7 +169,7 @@
 												<td>21</td>
 												<td>2009/02/27</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target="#showsale"></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
 													data-target="#editsale"></i></td>
 											</tr>
@@ -217,16 +194,7 @@
 				<!-- End PAge Content -->
 				<!-- ============================================================== -->
 			</div>
-			<!-- ============================================================== -->
-			<!-- End Container fluid  -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- footer -->
-			<!-- ============================================================== -->
-
-			<!-- ============================================================== -->
-			<!-- End footer -->
-			<!-- ============================================================== -->
+		
 			<!-- Center modal content -->
 			<div class="modal fade" id="addsale" tabindex="-1" role="dialog"
 				aria-hidden="true">
@@ -237,141 +205,194 @@
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
-						<div class="modal-body">
-							<div
-								class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
-								<div class="row">
-									<div class="">
-										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-											<div class="row tm-edit-product-row">
-												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="form-group mb-3">
-															<label for="name">Mã khuyễn mãi </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Tên khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Giá trị khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="row">
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày bắt đầu </label> <input
-																	id="stock" name="stock" type="date"
-																	class="form-control validate" required />
-															</div>
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày kết thúc </label> <input
-																	id="stock" name="stock" type="date"
-																	class="form-control validate" required />
-															</div>
-														</div>
-														<div class="form-group mb-3">
-															<label for="description">Mô tả</label>
-															<textarea class="form-control validate" rows="3" required></textarea>
-														</div>
-													</div>
-													<div class="col-12 mb-3">
-														<button class="btn btn-success shadow-none"
-															data-toggle="collapse" href="#filterproduct"
-															role="button" aria-expanded="false"
-															aria-controls="collapseExample">Chọn sản phẩm</button>
-														<div class="collapse mt-3" id="filterproduct">
-															<div class="card card-body">
-																<div
-																	class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
-																	<div class="row">
-																		<div class="">
-																			<div
-																				class="tm-bg-primary-dark tm-block tm-block-h-auto">
-																				<div class="row tm-edit-product-row">
-																					<form action="" class="tm-edit-product-form">
-																						<div class="col-xl-6 col-lg-6 col-md-12">
-																							<div class="form-group mb-3">
-																								<label for="name">Nhãn hàng </label> <select
-																									class="form-select" multiple="multiple"
-																									id="languages-disabled-id"></select>
-																							</div>
-																							<div class="form-group mb-3">
-																								<label for="name">Loại </label> <select
-																									class="custom-select rounded tm-select-accounts"
-																									id="category">
-																									<option selected>Select category</option>
-																									<option value="1">New Arrival</option>
-																									<option value="2">Most Popular</option>
-																									<option value="3">Trending</option>
-																								</select>
-																							</div>
-																						</div>
-																						<div class="col-lg-6 col-xs-12">
-																							<label for="stock2">Giá </label>
-																							<div class="col-12 mx-auto mb-4">
-																								<div class="row">
-																									<div class="form-group mb-3 col-xs-12 col-sm-6">
-																										<div class="input-group mb-2">
-																											<div class="input-group-prepend">
-																												<div class="input-group-text">$</div>
-																											</div>
-																											<input type="text" class="form-control"
-																												id="stock2" />
-																										</div>
-																									</div>
+						 <div class="modal-body">
+                            <div class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                            <div class="row tm-edit-product-row">
+                                                <div class="col-12">
 
-																									<div class="form-group mb-3 col-xs-12 col-sm-6">
-																										<div class="input-group mb-2">
-																											<div class="input-group-prepend">
-																												<div class="input-group-text">$</div>
-																											</div>
-																											<input type="text" class="form-control"
-																												id="stock2" />
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="col-12">
-																							<div class="text-center">
-																								<button type="submit"
-																									class="btn btn-primary btn-block text-uppercase btn-green shadow-none"
-																									style="width: 78px; margin: 0 auto;">
-																									Lọc</button>
-																							</div>
-																						</div>
-																					</form>
-																				</div>
-																			</div>
-																		</div>
-																		<!-- /.modal -->
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-12">
-														<button type="submit"
-															class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-															Thêm</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<!-- /.modal -->
-								</div>
-								<!-- ============================================================== -->
-								<!-- End Page wrapper  -->
-								<!-- ============================================================== -->
-							</div>
-						</div>
+                                                    <form action="" class="tm-edit-product-form">
+
+                                                        <div class="row">
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Mã khuyễn mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Tên khuyến mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Giá trị khuyến mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                                                                <div class="row">
+                                                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                        <label for="stock">Ngày bắt đầu </label> <input
+                                                                            id="stock" name="stock" type="date"
+                                                                            class="form-control validate" required />
+                                                                    </div>
+                                                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                        <label for="stock">Ngày kết thúc </label> <input
+                                                                            id="stock" name="stock" type="date"
+                                                                            class="form-control validate" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="description">Mô tả</label>
+                                                                    <textarea class="form-control validate" rows="3"
+                                                                        required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <button class="btn btn-success shadow-none"
+                                                                data-toggle="collapse" href="#filterproduct"
+                                                                role="button" aria-expanded="false"
+                                                                aria-controls="collapseExample">Chọn
+                                                                sản phẩm</button>
+                                                            <div class="collapse mt-3" id="filterproduct">
+                                                                <div class="card card-body">
+                                                                    <div
+                                                                        class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
+                                                                        <div class="row">
+                                                                            <div class="">
+                                                                                <div
+                                                                                    class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                                                                    <div
+                                                                                        class="row tm-edit-product-row">
+                                                                                        <form action=""
+                                                                                            class="tm-edit-product-form">
+                                                                                            <div
+                                                                                                class="col-xl-6 col-lg-6 col-md-12">
+                                                                                                <div
+                                                                                                    class="form-group mb-3">
+                                                                                                    <label
+                                                                                                        for="name">Nhãn
+                                                                                                        hàng </label>
+                                                                                                    <select
+                                                                                                        class="form-select"
+                                                                                                        multiple="multiple"
+                                                                                                        id="languages-disabled-id"></select>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="form-group mb-3">
+                                                                                                    <label
+                                                                                                        for="name">Loại
+                                                                                                    </label> <select
+                                                                                                        class="custom-select rounded tm-select-accounts"
+                                                                                                        id="category">
+                                                                                                        <option
+                                                                                                            selected>
+                                                                                                            Select
+                                                                                                            category
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="1">
+                                                                                                            New Arrival
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="2">
+                                                                                                            Most Popular
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="3">
+                                                                                                            Trending
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="col-lg-6 col-xs-12">
+                                                                                                <label for="stock2">Giá
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="col-12 mx-auto mb-4">
+                                                                                                    <div class="row">
+                                                                                                        <div
+                                                                                                            class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                                                            <div
+                                                                                                                class="input-group mb-2">
+                                                                                                                <div
+                                                                                                                    class="input-group-prepend">
+                                                                                                                    <div
+                                                                                                                        class="input-group-text">
+                                                                                                                        $
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    class="form-control"
+                                                                                                                    id="stock2" />
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div
+                                                                                                            class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                                                            <div
+                                                                                                                class="input-group mb-2">
+                                                                                                                <div
+                                                                                                                    class="input-group-prepend">
+                                                                                                                    <div
+                                                                                                                        class="input-group-text">
+                                                                                                                        $
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    class="form-control"
+                                                                                                                    id="stock2" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <div
+                                                                                                    class="text-center">
+                                                                                                    <button
+                                                                                                        type="submit"
+                                                                                                        class="btn btn-primary btn-block text-uppercase btn-green shadow-none"
+                                                                                                        style="width: 78px; margin: 0 auto;">
+                                                                                                        Lọc</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- /.modal -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+                                                                Thêm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal -->
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- End Page wrapper  -->
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<!-- /.modal-dialog -->
@@ -387,148 +408,201 @@
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
-						<div class="modal-body">
-							<div
-								class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
-								<div class="row">
-									<div class="">
-										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-											<div class="row tm-edit-product-row">
-												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="form-group mb-3">
-															<label for="name">Mã khuyễn mãi </label> <input id="name"
-																name="name" type="text" class="form-control validate"
-																required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Tên khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Giá trị khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="row">
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày bắt đầu </label> <input
-																	id="stock" name="stock" type="date"
-																	class="form-control validate" required />
-															</div>
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày kết thúc </label> <input
-																	id="stock" name="stock" type="date"
-																	class="form-control validate" required />
-															</div>
-														</div>
-														<div class="form-group mb-3">
-															<label for="description">Mô tả</label>
-															<textarea class="form-control validate" rows="3" required></textarea>
-														</div>
-													</div>
-													<div class="col-12 mb-3">
-														<button class="btn btn-success shadow-none"
-															data-toggle="collapse" href="#filterproduct2"
-															role="button" aria-expanded="false"
-															aria-controls="collapseExample">Chọn sản phẩm</button>
-														<div class="collapse mt-3" id="filterproduct2">
-															<div class="card card-body">
-																<div
-																	class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
-																	<div class="row">
-																		<div class="">
-																			<div
-																				class="tm-bg-primary-dark tm-block tm-block-h-auto">
-																				<div class="row tm-edit-product-row">
-																					<form action="" class="tm-edit-product-form">
-																						<div class="col-xl-6 col-lg-6 col-md-12">
-																							<div class="form-group mb-3">
-																								<label for="name">Nhãn hàng </label> <select
-																									class="form-select" multiple="multiple"
-																									id="languages-disabled-id"></select>
-																							</div>
-																							<div class="form-group mb-3">
-																								<label for="name">Loại </label> <select
-																									class="custom-select rounded tm-select-accounts"
-																									id="category">
-																									<option selected>Select category</option>
-																									<option value="1">New Arrival</option>
-																									<option value="2">Most Popular</option>
-																									<option value="3">Trending</option>
-																								</select>
-																							</div>
-																						</div>
-																						<div class="col-lg-6 col-xs-12">
-																							<label for="stock2">Giá </label>
-																							<div class="col-12 mx-auto mb-4">
-																								<div class="row">
-																									<div class="form-group mb-3 col-xs-12 col-sm-6">
-																										<div class="input-group mb-2">
-																											<div class="input-group-prepend">
-																												<div class="input-group-text">$</div>
-																											</div>
-																											<input type="text" class="form-control"
-																												id="stock2" />
-																										</div>
-																									</div>
+						                        <div class="modal-body">
+                            <div class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                            <div class="row tm-edit-product-row">
+                                                <div class="col-12">
 
-																									<div class="form-group mb-3 col-xs-12 col-sm-6">
-																										<div class="input-group mb-2">
-																											<div class="input-group-prepend">
-																												<div class="input-group-text">$</div>
-																											</div>
-																											<input type="text" class="form-control"
-																												id="stock2" />
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="col-12">
-																							<div class="text-center">
-																								<button type="submit"
-																									class="btn btn-primary btn-block text-uppercase btn-green shadow-none"
-																									style="width: 78px; margin: 0 auto;">
-																									Lọc</button>
-																							</div>
-																						</div>
-																					</form>
-																				</div>
-																			</div>
-																		</div>
-																		<!-- /.modal -->
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-12">
-														<button type="submit"
-															class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-															Lưu</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<!-- /.modal -->
-								</div>
-								<!-- ============================================================== -->
-								<!-- End Page wrapper  -->
-								<!-- ============================================================== -->
-							</div>
-						</div>
+                                                    <form action="" class="tm-edit-product-form">
+
+                                                        <div class="row">
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Mã khuyễn mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Tên khuyến mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="name">Giá trị khuyến mãi </label> <input
+                                                                        id="name" name="name" type="text"
+                                                                        class="form-control validate" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                                                                <div class="row">
+                                                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                        <label for="stock">Ngày bắt đầu </label> <input
+                                                                            id="stock" name="stock" type="date"
+                                                                            class="form-control validate" required />
+                                                                    </div>
+                                                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                        <label for="stock">Ngày kết thúc </label> <input
+                                                                            id="stock" name="stock" type="date"
+                                                                            class="form-control validate" required />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group mb-3">
+                                                                    <label for="description">Mô tả</label>
+                                                                    <textarea class="form-control validate" rows="3"
+                                                                        required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <button class="btn btn-success shadow-none"
+                                                                data-toggle="collapse" href="#filterproduct"
+                                                                role="button" aria-expanded="false"
+                                                                aria-controls="collapseExample">Chọn
+                                                                sản phẩm</button>
+                                                            <div class="collapse mt-3" id="filterproduct">
+                                                                <div class="card card-body">
+                                                                    <div
+                                                                        class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
+                                                                        <div class="row">
+                                                                            <div class="">
+                                                                                <div
+                                                                                    class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                                                                                    <div
+                                                                                        class="row tm-edit-product-row">
+                                                                                        <form action=""
+                                                                                            class="tm-edit-product-form">
+                                                                                            <div
+                                                                                                class="col-xl-6 col-lg-6 col-md-12">
+                                                                                                <div
+                                                                                                    class="form-group mb-3">
+                                                                                                    <label
+                                                                                                        for="name">Nhãn
+                                                                                                        hàng </label>
+                                                                                                    <select
+                                                                                                        class="form-select"
+                                                                                                        multiple="multiple"
+                                                                                                        id="languages-disabled-id"></select>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="form-group mb-3">
+                                                                                                    <label
+                                                                                                        for="name">Loại
+                                                                                                    </label> <select
+                                                                                                        class="custom-select rounded tm-select-accounts"
+                                                                                                        id="category">
+                                                                                                        <option
+                                                                                                            selected>
+                                                                                                            Select
+                                                                                                            category
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="1">
+                                                                                                            New Arrival
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="2">
+                                                                                                            Most Popular
+                                                                                                        </option>
+                                                                                                        <option
+                                                                                                            value="3">
+                                                                                                            Trending
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="col-lg-6 col-xs-12">
+                                                                                                <label for="stock2">Giá
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="col-12 mx-auto mb-4">
+                                                                                                    <div class="row">
+                                                                                                        <div
+                                                                                                            class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                                                            <div
+                                                                                                                class="input-group mb-2">
+                                                                                                                <div
+                                                                                                                    class="input-group-prepend">
+                                                                                                                    <div
+                                                                                                                        class="input-group-text">
+                                                                                                                        $
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    class="form-control"
+                                                                                                                    id="stock2" />
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div
+                                                                                                            class="form-group mb-3 col-xs-12 col-sm-6">
+                                                                                                            <div
+                                                                                                                class="input-group mb-2">
+                                                                                                                <div
+                                                                                                                    class="input-group-prepend">
+                                                                                                                    <div
+                                                                                                                        class="input-group-text">
+                                                                                                                        $
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    class="form-control"
+                                                                                                                    id="stock2" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <div
+                                                                                                    class="text-center">
+                                                                                                    <button
+                                                                                                        type="submit"
+                                                                                                        class="btn btn-primary btn-block text-uppercase btn-green shadow-none"
+                                                                                                        style="width: 78px; margin: 0 auto;">
+                                                                                                        Lọc</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- /.modal -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+                                                                Thêm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal -->
+                                </div>
+                                <!-- ============================================================== -->
+                                <!-- End Page wrapper  -->
+                                <!-- ============================================================== -->
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
 			<!-- Center modal content -->
-			<div class="modal fade" id="showproduct" tabindex="-1" role="dialog"
+			<div class="modal fade" id="showsale" tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
@@ -586,88 +660,7 @@
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
-			<div class="modal fade" id="add" tabindex="-1" role="dialog"
-				aria-hidden="true">
-				<div class="modal-dialog modal-lg modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
-							<button type="button" class="close v-close" data-dismiss="modal"
-								aria-hidden="true">×</button>
-						</div>
-						<div class="modal-body">
-							<div
-								class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
-								<div class="row">
-									<div class="">
-										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-											<div class="row tm-edit-product-row">
-												<form action="" class="tm-edit-product-form">
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="form-group mb-3">
-															<label for="name">Mã khuyễn mãi </label> <select
-																class="form-select" multiple="multiple"
-																id="languages-disabled-id"></select>
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Tên khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-														<div class="form-group mb-3">
-															<label for="name">Giá trị khuyến mãi </label> <input
-																id="name" name="name" type="text"
-																class="form-control validate" required />
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="row">
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày sản xuất </label> <input
-																	id="stock" name="stock" type="text"
-																	class="form-control validate" required />
-															</div>
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<label for="stock">Ngày hết hạn </label> <input
-																	id="stock" name="stock" type="text"
-																	class="form-control validate" required />
-															</div>
-														</div>
-														<div class="form-group mb-3">
-															<label for="description">Mô tả</label>
-															<textarea class="form-control validate" rows="3" required></textarea>
-														</div>
-														<div class="form-group mb-3">
-															<label for="category">Trạng thái</label> <select
-																class="custom-select rounded tm-select-accounts"
-																id="category">
-																<option selected>Select category</option>
-																<option value="1">New Arrival</option>
-																<option value="2">Most Popular</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-12">
-														<button type="submit"
-															class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-															Lưu</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<!-- /.modal -->
-								</div>
-								<!-- ============================================================== -->
-								<!-- End Page wrapper  -->
-
-								<!-- ============================================================== -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
+			
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
