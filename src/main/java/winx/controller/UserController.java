@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import winx.entity.SanPham;
 import winx.entity.TinMoi;
 
 @Transactional
@@ -27,6 +28,10 @@ public class UserController {
 		Query query = session.createQuery(hql);
 		List<TinMoi> list = query.list();
 		model.addAttribute("newsList", list);
+		hql = "from SanPham";
+		query = session.createQuery(hql);
+		List<SanPham> dsSP = query.list();
+		model.addAttribute("dsSP", dsSP);
 		return "user/index";
 	}
 	@RequestMapping("checkout")
@@ -56,6 +61,7 @@ public class UserController {
 	}
 	@RequestMapping("register")
 	public String register (ModelMap model) {
+
 		return "user/register";
 	}
 }
