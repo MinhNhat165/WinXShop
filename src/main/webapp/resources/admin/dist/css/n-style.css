@@ -1,0 +1,45 @@
+.btn-check:focus + .btn,
+.btn:focus,
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.table td,
+.table th {
+  padding: 0.5rem 0.5rem;
+}
+
+.btn-outline-green {
+  color: var(--green-color);
+  border-color: var(--green-border-color);
+}
+
+.btn-outline-green:hover {
+  color: white;
+  background-color: var(--green-color);
+  border-color: var(--green-color);
+}
+
+.form-control:focus {
+  border-color: var(--green-color);
+  box-shadow: rgb(8 129 120/ 25%) 0px 0px 0px 0.2rem !important;
+}
+
+.form-control li input:focus {
+  box-shadow: none !important;
+}
+
+.btn-green:active,
+.btn-green:focus {
+  background: #088178 !important;
+}
+.bg-green-light {
+  background-color: var(--main-color) !important;
+}
+
+.btn-green:hover,
+.btn-green:active {
+  background-color: #066b64 !important;
+  border-color: #066b64 !important;
+  color: white !important;
+}

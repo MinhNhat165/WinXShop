@@ -33,10 +33,10 @@ public class AdminController {
 		return "admin/order";
 	}
 	
-	@RequestMapping("sale")
-	public String sale(ModelMap model) {
-		return "admin/sale";
-	}
+	/*
+	 * @RequestMapping("sale") public String sale(ModelMap model) { return
+	 * "admin/sale"; }
+	 */
 	@RequestMapping("brand")
 	public String brand(ModelMap model) {
 		return "admin/brand";

@@ -13,16 +13,15 @@
 			<a class="nav-toggler waves-effect waves-light d-block d-md-none"
 				href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
 			<div class="navbar-brand">
-				<a href="admin/dashboard.htm"> <b class="logo-icon"> 
-						<img
+				<a href="admin/dashboard.htm"> <b class="logo-icon"> <img
 						src="<c:url value='./resources/imgs/theme/logo.svg'/>"
-						alt="homepage" class="dark-logo" style="width: 120px;
-    min-width: 120px;"/> 
-				</b> 
+						alt="homepage" class="dark-logo"
+						style="width: 120px; min-width: 120px;" />
+				</b>
 				</a>
-				
+
 			</div>
-			
+
 		</div>
 	</nav>
 </header>
@@ -49,7 +48,7 @@
 						data-feather="calendar" class="feather-icon"></i><span
 						class="hide-menu">Đơn Đặt</span></a></li>
 				<li class="sidebar-item"><a class="sidebar-link sidebar-link"
-					href="admin/sale.htm" aria-expanded="false"><i
+					href="admin/sale/index.htm" aria-expanded="false"><i
 						class="icon-tag"></i><span class="hide-menu">Khuyến Mãi</span></a></li>
 				<li class="sidebar-item"><a class="sidebar-link sidebar-link"
 					href="admin/brand.htm" aria-expanded="false"><i
