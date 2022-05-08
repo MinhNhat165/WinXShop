@@ -40,139 +40,32 @@
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="zero_config"
+									
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
 											<tr>
-												<th>Name</th>
-												<th>Position</th>
-												<th>Office</th>
-												<th>Age</th>
-												<th>Status</th>
+												<th>Mã tin ${message }</th>
+												<th>Tên tin</th>
+												<th>Nội dung</th>
+												<th>Ngày tạo</th>
+												<th>Trạng thái</th>
 												<th>Option</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>Tiger Nixon</td>
-												<td>System Architect</td>
-												<td>Edinburgh</td>
-												<td>61</td>
-												<td>2011/04/25</td>
+											<c:forEach var="n" items="${newsList }">
+												<tr>
+												<td>${n.maTin }</td>
+												<td>${n.tenTin }</td>
+												<td>${n.noiDung }</td>
+												<td>${n.ngayTao }</td>
+												<td>${n.trangThai }</td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
+													data-toggle="modal" data-target=#${n.maTin } ></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
+													data-target=#${n.tenTin} ></i></td>
 											</tr>
-											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td>2011/07/25</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td>2009/01/12</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Cedric Kelly</td>
-												<td>Senior Javascript Developer</td>
-												<td>Edinburgh</td>
-												<td>22</td>
-												<td>2012/03/29</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Airi Satou</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>33</td>
-												<td>2008/11/28</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Brielle Williamson</td>
-												<td>Integration Specialist</td>
-												<td>New York</td>
-												<td>61</td>
-												<td>2012/12/02</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Herrod Chandler</td>
-												<td>Sales Assistant</td>
-												<td>San Francisco</td>
-												<td>59</td>
-												<td>2012/08/06</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Rhona Davidson</td>
-												<td>Integration Specialist</td>
-												<td>Tokyo</td>
-												<td>55</td>
-												<td>2010/10/14</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Cara Stevens</td>
-												<td>Sales Assistant</td>
-												<td>New York</td>
-												<td>46</td>
-												<td>2011/12/06</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Hermione Butler</td>
-												<td>Regional Director</td>
-												<td>London</td>
-												<td>47</td>
-												<td>2011/03/21</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
-											<tr>
-												<td>Lael Greer</td>
-												<td>Systems Administrator</td>
-												<td>London</td>
-												<td>21</td>
-												<td>2009/02/27</td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#showproduct"></i> <i
-													class="fas fa-edit green-color" data-toggle="modal"
-													data-target="#editproduct"></i></td>
-											</tr>
+											</c:forEach>
 										</tbody>
 										<tfoot>
 											<tr>
@@ -222,38 +115,38 @@
                                             <div class="row tm-edit-product-row">
                                                 <div class="col-12">
 
-                                                    <form action="" class="tm-edit-product-form">
+                                                    <form action="admin/news.htm" modelAttribute="news" method="post" class="tm-edit-product-form">
                                                         <div class="row mb-4">
 
                                                             <div class="col-xl-6 col-lg-6 col-md-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="name">Mã tin </label> <input id="name"
-                                                                        name="name" type="text"
+                                                                    <label for="name">Mã tin </label> <input path="maTin" id="maTin"
+                                                                        name="maTin" type="text"
                                                                         class="form-control validate" required />
                                                                 </div>
                                                                 <div class="form-group mb-3">
-                                                                    <label for="name">Tên tin </label> <input id="name"
-                                                                        name="name" type="text"
+                                                                    <label for="name">Tên tin </label> <input path="maTin" id="tenTin"
+                                                                        name="tenTin" type="text"
                                                                         class="form-control validate" required />
                                                                 </div>
                                                                 <div class="form-group mb-3">
                                                                     <label for="description">Mô tả</label>
-                                                                    <textarea class="form-control validate" rows="3"
+                                                                    <textarea id="noiDung" name="noiDung" class="form-control validate" rows="3"
                                                                         required></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-12">
                                                                 <div class="tm-product-img-dummy mx-auto rounded">
                                                                     <i class="fas fa-cloud-upload-alt tm-upload-icon"
-                                                                        onclick="document.getElementById('fileInput').click();"></i>
+                                                                        onclick="document.getElementById('anh').click();"></i>
                                                                 </div>
                                                                 <div class="custom-file mt-3 mb-3">
-                                                                    <input id="fileInput" type="file"
+                                                                    <input type="file" name="anh" id="anh"
                                                                         style="display: none" />
                                                                     <input type="button"
                                                                         class="btn btn-primary btn-block mx-auto btn-green shadow-none"
                                                                         value="Thêm ảnh"
-                                                                        onclick="document.getElementById('fileInput').click();" />
+                                                                        onclick="document.getElementById('anh').click();" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -275,7 +168,8 @@
 			</div>
 			<!-- /.modal -->
 			<!-- Center modal content -->
-			<div class="modal fade" id="editproduct" tabindex="-1" role="dialog"
+			<c:forEach var="n" items="${newsList }">
+			<div class="modal fade" id=${n.tenTin } tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
@@ -291,46 +185,45 @@
                                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                                             <div class="row tm-edit-product-row">
                                                 <div class="col-12">
-
-                                                    <form action="" class="tm-edit-product-form">
+                                                    <form action="admin/news/update.htm" modelAttribute="news" method="post" class="tm-edit-product-form">
                                                         <div class="row mb-4">
-
                                                             <div class="col-xl-6 col-lg-6 col-md-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="name">Mã tin </label> <input id="name"
-                                                                        name="name" type="text"
+                                                                    <label for="maTin">Mã tin </label> <input id="maTin" name="maTin"
+                                                                        path="maTin" type="text" value=${n.maTin }
                                                                         class="form-control validate" required />
                                                                 </div>
                                                                 <div class="form-group mb-3">
-                                                                    <label for="name">Tên tin </label> <input id="name"
-                                                                        name="name" type="text"
+                                                                    <label for="tenTin">Tên tin </label> 
+                                                                    <input id="tenTin" name="tenTin"
+                                                                        path="tenTin" type="text" value=${n.tenTin }
                                                                         class="form-control validate" required />
                                                                 </div>
                                                                 <div class="form-group mb-3">
-                                                                    <label for="description">Mô tả</label>
-                                                                    <textarea class="form-control validate" rows="3"
-                                                                        required></textarea>
+                                                                    <label for="noiDung">Mô tả</label>
+                                                                    <textarea path="noiDung" id="noiDung" name="noiDung" class="form-control validate" rows="3"
+                                                                        required>${n.noiDung }</textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-12">
                                                                 <div class="tm-product-img-dummy mx-auto rounded">
                                                                     <i class="fas fa-cloud-upload-alt tm-upload-icon"
-                                                                        onclick="document.getElementById('fileInput').click();"></i>
+                                                                        onclick="document.getElementById('anh').click();"></i>
                                                                 </div>
                                                                 <div class="custom-file mt-3 mb-3">
-                                                                    <input id="fileInput" type="file"
-                                                                        style="display: none" />
+                                                                    <input id="anh" type="file" id="anh" name="anh"
+                                                                        style="display: none" value=${n.anh } />
                                                                     <input type="button"
                                                                         class="btn btn-primary btn-block mx-auto btn-green shadow-none"
                                                                         value="Thêm ảnh"
-                                                                        onclick="document.getElementById('fileInput').click();" />
+                                                                        onclick="document.getElementById('anh').click();" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <button type="submit"
+                                                            <button type="submit" 
                                                                 class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-                                                                Thêm</button>
+                                                                Cập nhật</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -344,9 +237,11 @@
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+			</c:forEach>
 			<!-- /.modal -->
 			<!-- Center modal content -->
-			<div class="modal fade" id="showproduct" tabindex="-1" role="dialog"
+			<c:forEach var="n" items="${newsList }">
+			<div class="modal fade" id=${n.maTin } tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
@@ -372,7 +267,7 @@
 															<input id="fileInput" type="file" style="display: none" />
 															<div
 																style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff;">
-																<h4 class="mt-2">SP001</h4>
+																<h4 class="mt-2">${n.maTin }</h4>
 															</div>
 														</div>
 														<div class="row mt-4">
@@ -386,7 +281,7 @@
 															</div>
 															<div class="form-group mb-3 col-xs-12 col-sm-6">
 																<p class="m-b-10 f-w-600">Ngày thêm</p>
-																<h6 class="text-muted f-w-400">23/2/3</h6>
+																<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
 															</div>
 														</div>
 													</div>
@@ -447,6 +342,7 @@
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+			</c:forEach>
 			<!-- /.modal -->
 		</div>
 		<!-- ============================================================== -->

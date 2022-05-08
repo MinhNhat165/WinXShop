@@ -47,30 +47,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>Tiger Nixon</td>
-												<td>System Architect</td>
-												<td>Edinburgh</td>
-												<td>61</td>
-												<td><button type="button" class="btn btn-status-locked">
-														Khóa</button></td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#informodal"></i> <i
-													class=" fas fa-edit green-color" data-toggle="modal"
-													data-target="#bs-example-modal-lg"></i></td>
-											</tr>
-											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#informodal"></i> <i
-													class=" fas fa-edit green-color" data-toggle="modal"
-													data-target="#bs-example-modal-lg"></i></td>
-											</tr>
+											<c:forEach var="u" items="${users }">
+												<tr>
+													<td>${u.maKH }</td>
+													<td>${u.hoTen }</td>
+													<td>${u.taiKhoan.email }</td>
+													<td>${u.sdt }</td>
+													<td><button type="button"
+															class="btn btn-status-activate">${u.taiKhoan.trangThai }</button></td>
+													<td><i class="fas fa-info-circle green-color"
+														data-toggle="modal" data-target=#${u.maKH }></i> <i
+														class=" fas fa-edit green-color" data-toggle="modal"
+														data-target="#bs-example-modal-lg"></i></td>
+								
+												</tr>
+											</c:forEach>
 											<tr>
 												<td>Ashton Cox</td>
 												<td>Junior Technical Author</td>
@@ -95,8 +86,6 @@
 													class=" fas fa-edit green-color" data-toggle="modal"
 													data-target="#bs-example-modal-lg"></i></td>
 											</tr>
-
-
 										</tbody>
 										<tfoot>
 											<tr>
@@ -123,7 +112,8 @@
 			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!--  Modal content for the above example -->
-			<div class="modal fade" id="informodal" tabindex="-1" role="dialog"
+			<c:forEach var="u" items="${users }">
+			<div class="modal fade" id=${u.maKH } tabindex="-1" role="dialog"
 				aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
@@ -132,11 +122,13 @@
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
+						
 						<div class="modal-body">
 							<div class="page-content page-container" id="page-content">
 								<div class="row container d-flex justify-content-center p-0 m-0">
 									<div class="col-md-12">
 										<div class="card user-card-full">
+										
 											<div class="row m-l-0 m-r-0">
 
 												<div class="col-sm-4 bg-c-lite-green user-profile div-img">
@@ -146,7 +138,7 @@
 																src="https://img.icons8.com/bubbles/100/000000/user.png"
 																class="img-radius" alt="User-Profile-Image">
 														</div>
-														<h6 class="f-w-600">uer001</h6>
+														<h6 class="f-w-600">user001</h6>
 														<p>NV001</p>
 														<i
 															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
@@ -159,20 +151,19 @@
 														<div class="row">
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Họ và tên</p>
-																<h6 class="text-muted f-w-400">Nguyễn Thị Khánh Vi</h6>
+																<h6 class="text-muted f-w-400">${u.hoTen }</h6>
 															</div>
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Địa chỉ</p>
-																<h6 class="text-muted f-w-400">453 Lê Văn Việt,quận
-																	9,TP.HCM</h6>
+																<h6 class="text-muted f-w-400">${u.diaChi }</h6>
 															</div>
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Ngày sinh</p>
-																<h6 class="text-muted f-w-400">29/04/2001</h6>
+																<h6 class="text-muted f-w-400">${u.ngaySinh }</h6>
 															</div>
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Phái</p>
-																<h6 class="text-muted f-w-400">Nữ</h6>
+																<h6 class="text-muted f-w-400">${u.phai }</h6>
 															</div>
 														</div>
 
@@ -182,11 +173,11 @@
 
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Email</p>
-																<h6 class="text-muted f-w-400">rntng@gmail.com</h6>
+																<h6 class="text-muted f-w-400">${u.taiKhoan.email }</h6>
 															</div>
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">SĐT</p>
-																<h6 class="text-muted f-w-400">98979989898</h6>
+																<h6 class="text-muted f-w-400">${u.sdt }</h6>
 															</div>
 														</div>
 
@@ -212,6 +203,8 @@
 
 
 											</div>
+										
+											
 										</div>
 									</div>
 								</div>
@@ -223,6 +216,7 @@
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+			</c:forEach>
 			<!-- /.modal -->
 			<!-- footer -->
 			<!-- ============================================================== -->

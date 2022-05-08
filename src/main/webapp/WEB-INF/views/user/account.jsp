@@ -268,6 +268,7 @@
                             </div>
                             <div class="col-8">
                               <form
+                              	action="dsaas"
                                 method="post"
                                 name="enq"
                                 class="needs-validation"
@@ -387,7 +388,7 @@
           </div>
         </div>
       </section>
-    </main>S
+    </main>
 	   <!-- confirm modal -->
     <div
       class="modal fade"
