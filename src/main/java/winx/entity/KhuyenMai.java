@@ -1,8 +1,8 @@
 package winx.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "KHUYENMAI")
-public class KhuyenMai {
+public class KhuyenMai implements Serializable {
 	@Id
 	@Column(name = "MaKM")
 	private String maKM;
@@ -34,8 +34,8 @@ public class KhuyenMai {
 	private Date ngayKT;
 	@Column(name = "GiaTriKM")
 	private int giaTriKM;
-	@Column(name = "TrangThai")
-	private byte trangThai;
+	@Column(name = "TrangThai", columnDefinition = "boolean default 1")
+	private boolean trangThai;
 	@Column(name = "MoTa")
 	private String moTa;
 	@OneToMany(mappedBy = "khuyenMai", fetch = FetchType.EAGER)
@@ -83,11 +83,13 @@ public class KhuyenMai {
 		this.giaTriKM = giaTriKM;
 	}
 
-	public byte getTrangThai() {
+
+
+	public boolean isTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(byte trangThai) {
+	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
 

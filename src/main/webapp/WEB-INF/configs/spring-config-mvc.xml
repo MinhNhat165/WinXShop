@@ -17,7 +17,7 @@
 	<!-- Spring MVC Annotation -->
 	<context:annotation-config />
 	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
+	
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" cache-period="100" />
 	<context:component-scan
@@ -25,8 +25,8 @@
 	<!-- Kết nối CSDL -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-			p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-			p:url="jdbc:sqlserver://localhost:1433; Database=LAPTRINHWEB"
+		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		p:url="jdbc:sqlserver://localhost:1433; Database=LAPTRINHWEB"
 		p:username="sa" p:password="123456">
 	</bean>
 	<!-- Cấu hình Hibernate -->
