@@ -49,6 +49,19 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="o" items="${orders }">
+											<tr>
+												<td>${o.maDD }</td>
+												<td>${o.khachHang.hoTen }</td>
+												<td>${o.ngayDat }</td>
+												<td>${o.tongTien }</td>
+												<td><button type="button" class="btn btn-status-locked">
+														${o.daThanhToan }</button></td>
+												<td class="text-center"><i
+													class="fas fa-info-circle green-color" data-toggle="modal"
+													data-target=#${o.maDD } ></i></td>
+											</tr>
+										</c:forEach>
 											<tr>
 												<td>Tiger Nixon</td>
 												<td>System Architect</td>
@@ -58,75 +71,8 @@
 														Khóa</button></td>
 												<td class="text-center"><i
 													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
+													data-target=#${u.maDD }></i></td>
 											</tr>
-											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td><button type="button" class="btn btn-status-locked">
-														Khóa</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td><button type="button" class="btn btn-status-locked">
-														Khóa</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-											<tr>
-												<td>Cedric Kelly</td>
-												<td>Senior Javascript Developer</td>
-												<td>Edinburgh</td>
-												<td>22</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-											<tr>
-												<td>Airi Satou</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>33</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-											<tr>
-												<td>Brielle Williamson</td>
-												<td>Integration Specialist</td>
-												<td>New York</td>
-												<td>61</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-											<tr>
-												<td>Herrod Chandler</td>
-												<td>Sales Assistant</td>
-												<td>San Francisco</td>
-												<td>59</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target="#showorder"></i></td>
-											</tr>
-
 										</tbody>
 										<tfoot>
 											<tr>
@@ -159,7 +105,8 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 			<!-- Center modal content -->
-			<div class="modal fade" id="showorder" tabindex="-1" role="dialog"
+			<c:forEach var="o" items="${orders }">
+			<div class="modal fade" id=${o.maDD } tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content ">
@@ -177,23 +124,21 @@
 									<div class="p-4">
 										<ul class="list-unstyled mb-4">
 											<li class="d-flex justify-content-between py-3 border-bottom">
-												<strong class="text-muted">Mã đơn đặt </strong><strong>DH001</strong>
+												<strong class="text-muted">Mã đơn đặt </strong><strong>${o.maDD }</strong>
 											</li>
 											<li class="d-flex justify-content-between py-3 border-bottom">
-												<strong class="text-muted">Khách hàng </strong><strong>Nguyễn
-													Thị hihi</strong>
+												<strong class="text-muted">Khách hàng </strong><strong>${o.khachHang.hoTen }</strong>
 											</li>
 											<li class="d-flex justify-content-between py-3 border-bottom">
-												<strong class="text-muted">Ngày đặt </strong><strong>20/02/2022</strong>
+												<strong class="text-muted">Ngày đặt </strong><strong>${o.ngayDat }</strong>
 											</li>
 											<li class="d-flex justify-content-between py-3 border-bottom">
-												<strong class="text-muted">Địa chỉ giao hàng</strong><strong>453
-													lê văn việt q9</strong>
+												<strong class="text-muted">Địa chỉ giao hàng</strong><strong>${o.diaChi }</strong>
 											</li>
 											<li class="d-flex justify-content-between py-3 border-bottom">
 												<strong class="text-muted">Tổng tiền</strong>
 												<h5 class="font-weight-bold"
-													style="font-weight: 800 !important;">$400.00</h5>
+													style="font-weight: 800 !important;">${o.tongTien }</h5>
 											</li>
 										</ul>
 										<a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed
@@ -308,6 +253,7 @@
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
+			</c:forEach>
 			<!-- /.modal -->
 		</div>
 		<!-- ============================================================== -->
