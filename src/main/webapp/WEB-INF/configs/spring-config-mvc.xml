@@ -17,10 +17,8 @@
 	<!-- Spring MVC Annotation -->
 	<context:annotation-config />
 	<mvc:annotation-driven />
-<<<<<<< HEAD
 
-=======
->>>>>>> vi
+
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" cache-period="100" />
 	<context:component-scan
