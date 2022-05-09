@@ -19,7 +19,7 @@ public class NhanHang {
 	@Column(name="TenNH")
 	private String tenNH;
 	@Column(name="TrangThai")
-	private byte trangThai;
+	private boolean trangThai;
 	@Column(name = "Anh")
 	private String anh;
 	@OneToMany(mappedBy = "nhanHang", fetch = FetchType.EAGER)
@@ -36,10 +36,10 @@ public class NhanHang {
 	public void setTenNH(String tenNH) {
 		this.tenNH = tenNH;
 	}
-	public byte getTrangThai() {
+	public boolean getTrangThai() {
 		return trangThai;
 	}
-	public void setTrangThai(byte trangThai) {
+	public void setTrangThai(Boolean trangThai) {
 		this.trangThai = trangThai;
 	}
 	public String getAnh() {
