@@ -20,10 +20,10 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping("product")
-	public String product(ModelMap model) {
-		return "admin/product";
-	}
+//	@RequestMapping("product")
+//	public String product(ModelMap model) {
+//		return "admin/product";
+//	}
 	@RequestMapping("customer")
 	public String customer(ModelMap model) {
 		return "admin/customer";
@@ -37,10 +37,10 @@ public class AdminController {
 	public String sale(ModelMap model) {
 		return "admin/sale";
 	}
-	@RequestMapping("brand")
-	public String brand(ModelMap model) {
-		return "admin/brand";
-	}
+//	@RequestMapping("brand")
+//	public String brand(ModelMap model) {
+//		return "admin/brand";
+//	}
 	@RequestMapping("news")
 	public String news(ModelMap model) {
 		return "admin/news";
