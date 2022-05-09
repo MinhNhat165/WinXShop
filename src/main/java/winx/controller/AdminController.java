@@ -41,10 +41,7 @@ public class AdminController {
 	public String brand(ModelMap model) {
 		return "admin/brand";
 	}
-	@RequestMapping("news")
-	public String news(ModelMap model) {
-		return "admin/news";
-	}
+	
 	@RequestMapping("login")
 	public String login(ModelMap model) {
 		return "admin/login";
