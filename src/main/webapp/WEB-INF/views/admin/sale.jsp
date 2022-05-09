@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 
 <body>
 	<div class=" flag-modal-create" isOpen=${isOpenModalCreate }></div>
-	<div class=" modal-flag" idModal="${idModal}"></div>
+	<div class="modal-flag" idModal="${idModal}"></div>
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -60,9 +61,8 @@
 															<button class="btn btn-outline-info btn-sm">
 																<i class="fas fa-info-circle"></i>
 															</button>
-													</a> <a href="admin/sale/edit/${km.maKM}.htm">
-															<button class="btn btn-outline-warning btn-sm"
-																data-toggle="modal" data-target="#editsale">
+													</a> <a href="admin/sale/update/${km.maKM}.htm">
+															<button class="btn btn-outline-warning btn-sm">
 																<i class="fas fa-edit"></i>
 															</button>
 													</a></td>
@@ -99,20 +99,25 @@
 										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 											<div class="row tm-edit-product-row">
 												<div class="col-12">
-													<form:form action="${formAction }"
+													<form:form action="${formAction }" method="post"
 														modelAttribute="KM" class="tm-edit-product-form">
+
 														<div class="row">
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div class="form-group mb-3">
 																	<label for="input-maKM">Mã khuyễn mãi </label>
-																	<form:input path="maKM" id="input-maKM" name="maKM"
-																		type="text" class="form-control validate"
-																		required="true" />
+																	<form:input path="maKM" id="input-maKM"
+																		disabled="${btnAction=='btnUpdate'?'true': 'false' }"
+																		name="maKM" type="text" class="form-control validate" />
+																	<span class="text-danger"><form:errors
+																			path="maKM"></form:errors></span>
 																</div>
 																<div class="form-group mb-3">
 																	<label for="input-tenKM">Tên khuyến mãi </label>
 																	<form:input type="text" path="tenKM" id="input-tenKM"
-																		class="form-control validate" required="true" />
+																		class="form-control validate" />
+																	<span class="text-danger"><form:errors
+																			path="tenKM"></form:errors></span>
 																</div>
 																<div class="form-group mb-3">
 																	<label for="input-giaTriKM">Giá trị khuyến mãi
@@ -120,20 +125,21 @@
 																	<form:input type="number" path="giaTriKM" min="0"
 																		max="100" id="input-giaTriKM"
 																		class="form-control validate" required="true" />
+																	<span class="text-danger"><form:errors
+																			path="giaTriKM"></form:errors></span>
 																</div>
 																<div class="form-group mb-3 pl-2">
 																	<label for="">Trang thái </label>
 																	<div class="row">
 																		<div class="form-check col-6 px-5">
-																			<form:radiobutton value="0" id="0" path="trangThai"
+																			<form:radiobutton value="0" path="trangThai"
 																				class="form-check-input validate" required="true" />
 																			<label class="form-check-label" for="0"> Hết
 																				hiệu lực</label>
 																		</div>
 																		<div class="form-check col-6">
 																			<form:radiobutton value="1" path="trangThai"
-																				class="form-check-input validate" required="true"
-																				id="1" />
+																				class="form-check-input validate" required="true" />
 																			<label class="form-check-label" for="1"> Còn
 																				hiệu lực </label>
 																		</div>
@@ -143,24 +149,29 @@
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 																<div class="row">
-																	<div class="form-group mb-3 col-xs-12 col-sm-6 pr-2">
-																		<label for="input-ngayBD">Ngày bắt đầu </label> <input
-																			type="date" value="${KM.ngayBD }" id="input-ngayBD" name="input-ngayBD"
-																			class="form-control validate" required />
+																	<div class="form-group col-xs-12 col-sm-6 pr-2">
+
+																		<label for="input-ngayBD">Ngày bắt đầu </label>
+																		<form:input type="date" path="ngayBD"
+																			id="input-ngayBD" name="input-ngayBD"
+																			class="form-control validate" />
 																	</div>
-																	<div class="form-group mb-3 col-xs-12 col-sm-6 pl-2">
-																		<label for="input-ngayKT">Ngày kết thúc </label> <input
-																			type="date" value="${KM.ngayKT }" id="input-ngayKT" name="input-ngayKT"
-																			class="form-control validate" required />
+																	<div class="form-group col-xs-12 col-sm-6 pl-2">
+																		<label for="input-ngayKT">Ngày kết thúc </label>
+																		<form:input type="date" path="ngayKT"
+																			id="input-ngayKT" name="input-ngayKT"
+																			class="form-control validate" required="true" />
 																	</div>
 
 																</div>
+																<span class="text-danger"><form:errors
+																		path="ngayBD"></form:errors></span>
 
 
-																<div class="form-group mb-3">
+																<div class="form-group my-3">
 																	<label for="description">Mô tả</label>
 																	<form:textarea class="form-control validate" rows="3"
-																		path="moTa" required="true" style="min-height: 195px" />
+																		path="moTa" style="min-height: 195px" />
 																</div>
 															</div>
 														</div>
@@ -339,7 +350,7 @@
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
-			
+
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
@@ -579,136 +590,182 @@
           alertify.set('notifier','position', 'top-right');
       }
       $("#zero_config_filter")
-        .append(`  <div class="search-bar-table d-flex align-items-stretch">
-                      <div class="position-relative">
-                        <button
-                          type="button"
-                          class="btn btn-green text-white btn-filter"
-                          data-toggle="collapse"
-                         data-target="#filter-table"
+        .append(`   <div class="search-bar-table d-flex align-items-stretch">
+                <div class="position-relative">
+                <button
+                  type="button"
+                  class="btn btn-green text-white btn-filter"
+                  data-toggle="collapse"
+                  data-target="#filter-table"
+                >
+                  <i class="fa-regular fa-filter-list"></i>
+                  <span class="text-white"></span>
+                </button>
+                <!-- filter table -->
+                <div
+                  class="card position-absolute text-start collapse shadow-lg end-100 top-0 filter-block"
+                  id="filter-table"
+                  style="z-index: 100; min-width: 360px"
+                >
+                  <div class="card-header p-2 fs-5 green-color">
+                    Bộ lọc
+                  </div>
+                  <div class="card-body">
+                    <form
+                      action="admin/sale/index.htm"
+                      method="post"
+                      class="row g-3"
+                      id="form-filter"
+                    >
+                      <div class="col-12 mt-0 px-0">
+                        <label for="input-start-date" class="form-label"
+                          >Ngày bắt đầu</label
                         >
-                          <i class="fa-regular fa-filter-list"></i>
-                          <span class="text-white"></span>
-                        </button>
-                        <!-- filter table -->
+
                         <div
-                          class="card position-absolute text-start shadow-lg collapse end-100 top-0 filter-block" id="filter-table" style="z-index: 100; min-width: 360px"
+                          class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch"
                         >
-                          <div class="card-header p-2 fs-5 green-color">Bộ lọc</div>
-                           <div class="card-body">
-                            <form class="row g-3" id="form-filter">
-                              <div class="col-12 mt-0 px-0">
-                                <label for="input-start-date" class="form-label"
-                                  >Ngày bắt đầu</label
-                                >
-
-                                <div
-                                  class="col-12 px-0  d-flex gap-1 justify-content-around align-items-stretch"
-                                >
-                                  <div class="input-group">
-                                    <input
-                                      type="date"
-                                      class="form-control"
-                                    />
-                                  </div>
-                                  <button
-                                    type="button"
-                                    class="btn btn-green btn-sm btn-range-filter"
-                                    data-toggle="collapse"
-                                    data-target="#input-start-date-right"
-                                  >
-                                    Đến
-                                  </button>
-
-                                  <div
-                                    class="input-group collapse range-filter-right"
-                                    id="input-start-date-right"
-
-                                  >
-                                    <input
-                                      id="input-birthday-right"
-                                      type="date"
-                                      class="form-control"
-                                      aria-label="input-birthday"
-                                      aria-describedby="basic-addon1"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-12 mt-0 px-0">
-                                <label for="input-start-date" class="form-label"
-                                  >Ngày kết thúc </label
-                                >
-
-                                <div
-                                  class="col-12 px-0  d-flex gap-1 justify-content-around align-items-stretch"
-                                >
-                                  <div class="input-group">
-                                    <input
-                                      type="date"
-                                      class="form-control"
-                                    />
-                                  </div>
-                                  <button
-                                    type="button"
-                                    class="btn btn-green btn-sm btn-range-filter"
-                                    data-toggle="collapse"
-                                    data-target="#input-end-date-right"
-                                  >
-                                    Đến
-                                  </button>
-
-                                  <div
-                                    class="input-group collapse range-filter-right"
-                                    id="input-end-date-right"
-
-                                  >
-                                    <input                                    
-                                      type="date"
-                                      class="form-control"                           
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-12 px-0">
-                                <label for="inputAddress" class="form-label"
-                                  >Trạng thái</label
-                                >
-                                <div class="col-md-12 px-0">
-                                  <button
-                                    class="btn btn-sm btn-outline-green"
-                                  >
-                                    Còn hiệu lực
-                                  </button>
-                                  <button class="btn btn-sm btn-green">
-                                    Hết hiệu lực
-                                  </button>
-                                </div>
-                              </div>
-                            </form>
+                          <div class="input-group">
+                            <input type="date" name="ngayBDLeft" class="form-control" />
                           </div>
-                          <div class="card-footer text-end p-2">
-                            <button
-                              type="submit"
-                              form="form-filter"
-                              class="btn btn-green"
-                            >
-                              Lọc
-                            </button>
-                            <button type="reset" class="btn btn-secondary mb-0">
-                              Đặt lại
-                            </button>
+                          <button
+                            type="button"
+                            class="btn btn-green btn-sm btn-range-filter"
+                            data-toggle="collapse"
+                            data-target="#input-start-date-right"
+                          >
+                            Đến
+                          </button>
+
+                          <div
+                            class="input-group collapse range-filter-right"
+                            id="input-start-date-right"
+                          >
+                            <input                             
+                              type="date"
+                              name="ngayBDRight"
+                              class="form-control"
+                            />
                           </div>
                         </div>
                       </div>
-                    </div>`);
-      if ($(".modal-flag").attr("idModal") ==="modalDetail") {
-          $("#modalDetail").modal("show");
-        }
-      else if($(".modal-flag").attr("idModal") === "modalCreate") $("#modalCreate").modal("show");
+                      <div class="col-12 mt-0 px-0">
+                        <label for="input-start-date" class="form-label"
+                          >Ngày kết thúc
+                        </label>
+
+                        <div
+                          class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch"
+                        >
+                          <div class="input-group">
+                            <input type="date" name="ngayKTLeft" class="form-control" />
+                          </div>
+                          <button
+                            type="button"
+                            
+                            class="btn btn-green btn-sm btn-range-filter"
+                            data-toggle="collapse"
+                            data-target="#input-end-date-right"
+                          >
+                            Đến
+                          </button>
+
+                          <div
+                            class="input-group collapse range-filter-right"
+                            id="input-end-date-right"
+                          >
+                            <input type="date" class="form-control" name="ngayKTRight" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 px-0">
+                        <label for="inputAddress" class="form-label"
+                          >Trạng thái</label
+                        >
+                        <div class="col-md-12 d-flex px-0">
+                        <div class="form-check pl-1">
+                        <input
+                        name="trangThai"
+                          type="radio"
+                          class="form-check-input invisible position-absolute"
+                          id="trangThai"
+                        	  value="2"
+                        />
+                        <label
+                          class="btn btn-sm btn-outline-green"
+                          for="trangThai"
+                         
+                          onclick="toggleBtnState(this, 'green-bg-color')"
+                        >
+                          <div class="d-inline">Tất cả</div>
+                        </label>
+                      </div>
+                          <div class="form-check pl-1">
+                            <input
+                            name="trangThai"
+                              type="radio"
+                              class="form-check-input invisible position-absolute"
+                              id="trangThai0"
+                            	  value="0"
+                            	  checked
+                            />
+                            <label
+                              class="btn btn-sm btn-outline-green"
+                              for="trangThai0"
+                             
+                              onclick="toggleBtnState(this, 'green-bg-color')"
+                            >
+                              <div class="d-inline">Hết hiệu lực</div>
+                            </label>
+                          </div>
+                          <div class="form-check pl-1">
+                            <input
+                            value="1"
+                            name="trangThai"
+                              type="radio"
+                              class="form-check-input invisible position-absolute"
+                              id="trangThai1"
+                            />
+                            <label
+                              class="btn btn-sm btn-outline-green"
+                              for="trangThai1"
+                              
+                              onclick="toggleBtnState(this, 'green-bg-color')"
+                            >
+                              <div class="d-inline">Còn hiệu lực</div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="card-footer text-end p-2">
+                    <button
+                      type="submit"
+                      form="form-filter"
+                      name="btnFilter"
+                      class="btn btn-green"
+                    >
+                      Lọc
+                    </button>
+                    <button type="reset" class="btn btn-secondary mb-0">
+                      Đặt lại
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>`);
+      
+      const toggleBtnState = function (e, classToggle) {
+          e.classList.toggle(classToggle);
+          e.querySelector("div").classList.toggle("text-white");
+        };
       
     </script>
-	<script src=" <c:url value='/resources/admin/dist/js/saleProduct.js'/>"></script>
+	<script src=" <c:url value='/resources/admin/dist/js/saleProduct.js'/>">
+	</script>
+	<script src=" <c:url value='/resources/js/autoOpenModal.js'/>">
+	</script>
 
 
 

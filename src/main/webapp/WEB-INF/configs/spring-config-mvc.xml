@@ -17,7 +17,7 @@
 	<!-- Spring MVC Annotation -->
 	<context:annotation-config />
 	<mvc:annotation-driven />
-	
+
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" cache-period="100" />
 	<context:component-scan
@@ -30,6 +30,7 @@
 		p:username="sa" p:password="123456">
 	</bean>
 	<!-- Cấu hình Hibernate -->
+
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -51,10 +52,6 @@
 	<!-- Cấu hình view -->
 	<bean id="viewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
-
-
-
-
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

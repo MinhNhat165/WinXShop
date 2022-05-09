@@ -1,13 +1,10 @@
 package winx.entity;
 
-<<<<<<< HEAD
 
 
-import java.util.Collection;
-=======
+
 import java.util.Collection;
 import java.util.List;
->>>>>>> cc2b5d7e01a89703e1043910586b9b1ad8752501
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "DANHGIA")
 public class DanhGia {
@@ -27,13 +22,9 @@ public class DanhGia {
 	private String maDG;
 	@Column(name = "DiemDG")
 	private Float  diemGD;
-<<<<<<< HEAD
-	@OneToOne (mappedBy = "danhGia", fetch = FetchType.EAGER )
 
-
-=======
 	@OneToOne (mappedBy = "danhGia")
->>>>>>> cc2b5d7e01a89703e1043910586b9b1ad8752501
+
 	private SanPham sanPham;
 
 	@OneToMany(mappedBy = "danhGia", fetch = FetchType.EAGER)

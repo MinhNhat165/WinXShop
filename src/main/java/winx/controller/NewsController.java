@@ -22,12 +22,13 @@ import winx.entity.TinMoi;
 
 @Transactional
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("admin")
 public class NewsController {
 	@Autowired
 	SessionFactory factory;
 	
 	public List<TinMoi> getNews() {
+		System.out.print(1);
 		Session session = factory.getCurrentSession();
 		String hql = "FROM TinMoi";
 		Query query = session.createQuery(hql);
