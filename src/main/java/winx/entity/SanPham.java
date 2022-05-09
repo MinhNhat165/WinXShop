@@ -34,11 +34,11 @@ public class SanPham {
 	private String anh;
 	@Column(name = "NgaySX")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySX;
 	@Column(name = "NgayHH")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngayHH;
 	@Column(name = "DungTich")
 	private int dungTich;
@@ -46,7 +46,7 @@ public class SanPham {
 	private String moTa;
 	@Column(name = "NgayThem")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngayThem;
 	@Column(name = "Gia")
 	private BigDecimal gia;
