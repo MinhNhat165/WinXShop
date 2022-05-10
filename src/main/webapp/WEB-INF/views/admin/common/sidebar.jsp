@@ -59,7 +59,7 @@
 					href="admin/news.htm" data="news" aria-expanded="false"><i
 						class=" icon-book-open"></i><span class="hide-menu">Tin Mới</span></a></li>
 				<li class="sidebar-item"><a class="sidebar-link sidebar-link"
-					href="admin/login.htm" aria-expanded="false"><i
+					href="admin/logout.htm" aria-expanded="false"><i
 						class="icon-logout"></i><span class="hide-menu">Đăng Xuất</span></a></li>
 
 				<li class="list-divider"></li>

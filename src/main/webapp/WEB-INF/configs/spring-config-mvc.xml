@@ -30,6 +30,15 @@
 		p:url="jdbc:sqlserver://localhost:1433; Database=LAPTRINHWEB"
 		p:username="sa" p:password="123456">
 	</bean>
+	<!-- Cấu hình interceptor -->
+	<mvc:interceptors>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<mvc:exclude-mapping path="/admin/login.htm" />
+			<bean class="winx.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<!-- Cấu hình Hibernate -->
 
 	<bean id="sessionFactory"
