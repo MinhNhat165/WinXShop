@@ -19,12 +19,9 @@ searchBar
 	.contents()
 	.filter((_, el) => el.nodeType === 3)
 	.remove();
-var url = window.location + "";
-var path = url.replace(
-	window.location.protocol + "//" + window.location.host + "/",
-	"",
-);
- var newPath = path.replace("Winx/", "");
+
+var page = $(".page-flag").attr("data")
+
 searchBar.children("label").addClass("input-group w-50");
 searchBar.children("label").children("input").removeClass("form-control-sm");
 searchBar.children("label").children("input").addClass("border-green");
@@ -34,7 +31,7 @@ searchBar
 	.prepend(
 		`<span class="input-group-text btn-green border-primary" id="basic-addon2" style="border: var(--green-color) !important"><i class="text-white fa-regular fa-magnifying-glass" ></i></span>`,
 	);
-searchBar.append(`<a href="admin/sale/insert.htm"> <button type="button" class="btn mb-0 btn-green shadow-none" >
+searchBar.append(`<a href="admin/${page}/add.htm" class="btn-create"> <button type="button" class="btn mb-0 btn-green shadow-none" >
             <i class="fas fa-plus-circle"></i> Thêm
           </button></a>`);
 
