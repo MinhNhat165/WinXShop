@@ -6,7 +6,10 @@
 <%@include file="./head.jsp"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
+	<!-- flag -->
+	<div class="page-flag" data="product"></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<!-- End-flag -->
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -30,14 +33,14 @@
 				<!-- ============================================================== -->
 				<!-- basic table -->
 				<a href="admin/product/add.htm"><button type="button"
-					class="btn btn-secondary green-bg-color shadow-none">
-					<i class=" fas fa-plus-circle"></i> Thêm
-				</button></a>
+						class="btn btn-secondary green-bg-color shadow-none">
+						<i class=" fas fa-plus-circle"></i> Thêm
+					</button></a>
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="table-responsive">
+								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
@@ -71,16 +74,7 @@
 
 											</c:forEach>
 										</tbody>
-										<tfoot>
-											<tr>
-												<th>Mã sản phẩm</th>
-												<th>Tên sản phẩm</th>
-												<th>Giá</th>
-												<th>Loại</th>
-												<th>Trạng thái</th>
-												<th>Option</th>
-											</tr>
-										</tfoot>
+
 									</table>
 								</div>
 							</div>
@@ -167,17 +161,18 @@
 
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-																<div class="tm-product-img-dummy mx-auto rounded">
+																<div
+																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+
 																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input path="anh" type="file"
+																	<form:input path="anh" type="file" class="file-upload"
 																		style="display: none;" />
-																	<form:input path="anh" type="button"
-																		class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																		value="Sửa ảnh"
-																		onclick="document.getElementById('fileInput').click();" />
+																	<button type="button"
+																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
+																		ảnh lên</button>
 																</div>
 																<div class="row mt-4">
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -246,7 +241,7 @@
 																			style="display: none;" />
 																		<div
 																			Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
-																			<h4 class="mt-2">SP001</h4>
+																			<h4 class="mt-2">${sanpham.maSP}</h4>
 																		</div>
 
 																	</div>
@@ -307,7 +302,7 @@
 																					</c:when>
 																				</c:choose>
 
-																				
+
 																			</h6>
 																		</div>
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -362,7 +357,112 @@
 		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
 			$("#showproduct").modal("show");
 		}
-		
+		var readURL = function(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$(".profile-pic").attr("src", e.target.result);
+					$(".profile-pic").css({
+						'background-image' : 'url(' + e.target.result + ')',
+						'background-size' : 'cover'
+					});
+
+				};
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		};
+
+		$(".file-upload").on("change", function() {
+			readURL(this);
+		});
+
+		$(".upload-button").on("click", function() {
+			$(".file-upload").click();
+		});
+		$("#zero_config_filter")
+        .append(`<div class="search-bar-table d-flex align-items-stretch">
+	        	    <div class="position-relative">
+	                <button type="button" class="btn btn-green text-white btn-filter" data-toggle="collapse" data-target="#filter-table">
+	                    <i class="fa-regular fa-filter-list"></i>
+	                    <span class="text-white"></span>
+	                </button>
+	                <!-- filter table -->
+	                <div class="card position-absolute text-start collapse shadow-lg end-100 top-0 filter-block" id="filter-table" style="z-index: 100; min-width: 24rem;">
+	                    <div class="card-header p-2 fs-5 green-color" style="background-color: #c4f0d5">
+	                        Bộ lọc
+	                    </div>
+	                    <div class="card-body">
+	                        <form action="admin/sale/index.htm" method="post" class="row g-3" id="form-filter">
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày bắt đầu</label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayBDLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-start-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-start-date-right">
+	                                        <input type="date" name="ngayBDRight" class="form-control" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày kết thúc </label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayKTLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-end-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-end-date-right">
+	                                        <input type="date" class="form-control" name="ngayKTRight" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-md-12 px-0">
+	                                <label for="inputAddress" class="form-label">Trạng thái</label>
+	                                <div class="col-md-12 d-flex px-0">
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai" value="2" checked />
+	                                        <label class="py-1 px-2" for="trangThai">
+	                                            Tất cả
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai0" value="0" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai0">
+	                                            <div class="d-inline">Hết hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input value="1" name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai1" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai1">
+	                                            <div class="d-inline">Còn hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="card-footer text-end p-2">
+	                        <button type="submit" form="form-filter" name="btnFilter" class="btn btn-green">
+	                            Lọc
+	                        </button>
+	                        <button type="reset" class="btn btn-secondary mb-0">
+	                            Đặt lại
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>`);
 	</script>
 </body>
 </html>

@@ -34,7 +34,7 @@
 		<nav class="sidebar-nav">
 			<ul id="sidebarnav">
 				<li class="sidebar-item "><a class="sidebar-link sidebar-link "
-					href="admin/dashboard.htm" data="dashboard" aria-expanded="false"><i
+					href="admin/dashboard.htm" aria-expanded="false"><i
 						data-feather="home" class="feather-icon"></i><span
 						class="hide-menu">Trang Chủ</span></a></li>
 				<li class="list-divider"></li>

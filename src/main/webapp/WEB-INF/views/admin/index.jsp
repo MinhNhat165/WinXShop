@@ -5,7 +5,9 @@
 <html>
 <%@include file="./head.jsp"%>
 <body>
-
+	<!-- flag -->
+	<div class="page-flag" data="dashboard"></div>
+	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"

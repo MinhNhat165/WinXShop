@@ -6,20 +6,28 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
 <head>
-
+<%@include file="./common/head.jsp"%>
 </head>
 
 <body>
+	<!--  flag -->
 	<div class=" flag-modal-create" isOpen=${isOpenModalCreate }></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<div class="page-flag" data="sale"></div>
+	<!-- end flag  -->
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<%@include file="./sidebar.jsp"%>
+
+		<!-- sidebar  -->
+		<%@include file="./common/sidebar.jsp"%>
+
+		<!-- End sidebar  -->
+
+
 		<div class="page-wrapper pt-0">
 			<div class="alert-flag" aType='${typeMessage}' aMessage="${message }"></div>
 
@@ -55,7 +63,7 @@
 													<td>${km.ngayKT }</td>
 													<td>${km.giaTriKM }</td>
 													<td><span
-														class="badge rounded-pill ${km.trangThai?'bg-cyan': 'bg-danger text-white'} "
+														class="badge rounded-pill ${km.trangThai?'bg-primary': 'bg-secondary text-white'} "
 														style="color: white !important">${km.trangThai?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
 													<td><a href="admin/sale/detail/${km.maKM}.htm">
 															<button class="btn btn-outline-info btn-sm">
@@ -124,7 +132,7 @@
 																	</label>
 																	<form:input type="number" path="giaTriKM" min="0"
 																		max="100" id="input-giaTriKM"
-																		class="form-control validate" required="true" />
+																		class="form-control validate" />
 																	<span class="text-danger"><form:errors
 																			path="giaTriKM"></form:errors></span>
 																</div>
@@ -133,13 +141,13 @@
 																	<div class="row">
 																		<div class="form-check col-6 px-5">
 																			<form:radiobutton value="0" path="trangThai"
-																				class="form-check-input validate" required="true" />
+																				class="form-check-input validate" />
 																			<label class="form-check-label" for="0"> Hết
 																				hiệu lực</label>
 																		</div>
 																		<div class="form-check col-6">
 																			<form:radiobutton value="1" path="trangThai"
-																				class="form-check-input validate" required="true" />
+																				class="form-check-input validate" />
 																			<label class="form-check-label" for="1"> Còn
 																				hiệu lực </label>
 																		</div>
@@ -160,7 +168,7 @@
 																		<label for="input-ngayKT">Ngày kết thúc </label>
 																		<form:input type="date" path="ngayKT"
 																			id="input-ngayKT" name="input-ngayKT"
-																			class="form-control validate" required="true" />
+																			class="form-control validate" />
 																	</div>
 
 																</div>
@@ -356,7 +364,7 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 
 	<script>
 	var options = [
@@ -590,177 +598,87 @@
           alertify.set('notifier','position', 'top-right');
       }
       $("#zero_config_filter")
-        .append(`   <div class="search-bar-table d-flex align-items-stretch">
-                <div class="position-relative">
-                <button
-                  type="button"
-                  class="btn btn-green text-white btn-filter"
-                  data-toggle="collapse"
-                  data-target="#filter-table"
-                >
-                  <i class="fa-regular fa-filter-list"></i>
-                  <span class="text-white"></span>
-                </button>
-                <!-- filter table -->
-                <div
-                  class="card position-absolute text-start collapse shadow-lg end-100 top-0 filter-block"
-                  id="filter-table"
-                  style="z-index: 100; min-width: 360px"
-                >
-                  <div class="card-header p-2 fs-5 green-color">
-                    Bộ lọc
-                  </div>
-                  <div class="card-body">
-                    <form
-                      action="admin/sale/index.htm"
-                      method="post"
-                      class="row g-3"
-                      id="form-filter"
-                    >
-                      <div class="col-12 mt-0 px-0">
-                        <label for="input-start-date" class="form-label"
-                          >Ngày bắt đầu</label
-                        >
-
-                        <div
-                          class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch"
-                        >
-                          <div class="input-group">
-                            <input type="date" name="ngayBDLeft" class="form-control" />
-                          </div>
-                          <button
-                            type="button"
-                            class="btn btn-green btn-sm btn-range-filter"
-                            data-toggle="collapse"
-                            data-target="#input-start-date-right"
-                          >
-                            Đến
-                          </button>
-
-                          <div
-                            class="input-group collapse range-filter-right"
-                            id="input-start-date-right"
-                          >
-                            <input                             
-                              type="date"
-                              name="ngayBDRight"
-                              class="form-control"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 mt-0 px-0">
-                        <label for="input-start-date" class="form-label"
-                          >Ngày kết thúc
-                        </label>
-
-                        <div
-                          class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch"
-                        >
-                          <div class="input-group">
-                            <input type="date" name="ngayKTLeft" class="form-control" />
-                          </div>
-                          <button
-                            type="button"
-                            
-                            class="btn btn-green btn-sm btn-range-filter"
-                            data-toggle="collapse"
-                            data-target="#input-end-date-right"
-                          >
-                            Đến
-                          </button>
-
-                          <div
-                            class="input-group collapse range-filter-right"
-                            id="input-end-date-right"
-                          >
-                            <input type="date" class="form-control" name="ngayKTRight" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-12 px-0">
-                        <label for="inputAddress" class="form-label"
-                          >Trạng thái</label
-                        >
-                        <div class="col-md-12 d-flex px-0">
-                        <div class="form-check pl-1">
-                        <input
-                        name="trangThai"
-                          type="radio"
-                          class="form-check-input invisible position-absolute"
-                          id="trangThai"
-                        	  value="2"
-                        />
-                        <label
-                          class="btn btn-sm btn-outline-green"
-                          for="trangThai"
-                         
-                          onclick="toggleBtnState(this, 'green-bg-color')"
-                        >
-                          <div class="d-inline">Tất cả</div>
-                        </label>
-                      </div>
-                          <div class="form-check pl-1">
-                            <input
-                            name="trangThai"
-                              type="radio"
-                              class="form-check-input invisible position-absolute"
-                              id="trangThai0"
-                            	  value="0"
-                            	  checked
-                            />
-                            <label
-                              class="btn btn-sm btn-outline-green"
-                              for="trangThai0"
-                             
-                              onclick="toggleBtnState(this, 'green-bg-color')"
-                            >
-                              <div class="d-inline">Hết hiệu lực</div>
-                            </label>
-                          </div>
-                          <div class="form-check pl-1">
-                            <input
-                            value="1"
-                            name="trangThai"
-                              type="radio"
-                              class="form-check-input invisible position-absolute"
-                              id="trangThai1"
-                            />
-                            <label
-                              class="btn btn-sm btn-outline-green"
-                              for="trangThai1"
-                              
-                              onclick="toggleBtnState(this, 'green-bg-color')"
-                            >
-                              <div class="d-inline">Còn hiệu lực</div>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="card-footer text-end p-2">
-                    <button
-                      type="submit"
-                      form="form-filter"
-                      name="btnFilter"
-                      class="btn btn-green"
-                    >
-                      Lọc
-                    </button>
-                    <button type="reset" class="btn btn-secondary mb-0">
-                      Đặt lại
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>`);
-      
-      const toggleBtnState = function (e, classToggle) {
-          e.classList.toggle(classToggle);
-          e.querySelector("div").classList.toggle("text-white");
-        };
-      
+        .append(`<div class="search-bar-table d-flex align-items-stretch">
+	        	    <div class="position-relative">
+	                <button type="button" class="btn btn-green text-white btn-filter" data-toggle="collapse" data-target="#filter-table">
+	                    <i class="fa-regular fa-filter-list"></i>
+	                    <span class="text-white"></span>
+	                </button>
+	                <!-- filter table -->
+	                <div class="card position-absolute text-start collapse shadow-lg end-100 top-0 filter-block" id="filter-table" style="z-index: 100; min-width: 24rem;">
+	                    <div class="card-header p-2 fs-5 green-color" style="background-color: #c4f0d5">
+	                        Bộ lọc
+	                    </div>
+	                    <div class="card-body">
+	                        <form action="admin/sale/index.htm" method="post" class="row g-3" id="form-filter">
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày bắt đầu</label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayBDLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-start-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-start-date-right">
+	                                        <input type="date" name="ngayBDRight" class="form-control" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày kết thúc </label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayKTLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-end-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-end-date-right">
+	                                        <input type="date" class="form-control" name="ngayKTRight" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-md-12 px-0">
+	                                <label for="inputAddress" class="form-label">Trạng thái</label>
+	                                <div class="col-md-12 d-flex px-0">
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai" value="2" checked />
+	                                        <label class="py-1 px-2" for="trangThai">
+	                                            Tất cả
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai0" value="0" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai0">
+	                                            <div class="d-inline">Hết hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input value="1" name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai1" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai1">
+	                                            <div class="d-inline">Còn hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="card-footer text-end p-2">
+	                        <button type="submit" form="form-filter" name="btnFilter" class="btn btn-green">
+	                            Lọc
+	                        </button>
+	                        <button type="reset" class="btn btn-secondary mb-0">
+	                            Đặt lại
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>`);
     </script>
 	<script src=" <c:url value='/resources/admin/dist/js/saleProduct.js'/>">
 	</script>

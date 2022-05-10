@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import winx.CommonMethod.ToHql;
 import winx.entity.KhuyenMai;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
@@ -44,7 +45,7 @@ public class SaleController {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping(value = "index")
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String sale(ModelMap model) {
 		List<KhuyenMai> DSKM = getAllSale();
 		KhuyenMai khuyenMai = new KhuyenMai();
@@ -55,7 +56,7 @@ public class SaleController {
 	}
 
 	// insert
-	@RequestMapping(value = "insert")
+	@RequestMapping(value = "add")
 	public String openSaleInsertForm(ModelMap model, @ModelAttribute("KM") KhuyenMai khuyenMai) {
 		List<KhuyenMai> DSKM = getAllSale();
 		List<NhanHang> DSNH = getAllBrand();
@@ -64,12 +65,12 @@ public class SaleController {
 		model.addAttribute("KM", khuyenMai);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("formTitle", "Thêm mới khuyến mãi");
-		model.addAttribute("formAction", "admin/sale/insert.htm");
-		model.addAttribute("btnAction", "btnInsert");
+		model.addAttribute("formAction", "admin/sale/add.htm");
+		model.addAttribute("btnAction", "btnAdd");
 		return "admin/sale";
 	}
 
-	@RequestMapping(value = "insert", params = "btnInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "add", params = "btnAdd", method = RequestMethod.POST)
 	public String getProductCondition(HttpServletRequest request, ModelMap model,
 			@Validated @ModelAttribute("KM") KhuyenMai khuyenMai, BindingResult result,
 			RedirectAttributes redirectAttributes) {
@@ -84,12 +85,11 @@ public class SaleController {
 				t.commit();
 				redirectAttributes.addFlashAttribute("message", "Thêm mới thành công !!!");
 				redirectAttributes.addFlashAttribute("typeMessage", "success");
-				return "redirect:index.htm";
+				return "redirect:/admin/sale.htm";
 
 			} catch (Exception e) {
 
 				t.rollback();
-				System.out.println(e.getCause().toString());
 				if (e.getCause().toString().contains("duplicate key")) {
 					result.rejectValue("maKM", "KM", "Mã khuyến mãi đã tồn tại");
 				}
@@ -147,9 +147,8 @@ public class SaleController {
 	@RequestMapping(value = "update/{maKM}.htm", params = "btnUpdate")
 	public String saleUpdate(ModelMap model, @Valid @ModelAttribute("KM") KhuyenMai khuyenMai, BindingResult result,
 			RedirectAttributes redirectAttributes, @PathVariable("maKM") String maKM) {
-		if (!result.hasErrors()) {
-
-		} else {
+		boolean isValid = checkSale(khuyenMai, result);
+		if (!result.hasErrors() && isValid) {
 			Session session = factory.openSession();
 			org.hibernate.Transaction t = session.beginTransaction();
 			try {
@@ -157,7 +156,7 @@ public class SaleController {
 				t.commit();
 				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !!!");
 				redirectAttributes.addFlashAttribute("typeMessage", "success");
-				return "redirect:/admin/sale/index.htm";
+				return "redirect:/admin/sale.htm";
 			} catch (Exception e) {
 				t.rollback();
 				model.addAttribute("message", "Cập nhật thất bại!!!");
@@ -182,10 +181,12 @@ public class SaleController {
 	public String saleFilter(@RequestParam Map<String, String> allParams, ModelMap model) {
 
 		Session session = factory.getCurrentSession();
+		ToHql toHql = new ToHql();
 
-		String whereClauses = "";
-		String ngayBD = hqlDateCondition(allParams.get("ngayBDLeft"), allParams.get("ngayBDRight"), "ngayBD");
-		String ngayKT = hqlDateCondition(allParams.get("ngayKTLeft"), allParams.get("ngayKTRight"), "ngayKT");
+		String whereClause = "";
+
+		String ngayBD = toHql.toHqlRangeCondition(allParams.get("ngayBDLeft"), allParams.get("ngayBDRight"), "ngayBD");
+		String ngayKT = toHql.toHqlRangeCondition(allParams.get("ngayKTLeft"), allParams.get("ngayKTRight"), "ngayKT");
 
 		String trangThai = allParams.get("trangThai");
 		if (trangThai.equals("1") || trangThai.equals("0")) {
@@ -195,9 +196,8 @@ public class SaleController {
 
 		List<String> conditionCluaseList = new ArrayList<>();
 		conditionCluaseList.addAll(Arrays.asList(ngayBD, ngayKT, trangThai));
-
-		whereClauses = hqlMultipleCondition(conditionCluaseList);
-		String hql = "from KhuyenMai " + whereClauses;
+		whereClause = toHql.toHqlWhereClause(conditionCluaseList);
+		String hql = "from KhuyenMai " + whereClause;
 		Query query = session.createQuery(hql);
 		List<NhanHang> list = query.list();
 		model.addAttribute("DSKM", list);
@@ -232,46 +232,13 @@ public class SaleController {
 
 	// những cái ko check dc bằng hibernate
 	public boolean checkSale(@Valid KhuyenMai khuyenMai, BindingResult result) {
+		if (khuyenMai.getNgayBD() == null || khuyenMai.getNgayKT() == null)
+			return false;
 		if (khuyenMai.getNgayBD().after(khuyenMai.getNgayKT())) {
 			result.rejectValue("ngayBD", "KM", "Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
 			return false;
 		}
 		return true;
-	}
-
-	// chuyển dữ liệu ngày sang câu lệnh điều kiện hql
-
-	public String hqlDateCondition(String ngayBD, String ngayKT, String columnName) {
-		String hql = columnName;
-		if (!ngayBD.isEmpty()) {
-			if (ngayKT.isEmpty()) {
-				hql += " = '" + ngayBD + "'";
-			} else
-				hql = " (" + hql + " BETWEEN '" + ngayBD + "' AND '" + ngayKT + "'" + ") ";
-		} else {
-			if (!ngayKT.isEmpty()) {
-				hql += " <= '" + ngayKT + "'";
-			} else
-				hql = "";
-		}
-		return hql;
-
-	}
-
-	// chuyển các điều kiện sang câu lệnh 1 câu lệnh where
-	public String hqlMultipleCondition(List<String> list) {
-		String whereClauses = list.get(0);
-		for (int i = 0; i < list.size() - 1; i++) {
-			if (!list.get(i + 1).isEmpty())
-				if (!whereClauses.isEmpty())
-					whereClauses += " AND " + list.get(i + 1);
-				else
-					whereClauses += list.get(i + 1);
-
-		}
-		if (!whereClauses.isEmpty())
-			whereClauses = "WHERE " + whereClauses;
-		return whereClauses;
 	}
 
 }
