@@ -52,10 +52,13 @@
 									</div>
 								</div>
 								<div class="col-lg-12 text-center">
+									<span class="text-danger"><form:errors path="matKhau"></form:errors></span>
+								</div>
+								<div class="col-lg-12 text-center">
 									<button type="submit" class="btn btn-block btn-green">Đăng
 										nhập</button>
 								</div>
-								<span class="text-danger"><form:errors path="matKhau"></form:errors></span>
+
 							</div>
 						</form:form>
 					</div>

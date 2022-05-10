@@ -76,8 +76,9 @@ public class AdminController {
 		if (query.list().size() > 0) {
 			ss.setAttribute("admin", taiKhoan.getEmail());
 		} else {
-			result.rejectValue("matKhau", "TK", "Mật khẩu hoặc tài khoản không đúng");
+			result.rejectValue("matKhau", "TK", "Tài khoản hoặc mật khẩu không đúng");
 			ss.removeAttribute("admin");
+			return "admin/login";
 		}
 
 		return "redirect:/admin/dashboard.htm";
