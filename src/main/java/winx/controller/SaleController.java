@@ -107,8 +107,8 @@ public class SaleController {
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("formTitle", "Thêm mới khuyến mãi");
 		model.addAttribute("KM", khuyenMai);
-		model.addAttribute("formAction", "admin/sale/insert.htm");
-		model.addAttribute("btnAction", "btnInsert");
+		model.addAttribute("formAction", "admin/sale/add.htm");
+		model.addAttribute("btnAction", "btnAdd");
 		return "admin/sale";
 
 	}
