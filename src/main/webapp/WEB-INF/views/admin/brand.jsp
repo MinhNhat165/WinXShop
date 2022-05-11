@@ -28,12 +28,11 @@
 			<div class="container-fluid">
 				<!-- ============================================================== -->
 				<!-- basic table -->
-				<a href="admin/brand/add.htm">
-				<button type="button"
-					class="btn btn-secondary green-bg-color shadow-none"
-					data-toggle="modal" data-target="#addbrand">
-					<i class="fas fa-plus-circle"></i> Thêm
-				</button>
+				<a href="admin/brand/insert.htm">
+					<button type="button"
+						class="btn btn-secondary green-bg-color shadow-none">
+						<i class="fas fa-plus-circle"></i> Thêm
+					</button>
 				</a>
 				<div class="row">
 					<div class="col-12">
@@ -65,13 +64,11 @@
 																	Ngừng hợp tác</button>
 															</c:otherwise>
 														</c:choose></td>
-													<td class="text-center">
-													<a href="admin/brand/update/${b.getMaNH() }.htm?linkEdit">
+													<td class="text-center"><a
+														href="admin/brand/update/${b.getMaNH().trim() }.htm?linkEdit">
 															<i class="fas fa-edit green-color"> </i>
 													</a></td>
 
-
-													<button></button>
 												</tr>
 											</c:forEach>
 
@@ -119,18 +116,24 @@
 										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 											<div class=" tm-edit-product-row">
 
-												<form:form class="tm-edit-product-form"
-													modelAttribute="nhanhang" method="post">
+												<form:form action="admin/brand/insert.htm"
+													class="tm-edit-product-form" modelAttribute="nhanhang"
+													method="POST">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
 															<div class="form-group mb-3">
 																<label for="name">Mã nhãn hàng </label>
-																<form:input path="maNH" class="form-control validate" />
+																<form:input path="maNH" class="form-control validate"
+																	required="true" />
+																<span class="text-danger"><form:errors
+																		path="maNH"></form:errors></span>
 															</div>
 															<div class="form-group mb-3">
 																<label for="name">Tên nhãn hàng </label>
 																<form:input path="tenNH" type="text"
-																	class="form-control validate" />
+																	class="form-control validate" required="true" />
+																<span class="text-danger"><form:errors
+																		path="tenNH"></form:errors></span>
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
@@ -196,15 +199,17 @@
 															<div class="form-group mb-3">
 																<label for="name">Mã nhãn hàng </label>
 																<form:input path="maNH" class="form-control validate"
-																	required="true" />
+																	required="true" readonly="true" />
+
 															</div>
 															<div class="form-group mb-3">
 																<label for="name">Tên nhãn hàng </label>
 																<form:input path="tenNH" class="form-control validate"
 																	required="true" />
-
+																<span class="text-danger"><form:errors
+																		path="tenNH"></form:errors></span>
 															</div>
-														
+
 															<div class="form-group mb-3">
 																<label for="category">Trạng thái</label>
 																<div class="row">
@@ -276,8 +281,7 @@
 	<script>
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {
 			$("#editbrand").modal("show");
-		}
-		else if($(".modal-flag").attr("idModal") === "modalShow") {
+		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
 			$("#addbrand").modal("show");
 		}
 	</script>
