@@ -12,26 +12,29 @@
 		<!-- Bản tin -->
 		<section class="home-slider position-relative pt-50">
 			<div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
-				<div class="single-hero-slider single-animation-wrap">
-					<div class="container">
-						<div class="row align-items-center slider-animated-1">
-							<div class="col-lg-5 col-md-6">
-								<div class="hero-slider-content-2">
-									<h1 class="animated fw-900 text-brand title">${newsList[0].tenTin}</h1>
-									<p class="animated content">${newsList[0].noiDung}</p>
-									<a class="animated btn btn-brush btn-brush-3"
-										href="shop-product-right.html"> Shop Now </a>
+				<c:forEach var="news" items="${newsList }">
+					<div class="single-hero-slider single-animation-wrap">
+						<div class="container">
+							<div class="row align-items-center slider-animated-1">
+								<div class="col-lg-5 col-md-6">
+									<div class="hero-slider-content-2">
+										<h1 class="animated fw-900 text-brand title">${news.tenTin}</h1>
+										<p class="animated content">${news.noiDung}</p>
+										<a class="animated btn btn-brush btn-brush-3"
+											href="shop-product-right.html"> Shop Now </a>
+									</div>
 								</div>
-							</div>
-							<div class="col-lg-7 col-md-6">
-								<div class="single-slider-img single-slider-img-1">
-									<img class="animated slider-1-1" src="${newsList[0].anh}"
-										alt="" />
+								<div class="col-lg-7 col-md-6">
+									<div class="single-slider-img single-slider-img-1">
+										<img class="animated slider-1-1"
+											src="./resources/imgs/${news.anh}" alt="" />
+									</div>
 								</div>
 							</div>
 						</div>
+
 					</div>
-				</div>
+				</c:forEach>
 				<div class="single-hero-slider single-animation-wrap">
 					<div class="container">
 						<div class="row align-items-center slider-animated-1">

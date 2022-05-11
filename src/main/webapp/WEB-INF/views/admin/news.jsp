@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <%@include file="./head.jsp"%>
@@ -117,38 +118,42 @@
 											<div class="row tm-edit-product-row">
 												<div class="col-12">
 
-													<form action="admin/news.htm" modelAttribute="news"
-														method="post" class="tm-edit-product-form">
+													<form:form action="admin/news.htm" modelAttribute="news"
+														method="post" enctype="multipart/form-data"
+														class="tm-edit-product-form">
 														<div class="row mb-4">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div class="form-group mb-3">
-																	<label for="name">Mã tin </label> <input path="maTin"
-																		id="maTin" name="maTin" type="text"
-																		class="form-control validate" required />
+																	<label for="name">Mã tin </label>
+																	<form:input path="maTin" id="maTin" type="text"
+																		class="form-control validate" required="true" />
 																</div>
 																<div class="form-group mb-3">
-																	<label for="name">Tên tin </label> <input path="maTin"
-																		id="tenTin" name="tenTin" type="text"
-																		class="form-control validate" required />
+																	<label for="name">Tên tin </label>
+																	<form:input path="tenTin" id="tenTin" name="tenTin"
+																		type="text" class="form-control validate"
+																		required="true" />
 																</div>
 																<div class="form-group mb-3">
 																	<label for="description">Mô tả</label>
-																	<textarea id="noiDung" name="noiDung"
-																		class="form-control validate" rows="3" required></textarea>
+																	<form:textarea id="noiDung" path="noiDung"
+																		name="noiDung" class="form-control validate" rows="3"
+																		required="true"></form:textarea>
 																</div>
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12">
-																<div class="tm-product-img-dummy mx-auto rounded">
-																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																		onclick="document.getElementById('anh').click();"></i>
+																<div
+																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+																	<i
+																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<input type="file" name="anh" id="anh"
-																		style="display: none" /> <input type="button"
-																		class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																		value="Thêm ảnh"
-																		onclick="document.getElementById('anh').click();" />
+																	<input type="file" class="file-upload" name="anh"
+																		id="anh" style="display: none" /> <input
+																		type="button"
+																		class="btn btn-primary btn-block mx-auto upload-button btn-green shadow-none"
+																		value="Thêm ảnh" />
 																</div>
 															</div>
 														</div>
@@ -157,7 +162,7 @@
 																class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
 																Thêm</button>
 														</div>
-													</form>
+													</form:form>
 												</div>
 											</div>
 										</div>
@@ -438,6 +443,33 @@
 	                </div>
 	            </div>
 	        </div>`);
+	 
+	 
+	 
+	 var readURL = function(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$(".profile-pic").attr("src", e.target.result);
+					$(".profile-pic").css({
+						'background-image' : 'url(' + e.target.result + ')',
+						'background-size' : 'cover'
+					});
+
+				};
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		};
+
+		$(".file-upload").on("change", function() {
+			readURL(this);
+		});
+
+		$(".upload-button").on("click", function() {
+			$(".file-upload").click();
+		});
 	</script>
 </body>
 </html>

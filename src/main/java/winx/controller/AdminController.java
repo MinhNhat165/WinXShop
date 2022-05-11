@@ -70,7 +70,7 @@ public class AdminController {
 	public String handleLogin(ModelMap model, @ModelAttribute("TK") TaiKhoan taiKhoan, HttpSession ss,
 			BindingResult result) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TaiKhoan WHERE email = '" + taiKhoan.getEmail() + "' AND matKhau = '" + taiKhoan.getMatKhau()
+		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '" + taiKhoan.getMatKhau()
 				+ "'";
 		Query query = session.createQuery(hql);
 		if (query.list().size() > 0) {
