@@ -34,7 +34,7 @@
 		<nav class="sidebar-nav">
 			<ul id="sidebarnav">
 				<li class="sidebar-item "><a class="sidebar-link sidebar-link "
-					href="admin/dashboard.htm" data="dashboard" aria-expanded="false"><i
+					href="admin/dashboard.htm" aria-expanded="false"><i
 						data-feather="home" class="feather-icon"></i><span
 						class="hide-menu">Trang Chủ</span></a></li>
 				<li class="list-divider"></li>
@@ -59,7 +59,7 @@
 					href="admin/news.htm" data="news" aria-expanded="false"><i
 						class=" icon-book-open"></i><span class="hide-menu">Tin Mới</span></a></li>
 				<li class="sidebar-item"><a class="sidebar-link sidebar-link"
-					href="admin/login.htm" aria-expanded="false"><i
+					href="admin/logout.htm" aria-expanded="false"><i
 						class="icon-logout"></i><span class="hide-menu">Đăng Xuất</span></a></li>
 
 				<li class="list-divider"></li>

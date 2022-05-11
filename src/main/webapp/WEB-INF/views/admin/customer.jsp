@@ -5,7 +5,9 @@
 <html>
 <%@include file="./head.jsp"%>
 <body>
-
+	<!-- flag -->
+	<div class="page-flag" data="customer"></div>
+	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
@@ -19,10 +21,10 @@
 							class="page-title text-truncate text-dark font-weight-medium mb-1">Khách
 							Hàng</h4>
 					</div>
-					
+
 				</div>
 			</div>
-			
+
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
 			<div class="container-fluid">
@@ -33,7 +35,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="table-responsive">
+								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
@@ -56,10 +58,10 @@
 													<td><button type="button"
 															class="btn btn-status-activate">${u.taiKhoan.trangThai }</button></td>
 													<td><i class="fas fa-info-circle green-color"
-														data-toggle="modal" data-target=#${u.maKH }></i> <i
+														data-toggle="modal" data-target=#${u.maKH}></i> <i
 														class=" fas fa-edit green-color" data-toggle="modal"
 														data-target="#bs-example-modal-lg"></i></td>
-								
+
 												</tr>
 											</c:forEach>
 											<tr>
@@ -87,16 +89,7 @@
 													data-target="#bs-example-modal-lg"></i></td>
 											</tr>
 										</tbody>
-										<tfoot>
-											<tr>
-												<th>Mã khách hàng</th>
-												<th>Họ và tên</th>
-												<th>Username</th>
-												<th>SĐT</th>
-												<th>Trạng thái</th>
-												<th>Option</th>
-											</tr>
-										</tfoot>
+
 									</table>
 								</div>
 							</div>
@@ -113,109 +106,110 @@
 			<!-- ============================================================== -->
 			<!--  Modal content for the above example -->
 			<c:forEach var="u" items="${users }">
-			<div class="modal fade" id=${u.maKH } tabindex="-1" role="dialog"
-				aria-labelledby="myLargeModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myLargeModalLabel">Thông Tin</h4>
-							<button type="button" class="close v-close" data-dismiss="modal"
-								aria-hidden="true">×</button>
-						</div>
-						
-						<div class="modal-body">
-							<div class="page-content page-container" id="page-content">
-								<div class="row container d-flex justify-content-center p-0 m-0">
-									<div class="col-md-12">
-										<div class="card user-card-full">
-										
-											<div class="row m-l-0 m-r-0">
+				<div class="modal fade" id=${u.maKH } tabindex="-1" role="dialog"
+					aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myLargeModalLabel">Thông Tin</h4>
+								<button type="button" class="close v-close" data-dismiss="modal"
+									aria-hidden="true">×</button>
+							</div>
 
-												<div class="col-sm-4 bg-c-lite-green user-profile div-img">
-													<div class="card-block text-center text-white">
-														<div class="m-b-25">
-															<img
-																src="https://img.icons8.com/bubbles/100/000000/user.png"
-																class="img-radius" alt="User-Profile-Image">
+							<div class="modal-body">
+								<div class="page-content page-container" id="page-content">
+									<div
+										class="row container d-flex justify-content-center p-0 m-0">
+										<div class="col-md-12">
+											<div class="card user-card-full">
+
+												<div class="row m-l-0 m-r-0">
+
+													<div class="col-sm-4 bg-c-lite-green user-profile div-img">
+														<div class="card-block text-center text-white">
+															<div class="m-b-25">
+																<img
+																	src="https://img.icons8.com/bubbles/100/000000/user.png"
+																	class="img-radius" alt="User-Profile-Image">
+															</div>
+															<h6 class="f-w-600">user001</h6>
+															<p>NV001</p>
+															<i
+																class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 														</div>
-														<h6 class="f-w-600">user001</h6>
-														<p>NV001</p>
-														<i
-															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 													</div>
-												</div>
-												<div class="col-sm-8">
-													<div class="card-block">
-														<h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Thông
-															tin cơ bản</h6>
-														<div class="row">
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">Họ và tên</p>
-																<h6 class="text-muted f-w-400">${u.hoTen }</h6>
+													<div class="col-sm-8">
+														<div class="card-block">
+															<h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Thông
+																tin cơ bản</h6>
+															<div class="row">
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">Họ và tên</p>
+																	<h6 class="text-muted f-w-400">${u.hoTen }</h6>
+																</div>
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">Địa chỉ</p>
+																	<h6 class="text-muted f-w-400">${u.diaChi }</h6>
+																</div>
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">Ngày sinh</p>
+																	<h6 class="text-muted f-w-400">${u.ngaySinh }</h6>
+																</div>
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">Phái</p>
+																	<h6 class="text-muted f-w-400">${u.phai }</h6>
+																</div>
 															</div>
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">Địa chỉ</p>
-																<h6 class="text-muted f-w-400">${u.diaChi }</h6>
+
+															<h6 class="m-b-20 p-b-5 b-b-default f-w-600 mt-3">Thông
+																tin liên hệ</h6>
+															<div class="row">
+
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">Email</p>
+																	<h6 class="text-muted f-w-400">${u.taiKhoan.email }</h6>
+																</div>
+																<div class="col-sm-6">
+																	<p class="m-b-10 f-w-600">SĐT</p>
+																	<h6 class="text-muted f-w-400">${u.sdt }</h6>
+																</div>
 															</div>
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">Ngày sinh</p>
-																<h6 class="text-muted f-w-400">${u.ngaySinh }</h6>
-															</div>
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">Phái</p>
-																<h6 class="text-muted f-w-400">${u.phai }</h6>
-															</div>
+
+															<ul class="social-link list-unstyled m-t-40 m-b-10">
+																<li><a href="#!" data-toggle="tooltip"
+																	data-placement="bottom" title=""
+																	data-original-title="facebook" data-abc="true"><i
+																		class="mdi mdi-facebook feather icon-facebook facebook"
+																		aria-hidden="true"></i></a></li>
+																<li><a href="#!" data-toggle="tooltip"
+																	data-placement="bottom" title=""
+																	data-original-title="twitter" data-abc="true"><i
+																		class="mdi mdi-twitter feather icon-twitter twitter"
+																		aria-hidden="true"></i></a></li>
+																<li><a href="#!" data-toggle="tooltip"
+																	data-placement="bottom" title=""
+																	data-original-title="instagram" data-abc="true"><i
+																		class="mdi mdi-instagram feather icon-instagram instagram"
+																		aria-hidden="true"></i></a></li>
+															</ul>
 														</div>
-
-														<h6 class="m-b-20 p-b-5 b-b-default f-w-600 mt-3">Thông
-															tin liên hệ</h6>
-														<div class="row">
-
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">Email</p>
-																<h6 class="text-muted f-w-400">${u.taiKhoan.email }</h6>
-															</div>
-															<div class="col-sm-6">
-																<p class="m-b-10 f-w-600">SĐT</p>
-																<h6 class="text-muted f-w-400">${u.sdt }</h6>
-															</div>
-														</div>
-
-														<ul class="social-link list-unstyled m-t-40 m-b-10">
-															<li><a href="#!" data-toggle="tooltip"
-																data-placement="bottom" title=""
-																data-original-title="facebook" data-abc="true"><i
-																	class="mdi mdi-facebook feather icon-facebook facebook"
-																	aria-hidden="true"></i></a></li>
-															<li><a href="#!" data-toggle="tooltip"
-																data-placement="bottom" title=""
-																data-original-title="twitter" data-abc="true"><i
-																	class="mdi mdi-twitter feather icon-twitter twitter"
-																	aria-hidden="true"></i></a></li>
-															<li><a href="#!" data-toggle="tooltip"
-																data-placement="bottom" title=""
-																data-original-title="instagram" data-abc="true"><i
-																	class="mdi mdi-instagram feather icon-instagram instagram"
-																	aria-hidden="true"></i></a></li>
-														</ul>
 													</div>
+
+
 												</div>
 
 
 											</div>
-										
-											
 										</div>
 									</div>
-								</div>
 
+								</div>
 							</div>
 						</div>
+						<!-- /.modal-content -->
 					</div>
-					<!-- /.modal-content -->
+					<!-- /.modal-dialog -->
 				</div>
-				<!-- /.modal-dialog -->
-			</div>
 			</c:forEach>
 			<!-- /.modal -->
 			<!-- footer -->
@@ -364,5 +358,90 @@
 		<!-- ============================================================== -->
 	</div>
 	<%@include file="./script.jsp"%>
+	<script type="text/javascript">
+	 $("#zero_config_filter")
+     .append(`<div class="search-bar-table d-flex align-items-stretch">
+	        	    <div class="position-relative">
+	                <button type="button" class="btn btn-green text-white btn-filter" data-toggle="collapse" data-target="#filter-table">
+	                    <i class="fa-regular fa-filter-list"></i>
+	                    <span class="text-white"></span>
+	                </button>
+	                <!-- filter table -->
+	                <div class="card position-absolute text-start collapse shadow-lg end-100 top-0 filter-block" id="filter-table" style="z-index: 100; min-width: 24rem;">
+	                    <div class="card-header p-2 fs-5 green-color" style="background-color: #c4f0d5">
+	                        Bộ lọc
+	                    </div>
+	                    <div class="card-body">
+	                        <form action="admin/sale/index.htm" method="post" class="row g-3" id="form-filter">
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày bắt đầu</label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayBDLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-start-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-start-date-right">
+	                                        <input type="date" name="ngayBDRight" class="form-control" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-12 mt-0 px-0">
+	                                <label for="input-start-date" class="form-label">Ngày kết thúc </label>
+	
+	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
+	                                    <div class="input-group">
+	                                        <input type="date" name="ngayKTLeft" class="form-control" />
+	                                    </div>
+	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-end-date-right">
+	                                        Đến
+	                                    </button>
+	
+	                                    <div class="input-group collapse range-filter-right" id="input-end-date-right">
+	                                        <input type="date" class="form-control" name="ngayKTRight" />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-md-12 px-0">
+	                                <label for="inputAddress" class="form-label">Trạng thái</label>
+	                                <div class="col-md-12 d-flex px-0">
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai" value="2" checked />
+	                                        <label class="py-1 px-2" for="trangThai">
+	                                            Tất cả
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai0" value="0" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai0">
+	                                            <div class="d-inline">Hết hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                    <div class="form-check pl-1">
+	                                        <input value="1" name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai1" />
+	                                        <label class="form-check-label py-1 px-2" for="trangThai1">
+	                                            <div class="d-inline">Còn hiệu lực</div>
+	                                        </label>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="card-footer text-end p-2">
+	                        <button type="submit" form="form-filter" name="btnFilter" class="btn btn-green">
+	                            Lọc
+	                        </button>
+	                        <button type="reset" class="btn btn-secondary mb-0">
+	                            Đặt lại
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>`);
+		$(".btn-create").remove();
+	</script>
 </body>
 </html>
