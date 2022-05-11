@@ -65,7 +65,7 @@
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="20971520" />
+		<property name="maxUploadSize" value="209715200" />
 	</bean>
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -84,6 +84,9 @@
 				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
+	</bean>
+	<bean id="uploadFile" class="winx.bean.UploadFile">
+	<property name="basePath" value="T:\\Code\\eclipseEE\\Winx\\src\\main\\webapp\\resources\\imgs"></property>
 	</bean>
 	<!-- Cấu hình package chứa các controller -->
 
