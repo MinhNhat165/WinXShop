@@ -60,7 +60,17 @@
 													<td>${sp.getMaSP()}</td>
 													<td>${sp.getTenSP()}</td>
 													<td>${sp.getGia()}</td>
-													<td>${sp.getLoai()}</td>
+													<td><c:choose>
+															<c:when test="${sp.loai==0}">
+																						Nam
+																					</c:when>
+															<c:when test="${sp.loai==1}">
+																						Nữ
+																					</c:when>
+															<c:when test="${sp.loai==2}">
+																						Unisex
+																					</c:when>
+														</c:choose></td>
 													<td>2009/02/27</td>
 													<td><a
 														href="admin/product/show/${sp.getMaSP() }.htm?linkShow">
@@ -97,7 +107,7 @@
 												<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 
 													<div class="row tm-edit-product-row">
-														<form:form class="tm-edit-product-form col-12 row"
+														<form:form  class="tm-edit-product-form col-12 row"
 															method="post" modelAttribute="sanpham">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
@@ -105,12 +115,16 @@
 																<div class="form-group mb-3">
 																	<label for="name">Mã sản phẩm </label>
 																	<form:input path="maSP" class="form-control validate"
-																		required="true" />
+																		required="true" readonly="${status }" />
+																	<span class="text-danger"><form:errors
+																			path="maSP"></form:errors></span>
 																</div>
 																<div class="form-group mb-3">
 																	<label for="name">Tên sản phẩm </label>
 																	<form:input path="tenSP" class="form-control validate"
 																		required="true" />
+																	<span class="text-danger"><form:errors
+																			path="tenSP"></form:errors></span>
 																</div>
 																<form:input path="ngayThem" type="date"
 																	style="display: none" />
@@ -119,11 +133,17 @@
 																		<label for="expire_date">Giá </label>
 																		<form:input path="gia" class="form-control validate"
 																			data-large-mode="true" />
+																		<span class="text-danger"><form:errors
+																				path="gia"></form:errors></span>
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Số lượng tồn </label>
-																		<form:input path="slt" class="form-control validate"
+																		<form:input type="number" min="0"
+																			oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+																			path="slt" class="form-control validate"
 																			required="true" />
+																		<span class="text-danger"><form:errors
+																				path="slt"></form:errors></span>
 																	</div>
 																</div>
 																<div class="row">
@@ -139,8 +159,11 @@
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Dung tích </label>
-																		<form:input path="dungTich"
+																		<form:input path="dungTich" type="number" min="1"
+																			oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 																			class="form-control validate" required="true" />
+																		<span class="text-danger"><form:errors
+																				path="dungTich"></form:errors></span>
 																	</div>
 																</div>
 
@@ -184,6 +207,8 @@
 																		<label for="stock">Ngày hết hạn </label>
 																		<form:input path="ngayHH" type="date"
 																			class="form-control validate" required="true" />
+																		<span class="text-danger"><form:errors
+																				path="ngayHH"></form:errors></span>
 																	</div>
 
 																</div>
@@ -319,11 +344,6 @@
 															</div>
 
 														</form:form>
-
-
-
-
-
 													</div>
 
 												</div>
@@ -357,6 +377,7 @@
 		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
 			$("#showproduct").modal("show");
 		}
+
 		var readURL = function(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
