@@ -27,9 +27,9 @@ public class TinMoi {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	@Column(name = "NgayTao")
-	public Date ngayTao;
+	private Date ngayTao;
 	@Column(name = "TrangThai")
-	public byte trangThai;
+	private byte trangThai;
 
 	public String getMaTin() {
 		return maTin;

@@ -58,8 +58,8 @@ public class NewsController {
 		Transaction t = session.beginTransaction();
 		try {
 			Date date = new Date();
-			news.ngayTao = date;
-			news.trangThai = 1;
+			news.setNgayTao(date);
+			news.setTrangThai((byte) 1);
 			session.save(news);
 			t.commit();
 			model.addAttribute("message","Thêm mới thành công!");
@@ -84,8 +84,8 @@ public class NewsController {
 		Transaction t = session.beginTransaction();
 		try {
 			Date date = new Date();
-			news.ngayTao = date;
-			news.trangThai = 1;
+			news.setNgayTao(date);
+			news.setTrangThai((byte) 1);
 			session.update(news);
 			t.commit();
 			model.addAttribute("message","Sửa thành công!");

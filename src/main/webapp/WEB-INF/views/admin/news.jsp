@@ -63,7 +63,7 @@
 												<td><i class="fas fa-info-circle green-color"
 													data-toggle="modal" data-target=#${n.maTin } ></i> <i
 													class="fas fa-edit green-color" data-toggle="modal"
-													data-target=#${n.tenTin} ></i></td>
+													data-target=#${n.noiDung} ></i></td>
 											</tr>
 											</c:forEach>
 										</tbody>
@@ -169,7 +169,7 @@
 			<!-- /.modal -->
 			<!-- Center modal content -->
 			<c:forEach var="n" items="${newsList }">
-			<div class="modal fade" id=${n.tenTin } tabindex="-1" role="dialog"
+			<div class="modal fade" id=${n.noiDung } tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
