@@ -22,12 +22,13 @@ import winx.entity.TaiKhoan;
 @Transactional
 @Controller
 @RequestMapping("admin")
-public class AdminController {
+public class AdminController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 
 	@RequestMapping("dashboard")
 	public String index(ModelMap model) {
+		int soLuongKhuyenMai = getAllSale().size();
 		return "admin/index";
 	}
 
@@ -70,8 +71,8 @@ public class AdminController {
 	public String handleLogin(ModelMap model, @ModelAttribute("TK") TaiKhoan taiKhoan, HttpSession ss,
 			BindingResult result) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '" + taiKhoan.getMatKhau()
-				+ "'";
+		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '"
+				+ taiKhoan.getMatKhau() + "'";
 		Query query = session.createQuery(hql);
 		if (query.list().size() > 0) {
 			ss.setAttribute("admin", taiKhoan.getEmail());
@@ -83,7 +84,8 @@ public class AdminController {
 
 		return "redirect:/admin/dashboard.htm";
 	}
-	@RequestMapping(value = "logout") 
+
+	@RequestMapping(value = "logout")
 	public String logout(HttpSession ss) {
 		ss.removeAttribute("admin");
 		return "redirect:/admin/login";
