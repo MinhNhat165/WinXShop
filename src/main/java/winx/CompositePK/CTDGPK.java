@@ -2,22 +2,27 @@ package winx.CompositePK;
 
 import java.io.Serializable;
 
-import winx.entity.DanhGia;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import winx.entity.KhachHang;
 
+@Embeddable
 public class CTDGPK implements Serializable {
-	private DanhGia danhGia;
-	private KhachHang khachHang;
-	
+	@Column(name = "MaSP")
+	private String maSP;
+	@Column(name = "MaKH")
+	private String maKH;
+
 	public CTDGPK() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CTDGPK(DanhGia danhGia, KhachHang khachHang) {
+	public CTDGPK(String maSP, String maKH) {
 		super();
-		this.danhGia = danhGia;
-		this.khachHang = khachHang;
+		this.maSP = maSP;
+		this.maKH = maKH;
 	}
-	
+
 }

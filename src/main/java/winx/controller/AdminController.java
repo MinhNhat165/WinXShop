@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Transactional
 @Controller
 @RequestMapping("admin")
-public class AdminController {
+public class AdminController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 
 	@RequestMapping("dashboard")
 	public String index(ModelMap model) {
+		int soLuongKhuyenMai = getAllSale().size();
 		return "admin/index";
 	}
 	
@@ -50,4 +51,55 @@ public class AdminController {
 		return "admin/login";
 	}
 
+<<<<<<< HEAD
+||||||| da03132
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String handleLogin(ModelMap model, @ModelAttribute("TK") TaiKhoan taiKhoan, HttpSession ss,
+			BindingResult result) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '" + taiKhoan.getMatKhau()
+				+ "'";
+		Query query = session.createQuery(hql);
+		if (query.list().size() > 0) {
+			ss.setAttribute("admin", taiKhoan.getEmail());
+		} else {
+			result.rejectValue("matKhau", "TK", "Tài khoản hoặc mật khẩu không đúng");
+			ss.removeAttribute("admin");
+			return "admin/login";
+		}
+
+		return "redirect:/admin/dashboard.htm";
+	}
+	@RequestMapping(value = "logout") 
+	public String logout(HttpSession ss) {
+		ss.removeAttribute("admin");
+		return "redirect:/admin/login";
+	}
+
+=======
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String handleLogin(ModelMap model, @ModelAttribute("TK") TaiKhoan taiKhoan, HttpSession ss,
+			BindingResult result) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '"
+				+ taiKhoan.getMatKhau() + "'";
+		Query query = session.createQuery(hql);
+		if (query.list().size() > 0) {
+			ss.setAttribute("admin", taiKhoan.getEmail());
+		} else {
+			result.rejectValue("matKhau", "TK", "Tài khoản hoặc mật khẩu không đúng");
+			ss.removeAttribute("admin");
+			return "admin/login";
+		}
+
+		return "redirect:/admin/dashboard.htm";
+	}
+
+	@RequestMapping(value = "logout")
+	public String logout(HttpSession ss) {
+		ss.removeAttribute("admin");
+		return "redirect:/admin/login";
+	}
+
+>>>>>>> b018a614cbe37204e751c2d78efe9c0d1a07f526
 }

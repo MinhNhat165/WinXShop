@@ -54,109 +54,158 @@ public class SanPham {
 	private int slt;
 	@Column(name = "Loai")
 	private int loai;
+	@Column(name = "DiemDG")
+	private int diemDG;
 	@ManyToOne
 	@JoinColumn(name = "MaNH")
 	private NhanHang nhanHang;
-	@OneToOne
-	@JoinColumn(name = "MaDG")
-	private DanhGia danhGia;
-
 	@OneToMany(mappedBy = "sanPham")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<SanPham_KM> dsSPKM;
 	@OneToMany(mappedBy = "sanPham")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<GioHang_SanPham> dsGHSP;
+	@OneToMany(mappedBy = "sanPham")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<CTDD> dsCTDD;
+	@OneToMany(mappedBy = "sanPham")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<CTDD> dsCTDG;
+
+	public int getDiemDG() {
+		return diemDG;
+	}
+
+	public void setDiemDG(int diemDG) {
+		this.diemDG = diemDG;
+	}
+
+	public Collection<CTDD> getDsCTDD() {
+		return dsCTDD;
+	}
+
+	public void setDsCTDD(Collection<CTDD> dsCTDD) {
+		this.dsCTDD = dsCTDD;
+	}
+
+	public Collection<CTDD> getDsCTDG() {
+		return dsCTDG;
+	}
+
+	public void setDsCTDG(Collection<CTDD> dsCTDG) {
+		this.dsCTDG = dsCTDG;
+	}
+
 	public String getMaSP() {
 		return maSP;
 	}
+
 	public void setMaSP(String maSP) {
 		this.maSP = maSP;
 	}
+
 	public String getTenSP() {
 		return tenSP;
 	}
+
 	public void setTenSP(String tenSP) {
 		this.tenSP = tenSP;
 	}
+
 	public String getAnh() {
 		return anh;
 	}
+
 	public void setAnh(String anh) {
 		this.anh = anh;
 	}
+
 	public Date getNgaySX() {
 		return ngaySX;
 	}
+
 	public void setNgaySX(Date ngaySX) {
 		this.ngaySX = ngaySX;
 	}
+
 	public Date getNgayHH() {
 		return ngayHH;
 	}
+
 	public void setNgayHH(Date ngayHH) {
 		this.ngayHH = ngayHH;
 	}
+
 	public int getDungTich() {
 		return dungTich;
 	}
+
 	public void setDungTich(int dungTich) {
 		this.dungTich = dungTich;
 	}
+
 	public String getMoTa() {
 		return moTa;
 	}
+
 	public void setMoTa(String moTa) {
 		this.moTa = moTa;
 	}
+
 	public Date getNgayThem() {
 		return ngayThem;
 	}
+
 	public void setNgayThem(Date ngayThem) {
 		this.ngayThem = ngayThem;
 	}
+
 	public BigDecimal getGia() {
 		return gia;
 	}
+
 	public void setGia(BigDecimal gia) {
 		this.gia = gia;
 	}
+
 	public int getSlt() {
 		return slt;
 	}
+
 	public void setSlt(int slt) {
 		this.slt = slt;
 	}
+
 	public int getLoai() {
 		return loai;
 	}
+
 	public void setLoai(int loai) {
 		this.loai = loai;
 	}
+
 	public NhanHang getNhanHang() {
 		return nhanHang;
 	}
+
 	public void setNhanHang(NhanHang nhanHang) {
 		this.nhanHang = nhanHang;
 	}
-	public DanhGia getDanhGia() {
-		return danhGia;
-	}
-	public void setDanhGia(DanhGia danhGia) {
-		this.danhGia = danhGia;
-	}
+
 	public Collection<SanPham_KM> getDsSPKM() {
 		return dsSPKM;
 	}
+
 	public void setDsSPKM(Collection<SanPham_KM> dsSPKM) {
 		this.dsSPKM = dsSPKM;
 	}
+
 	public Collection<GioHang_SanPham> getDsGHSP() {
 		return dsGHSP;
 	}
+
 	public void setDsGHSP(Collection<GioHang_SanPham> dsGHSP) {
 		this.dsGHSP = dsGHSP;
 	}
-	
 
 }
