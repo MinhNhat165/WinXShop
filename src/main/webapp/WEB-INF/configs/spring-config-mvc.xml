@@ -17,7 +17,8 @@
 	<!-- Spring MVC Annotation -->
 	<context:annotation-config />
 	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
+
+
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" cache-period="100" />
 	<context:component-scan
@@ -25,11 +26,21 @@
 	<!-- Kết nối CSDL -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-			p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-			p:url="jdbc:sqlserver://localhost:1433; Database=LAPTRINHWEB"
+		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		p:url="jdbc:sqlserver://localhost:1433; Database=LAPTRINHWEB"
 		p:username="sa" p:password="123456">
 	</bean>
+	<!-- Cấu hình interceptor -->
+	<mvc:interceptors>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<mvc:exclude-mapping path="/admin/login.htm" />
+			<bean class="winx.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<!-- Cấu hình Hibernate -->
+
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -52,13 +63,9 @@
 	<bean id="viewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
 
-
-
-
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="20971520" />
+		<property name="maxUploadSize" value="209715200" />
 	</bean>
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -77,6 +84,9 @@
 				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
+	</bean>
+	<bean id="uploadFile" class="winx.bean.UploadFile">
+	<property name="basePath" value="T:\\Code\\eclipseEE\\Winx\\src\\main\\webapp\\resources\\imgs"></property>
 	</bean>
 	<!-- Cấu hình package chứa các controller -->
 

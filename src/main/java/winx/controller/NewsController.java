@@ -77,7 +77,7 @@ public class NewsController {
 		return "admin/news";
 	}
 	//update news
-	
+	  
 	@RequestMapping(value="news/update.htm", method=RequestMethod.POST)
 	public String updateUser(@ModelAttribute("news") TinMoi news, ModelMap model) {
 		Session session = factory.openSession();

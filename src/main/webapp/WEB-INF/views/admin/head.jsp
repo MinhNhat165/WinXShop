@@ -13,16 +13,25 @@
 <title>Winx Admin</title>
 <!-- This page css -->
 <!-- Custom CSS -->
+<link href=" <c:url value='/resources/css/vendors/bootstrap.min.css'/>"
+	rel="stylesheet" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/admin/dist/css/style.min.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/admin/dist/css/v-style.css'/>" />
-<link
+<%-- <link
 	href="<c:url value='/resources/admin/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css'/>"
-	rel="stylesheet">
+	rel="stylesheet"> --%>
 </head>
 <link href=" <c:url value='/resources/admin/dist/css/fstdropdown.css'/>"
 	rel="stylesheet" />
+
+<link rel="stylesheet"
+	href="<c:url value='/resources/fontawesome-pro-6.1.1-web/css/all.min.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/admin/dist/css/n-style.css'/>" />
+	<link rel="stylesheet"
+	href="<c:url value='/resources/css/alertify.min.css'/>" />
 
 
 

@@ -1,5 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=vi
 eclipse.preferences.version=1
+encoding//src/main/java/winx/controller/BrandController.java=UTF-8
 encoding//src/main/java/winx/controller/CustomerController.java=UTF-8
 encoding//src/main/java/winx/controller/NewsController.java=UTF-8
+encoding//src/main/java/winx/controller/ProductController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/sale.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/user/header.jsp=UTF-8

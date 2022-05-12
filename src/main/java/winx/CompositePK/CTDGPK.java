@@ -8,6 +8,12 @@ import winx.entity.KhachHang;
 public class CTDGPK implements Serializable {
 	private DanhGia danhGia;
 	private KhachHang khachHang;
+	
+	public CTDGPK() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public CTDGPK(DanhGia danhGia, KhachHang khachHang) {
 		super();
 		this.danhGia = danhGia;

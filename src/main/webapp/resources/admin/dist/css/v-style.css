@@ -593,3 +593,6 @@ h6 {
 	border-radius: 5px;
 	padding: 10px;
 }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

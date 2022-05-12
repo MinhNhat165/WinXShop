@@ -11,6 +11,7 @@
 	/*-----------------
 		  Menu Stick
 	  -----------------*/
+
 	var header = $(".sticky-bar");
 	var win = $(window);
 	win.on("scroll", function() {

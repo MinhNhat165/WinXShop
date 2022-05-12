@@ -1,8 +1,9 @@
 package winx.entity;
 
+import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,30 +13,36 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "KHUYENMAI")
-public class KhuyenMai {
+public class KhuyenMai implements Serializable {
 	@Id
-	@Column(name = "MaKM")
+	@Column(name = "MaKM", updatable = false)
+	@NotEmpty(message = "Nội dung này không được bỏ trống")
 	private String maKM;
 	@Column(name = "TenKM")
+	@NotEmpty(message = "Nội dung này không được bỏ trống")
 	private String tenKM;
-
-	@Column(name = "NgayBD")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Nội dung này không được bỏ trống")
 	private Date ngayBD;
 	@Column(name = "NgayKT")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Nội dung này không được bỏ trống")
 	private Date ngayKT;
 	@Column(name = "GiaTriKM")
+	@Range(min = 1, max = 100, message = "Giá trị khuyễn mãi phải lớn hơn 1 và nhỏ hơn 100")
 	private int giaTriKM;
-	@Column(name = "TrangThai")
-	private byte trangThai;
+	@Column(name = "TrangThai", columnDefinition = "boolean default 1")
+	private boolean trangThai;
 	@Column(name = "MoTa")
 	private String moTa;
 	@OneToMany(mappedBy = "khuyenMai", fetch = FetchType.EAGER)
@@ -83,11 +90,11 @@ public class KhuyenMai {
 		this.giaTriKM = giaTriKM;
 	}
 
-	public byte getTrangThai() {
+	public boolean isTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(byte trangThai) {
+	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
 
