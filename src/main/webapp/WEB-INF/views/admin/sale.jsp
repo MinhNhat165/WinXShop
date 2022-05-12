@@ -114,6 +114,7 @@
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div class="form-group mb-3">
 																	<label for="input-maKM">Mã khuyễn mãi </label>
+
 																	<form:input path="maKM" id="input-maKM"
 																		disabled="${btnAction=='btnUpdate'?'true': 'false' }"
 																		name="maKM" type="text" class="form-control validate" />
@@ -192,38 +193,47 @@
 																<i class="fa-regular fa-circle-plus"></i> Sản phẩm áp
 																dụng
 															</button>
+															<div class="text-danger ">${productSaleListError}</div>
 															<div class="collapse mt-3" id="filterproduct">
 																<div class="card card-body p-2 py-3">
 																	<div class="row">
 																		<div class="row pl-4">
 																			<div class="row tm-edit-product-form">
-																				<div class="form-group mb-3 shadow-none col-md-5">
-																					<label for="brand">Nhãn hàng </label> <select
-																						class="form-select" multiple="multiple"
-																						id="languages-disabled-id"></select>
-																				</div>
-																				<div class="form-group mb-3 col-md-5">
-																					<label for="name">Loại </label> <select
-																						class="custom-select rounded tm-select-accounts"
-																						id="category">
-																						<option selected>Tất cả</option>
-																						<option value="1">Nam</option>
-																						<option value="2">Nữ</option>
-																					</select>
-																				</div>
-
-																				<div class="col-md-2 form-group text-white">
-																					<label for="name">N </label>
-																					<button name="btnFilterProduct"
+																				<div class="col-lg-4 form-group text-white">
+																					<button type="button" name="btnFilterProduct"
 																						class="btn btn-primary btn-block btn-green shadow-none"
 																						data-toggle="modal" data-target="#product-modal">
-																						Lọc</button>
+																						Chọn sản phẩm</button>
 																				</div>
 																			</div>
 																		</div>
+
 																		<div class="row px-3">
+
 																			<div class="col-12 px-4">Sản phẩm đã chọn</div>
-																			<div class="col-12 px-4 product-sale-list mt-2"></div>
+																			<div class="col-12 px-4 product-sale-list mt-2">
+																				<input class="form-check-input invisible"
+																					type="checkbox" name="product-sale" />
+
+																				<c:forEach var="p" items="${productSaleList }">
+																					<span product-id=${ p} class="mt-2 product-sale">
+																						<input class="form-check-input invisible"
+																						type="checkbox" value="${p}" checked
+																						id="input-${p}" name="product-sale" /> <label
+																						class="form-check-label" for="flexCheckDefault">
+																							<button type='button'
+																								class="btn btn-sm bg-green-light"
+																								style="cursor: default">
+																								${p} <span style="cursor: pointer"
+																									onclick="handleRemoveProductSale(this)">
+																									<i class="green-color fa-regular fa-xmark"></i>
+																								</span>
+																							</button>
+																					</label>
+																					</span>
+
+																				</c:forEach>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -263,22 +273,25 @@
 						</div>
 						<div class="modal-body p-4"
 							style="height: 80vh; overflow-y: scroll">
-							<div
-								class="row bg-light p-2 rounded border border-green align-items-center product mb-2"
-								product-id="SP001" data-name="Nước hoa nam blueee 100ml"
-								onclick="handleClickProduct(this)">
-								<div class="col-2">TTDK0001</div>
-								<div class="col-1">
-									<img
-										src="https://lzd-img-global.slatic.net/g/p/40ff970a47db984b7316ee248fd41dfa.jpg_720x720q80.jpg_.webp"
-										alt="" style="width: 50px; height: 50px" />
+							<c:forEach var="p" items="${ DSSP}">
+								<div
+									class="row bg-light p-2 rounded border border-green align-items-center product mb-2"
+									product-id="${ p.maSP}" data-name="${p.tenSP }"
+									onclick="handleClickProduct(this)">
+									<div class="col-2">${p.maSP}</div>
+									<div class="col-1">
+										<img
+											src="https://lzd-img-global.slatic.net/g/p/40ff970a47db984b7316ee248fd41dfa.jpg_720x720q80.jpg_.webp"
+											alt="" style="width: 50px; height: 50px" />
+									</div>
+									<div class="col-6">${ p.tenSP}</div>
+									<div class="col-3" style="cursor: pointer">
+										Giá: <span class="green-color" data-bs-toggle="collapse"
+											href="#TTDK0001"> ${p.gia} </span>
+									</div>
 								</div>
-								<div class="col-6">Nước hoa nam blueee 100ml</div>
-								<div class="col-3" style="cursor: pointer">
-									Giá: <span class="green-color" data-bs-toggle="collapse"
-										href="#TTDK0001"> 2000000 đ </span>
-								</div>
-							</div>
+							</c:forEach>
+
 
 							<div class="row"
 								style="position: -webkit-sticky; position: sticky; bottom: 0px;">
@@ -347,7 +360,9 @@
 									<div class="col-6">
 										<div class="col-12 mb-3 mt-3">
 											<p class="m-b-10 f-w-600">Danh sách sản phẩm áp dụng</p>
-											<h6 class="text-muted f-w-400">Nước hoa</h6>
+											<c:forEach var="p" items="${KMDetail.dsSPKM }">
+												<h6 class="text-muted f-w-400">- ${p.sanPham.tenSP }</h6>
+											</c:forEach>
 										</div>
 									</div>
 								</div>
@@ -367,232 +382,7 @@
 	<%@include file="./common/script.jsp"%>
 
 	<script>
-	var options = [
-        {
-          text: "Arabic",
-          selected: true,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "Belarusian",
-          selected: true,
-          disabled: true,
-          hidden: true,
-        },
-        {
-          text: "Chinese",
-          selected: true,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "Dutch",
-          selected: true,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "English",
-          selected: false,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "French",
-          selected: false,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "Greek",
-          selected: false,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "Hindi",
-          selected: false,
-          disabled: false,
-          hidden: false,
-        },
-        {
-          text: "Italian",
-          selected: false,
-          disabled: false,
-          hidden: false,
-        },
-      ];
-
-      var $management = $("#languages-hidden-id, #languages-disabled-id");
-
-      function resetManagement() {
-        function createData(property) {
-          var dataHTML = "";
-          for (var i = 0; i < options.length; i++) {
-            var o = options[i];
-            dataHTML +=
-              "<option " +
-              (o[property] ? "selected" : "") +
-              ' value="' +
-              o.text +
-              '"  data-index="' +
-              i +
-              '">' +
-              o.text +
-              "</option>";
-          }
-          return dataHTML;
-        }
-        $("#languages-hidden-id").html(createData("hidden"));
-        $("#languages-disabled-id").html(createData("disabled"));
-      }
-      resetManagement();
-      var languages1 = null;
-      var languages2 = null;
-      let isLanguages2 = true;
-      var $languages = $("#languages1-id");
-      if (isLanguages2) $languages = $languages.add("#languages2-id");
-      var callMs = function (id, process) {
-        return $(id).each(function (i, e) {
-          let ms = $(e).data("DashboardCode.BsMultiSelect");
-          if (ms) process(ms);
-        });
-      };
-      //var callMs = function(id, process){ let ms = getMs(id); if (ms) process(ms); }
-      $management.bsMultiSelect(function (e, c) {
-        c.setSelected = function (eo, v) {
-          eo.selected = v;
-          var index = $(eo).data("index");
-
-          if (e.id == "languages-hidden-id") {
-            options[index].hidden = v;
-            callMs($languages, function (ms) {
-              ms.updateOptionHidden(index);
-            });
-          } else if (e.id == "languages-disabled-id") {
-            options[index].disabled = v;
-            callMs($languages, function (ms) {
-              ms.updateOptionDisabled(index);
-            });
-          }
-        };
-      });
-
-      var getIsAttached = function () {
-        return $languages.data("DashboardCode.BsMultiSelect") != null;
-      };
-      var disabled = false;
-      var disabledOptions = false;
-      var install = function () {
-        $languages.bsMultiSelect({
-          options: options,
-          getDisabled: function () {
-            return disabled;
-          },
-          getIsOptionDisabled: function (o) {
-            return o.disabled;
-          },
-          getIsOptionHidden: function (o) {
-            return o.hidden;
-          },
-        });
-        if (isLanguages2) {
-          $("#languages1-id").on(
-            "dashboardcode.multiselect:change",
-            function () {
-              $("#languages2-id").bsMultiSelect("UpdateOptionsSelected");
-            },
-          );
-          $("#languages2-id").on(
-            "dashboardcode.multiselect:change",
-            function () {
-              $("#languages1-id").bsMultiSelect("UpdateOptionsSelected");
-            },
-          );
-        }
-      };
-      install();
-      $("#btnAttach").click(function () {
-        if (getIsAttached()) {
-          $languages.bsMultiSelect("Dispose");
-          $languages.unbind();
-        } else {
-          install();
-        }
-      });
-
-      $("#btnDisable").click(function () {
-        if (getIsAttached()) {
-          disabled = !disabled;
-          $languages.bsMultiSelect("UpdateDisabled");
-        }
-      });
-
-      $("#btnDisableOptions").click(function () {
-        if (getIsAttached()) {
-          disabledOptions = !disabledOptions;
-          $languages.bsMultiSelect("UpdateOptionsDisabled");
-        }
-      });
-
-      $("#btnRemove").click(function () {
-        var inputValue = $("#inputValue").val();
-        if (inputValue) {
-          var position = -1;
-          for (var i = 0; i < options.length; i++) {
-            var item = options[i];
-            if (item.text.toLowerCase() == inputValue.toLowerCase()) {
-              position = i;
-              break;
-            }
-          }
-
-          if (position >= 0) {
-            options.splice(position, 1);
-            resetManagement();
-            $management.bsMultiSelect("UpdateData");
-            if (getIsAttached()) {
-              callMs("#languages1-id", function (ms) {
-                ms.updateOptionRemoved(position);
-              });
-              callMs("#languages2-id", function (ms) {
-                ms.updateOptionRemoved(position);
-              });
-            }
-          }
-        }
-      });
-      $("#btnAddSelected").click(function () {
-        var inputValue = $("#inputValue").val();
-        if (inputValue) {
-          var position = -1;
-          for (var i = 0; i < options.length; i++) {
-            var item = options[i];
-            if (item.text.toLowerCase() == inputValue.toLowerCase()) return;
-            else if (item.text.toLowerCase() > inputValue.toLowerCase()) break;
-          }
-          position = i;
-          if (position >= 0) {
-            options.splice(position, 0, {
-              text: inputValue,
-              selected: true,
-              disabled: false,
-              hidden: false,
-            });
-            resetManagement();
-            $management.bsMultiSelect("UpdateData");
-            if (getIsAttached()) {
-              callMs("#languages1-id", function (ms) {
-                ms.updateOptionAdded(position);
-              });
-              callMs("#languages2-id", function (ms) {
-                ms.updateOptionAdded(position);
-              });
-            }
-          }
-        }
-      });
+	
       if($(".alert-flag").attr("aType")) {
     	  alertify.notify($(".alert-flag").attr("aMessage"), $(".alert-flag").attr("aType"), 100, function(){  console.log('dismissed'); });
           alertify.set('notifier','position', 'top-right');
@@ -684,9 +474,6 @@
 	</script>
 	<script src=" <c:url value='/resources/js/autoOpenModal.js'/>">
 	</script>
-
-
-
 
 </body>
 </html>

@@ -33,6 +33,7 @@ public class KhuyenMai implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Nội dung này không được bỏ trống")
 	private Date ngayBD;
+	
 	@Column(name = "NgayKT")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
