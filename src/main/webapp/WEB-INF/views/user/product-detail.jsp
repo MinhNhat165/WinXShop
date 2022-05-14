@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%-- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> --%>
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +10,8 @@
 <body>
 	<%@include file="./header.jsp"%>
 	<main class="main bg-light pt-20 pb-50">
-		<section class="col-md-8 mx-auto bg-white p-20 pt-30 shadow rounded">
+		<section
+			class="col-sm-12 col-md-10 col-lg-8 mx-auto bg-white p-20 pt-30 shadow rounded">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -19,96 +22,82 @@
 										<!-- MAIN SLIDES -->
 										<div class="product-image-slider rounded-3 overflow-hidden">
 											<figure class="rounded">
-												<img
-													src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-													alt="product image" />
+												<img src="./resources/imgs/${SP.anh}" alt="product image" />
 											</figure>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="detail-info">
-										<h2 class="title-detail">Colorful Pattern Shirts HD450</h2>
+										<h2 class="title-detail">${SP.tenSP}</h2>
 										<div class="product-detail-rating">
 											<div class="pro-details-brand">
-												<span> Thương hiệu: <a href="shop-grid-right.html">Gucci</a></span>
+												<span> Thương hiệu: <a href="shop-grid-right.html">${SP.nhanHang.tenNH}</a></span>
 											</div>
 											<div class="product-rate-cover text-end">
-												<i class="fa-solid fa-star text-warning"></i> 9/10 <span
-													class="font-small ml-5 text-muted"> (25 reviews)</span>
+												<i class="fa-solid fa-star text-warning"></i>
+												${SP.dsCTDG.size() == 0? "chưa có đáng giá nào" : SP.diemDG  }/10
+												<span class="font-small ml-5 text-muted"> (${ SP.dsCTDG.size()})
+													đánh giá</span>
 											</div>
 										</div>
 										<div class="clearfix product-price-cover">
 											<div class="product-price primary-color float-left">
 												<ins>
-													<span class="text-brand">$120.00</span>
+													<span class="text-brand">${SP.gia - SP.gia * SP.dsSPKM[0].khuyenMai.giaTriKM/100}</span>
 												</ins>
 												<ins>
-													<span class="old-price font-md ml-15">$200.00</span>
+													<span class="old-price font-md ml-15">${SP.gia }</span>
 												</ins>
-												<span class="save-price font-md color3 ml-15">25%
-													Off</span>
+												<span class="save-price font-md color3 ml-15">Giảm
+													${SP.dsSPKM[0].khuyenMai.giaTriKM} % </span>
 											</div>
 										</div>
 										<div class="bt-1 border-color-1 mt-15 mb-15"></div>
 
-										<div class="attr-detail attr-color mb-15">
-											<strong class="mr-10">Color</strong>
-											<ul class="list-filter color-filter">
-												<li><a href="#" data-color="Red"><span
-														class="product-color-red"></span></a></li>
-												<li><a href="#" data-color="Yellow"><span
-														class="product-color-yellow"></span></a></li>
-												<li class="active"><a href="#" data-color="White"><span
-														class="product-color-white"></span></a></li>
-												<li><a href="#" data-color="Orange"><span
-														class="product-color-orange"></span></a></li>
-												<li><a href="#" data-color="Cyan"><span
-														class="product-color-cyan"></span></a></li>
-												<li><a href="#" data-color="Green"><span
-														class="product-color-green"></span></a></li>
-												<li><a href="#" data-color="Purple"><span
-														class="product-color-purple"></span></a></li>
-											</ul>
-										</div>
+
 										<div class="attr-detail attr-size">
 											<strong class="mr-10">Dung tích</strong>
 											<ul class="list-filter size-filter font-small text-lowercase">
-												<li><a href="#">300
-														<span class="text-lowercase">ml</span>
+
+												<li class="active"><a href="#">${SP.dungTich} <span
+														class="text-lowercase">ml</span>
 												</a></li>
-												<li class="active"><a href="#">400
-														<span class="text-lowercase">ml</span>
-												</a></li>
-												<li><a href="#">500
-														<span class="text-lowercase">ml</span>
-												</a></li>
+
 											</ul>
 										</div>
 										<div class="bt-1 border-color-1 mt-30 mb-30"></div>
 										<div class="detail-extralink">
-											<div class="detail-qty border radius">
-												<a href="#" class="qty-down"><i
-													class="fa-solid fa-angle-down"></i></a> <span class="qty-val">1</span>
-												<a href="#" class="qty-up"><i
-													class="fa-solid fa-angle-up"></i></a>
-											</div>
-											<div class="product-extra-link2">
-												<button type="submit" class="button button-add-to-cart">
-													Mua Ngay</button>
-												<a aria-label="Add To Card" class="action-btn hover-up"
-													href="shop-cart.html"><i
-													class="fa-regular fa-cart-plus"></i></a> <a
-													aria-label="Compare" class="action-btn hover-up"
-													href="shop-compare.html"><i
-													class="fa-regular fa-bags-shopping"></i></a>
-											</div>
+											<form id="checkout" action="checkout.htm" method="post">
+
+												<div class="quantity">
+													<input type="number" name="soLuong" min="1"
+														max="${SP.slt }" step="1" value="1" style="width: 76px">
+												</div>
+												<input type="text" name="sanPham"
+													class="invisible position-absolute" value="${SP.maSP }">
+
+												<div class="product-extra-link2 ms-2">
+													<button type="submit" form="checkout" name="btnCheckout"
+														class="button button-add-to-cart ms-2">Mua Ngay</button>
+													<a aria-label="Add To Card" class="action-btn hover-up"
+														href="cart/add/${SP.maSP }.htm"><i
+														class="fa-regular fa-cart-plus"></i></a> <a
+														aria-label="Compare" class="action-btn hover-up"
+														href="shop-compare.html"><i
+														class="fa-regular fa-bags-shopping"></i></a>
+												</div>
+											</form>
 										</div>
 										<ul class="product-meta font-xs color-grey mt-50">
-											<li class="mb-5">Mã: <a href="#">SP0000001</a></li>
-											<li class="mb-5">Tags: <a href="#" rel="tag">Women</a>
+											<li class="mb-5">Mã: <a href="#">${SP.maSP }</a></li>
+											<li class="mb-5">Tags: <a href="#" rel="tag"> <c:if
+														test="${SP.loai  == 0 }">Nữ</c:if> <c:if
+														test="${SP.loai  == 1 }">Nam</c:if> <c:if
+														test="${SP.loai  == 2 }">Unisex</c:if>
+											</a>
 											</li>
-											<li>Sẵn hàng:<span class="in-stock text-success ml-5">8
+											<li>Sẵn hàng:<span class="in-stock text-success ml-5">${SP.slt }
 													sản phẩm có sẵn</span>
 											</li>
 										</ul>
@@ -123,18 +112,13 @@
 											tả</a></li>
 
 									<li class="nav-item"><a class="nav-link" id="Reviews-tab"
-										data-bs-toggle="tab" href="#Reviews">Đánh
-											giá (3)</a></li>
+										data-bs-toggle="tab" href="#Reviews">Đánh giá
+											(${SP.dsCTDG.size() })</a></li>
 								</ul>
 								<div class="tab-content shop_info_tab entry-main-content">
 									<div class="tab-pane fade show active" id="Description">
 										<div class="">
-											<p class="text-dark">Uninhibited carnally hired played in
-												whimpered dear gorilla koala depending and much yikes off
-												far quetzal goodness and from for grimaced goodness
-												unaccountably and meadowlark near unblushingly crucial
-												scallop tightly neurotic hungrily some and dear furiously
-												this apart.</p>
+											<p class="text-dark">${SP.moTa }</p>
 										</div>
 									</div>
 
@@ -146,102 +130,44 @@
 													<h4 class="mb-30">Nhận xét</h4>
 													<div class="comment-list ml-10">
 														<!--single-comment -->
-														<div class="row border-bottom mb-20">
-															<div class="col-md-2 p-0 text-center">
-																<img
-																	src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-																	class="rounded-circle"
-																	style="width: 50px; height: 50px" alt="Avatar" />
-																<h6>
-																	<a href="#">Nguyễn Minh Nhật</a>
-																</h6>
-															</div>
-															<div class="desc col-md-9 p-0">
-																<div class="product-rate d-inline-block">
-																	<i class="fa-solid fa-star text-warning"></i>
-																	<span class="text-brand-dark">9/10</span>
+														<c:forEach var="p" items="${SP.dsCTDG}">
+															<div class="row border-bottom mb-20">
+																<div class="col-md-2 p-0 text-center">
+																	<img src="./resources/imgs/${p.khachHang.anh}"
+																		class="rounded-circle"
+																		style="width: 50px; height: 50px" alt="Avatar" />
+																	<h6>
+																		<a href="#">${p.khachHang.hoTen}</a>
+																	</h6>
 																</div>
-																<p class="text-dark" style="font-size: 12px">Sản
-																	phẩm này thật tuyệt vời, tôi có thằng anh sinh năm 96,
-																	sau khi xịt loại nước hoa này dành cho nữ này nó có thể
-																	tiếp cận dễ dàng với phụ nữ, và trở thành 1 trong số
-																	họ.</p>
-																<div class="d-flex justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<p class="mr-30" style="font-size: 12px">December
-																			4, 2020 at 3:12 pm</p>
+																<div class="desc col-md-9 p-0 ms-4">
+																	<div class="product-rate d-inline-block">
+																		<i class="fa-solid fa-star text-warning"></i> <span
+																			class="text-brand-dark">${p.diemDG}/10</span>
+																	</div>
+																	<p class="text-dark" style="font-size: 12px">${p.moTa}</p>
+																	<div class="d-flex justify-content-between">
+																		<div class="d-flex align-items-center">
+																			<p class="mr-30" style="font-size: 12px">${p.ngayDG}</p>
+																		</div>
 																	</div>
 																</div>
 															</div>
-														</div>
-														<!--single-comment -->
-														<div class="row border-bottom mb-20">
-															<div class="col-md-2 p-0 text-center">
-																<img
-																	src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-																	class="rounded-circle"
-																	style="width: 50px; height: 50px" alt="Avatar" />
-																<h6>
-																	<a href="#">Nguyễn Minh Nhật</a>
-																</h6>
-															</div>
-															<div class="desc col-md-9 p-0">
-																<div class="product-rate d-inline-block">
-																	<i class="fa-solid fa-star text-warning"></i>
-																	<span class="text-brand-dark">9/10</span>
-																</div>
-																<p class="text-dark" style="font-size: 12px">Sản
-																	phẩm này thật tuyệt vời, tôi có thằng anh sinh năm 96,
-																	sau khi xịt loại nước hoa này dành cho nữ này nó có thể
-																	tiếp cận dễ dàng với phụ nữ, và trở thành 1 trong số
-																	họ.</p>
-																<div class="d-flex justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<p class="mr-30" style="font-size: 12px">December
-																			4, 2020 at 3:12 pm</p>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- single-comment -->
-														<div class="row border-bottom">
-															<div class="col-md-2 p-0 text-center">
-																<img
-																	src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-																	class="rounded-circle"
-																	style="width: 50px; height: 50px" alt="Avatar" />
-																<h6>
-																	<a href="#">Nguyễn Minh Nhật</a>
-																</h6>
-															</div>
-															<div class="desc col-md-9 p-0">
-																<div class="product-rate d-inline-block">
-																	<i class="fa-solid fa-star text-warning"></i>
-																	<span class="text-brand-dark">9/10</span>
-																</div>
-																<p class="text-dark" style="font-size: 12px">Sản
-																	phẩm này thật tuyệt vời, tôi có thằng anh sinh năm 96,
-																	sau khi xịt loại nước hoa này dành cho nữ này nó có thể
-																	tiếp cận dễ dàng với phụ nữ, và trở thành 1 trong số
-																	họ.</p>
-																<div class="d-flex justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<p class="mr-30" style="font-size: 12px">December
-																			4, 2020 at 3:12 pm</p>
-																	</div>
-																</div>
-															</div>
-														</div>
+														</c:forEach>
+
+
+
 													</div>
 												</div>
 												<div class="col-lg-4 text-center">
 													<h4 class="mb-30">Điểm đánh giá</h4>
 													<div
-														class="card mx-auto col-8 bg-primary-light-winx h-50 shadow">
+														class="card mx-auto col-8 bg-primary-light-winx h-50 shadow"
+														style="min-height: 200px">
 														<div
 															class="card-body d-flex align-items-center bg-primary-light-winx gap-2 flex-column justify-content-center">
 															<h1 class="text-brand">
-																<span class="text-brand-dark">9</span>/10
+																<span class="text-brand-dark">${SP.diemDG}</span>/10
 															</h1>
 															<span><h2>
 																	<i class="fa-solid fa-star text-warning"></i>
@@ -257,14 +183,15 @@
 											<div class="product-rate d-inline-block mb-20"></div>
 											<div class="row">
 												<div class="col-lg-8 col-md-12">
-													<form class="form-contact comment_form" action="#"
+													<form class="form-contact comment_form"
+														action="product-detail/${SP.maSP }.htm" method="post"
 														id="commentForm">
 														<div class="row">
 															<div class="form-group col-3">
 																<div class="input-group input-group-sm">
-																	<input type="number"
-																		class="form-control text-center hidden-arrow" min="0"
-																		max="10" value="10" />
+																	<input type="number" name="score" min="1" max="10"
+																		value="10"
+																		class="form-control text-center hidden-arrow" />
 																	<div
 																		class="input-group-text w-50 justify-content-center">
 																		<i class="fa-solid fa-star text-warning"></i>
@@ -272,8 +199,8 @@
 																</div>
 															</div>
 															<div class="form-group">
-																<textarea class="form-control w-100" name="comment"
-																	id="comment" cols="30" rows="9"
+																<textarea class="form-control w-100" id="comment"
+																	cols="30" rows="9" name="content"
 																	placeholder="Viết nhận xét của bạn"></textarea>
 															</div>
 														</div>
@@ -295,178 +222,59 @@
 								</div>
 								<div class="col-12">
 									<div class="row related-products">
-										<div class="col-lg-3 col-md-4 col-12 col-sm-6">
-											<div class="product-cart-wrap small hover-up">
-												<div class="product-img-action-wrap">
-													<div class="product-img product-img-zoom">
-														<a href="shop-product-right.html" tabindex="0"> <img
-															class="default-img"
-															src="assets/imgs/shop/product-2-1.jpg" alt="" />
-															<img class="hover-img"
-															src="assets/imgs/shop/product-2-2.jpg" alt="" />
-														</a>
+										<c:forEach var="p" items="${productList }">
+											<div class="col-lg-3 col-md-4 col-12 col-sm-6">
+												<div data-name="${p.tenSP }"
+													data-brand="${p.nhanHang.tenNH}"
+													data-review="${p.diemDG == 0? " chưa có đáng giá
+													nào" : "hihih" }"
+									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+													data-old-price="${p.gia }" data-ml="${p.dungTich }"
+													data-id="${maSP }" data-quantity="${p.slt }"
+													data-type="${p.loai}" data-description="ádfasd"
+													data-img="${p.anh }"
+													class="product-cart-wrap product small hover-up">
+													<div class="product-img-action-wrap">
+														<div class="product-img product-img-zoom">
+															<a href="product-detail/${p.maSP }.htm"> <img
+																class="default-img" src="./resources/imgs/${p.anh}"
+																alt="" />
+															</a>
+														</div>
+														<div class="product-action-1">
+															<a aria-label="Quick view"
+																class="action-btn small hover-up" data-bs-toggle="modal"
+																onclick="handleQuickView(this)"
+																data-bs-target="#quickViewModal"><i
+																class="fa-regular fa-eye"></i></a> <a
+																aria-label="Add To Card"
+																class="action-btn small hover-up" href="cart.htm"><i
+																class="fa-regular fa-cart-plus"></i> </a>
+														</div>
+
+														<div
+															class="product-badges product-badges-position product-badges-mrg">
+															<span class="hot">Hot</span>
+														</div>
 													</div>
-													<div class="product-action-1">
-														<a aria-label="Quick view"
-															class="action-btn small hover-up" data-bs-toggle="modal"
-															data-bs-target="#quickViewModal
-"><i
-															class="fi-rs-search"></i></a> <a aria-label="Add To Wishlist"
-															class="action-btn small hover-up"
-															href="shop-wishlist.html" tabindex="0"><i
-															class="fi-rs-heart"></i></a> <a aria-label="Compare"
-															class="action-btn small hover-up"
-															href="shop-compare.html" tabindex="0"><i
-															class="fi-rs-shuffle"></i></a>
-													</div>
-													<div
-														class="product-badges product-badges-position product-badges-mrg">
-														<span class="hot">Hot</span>
-													</div>
-												</div>
-												<div class="product-content-wrap">
-													<h2>
-														<a href="shop-product-right.html" tabindex="0">Ulstra
-															Bass Headphone</a>
-													</h2>
-													<div class="rating-result" title="90%">
-														<span> </span>
-													</div>
-													<div class="product-price">
-														<span>$238.85 </span> <span class="old-price">$245.8</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-12 col-sm-6">
-											<div class="product-cart-wrap small hover-up">
-												<div class="product-img-action-wrap">
-													<div class="product-img product-img-zoom">
-														<a href="shop-product-right.html" tabindex="0"> <img
-															class="default-img"
-															src="assets/imgs/shop/product-3-1.jpg" alt="" />
-															<img class="hover-img"
-															src="assets/imgs/shop/product-4-2.jpg" alt="" />
-														</a>
-													</div>
-													<div class="product-action-1">
-														<a aria-label="Quick view"
-															class="action-btn small hover-up" data-bs-toggle="modal"
-															data-bs-target="#quickViewModal
-"><i
-															class="fi-rs-search"></i></a> <a aria-label="Add To Wishlist"
-															class="action-btn small hover-up"
-															href="shop-wishlist.html" tabindex="0"><i
-															class="fi-rs-heart"></i></a> <a aria-label="Compare"
-															class="action-btn small hover-up"
-															href="shop-compare.html" tabindex="0"><i
-															class="fi-rs-shuffle"></i></a>
-													</div>
-													<div
-														class="product-badges product-badges-position product-badges-mrg">
-														<span class="sale">-12%</span>
-													</div>
-												</div>
-												<div class="product-content-wrap">
-													<h2>
-														<a href="shop-product-right.html" tabindex="0">Smart
-															Bluetooth Speaker</a>
-													</h2>
-													<div class="rating-result" title="90%">
-														<span> </span>
-													</div>
-													<div class="product-price">
-														<span>$138.85 </span> <span class="old-price">$145.8</span>
+													<div class="product-content-wrap">
+														<h2>
+															<a href="shop-product-right.html">${p.tenSP }</a>
+														</h2>
+														<div class="rating-result" title="90%">
+															<span> </span>
+														</div>
+														<div class="product-price">
+															<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
+															</span> <span class="old-price">${p.gia } </span>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-12 col-sm-6">
-											<div class="product-cart-wrap small hover-up">
-												<div class="product-img-action-wrap">
-													<div class="product-img product-img-zoom">
-														<a href="shop-product-right.html" tabindex="0"> <img
-															class="default-img"
-															src="assets/imgs/shop/product-4-1.jpg" alt="" />
-															<img class="hover-img"
-															src="assets/imgs/shop/product-4-2.jpg" alt="" />
-														</a>
-													</div>
-													<div class="product-action-1">
-														<a aria-label="Quick view"
-															class="action-btn small hover-up" data-bs-toggle="modal"
-															data-bs-target="#quickViewModal
-"><i
-															class="fi-rs-search"></i></a> <a aria-label="Add To Wishlist"
-															class="action-btn small hover-up"
-															href="shop-wishlist.html" tabindex="0"><i
-															class="fi-rs-heart"></i></a> <a aria-label="Compare"
-															class="action-btn small hover-up"
-															href="shop-compare.html" tabindex="0"><i
-															class="fi-rs-shuffle"></i></a>
-													</div>
-													<div
-														class="product-badges product-badges-position product-badges-mrg">
-														<span class="new">New</span>
-													</div>
-												</div>
-												<div class="product-content-wrap">
-													<h2>
-														<a href="shop-product-right.html" tabindex="0">HomeSpeak
-															12UEA Goole</a>
-													</h2>
-													<div class="rating-result" title="90%">
-														<span> </span>
-													</div>
-													<div class="product-price">
-														<span>$738.85 </span> <span class="old-price">$1245.8</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-12 col-sm-6">
-											<div class="product-cart-wrap small hover-up mb-0">
-												<div class="product-img-action-wrap">
-													<div class="product-img product-img-zoom">
-														<a href="shop-product-right.html" tabindex="0"> <img
-															class="default-img"
-															src="assets/imgs/shop/product-5-1.jpg" alt="" />
-															<img class="hover-img"
-															src="assets/imgs/shop/product-3-2.jpg" alt="" />
-														</a>
-													</div>
-													<div class="product-action-1">
-														<a aria-label="Quick view"
-															class="action-btn small hover-up" data-bs-toggle="modal"
-															data-bs-target="#quickViewModal
-"><i
-															class="fi-rs-search"></i></a> <a aria-label="Add To Wishlist"
-															class="action-btn small hover-up"
-															href="shop-wishlist.html" tabindex="0"><i
-															class="fi-rs-heart"></i></a> <a aria-label="Compare"
-															class="action-btn small hover-up"
-															href="shop-compare.html" tabindex="0"><i
-															class="fi-rs-shuffle"></i></a>
-													</div>
-													<div
-														class="product-badges product-badges-position product-badges-mrg">
-														<span class="hot">Hot</span>
-													</div>
-												</div>
-												<div class="product-content-wrap">
-													<h2>
-														<a href="shop-product-right.html" tabindex="0">Dadua
-															Camera 4K 2021EF</a>
-													</h2>
-													<div class="rating-result" title="90%">
-														<span> </span>
-													</div>
-													<div class="product-price">
-														<span>$89.8 </span> <span class="old-price">$98.8</span>
-													</div>
-												</div>
-											</div>
-										</div>
+
+
+										</c:forEach>
+
 									</div>
 								</div>
 							</div>

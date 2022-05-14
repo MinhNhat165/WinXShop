@@ -22,24 +22,9 @@ public class UserController {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping("checkout")
-	public String Checkout(ModelMap model) {
-		return "user/checkout";
-	}
-
 	@RequestMapping("shop")
 	public String Shop(ModelMap model) {
 		return "user/shop";
-	}
-
-	@RequestMapping("product-detail")
-	public String productDetail(ModelMap model) {
-		return "user/product-detail";
-	}
-
-	@RequestMapping("cart")
-	public String cart(ModelMap model) {
-		return "user/cart";
 	}
 
 	@RequestMapping("account")

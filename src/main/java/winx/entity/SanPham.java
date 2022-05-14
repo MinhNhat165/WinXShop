@@ -70,7 +70,7 @@ public class SanPham {
 	private Collection<CTDD> dsCTDD;
 	@OneToMany(mappedBy = "sanPham")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Collection<CTDD> dsCTDG;
+	private Collection<CTDG> dsCTDG;
 
 	public int getDiemDG() {
 		return diemDG;
@@ -88,11 +88,11 @@ public class SanPham {
 		this.dsCTDD = dsCTDD;
 	}
 
-	public Collection<CTDD> getDsCTDG() {
+	public Collection<CTDG> getDsCTDG() {
 		return dsCTDG;
 	}
 
-	public void setDsCTDG(Collection<CTDD> dsCTDG) {
+	public void setDsCTDG(Collection<CTDG> dsCTDG) {
 		this.dsCTDG = dsCTDG;
 	}
 

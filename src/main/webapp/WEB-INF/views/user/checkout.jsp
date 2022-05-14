@@ -5,10 +5,13 @@
 <%@include file="./head.jsp"%>
 <body>
 	<%@include file="./header.jsp"%>
+	<!-- flag -->
+
+	<div class="alert-flag" aType='${ms.type}' aMessage="${ms.message }"></div>
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">
-				<div class="row">
+				<form action="checkout.htm" method="post" class="row">
 					<div class="col-9">
 						<div
 							class="col-12 bg-white p-10 rounded mb-10 bg-brand text-white">
@@ -21,42 +24,48 @@
 								<div class="col-1 text-center">Thao tác</div>
 							</div>
 						</div>
-						<div
-							class="col-12 bg-white p-10 rounded-1 mb-10 product border border-brand">
-							<div class="row align-items-center custome-checkbox">
-								<div class="col-1 text-center product-img">
-									<img src="./resources/imgs/shop/product-6-1.jpg" alt="#" />
-								</div>
-								<div class="col-4 text-center product-name">
-									<h5 class="product-name">
-										<a href="shop-product-right.html">Amazon
-											Brand - Daily </a>
-									</h5>
-								</div>
-								<div class="col-2 text-center product-price">
-									<span>650.000đ </span>
-								</div>
-								<div class="col-2 text-center product-1uantity">
-									<div class="detail-qty border radius m-auto">
-										<a href="#" class="qty-down"> <i
-											class="fa-solid fa-angle-down"></i></a> <span class="qty-val">1</span>
-										<a href="#" class="qty-up"><i
-											class="fa-solid fa-angle-up"></i></a>
+						<c:forEach var="p" items="${dsGHSP}">
+							<div
+								class="col-12 bg-white p-10 rounded-1 mb-10 product border border-brand">
+								<input type="checkbox" class="invisible position-absolute"
+									value="${p.sanPham.maSP }" checked name="dsSanPham" /> <input
+									class="invisible position-absolute type="
+									checkbox"
+									value="${p.soLuong }" checked
+									name="soLuong" /> <input
+									class="invisible position-absolute
+									type="
+									checkbox" value="${p.sanPham.dsSPKM[0].khuyenMai.maKM }"
+									checked name="khuyenMai" />
+								<div class="row align-items-center custome-checkbox">
+									<div class="col-1 text-center product-img">
+										<img src="./resources/imgs/${p.sanPham.anh}" alt="#" />
+									</div>
+									<div class="col-4 text-center product-name">
+										<h5 class="product-name">
+											<a href="shop-product-right.html">${p.sanPham.tenSP} </a>
+										</h5>
+									</div>
+									<div class="col-2 text-center product-price">
+										<span>${p.sanPham.gia}đ </span>
+									</div>
+									<div class="col-2 text-center product-1uantity">
+										${p.soLuong}</div>
+									<div class="col-2 text-center">${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}đ</div>
+									<div class="col-1 text-center product-cart-action">
+										<a href="#" class="text-muted"><i
+											class="fa-regular fa-trash-can"></i></a>
 									</div>
 								</div>
-								<div class="col-2 text-center">650.000đ</div>
-								<div class="col-1 text-center product-cart-action">
-									<a href="#" class="text-muted"><i
-										class="fa-regular fa-trash-can"></i></a>
-								</div>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
 					<div class="col-3">
 						<!-- Thông tin nguoi nhan -->
 						<div
 							class="bg-white d-flex flex-column rounded mb-10 px-4 product shadow fs-6 info-receiver">
 							<div class="row">
+
 								<div
 									class="col-12 pt-10 pb-10 px-0 border-bottom border-brand d-flex justify-content-between align-items-center">
 									<h4 class="text-dark">Thông tin giao hàng</h4>
@@ -67,24 +76,24 @@
 							</div>
 							<div class="row g-3 form-info-receiver mt-5 d-none">
 								<div class="col-12 px-0">
-									<input type="text"
+									<input type="text" name="tenNguoiNhan"
 										class="form-control form-control-sm input-receiver-name"
 										placeholder="Tên người nhận" aria-label="name" />
 								</div>
 								<div class="col-12 px-0">
-									<input type="text"
+									<input type="text" name="sdtNguoiNhan"
 										class="form-control form-control-sm input-receiver-phone-number"
 										placeholder="SĐT người nhận" aria-label="name" />
 								</div>
 								<div class="col-12 px-0">
-									<input type="text"
+									<input type="text" name="diaChiNguoiNhan"
 										class="form-control form-control-sm input-receiver-address"
 										placeholder="Địa chỉ người nhận" aria-label="name" />
 								</div>
 								<div class="col-12 mb-4 px-0 text-end">
-									<button class="btn btn-sm save-edit-info-receiver">
-										Lưu</button>
-									<button
+									<button type="button"
+										class="btn btn-sm save-edit-info-receiver">Lưu</button>
+									<button type="button"
 										class="btn btn-sm btn-secondary cancel-edit-info-receiver">
 										Huỷ</button>
 								</div>
@@ -92,12 +101,12 @@
 							<div class="row flex-grow-1 info-receiver-content">
 								<div
 									class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
-									<span class="text-brand-dark receiver-name">Nguyễn
-										Minh Nhật</span> <span class="receiver-phone-number">0865181658</span>
+									<span class="text-brand-dark receiver-name">${user.hoTen }</span>
+									<span class="receiver-phone-number">${user.sdt }</span>
 								</div>
-								<div class="col-12 d-flex j pt-5 pb-10 px-0 receiver-address">
-									<span class="">C3 Man Thiện,
-										Phường Hiệp Phú, TP.Thủ Đức</span>
+								<div class="col-12 d-flex j pt-5 pb-10 px-0 ">
+									<span class="receiver-address">C3 Man Thiện, Phường Hiệp
+										Phú, TP.Thủ Đức</span>
 								</div>
 							</div>
 						</div>
@@ -112,15 +121,15 @@
 							</div>
 							<div class="row g-2 mt-5">
 								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="flexRadioDefault" id="flexRadioDefault1" />
-									<label class="form-check-label" for="flexRadioDefault1">
+									<input class="form-check-input" value="0" type="radio" checked
+										name="phuongThucTT" id="flexRadioDefault1" /> <label
+										class="form-check-label" for="flexRadioDefault1">
 										Thanh toán khi nhận hàng </label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio"
-										name="flexRadioDefault" id="flexRadioDefault2" checked />
-									<label class="form-check-label" for="flexRadioDefault2">
+									<input class="form-check-input" type="radio" value="1"
+										name="phuongThucTT" id="flexRadioDefault2" /> <label
+										class="form-check-label" for="flexRadioDefault2">
 										Thanh toán online qua WinxPay </label>
 								</div>
 							</div>
@@ -143,23 +152,32 @@
 								<div
 									class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 									<span class="">Tổng thanh toán</span> <span class=""><span
-										class="text-brand">2.000.000</span>đ</span>
+										class="text-brand">${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}</span>đ</span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-12 pt-10 pb-10 px-0 border-top border-brand">
-									<a href="page-checkout.html"><button
-											class="btn btn-brand col-12">Mua Ngay</button></a>
+									<a name="btnCheckout"><button class="btn btn-brand col-12">Mua
+											Ngay</button></a>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</section>
 	</main>
 	<%@include file="./footer.jsp"%>
 
 	<%@include file="./script.jsp"%>
+	<script type="text/javascript">
+		if ($(".alert-flag").attr("aType")) {
+			alertify.notify($(".alert-flag").attr("aMessage"), $(".alert-flag")
+					.attr("aType"), 100, function() {
+				console.log('dismissed');
+			});
+			alertify.set('notifier', 'position', 'top-right');
+		}
+	</script>
 </body>
 </html>

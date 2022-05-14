@@ -2,37 +2,27 @@ package winx.CompositePK;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import winx.entity.DonDat;
 import winx.entity.SanPham;
 
+@Embeddable
 public class CTDDPK implements Serializable {
-	private DonDat donDat;
-	private SanPham sanPham;
+	@Column(name = "MaSP")
+	private String maSP;
+	@Column(name = "MaDD")
+	private String maDD;
 
 	public CTDDPK() {
 		super();
 	}
 
-	public CTDDPK(DonDat donDat, SanPham sanPham) {
+	public CTDDPK(String maSP, String maDD) {
 		super();
-		this.setDonDat(donDat);
-		this.setSanPham(sanPham);
-	}
-
-	public DonDat getDonDat() {
-		return donDat;
-	}
-
-	public void setDonDat(DonDat donDat) {
-		this.donDat = donDat;
-	}
-
-	public SanPham getSanPham() {
-		return sanPham;
-	}
-
-	public void setSanPham(SanPham sanPham) {
-		this.sanPham = sanPham;
+		this.maSP = maSP;
+		this.maDD = maDD;
 	}
 
 }
