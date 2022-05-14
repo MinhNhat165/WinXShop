@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,6 +25,9 @@ public class DonDat {
 	@Id
 	@Column(name = "MaDD")
 	private String maDD;
+	@Column(name = "TrangThai")
+
+	private int trangThai;
 	@Column(name = "TongTien")
 	private BigDecimal tongTien;
 	@Column(name = "DiaChi")
@@ -33,7 +37,7 @@ public class DonDat {
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date ngayDat;
 	@Column(name = "DaThanhToan")
-	private byte daThanhToan;
+	private boolean daThanhToan;
 	@Column(name = "SDTNguoiNhan")
 	private String sdtNguoiNhan;
 	@Column(name = "TenNguoiNhan")
@@ -57,6 +61,22 @@ public class DonDat {
 		return tongTien;
 	}
 
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public Collection<CTDD> getDsCTDD() {
+		return dsCTDD;
+	}
+
+	public void setDsCTDD(Collection<CTDD> dsCTDD) {
+		this.dsCTDD = dsCTDD;
+	}
+
 	public void setTongTien(BigDecimal tongTien) {
 		this.tongTien = tongTien;
 	}
@@ -77,11 +97,11 @@ public class DonDat {
 		this.ngayDat = ngayDat;
 	}
 
-	public byte getDaThanhToan() {
+	public boolean getDaThanhToan() {
 		return daThanhToan;
 	}
 
-	public void setDaThanhToan(byte daThanhToan) {
+	public void setDaThanhToan(boolean daThanhToan) {
 		this.daThanhToan = daThanhToan;
 	}
 

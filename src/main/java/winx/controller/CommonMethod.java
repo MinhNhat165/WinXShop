@@ -8,8 +8,12 @@ import javax.transaction.Transactional;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import winx.CompositePK.GHSPPK;
+import winx.entity.GioHang_SanPham;
+import winx.entity.KhachHang;
 import winx.entity.KhuyenMai;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
@@ -77,8 +81,81 @@ public class CommonMethod {
 	public SanPham getProduct(String maSP) {
 
 		Session session = factory.getCurrentSession();
+
 		SanPham sanPham = (SanPham) session.get(SanPham.class, maSP);
 		return sanPham;
+	}
+
+	public KhachHang getCustomer(String maKH) {
+
+		Session session = factory.getCurrentSession();
+		KhachHang khachHang = (KhachHang) session.get(KhachHang.class, maKH);
+		return khachHang;
+	}
+
+	public Boolean addToCart(String maSP, String maKH, int number) {
+		GioHang_SanPham ghsp = new GioHang_SanPham(getProduct(maSP), getCustomer(maKH), number);
+		Session session = factory.getCurrentSession();
+
+		GioHang_SanPham existsGHSP = (GioHang_SanPham) session.get(GioHang_SanPham.class, ghsp.getMaGHSP());
+		session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		if (existsGHSP == null) {
+
+			try {
+				session.save(ghsp);
+				t.commit();
+				return true;
+
+			} catch (Exception e) {
+				t.rollback();
+				return false;
+			} finally {
+				session.close();
+			}
+		} else {
+			existsGHSP.setSoLuong(existsGHSP.getSoLuong() + number);
+			try {
+				session.update(existsGHSP);
+				t.commit();
+				return true;
+
+			} catch (Exception e) {
+				t.rollback();
+				return false;
+
+			} finally {
+				session.close();
+			}
+		}
+
+	}
+
+	public Boolean removeFromCart(String maSP, String maKH) {
+		Session session = factory.getCurrentSession();
+		session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		GioHang_SanPham ghsp = (GioHang_SanPham) session.get(GioHang_SanPham.class, new GHSPPK(maSP, maKH));
+
+		try {
+			session.delete(ghsp);
+			t.commit();
+			return true;
+
+		} catch (Exception e) {
+			t.rollback();
+			System.out.println(e);
+			return false;
+		} finally {
+			session.close();
+		}
+	}
+
+	public KhuyenMai getSale(String maKM) {
+		Session session = factory.getCurrentSession();
+
+		KhuyenMai khuyenMai = (KhuyenMai) session.get(KhuyenMai.class, maKM);
+		return khuyenMai;
 	}
 
 	public String generatorId(String refix, String table, String columnId) {

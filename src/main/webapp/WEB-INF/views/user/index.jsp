@@ -171,15 +171,15 @@
 									nào" : "hihih" }"
 									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${maSP }" data-quantity="${p.slt }"
+									data-id="${p.maSP }" data-quantity="${p.slt }"
 									data-type="${p.loai}" data-description="ádfasd"
 									data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
 											<div class="product-img product-img-zoom">
-												<a href="product-detail.htm"> <img class="default-img"
-													src="./resources/imgs/${p.anh}" alt="" />
+												<a href="product-detail/${p.maSP }.htm"> <img
+													class="default-img" src="./resources/imgs/${p.anh}" alt="" />
 												</a>
 											</div>
 											<div class="product-action-1">
@@ -187,7 +187,7 @@
 													data-bs-toggle="modal" onclick="handleQuickView(this)"
 													data-bs-target="#quickViewModal"><i
 													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-													class="action-btn hover-up" href="cart.htm"><i
+													class="action-btn hover-up" href="cart/add/${p.maSP}.htm"><i
 													class="fa-regular fa-cart-plus"></i> </a>
 											</div>
 											<div
@@ -219,47 +219,6 @@
 									</div>
 								</div>
 							</c:forEach>
-
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-8-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-8-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Shirt</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Mens Porcelain Shirt</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 						<!--End product-grid-4-->
 					</div>
@@ -989,13 +948,13 @@
 								nào" : "hihih" }"
 									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 								data-old-price="${p.gia }" data-ml="${p.dungTich }"
-								data-id="${maSP }" data-quantity="${p.slt }"
+								data-id="${p.maSP }" data-quantity="${p.slt }"
 								data-type="${p.loai}" data-description="ádfasd"
 								data-img="${p.anh }"
 								class="product-cart-wrap product small hover-up">
 								<div class="product-img-action-wrap">
 									<div class="product-img product-img-zoom">
-										<a href="shop-product-right.html"> <img
+										<a href="product-detail/${p.maSP }.htm"> <img
 											class="default-img" src="./resources/imgs/${p.anh}" alt="" />
 										</a>
 									</div>
@@ -1004,7 +963,8 @@
 											data-bs-toggle="modal" onclick="handleQuickView(this)"
 											data-bs-target="#quickViewModal"><i
 											class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-											class="action-btn small hover-up" href="cart.htm"><i
+											class="action-btn small hover-up"
+											href="cart/add/${p.maSP}.htm"><i
 											class="fa-regular fa-cart-plus"></i> </a>
 									</div>
 
@@ -1030,243 +990,7 @@
 
 						</c:forEach>
 
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> 90%</span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-3-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
+
 					</div>
 				</div>
 			</div>
@@ -1275,13 +999,14 @@
 			<div class="container">
 				<div class="row">
 					<c:forEach var="s" items="${saleList }">
-						<div class="col-lg-6 deal-co">
-							<div class="deal wow fadeIn animated mb-md-4 mb-sm-4 mb-lg-0">
+						<div class="col-lg-6 deal-co mb-5">
+							<div class="deal wow fadeIn animated mb-md-4 mb-sm-4 mb-lg-0"
+								style="height: 380px">
 								<div class="deal-top">
 									<h2 class="text-brand">${s.tenKM }</h2>
 								</div>
 								<div class="deal-content">
-									<h6 class="product-title">
+									<h6 class="product-title " style="max-width: 100%">
 										<a href="shop-product-right.html">${s.moTa}</a>
 									</h6>
 								</div>
@@ -1296,29 +1021,6 @@
 							</div>
 						</div>
 					</c:forEach>
-
-					<div class="col-lg-6 deal-co">
-						<div class="deal wow fadeIn animated">
-							<div class="deal-top">
-								<h2 class="text-brand">Men Clothing</h2>
-								<h5>Shirt & Bag</h5>
-							</div>
-							<div class="deal-content">
-								<h6 class="product-title">
-									<a href="shop-product-right.html">Try something new on
-										vacation</a>
-								</h6>
-							</div>
-							<div class="deal-bottom">
-								<p>Hurry Up! Offer End In:</p>
-								<div class="deals-countdown"
-									data-countdown="2026/03/25 00:00:00"></div>
-								<a href="shop-grid-right.html" class="btn hover-up">Shop Now
-									<i class="fi-rs-arrow-right"></i>
-								</a>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -1906,11 +1608,11 @@
 	<!-- Quick view -->
 	<div class="modal fade custom-modal" id="quickViewModal" tabindex="-1"
 		aria-labelledby="quickViewModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="modal-dialog rounded">
+			<div class="modal-content rounded">
 				<button type="button" class="btn-close" data-bs-dismiss="modal"
 					aria-label="Close"></button>
-				<div class="modal-body">
+				<div class="modal-body" style="background: #00800014;">
 					<div class="row">
 						<div class="col-md-6 col-sm-12 col-xs-12">
 							<img
@@ -1967,18 +1669,21 @@
 							</div>
 							<div class="bt-1 border-color-1 mt-30 mb-30"></div>
 							<div class="detail-extralink">
-								<div class="detail-qty border radius">
-									<a href="#" class="qty-down"><i
-										class="fa-solid fa-angle-down"></i></a> <span class="qty-val">1</span>
-									<a href="#" class="qty-up"><i class="fa-solid fa-angle-up"></i></a>
-								</div>
-								<div class="product-extra-link2">
+
+								<form>
+									<div class="quantity">
+										<input type="number" min="1" max="5" step="1" value="1">
+									</div>
+
+								</form>
+
+								<div class="product-extra-link2 ms-2">
 									<button type="submit" class="button button-add-to-cart">
 										Mua Ngay</button>
-									<a aria-label="Add To Card" class="action-btn hover-up"
-										href="cart.htm"><i class="fa-regular fa-cart-plus"></i></a> <a
-										aria-label="Compare" class="action-btn hover-up"
-										href="shop-compare.html"><i
+									<a aria-label="Add To Card"
+										class="action-btn hover-up add-to-cart" href="cart.htm"><i
+										class="fa-regular fa-cart-plus"></i></a> <a aria-label="Compare"
+										class="action-btn hover-up" href="shop-compare.html"><i
 										class="fa-regular fa-bags-shopping"></i></a>
 								</div>
 							</div>
@@ -2000,24 +1705,8 @@
 	</div>
 	</div>
 
-
 	<script type="text/javascript">
-	 let handleQuickView = (e) => {
-	        let product = e.closest(".product");
-	    
-	        $(".title-detail").text(product.getAttribute("data-name"));
-	        $(".review-score").text(product.getAttribute("data-review"));
-	        $(".brand-detail").text(product.getAttribute("data-brand"));
-	        $(".short-desc").text(product.getAttribute("data-description"));
-	        $(".price-detail").text(product.getAttribute("data-price"));
-	        $(".old-price-detail").text(product.getAttribute("data-old-price"));
-	        $(".capacity-detail").text(product.getAttribute("data-ml"));
-	        $("id-detail").text(product.getAttribute("data-id"));
-	        $(".quantity-detail").text(product.getAttribute("data-quantity"));
-	        $(".type-detail").text(product.getAttribute("data-type"));
-	        $(".image-detail").attr("src", "./resources/imgs/" + product.getAttribute("data-img"));
-	        
-	      };
+		
 	</script>
 </body>
 </html>
