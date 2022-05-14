@@ -52,7 +52,6 @@ public class PageCartController extends CommonMethod {
 			RedirectAttributes redirectAttributes) {
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
-		System.out.println(maKH);
 		boolean isSuccess = addToCart(maSP, maKH, 1);
 		if (isSuccess) {
 			redirectAttributes.addFlashAttribute("message", "Sản phẩm đã được thêm vào giõ hàng");
