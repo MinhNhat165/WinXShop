@@ -74,8 +74,7 @@
 													<td>2009/02/27</td>
 													<td><a
 														href="admin/product/show/${sp.getMaSP() }.htm?linkShow">
-															<i class="fas fa-info-circle green-color"
-															data-toggle="modal" data-target="#showproduct"></i>
+															<i class="fas fa-info-circle green-color"></i>
 													</a> <a
 														href="admin/product/update/${sp.getMaSP() }.htm?linkEdit">
 															<i class=" fas fa-edit green-color"></i>
@@ -108,7 +107,7 @@
 
 													<div class="row tm-edit-product-row">
 														<form:form  class="tm-edit-product-form col-12 row"
-															method="post" modelAttribute="sanpham">
+															method="post" enctype="multipart/form-data"  modelAttribute="sanpham">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
 
@@ -185,14 +184,16 @@
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+																	class="tm-product-img-dummy mx-auto rounded profile-pic" style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
 
 																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input path="anh" type="file" class="file-upload"
+																	<input  name="anh3" type="file" class="file-upload"
 																		style="display: none;" />
+																		<form:errors
+																		path="anh"></form:errors>
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																		ảnh lên</button>
@@ -202,6 +203,8 @@
 																		<label for="stock">Ngày sản xuất </label>
 																		<form:input path="ngaySX" type="date"
 																			class="form-control validate" required="true" />
+																			<form:errors
+																		path="ngaySX"></form:errors>
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Ngày hết hạn </label>
@@ -257,9 +260,8 @@
 															class="tm-edit-product-form">
 															<div class="row col-12">
 																<div class="col-xl-6 col-lg-6 col-md-12">
-																	<div class="tm-product-img-dummy mx-auto rounded">
-																		<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																			onclick="document.getElementById('fileInput').click();"></i>
+																	<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
+																		
 																	</div>
 																	<div class="custom-file mt-3 mb-3">
 																		<input id="fileInput" type="file"
