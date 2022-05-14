@@ -29,7 +29,7 @@ public class BrandController {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping(value = "brand/insert.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "brand/add.htm", method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		model.addAttribute("nhanhang", new NhanHang());
 		model.addAttribute("idModal", "modalShow");
@@ -40,7 +40,7 @@ public class BrandController {
 
 	
 	@RequestMapping(value = "brand", method = RequestMethod.GET)
-	public String insert(ModelMap model) {
+	public String add(ModelMap model) {
 		model.addAttribute("nhanhang", new NhanHang());
 		List<NhanHang> list = getDSNhanHang();
 		model.addAttribute("dsnhanhang", list);
@@ -48,8 +48,8 @@ public class BrandController {
 	}
 
 
-	@RequestMapping(value = "brand/insert.htm", params = "btnAdd", method = RequestMethod.POST)
-	public String insertBrand(ModelMap model, @ModelAttribute("nhanhang") NhanHang nh, BindingResult errors) {
+	@RequestMapping(value = "brand/add.htm", params = "btnAdd", method = RequestMethod.POST)
+	public String addBrand(ModelMap model, @ModelAttribute("nhanhang") NhanHang nh, BindingResult errors) {
 		
 		if (this.checkUniqueMaNH(nh.getMaNH()) == false) {
 			errors.rejectValue("maNH", "nh", "Mã đã tồn tại!");
