@@ -40,9 +40,9 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value="product/insert.htm", method=RequestMethod.GET)
+	@RequestMapping(value="product/add.htm", method=RequestMethod.GET)
 	
-	public String insert(ModelMap model) {
+	public String add(ModelMap model) {
 		model.addAttribute("sanpham",new SanPham());
 		List<SanPham> ds = getdsSanPham();
 		model.addAttribute("dssanpham", ds);
@@ -52,9 +52,9 @@ public class ProductController {
 		return "admin/product";
 	}
 	
-	@RequestMapping(value="product/insert.htm",params="btnAdd",method=RequestMethod.POST)
+	@RequestMapping(value="product/add.htm",params="btnAdd",method=RequestMethod.POST)
 	
-	public String insertProduct(@ModelAttribute("sanpham") SanPham sp,ModelMap model,
+	public String addProduct(@ModelAttribute("sanpham") SanPham sp,ModelMap model,
 			BindingResult errors) {
 	
 		if(this.checkUniqueMaSP(sp.getMaSP()) == false) {
