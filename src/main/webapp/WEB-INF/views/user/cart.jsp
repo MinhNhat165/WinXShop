@@ -6,11 +6,14 @@
 
 <%@include file="./head.jsp"%>
 <body>
+	<!-- flag   -->
+	<div class="page-flag" data="cart"></div>
+	<!-- end flag  -->
 	<%@include file="./header.jsp"%>
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">
-				<div class="row">
+				<form action="checkout.htm" method="post" class="row">
 					<div class="col-9">
 						<div
 							class="col-12 bg-white p-10 rounded mb-10 bg-brand text-white">
@@ -22,48 +25,49 @@
 								<div class="col-1 text-center">Ảnh</div>
 								<div class="col-3 text-center">Tên</div>
 								<div class="col-2 text-center">Giá</div>
-								<div class="col-2 text-center">Số lượng</div>
+								<div class="col-2">Số lượng</div>
 								<div class="col-2 text-center">Thành tiền</div>
 								<div class="col-1 text-center">Thao tác</div>
 							</div>
 						</div>
-						<div
-							class="col-12 bg-white p-10 rounded-1 mb-10 product border border-brand">
-							<div class="row align-items-center custome-checkbox">
-								<div class="col-1 text-center check-box">
-									<input class="form-check-input" type="checkbox" name="checkbox"
-										id="exampleCheckbox1" value="" /> <label
-										class="form-check-label" for="exampleCheckbox1"></label>
-								</div>
-								<div class="col-1 text-center product-img">
-									<img src="assets/imgs/shop/product-6-1.jpg" alt="#" />
-								</div>
-								<div class="col-3 text-center product-name">
-									<h5 class="product-name">
-										<a href="shop-product-right.html">Amazon
-											Brand - Daily </a>
-									</h5>
-								</div>
-								<div class="col-2 text-center product-price">
-									<span>650.000đ </span>
-								</div>
-								<div class="col-2 text-center product-1uantity">
-									<div class="detail-qty border radius m-auto">
-										<a href="#" class="qty-down"> <i
-											class="fa-solid fa-angle-down"></i></a> <span class="qty-val">1</span>
-										<a href="#" class="qty-up"><i
-											class="fa-solid fa-angle-up"></i></a>
+						<c:forEach var="p" items="${user.dsGHSP}">
+							<div
+								class="col-12 bg-white p-10 rounded-1 mb-10 product border border-brand">
+								<div class="row align-items-center custome-checkbox">
+									<div class="col-1 text-center check-box">
+										<input class="form-check-input" name="sanPham" checked
+											type="checkbox" name="checkbox" id="${p.sanPham.maSP }"
+											value="${p.sanPham.maSP }" /> <label
+											class="form-check-label" for="${p.sanPham.maSP }"></label>
+									</div>
+									<div class="col-1 text-center product-img">
+										<img src="./resources/imgs/${p.sanPham.anh}" alt="#" />
+									</div>
+									<div class="col-3 text-center product-name">
+										<h5 class="product-name">
+											<a href="shop-product-right.html">${p.sanPham.tenSP}</a>
+										</h5>
+									</div>
+									<div class="col-2 text-center product-price">
+										<span>${p.sanPham.gia}đ</span>
+									</div>
+									<div class="col-2 text-center product-1uantity">
+										<div class="quantity">
+											<input type="number" name="soLuong" min="1"
+												max="${p.sanPham.slt }" step="1" value="${p.soLuong }">
+										</div>
+									</div>
+									<div class="col-2 text-center">${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}đ</div>
+									<div class="col-1 text-center product-cart-action">
+										<a href="cart/remove/${p.sanPham.maSP }.htm"
+											class="text-muted"><i class="fa-regular fa-trash-can"></i></a>
 									</div>
 								</div>
-								<div class="col-2 text-center">650.000đ</div>
-								<div class="col-1 text-center product-cart-action">
-									<a href="#" class="text-muted"><i
-										class="fa-regular fa-trash-can"></i></a>
-								</div>
 							</div>
-						</div>
+						</c:forEach>
+
 						<div class="cart-action text-end">
-							<a class="btn"><i
+							<a class="btn" href="shop.htm"><i
 								class="fa-regular fa-bag-shopping mr-10"></i>Tiếp tục mua sắm</a>
 						</div>
 					</div>
@@ -78,22 +82,22 @@
 							<div
 								class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 								<span class="">Số Lượng</span> <span class=""><span
-									class="text-brand">3 </span>Sản phẩm</span>
+									class="text-brand">${user.dsGHSP.size()} </span>Sản phẩm</span>
 							</div>
 							<div
 								class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 								<span class="">Tổng thanh toán</span> <span class=""><span
-									class="text-brand">2.000.000</span>đ</span>
+									class="text-brand">${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span></span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12 pt-10 pb-10 px-0 border-top border-brand">
-								<a href="page-checkout.html"><button
-										class="btn btn-brand col-12">Mua Ngay</button></a>
+								<button name="btnCheckout" class="btn btn-brand col-12">Mua
+									Ngay</button>
 							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</section>
 	</main>

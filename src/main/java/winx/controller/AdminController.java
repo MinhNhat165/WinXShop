@@ -73,7 +73,7 @@ public class AdminController extends CommonMethod {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '"
 				+ taiKhoan.getMatKhau() + "'";
-		
+
 		Query query = session.createQuery(hql);
 		if (query.list().size() > 0) {
 			ss.setAttribute("admin", taiKhoan.getEmail());
@@ -85,7 +85,8 @@ public class AdminController extends CommonMethod {
 
 		return "redirect:/admin/dashboard.htm";
 	}
-	@RequestMapping(value = "logout") 
+
+	@RequestMapping(value = "logout")
 	public String logout(HttpSession ss) {
 		ss.removeAttribute("admin");
 		return "redirect:/admin/login";

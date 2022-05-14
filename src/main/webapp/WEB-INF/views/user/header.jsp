@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
 <body>
 	<header class="header-area header-style-1 header-height-2">
@@ -18,8 +18,8 @@
 					<div class="col-xl-3 col-lg-4">
 						<div class="header-info header-info-right">
 							<ul>
-								<li><i class="fa-light fa-user"></i><a
-									href="login.htm">Đăng nhập / Đăng ký</a></li>
+								<li><i class="fa-light fa-user"></i><a href="login.htm">Đăng
+										nhập / Đăng ký</a></li>
 							</ul>
 						</div>
 					</div>
@@ -52,16 +52,14 @@
 						<div class="header-action-right">
 							<div class="header-action-2">
 								<div class="header-action-icon-2 view-user">
-									<a href="account.htm"> <i
-										class="fa-regular fa-circle-user"></i>
+									<a href="account.htm"> <i class="fa-regular fa-circle-user"></i>
 									</a>
 									<div class="cart-dropdown-wrap cart-dropdown-hm2"
 										style="width: 240px; padding: 10px">
 										<ul>
 											<li class=""><a href="account.htm"> <img
-													src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-													class="rounded-circle" style="width: 36px" alt="Avatar" />Nguyễn
-													Minh Nhật
+													src="./resources/imgs/${user.anh}"
+													class="rounded-circle" style="width: 36px; height: 36px;" alt="Avatar" />${user.hoTen }
 											</a></li>
 											<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
 													mua</a></li>
@@ -75,49 +73,35 @@
 								<div class="header-action-icon-2">
 									<a class="mini-cart-icon" href="cart.htm"> <i
 										class="fa-regular fa-cart-shopping"></i> <span
-										class="pro-count blue">2</span>
+										class="pro-count blue">${user.dsGHSP.size() }</span>
 									</a>
 									<div class="cart-dropdown-wrap cart-dropdown-hm2">
 										<ul>
-											<li>
-												<div class="shopping-cart-img">
-													<a href="shop-product-right.html"><img alt="Evara"
-														src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG" /></a>
-												</div>
-												<div class="shopping-cart-title">
-													<h4>
-														<a href="shop-product-right.html">Daisy Casual Bag</a>
-													</h4>
-													<h4>
-														<span>1 × </span>$800.00
-													</h4>
-												</div>
-												<div class="shopping-cart-delete">
-													<a href="#"><i class="fa-regular fa-xmark"></i></a>
-												</div>
-											</li>
-											<li>
-												<div class="shopping-cart-img">
-													<a href="shop-product-right.html"><img alt="Evara"
-														src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG" /></a>
-												</div>
-												<div class="shopping-cart-title">
-													<h4>
-														<a href="shop-product-right.html">Corduroy Shirts</a>
-													</h4>
-													<h4>
-														<span>1 × </span>$3200.00
-													</h4>
-												</div>
-												<div class="shopping-cart-delete">
-													<a href="#"><i class="fa-regular fa-xmark"></i></a>
-												</div>
-											</li>
+											<c:forEach var="p" items="${user.dsGHSP }">
+												<li>
+													<div class="shopping-cart-img">
+														<a href="shop-product-right.html"><img alt="Evara"
+															src="./resources/imgs/${p.sanPham.anh}" /></a>
+													</div>
+													<div class="shopping-cart-title">
+														<h4>
+															<a href="shop-product-right.html">${p.sanPham.tenSP}</a>
+														</h4>
+														<h4>
+															<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
+														</h4>
+													</div>
+													<div class="shopping-cart-delete">
+														<a href="cart/remove/${p.sanPham.maSP}.htm"><i class="fa-regular fa-xmark"></i></a>
+													</div>
+												</li>
+
+											</c:forEach>
 										</ul>
 										<div class="shopping-cart-footer">
 											<div class="shopping-cart-total">
 												<h4>
-													Tổng <span>$4000.00</span>
+													Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
 												</h4>
 											</div>
 											<div class="shopping-cart-button">

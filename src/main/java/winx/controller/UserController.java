@@ -21,46 +21,24 @@ import winx.entity.TinMoi;
 public class UserController {
 	@Autowired
 	SessionFactory factory;
-	@RequestMapping("home")
-	public String home(ModelMap model) {
-		Session session = factory.getCurrentSession();
-		String hql = "from TinMoi";
-		Query query = session.createQuery(hql);
-		List<TinMoi> list = query.list();
-		model.addAttribute("newsList", list);
-		hql = "from SanPham";
-		query = session.createQuery(hql);
-		List<SanPham> dsSP = query.list();
-		model.addAttribute("dsSP", dsSP);
-		return "user/index";
-	}
-	@RequestMapping("checkout")
-	public String Checkout (ModelMap model) {
-		return "user/checkout";
-	}
+
 	@RequestMapping("shop")
-	public String Shop (ModelMap model) {
+	public String Shop(ModelMap model) {
 		return "user/shop";
 	}
-	
-	@RequestMapping("product-detail")
-	public String productDetail (ModelMap model) {
-		return "user/product-detail";
-	}
-	@RequestMapping("cart")
-	public String cart (ModelMap model) {
-		return "user/cart";
-	}
+
 	@RequestMapping("account")
-	public String account (ModelMap model) {
+	public String account(ModelMap model) {
 		return "user/account";
 	}
+
 	@RequestMapping("login")
-	public String login (ModelMap model) {
+	public String login(ModelMap model) {
 		return "user/login";
 	}
+
 	@RequestMapping("register")
-	public String register (ModelMap model) {
+	public String register(ModelMap model) {
 
 		return "user/register";
 	}

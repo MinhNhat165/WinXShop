@@ -11,11 +11,12 @@ const handleConfirmSelectProduct = (e) => {
 				this.getAttribute("product-id") === product.getAttribute("product-id")
 			) {
 				isAlreadyInList = true;
-				return;
+
 			}
 		});
 		if (!isAlreadyInList) {
-			productSaleListBlock.append(`<span product-id=${this.getAttribute(
+			productSaleListBlock.append(`
+			<span product-id=${this.getAttribute(
 				"product-id",
 			)} class="mt-2 product-sale">
             <input
@@ -30,11 +31,11 @@ const handleConfirmSelectProduct = (e) => {
               class="form-check-label"
               for="flexCheckDefault"
             >
-              <button
+              <button type='button'
                 class="btn btn-sm bg-green-light"
                 style="cursor: default"
               >
-                ${this.getAttribute("data-name")}
+                ${this.getAttribute("product-id")}
                 <span style="cursor: pointer" onclick="handleRemoveProductSale(this)">
                   <i
                     class="green-color fa-regular fa-xmark"

@@ -158,6 +158,7 @@
 																		ảnh lên</button>
 																</div>
 
+
 														</div>
 														<div class="col-12 mt-4">
 															<button type="submit"
@@ -256,8 +257,6 @@
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
 																		ảnh lên</button>
 																</div>
-															
-
 														</div>
 
 														<div class="col-12 mt-4">

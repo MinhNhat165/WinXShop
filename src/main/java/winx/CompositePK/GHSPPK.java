@@ -2,17 +2,30 @@ package winx.CompositePK;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import winx.entity.KhachHang;
 import winx.entity.SanPham;
 
+@Embeddable
 public class GHSPPK implements Serializable {
-	private KhachHang khachHang;
-	private SanPham sanPham;
+	@Column(name = "MaSP")
+	private String maSP;
+	@Column(name = "MaKH")
+	private String maKH;
+	
 
-	public GHSPPK(KhachHang khachHang, SanPham sanPham) {
+	public GHSPPK() {
 		super();
-		this.khachHang = khachHang;
-		this.sanPham = sanPham;
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public GHSPPK(String maSP, String maKH) {
+		super();
+		this.maSP = maSP;
+		this.maKH = maKH;
 	}
 
 }

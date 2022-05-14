@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,11 +15,14 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.jpa.criteria.expression.SearchedCaseExpression.WhenClause;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Controller;
@@ -33,15 +37,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.CommonMethod.ToHql;
+import winx.CompositePK.SPKMPK;
 import winx.entity.KhuyenMai;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
+import winx.entity.SanPham_KM;
 
 @Transactional
 @Controller
 @Validated
 @RequestMapping("admin/sale")
-public class SaleController {
+public class SaleController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 
@@ -49,6 +55,7 @@ public class SaleController {
 	public String sale(ModelMap model) {
 		List<KhuyenMai> DSKM = getAllSale();
 		KhuyenMai khuyenMai = new KhuyenMai();
+
 		khuyenMai.setTrangThai(true);
 		model.addAttribute("DSKM", DSKM);
 		model.addAttribute("KM", khuyenMai);
@@ -58,10 +65,11 @@ public class SaleController {
 	// insert
 	@RequestMapping(value = "add")
 	public String openSaleInsertForm(ModelMap model, @ModelAttribute("KM") KhuyenMai khuyenMai) {
+		khuyenMai.setMaKM(this.generatorId("KM", "KhuyenMai", "maKM"));
 		List<KhuyenMai> DSKM = getAllSale();
-		List<NhanHang> DSNH = getAllBrand();
+		List<SanPham> DSSP = getAllProduct();
 		model.addAttribute("DSKM", DSKM);
-		model.addAttribute("DSNH", DSNH);
+		model.addAttribute("DSSP", DSSP);
 		model.addAttribute("KM", khuyenMai);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("formTitle", "Thêm mới khuyến mãi");
@@ -74,14 +82,29 @@ public class SaleController {
 	public String getProductCondition(HttpServletRequest request, ModelMap model,
 			@Validated @ModelAttribute("KM") KhuyenMai khuyenMai, BindingResult result,
 			RedirectAttributes redirectAttributes) {
-
 		boolean isValid = checkSale(khuyenMai, result);
-		if (!result.hasErrors() && isValid) {
+		String[] productSaleList = request.getParameterValues("product-sale");
+		boolean isValidProductSaleList = true;
+		if (productSaleList == null) {
+			model.addAttribute("productSaleListError", "Vui lòng chọn ít nhất 1 sản phẩm áp dụng");
+			isValidProductSaleList = false;
+		}
+		if (!result.hasErrors() && isValid && isValidProductSaleList) {
+
 			Session session = factory.openSession();
 
-			org.hibernate.Transaction t = session.beginTransaction();
+			Transaction t = session.beginTransaction();
 			try {
+
 				session.save(khuyenMai);
+
+				for (String maSP : productSaleList) {
+
+					SanPham_KM spkm = new SanPham_KM(getProduct(maSP), khuyenMai);
+
+					session.save(spkm);
+
+				}
 				t.commit();
 				redirectAttributes.addFlashAttribute("message", "Thêm mới thành công !!!");
 				redirectAttributes.addFlashAttribute("typeMessage", "success");
@@ -90,6 +113,7 @@ public class SaleController {
 			} catch (Exception e) {
 
 				t.rollback();
+				System.out.println(e.getCause());
 				if (e.getCause().toString().contains("duplicate key")) {
 					result.rejectValue("maKM", "KM", "Mã khuyến mãi đã tồn tại");
 				}
@@ -101,7 +125,9 @@ public class SaleController {
 			finally {
 				session.close();
 			}
+
 		}
+
 		List<KhuyenMai> DSKM = getAllSale();
 		model.addAttribute("DSKM", DSKM);
 		model.addAttribute("idModal", "modalCreate");
@@ -109,6 +135,9 @@ public class SaleController {
 		model.addAttribute("KM", khuyenMai);
 		model.addAttribute("formAction", "admin/sale/add.htm");
 		model.addAttribute("btnAction", "btnAdd");
+		model.addAttribute("productSaleList", productSaleList);
+		model.addAttribute("DSSP", getAllProduct());
+
 		return "admin/sale";
 
 	}
@@ -125,6 +154,7 @@ public class SaleController {
 		model.addAttribute("KM", khuyenMai);
 		model.addAttribute("KMDetail", khuyenMaiDetail);
 		model.addAttribute("idModal", "modalDetail");
+
 		return "admin/sale";
 	}
 
@@ -134,6 +164,8 @@ public class SaleController {
 		List<KhuyenMai> DSKM = getAllSale();
 		List<NhanHang> DSNH = getAllBrand();
 		KhuyenMai khuyenMai = getSale(maKM);
+		List<String> productSaleList = new ArrayList<String>();
+		khuyenMai.getDsSPKM().forEach(t -> productSaleList.add(t.getSanPham().getMaSP()));
 		model.addAttribute("DSKM", DSKM);
 		model.addAttribute("DSNH", DSNH);
 		model.addAttribute("KM", khuyenMai);
@@ -141,26 +173,63 @@ public class SaleController {
 		model.addAttribute("formTitle", "Cập nhật khuyến mãi");
 		model.addAttribute("formAction", "admin/sale/update/" + maKM + ".htm");
 		model.addAttribute("btnAction", "btnUpdate");
+		model.addAttribute("productSaleList", productSaleList);
+		model.addAttribute("DSSP", getAllProduct());
 		return "admin/sale";
 	}
 
 	@RequestMapping(value = "update/{maKM}.htm", params = "btnUpdate")
-	public String saleUpdate(ModelMap model, @Valid @ModelAttribute("KM") KhuyenMai khuyenMai, BindingResult result,
+	public String saleUpdate(HttpServletRequest request, ModelMap model,
+			@Valid @ModelAttribute("KM") KhuyenMai khuyenMai, BindingResult result,
 			RedirectAttributes redirectAttributes, @PathVariable("maKM") String maKM) {
 		boolean isValid = checkSale(khuyenMai, result);
-		if (!result.hasErrors() && isValid) {
+
+		String[] productSaleList = request.getParameterValues("product-sale");
+		boolean isValidProductSaleList = true;
+		if (productSaleList == null) {
+			model.addAttribute("productSaleListError", "Vui lòng chọn ít nhất 1 sản phẩm áp dụng");
+			isValidProductSaleList = false;
+		}
+		List<String> oldProductSaleList = new ArrayList<String>();
+		getSale(maKM).getDsSPKM().forEach(t -> oldProductSaleList.add(t.getSanPham().getMaSP()));
+
+//		List<SanPham_KM> dsspkm = khuyenMai.getDsSPKM().stream()
+//				.filter(t -> productSaleList.contains(t.getSanPham().getMaSP())).collect(Collectors.toList());
+//		for (SanPham_KM sanPham_KM : dsspkm) {
+//			System.out.println(sanPham_KM);
+//		}
+
+		if (!result.hasErrors() && isValid && isValidProductSaleList) {
 			Session session = factory.openSession();
 			org.hibernate.Transaction t = session.beginTransaction();
+
 			try {
+
 				session.update(khuyenMai);
+				Query query = session.createQuery("FROM SanPham_KM where maKM = '" + khuyenMai.getMaKM() + "'");
+
+				List<SanPham_KM> ds_sp_km = query.list();
+				for (SanPham_KM sp_km : ds_sp_km) {
+					session.delete(sp_km);
+				}
+				for (String maSP : productSaleList) {
+
+					SanPham_KM spkm = new SanPham_KM(getProduct(maSP), khuyenMai);
+
+					session.save(spkm);
+
+				}
+
 				t.commit();
 				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !!!");
 				redirectAttributes.addFlashAttribute("typeMessage", "success");
 				return "redirect:/admin/sale.htm";
 			} catch (Exception e) {
+				System.out.println(e);
 				t.rollback();
 				model.addAttribute("message", "Cập nhật thất bại!!!");
 				model.addAttribute("typeMessage", "error");
+
 			} finally {
 				session.close();
 			}
@@ -172,6 +241,7 @@ public class SaleController {
 		model.addAttribute("formTitle", "Cập nhật khuyến mãi");
 		model.addAttribute("formAction", "admin/sale/update/" + maKM + ".htm");
 		model.addAttribute("btnAction", "btnUpdate");
+		model.addAttribute("DSSP", getAllProduct());
 
 		return "admin/sale";
 	}
@@ -205,14 +275,6 @@ public class SaleController {
 		return "admin/sale";
 	}
 
-	public List<KhuyenMai> getAllSale() {
-		Session session = factory.getCurrentSession();
-		String hql = "from KhuyenMai";
-		Query query = session.createQuery(hql);
-		List<KhuyenMai> list = query.list();
-		return list;
-	}
-
 	public List<NhanHang> getAllBrand() {
 		Session session = factory.getCurrentSession();
 		String hql = "from NhanHang";
@@ -221,24 +283,19 @@ public class SaleController {
 		return list;
 	}
 
-	public KhuyenMai getSale(String maKM) {
-		Session session = factory.getCurrentSession();
-		String hql = "from KhuyenMai where maKM = :maKM";
-		Query query = session.createQuery(hql);
-		query.setParameter("maKM", maKM);
-		KhuyenMai khuyenMai = (KhuyenMai) query.list().get(0);
-		return khuyenMai;
-	}
+
 
 	// những cái ko check dc bằng hibernate
 	public boolean checkSale(@Valid KhuyenMai khuyenMai, BindingResult result) {
+		boolean isValid = true;
 		if (khuyenMai.getNgayBD() == null || khuyenMai.getNgayKT() == null)
 			return false;
 		if (khuyenMai.getNgayBD().after(khuyenMai.getNgayKT())) {
 			result.rejectValue("ngayBD", "KM", "Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
-			return false;
+			isValid = false;
 		}
-		return true;
+
+		return isValid;
 	}
 
 }

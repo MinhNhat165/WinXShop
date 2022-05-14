@@ -56,7 +56,7 @@
 			"$" +
 			$("#slider-range").slider("values", 0) +
 			" - $" +
-			$("#slider-range").slider("values", 1),
+			$("#slider-range").slider("values", 1)
 		);
 	}
 
@@ -632,7 +632,7 @@
 	$offCanvasNavSubMenu
 		.parent()
 		.prepend(
-			'<span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>',
+			'<span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>'
 		);
 
 	/*Close Off Canvas Sub Menu*/
@@ -742,10 +742,19 @@
 	let receiverName = $(".receiver-name");
 	let receiverPhoneNumber = $(".receiver-phone-number");
 	let receiverAddress = $(".receiver-address");
+	inputReceiverName.val(receiverName.text());
+	inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
+	inputReceiverAddress.val(receiverAddress.text());
 
 	btnEditInfoReceiver.on("click", function() {
+		console.log(receiverAddress.text())
 		$(".form-info-receiver").removeClass("d-none");
 		$(".info-receiver-content").addClass("d-none");
+		inputReceiverName.val(receiverName.text());
+		inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
+		inputReceiverAddress.val(receiverAddress.text());
+
+
 	});
 
 	btnSaveInfoReceiver.on("click", function() {

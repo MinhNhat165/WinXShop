@@ -2,15 +2,25 @@ package winx.CompositePK;
 
 import java.io.Serializable;
 
-import winx.entity.KhuyenMai;
-import winx.entity.SanPham;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-public class SPKMPK implements Serializable{
-	private SanPham sanPham;
-	private KhuyenMai khuyenMai;
-	public SPKMPK(SanPham sanPham, KhuyenMai khuyenMai) {
+@Embeddable
+public class SPKMPK implements Serializable {
+	@Column(name = "MaSP")
+	private String maSP;
+	@Column(name = "MaKM")
+	private String maKM;
+
+	public SPKMPK() {
 		super();
-		this.sanPham = sanPham;
-		this.khuyenMai = khuyenMai;
+		// TODO Auto-generated constructor stub
 	}
+
+	public SPKMPK(String maSP, String maKM) {
+		super();
+		this.maSP = maSP;
+		this.maKM = maKM;
+	}
+
 }
