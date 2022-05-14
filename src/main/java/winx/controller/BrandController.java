@@ -25,7 +25,7 @@ import winx.entity.NhanHang;
 @Controller
 @RequestMapping("admin")
 @Transactional
-public class BrandController {
+public class BrandController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 

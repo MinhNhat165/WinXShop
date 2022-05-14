@@ -123,7 +123,7 @@
 										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 											<div class=" tm-edit-product-row">
 
-												<form:form action="admin/brand/insert.htm"
+												<form:form action="admin/brand/add.htm"
 													class="tm-edit-product-form" modelAttribute="nhanhang"
 													method="POST">
 													<div class="row col-12">
@@ -151,7 +151,7 @@
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input path="anh" type="file" class="file-upload"
+																	<form:input  name="anh" path="anh" type="file" class="file-upload"
 																		style="display: none;" />
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
@@ -250,7 +250,7 @@
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input path="anh" type="file" class="file-upload2"
+																	<form:input path="anh" name="anh" type="file" class="file-upload2"
 																		style="display: none;" />
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
