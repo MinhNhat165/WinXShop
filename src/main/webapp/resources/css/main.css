@@ -9662,4 +9662,15 @@ input[type=number] {
   border-radius: 0 0 4px 0;
 }
 
+.pagination-area .page-link {
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.pagination-area .page-item.active:last-child .page-link {
+	border-radius: 4px;
+}
+
+.hover-white:hover {
+	color:white !important;
+}
+
 /*# sourceMappingURL=main.css.map */

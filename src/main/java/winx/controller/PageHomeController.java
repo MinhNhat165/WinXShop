@@ -32,13 +32,12 @@ public class PageHomeController extends CommonMethod {
 	SessionFactory factory;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-
 	public String home(ModelMap model, HttpSession ss) {
 		ss.setAttribute("maKH", "KH000001");
 		List<TinMoi> newsList = this.getAllNews();
 		List<NhanHang> brandList = this.getAllBrand();
 		List<SanPham> productList = this.getRandomProduct(8);
-		List<SanPham> newProductList = this.getProductList("WHERE DATEDIFF(day, ngayThem, getdate()) < 5", 0);
+		List<SanPham> newProductList = this.getProductList("WHERE DATEDIFF(day, ngayThem, getdate()) < 5 and slt > 0", 0);
 		model.addAttribute("newsList", newsList);
 		model.addAttribute("brandList", brandList);
 		model.addAttribute("productList", productList);
