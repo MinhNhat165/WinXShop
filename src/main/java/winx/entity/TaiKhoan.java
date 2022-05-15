@@ -22,7 +22,7 @@ public class TaiKhoan {
 	@Column(name ="MatKhau")
 	private String matKhau;
 	@Column(name = "TrangThai")
-	private byte trangThai;
+	private boolean trangThai;
 	@Column (name = "Quyen")
 	private byte quyen;
 	@Column(name = "NgayTao")
@@ -44,10 +44,10 @@ public class TaiKhoan {
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
-	public byte getTrangThai() {
+	public boolean getTrangThai() {
 		return trangThai;
 	}
-	public void setTrangThai(byte trangThai) {
+	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
 	public byte getQuyen() {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -19,27 +20,30 @@
 			</div>
 		</div>
 	</header>
+		${message}
 	<main class="main my-background">
 		<section class="">
 			<div class="container">
+		
 				<div class="row vh-90">
 					<div class="col-lg-10 m-auto">
 						<div class="row">
 							<div class="col-lg-5 align-items-center">
 								<div
 									class="login_wrap widget-taber-content p-30 bg-white box-shadow-outer-7 border-radius-10 mb-md-5 mb-lg-0 mb-sm-5">
+									
 									<div class="padding_eight_all bg-white">
 										<div class="heading_s1">
 											<h3 class="mb-30">Đăng nhập</h3>
 										</div>
-										<form method="post">
+										<form:form action=""  method="post" modelAttribute="taikhoan">
 											<div class="form-group form-floating">
-												<input type="text" required="" name="email"
+												<form:input path="email" type="text" required="" name="email"
 													class="form-control form-control-lg"
 													placeholder="Your Email" /> <label for="">Email</label>
 											</div>
 											<div class="form-floating">
-												<input required="" type="password" name="password"
+												<form:input required="" path="matKhau" type="password" name="password"
 													class="form-control" placeholder="Password" /> <label
 													for="">Password</label>
 											</div>
@@ -63,7 +67,7 @@
 												Chưa có tài khoản? <a href="register.htm">Đăng ký
 													ngay!!!</a>
 											</div>
-										</form>
+										</form:form>
 									</div>
 								</div>
 							</div>
