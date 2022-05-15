@@ -24,10 +24,10 @@ public class TaiKhoan {
 	@Column(name = "TrangThai")
 	private boolean trangThai;
 	@Column (name = "Quyen")
-	private byte quyen;
+	private boolean quyen;
 	@Column(name = "NgayTao")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngayTao;
 	@OneToOne(mappedBy = "taiKhoan")
 	private KhachHang khachHang;
@@ -50,10 +50,10 @@ public class TaiKhoan {
 	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
-	public byte getQuyen() {
+	public boolean getQuyen() {
 		return quyen;
 	}
-	public void setQuyen(byte quyen) {
+	public void setQuyen(boolean quyen) {
 		this.quyen = quyen;
 	}
 	public Date getNgayTao() {
