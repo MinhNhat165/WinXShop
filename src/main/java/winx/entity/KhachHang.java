@@ -24,6 +24,8 @@ public class KhachHang {
 	private String maKH;
 	@Column(name = "HoTen")
 	private String hoTen;
+	@Column(name = "Anh")
+	private String anh;
 	@Column(name = "NgaySinh")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
@@ -96,6 +98,12 @@ public class KhachHang {
 	}
 	public void setDsGDSP(Collection<GioHang_SanPham> dsGDSP) {
 		this.dsGDSP = dsGDSP;
+	}
+	public String getAnh() {
+		return anh;
+	}
+	public void setAnh(String anh) {
+		this.anh = anh;
 	}
 	public Collection<DonDat> getDsKH() {
 		return dsKH;

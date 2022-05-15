@@ -34,6 +34,8 @@ public class DonDat {
 	private Date ngayDat;
 	@Column(name = "DaThanhToan")
 	private byte daThanhToan;
+	@Column(name = "TrangThai")
+	private int trangThai;
 	@Column(name = "SDTNguoiNhan")
 	private String sdtNguoiNhan;
 	@Column(name = "TenNguoiNhan")
@@ -107,6 +109,13 @@ public class DonDat {
 
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
+	}
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
 	}
 
 }
