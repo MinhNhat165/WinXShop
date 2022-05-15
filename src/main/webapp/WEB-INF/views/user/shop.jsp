@@ -10,6 +10,8 @@
 	<%@include file="./header.jsp"%>
 	<main class="main bg-white pt-50 pb-50"
 		style="background: #04696312 !important;">
+		<div class="alert-flag" aType='${message.type}'
+			aMessage="${message.message }"></div>
 		<jsp:useBean id="pagedListHolder" scope="request"
 			type="org.springframework.beans.support.PagedListHolder" />
 		<c:url value="shop.htm" var="pagedLink">
