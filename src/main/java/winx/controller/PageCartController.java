@@ -23,9 +23,10 @@ public class PageCartController extends CommonMethod {
 	SessionFactory factory;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String index(ModelMap model) {
-
-		model.addAttribute("user", getCustomer("KH000001"));
+	public String index(HttpServletRequest request, ModelMap model) {
+		HttpSession ss = request.getSession();
+		String maKH = (String) ss.getAttribute("maKH");
+		model.addAttribute("user", getCustomer(maKH));
 
 		return "user/cart";
 	}

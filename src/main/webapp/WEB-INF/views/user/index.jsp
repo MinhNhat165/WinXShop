@@ -21,6 +21,7 @@
 										<h1 class="animated fw-900 text-brand title">${news.tenTin}</h1>
 										<p class="animated content">${news.noiDung}</p>
 										<a class="animated btn btn-brush btn-brush-3"
+											style="background-image: url('http://wp.alithemes.com/html/evara/evara-frontend/assets/imgs/theme/btn-brush-bg-2.png');"
 											href="shop-product-right.html"> Shop Now </a>
 									</div>
 								</div>
@@ -167,19 +168,20 @@
 						<div class="row product-grid-4">
 							<c:forEach var="p" items="${productList}">
 								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
-									data-review="${p.diemDG == 0? " chưa có đáng giá
-									nào" : "hihih" }"
+									data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
 									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 									data-old-price="${p.gia }" data-ml="${p.dungTich }"
 									data-id="${p.maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="ádfasd"
+									data-type="${p.loai}" data-description="${p.moTa }"
 									data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
 											<div class="product-img product-img-zoom">
 												<a href="product-detail/${p.maSP }.htm"> <img
-													class="default-img" src="./resources/imgs/${p.anh}" alt="" />
+													style="min-height: 250px" class="default-img"
+													src="./resources/imgs/${p.anh}" alt="" />
 												</a>
 											</div>
 											<div class="product-action-1">
@@ -203,7 +205,7 @@
 												<a href="shop-product-right.html">${p.tenSP}</a>
 											</h2>
 											<div class="rating-result">
-												<span> ${p.diemDG == 0? "chưa có đáng giá nào" : "hihih" }
+												<span> ${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG }
 
 												</span>
 											</div>
@@ -944,12 +946,12 @@
 						<c:forEach var="p" items="${newProductList }">
 
 							<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
-								data-review="${p.diemDG == 0? " chưa có đáng giá
-								nào" : "hihih" }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+								data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
+								data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 								data-old-price="${p.gia }" data-ml="${p.dungTich }"
 								data-id="${p.maSP }" data-quantity="${p.slt }"
-								data-type="${p.loai}" data-description="ádfasd"
+								data-type="${p.loai}" data-description="${p.moTa }"
 								data-img="${p.anh }"
 								class="product-cart-wrap product small hover-up">
 								<div class="product-img-action-wrap">
@@ -1025,7 +1027,7 @@
 			</div>
 		</section>
 
-		<section class="bg-grey-9 section-padding">
+		<section class=" section-padding" style="background: #04696312">
 			<div class="container pt-25 pb-25">
 				<div class="heading-tab d-flex">
 					<div class="heading-tab-left wow fadeIn animated">
@@ -1703,7 +1705,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 	<script type="text/javascript">
 		

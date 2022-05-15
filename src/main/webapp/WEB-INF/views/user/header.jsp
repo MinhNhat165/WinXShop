@@ -35,18 +35,19 @@
 					</div>
 					<div class="header-right">
 						<div class="search-style-2 d-none d-lg-block">
-							<form action="#">
+							<form action="shop.htm">
 								<select class="select-active">
 									<option>Mọi thể Loại</option>
 									<option>Nữ</option>
 									<option>Nam</option>
 									<option>Mới</option>
 									<option>Nổi bật</option>
-								</select> <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-								<div class="fs-5 text-brand"
+								</select> <input type="text" name="searchInput"
+									placeholder="Tìm kiếm sản phẩm..." />
+								<button class="fs-5 text-brand" name="btnSearch"
 									style="transform: translateX(-100%); cursor: pointer">
 									<i class="fa-regular fa-magnifying-glass"></i>
-								</div>
+								</button>
 							</form>
 						</div>
 						<div class="header-action-right">
@@ -58,8 +59,8 @@
 										style="width: 240px; padding: 10px">
 										<ul>
 											<li class=""><a href="account.htm"> <img
-													src="./resources/imgs/${user.anh}"
-													class="rounded-circle" style="width: 36px; height: 36px;" alt="Avatar" />${user.hoTen }
+													src="./resources/imgs/${user.anh}" class="rounded-circle"
+													style="width: 36px; height: 36px;" alt="Avatar" />${user.hoTen }
 											</a></li>
 											<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
 													mua</a></li>
@@ -75,10 +76,15 @@
 										class="fa-regular fa-cart-shopping"></i> <span
 										class="pro-count blue">${user.dsGHSP.size() }</span>
 									</a>
-									<div class="cart-dropdown-wrap cart-dropdown-hm2">
+									<form action="checkout.htm" method="post"
+										class="cart-dropdown-wrap cart-dropdown-hm2">
 										<ul>
 											<c:forEach var="p" items="${user.dsGHSP }">
-												<li>
+												<li><input type="text"
+													class="invisible position-absolute"
+													value="${p.sanPham.maSP}" name="sanPham"></input> <input
+													class="invisible position-absolute" type="number"
+													value="${p.soLuong}" name="soLuong"></input>
 													<div class="shopping-cart-img">
 														<a href="shop-product-right.html"><img alt="Evara"
 															src="./resources/imgs/${p.sanPham.anh}" /></a>
@@ -92,9 +98,9 @@
 														</h4>
 													</div>
 													<div class="shopping-cart-delete">
-														<a href="cart/remove/${p.sanPham.maSP}.htm"><i class="fa-regular fa-xmark"></i></a>
-													</div>
-												</li>
+														<a href="cart/remove/${p.sanPham.maSP}.htm"><i
+															class="fa-regular fa-xmark"></i></a>
+													</div></li>
 
 											</c:forEach>
 										</ul>
@@ -105,11 +111,12 @@
 												</h4>
 											</div>
 											<div class="shopping-cart-button">
-												<a href="cart.htm" class="outline">Giỏ hàng</a> <a
-													href="checkout.htm">Mua ngay</a>
+												<a href="cart.htm" class="outline">Giỏ hàng</a>
+												<button name="btnCheckout" class="btn btnCheckout">Mua
+													Ngay</button>
 											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>

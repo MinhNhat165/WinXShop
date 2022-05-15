@@ -22,11 +22,6 @@ public class UserController {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping("shop")
-	public String Shop(ModelMap model) {
-		return "user/shop";
-	}
-
 	@RequestMapping("account")
 	public String account(ModelMap model) {
 		return "user/account";
