@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <%@include file="./head.jsp"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <body>
 	<!-- flag -->
 	<div class="page-flag" data="product"></div>
