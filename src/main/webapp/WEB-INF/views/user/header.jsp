@@ -78,45 +78,50 @@
 									</a>
 									<form action="checkout.htm" method="post"
 										class="cart-dropdown-wrap cart-dropdown-hm2">
-										<ul>
-											<c:forEach var="p" items="${user.dsGHSP }">
-												<li><input type="text"
-													class="invisible position-absolute"
-													value="${p.sanPham.maSP}" name="sanPham"></input> <input
-													class="invisible position-absolute" type="number"
-													value="${p.soLuong}" name="soLuong"></input>
-													<div class="shopping-cart-img">
-														<a href="product-detail/${p.sanPham.maSP}.htm"><img
-															alt="Evara" src="./resources/imgs/${p.sanPham.anh}" /></a>
-													</div>
-													<div class="shopping-cart-title">
-														<h4>
-															<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
-														</h4>
-														<h4>
-															<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
-														</h4>
-													</div>
-													<div class="shopping-cart-delete">
-														<a href="cart/remove/${p.sanPham.maSP}.htm"><i
-															class="fa-regular fa-xmark"></i></a>
-													</div></li>
+										<c:if test="${user.dsGHSP.size() == 0 }">Chưa có sản phẩm nào trong giỏ. Thêm ngay !!!</c:if>
+										<c:if test="${user.dsGHSP.size() > 0 }">
+											<ul>
 
-											</c:forEach>
-										</ul>
-										<div class="shopping-cart-footer">
-											<div class="shopping-cart-total">
-												<h4>
-													Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
-												</h4>
+												<c:forEach var="p" items="${user.dsGHSP }">
+													<li><input type="text"
+														class="invisible position-absolute"
+														value="${p.sanPham.maSP}" name="sanPham"></input> <input
+														class="invisible position-absolute" type="number"
+														value="${p.soLuong}" name="soLuong"></input>
+														<div class="shopping-cart-img">
+															<a href="product-detail/${p.sanPham.maSP}.htm"><img
+																alt="Evara" src="./resources/imgs/${p.sanPham.anh}" /></a>
+														</div>
+														<div class="shopping-cart-title">
+															<h4>
+																<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
+															</h4>
+															<h4>
+																<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
+															</h4>
+														</div>
+														<div class="shopping-cart-delete">
+															<a href="cart/remove/${p.sanPham.maSP}.htm"><i
+																class="fa-regular fa-xmark"></i></a>
+														</div></li>
+
+												</c:forEach>
+											</ul>
+											<div class="shopping-cart-footer">
+												<div class="shopping-cart-total">
+													<h4>
+														Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
+													</h4>
+												</div>
+												<div class="shopping-cart-button">
+													<a href="cart.htm" class="outline">Giỏ hàng</a>
+													<button name="btnCheckout" class="btn btnCheckout">Mua
+														Ngay</button>
+												</div>
 											</div>
-											<div class="shopping-cart-button">
-												<a href="cart.htm" class="outline">Giỏ hàng</a>
-												<button name="btnCheckout" class="btn btnCheckout">Mua
-													Ngay</button>
-											</div>
-										</div>
+										</c:if>
 									</form>
+
 								</div>
 							</div>
 						</div>

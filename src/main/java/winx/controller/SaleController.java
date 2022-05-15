@@ -106,8 +106,8 @@ public class SaleController extends CommonMethod {
 
 				}
 				t.commit();
-				redirectAttributes.addFlashAttribute("message", "Thêm mới thành công !!!");
-				redirectAttributes.addFlashAttribute("typeMessage", "success");
+				redirectAttributes.addFlashAttribute("message", new Message("success", "Thêm thành công !!!"));
+
 				return "redirect:/admin/sale.htm";
 
 			} catch (Exception e) {
@@ -221,14 +221,13 @@ public class SaleController extends CommonMethod {
 				}
 
 				t.commit();
-				redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !!!");
-				redirectAttributes.addFlashAttribute("typeMessage", "success");
+				redirectAttributes.addFlashAttribute("message", new Message("success", "Cập nhật thành công !!!"));
+
 				return "redirect:/admin/sale.htm";
 			} catch (Exception e) {
 				System.out.println(e);
 				t.rollback();
-				model.addAttribute("message", "Cập nhật thất bại!!!");
-				model.addAttribute("typeMessage", "error");
+				model.addAttribute("message", new Message("error", "Cập nhật thất bại!!!"));
 
 			} finally {
 				session.close();
@@ -282,8 +281,6 @@ public class SaleController extends CommonMethod {
 		List<NhanHang> list = query.list();
 		return list;
 	}
-
-
 
 	// những cái ko check dc bằng hibernate
 	public boolean checkSale(@Valid KhuyenMai khuyenMai, BindingResult result) {
