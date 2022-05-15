@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -45,19 +46,19 @@
 											<h3 class="mb-30">Đăng ký tài khoản</h3>
 										</div>
 
-										<form method="post">
+										<form:form action="register.html"  modelAttribute="taikhoan" method="post">
 											<div class="form-group form-floating">
-												<input type="text" required="" name="email"
+												<form:input path="email" type="text" required="" name="email"
 													placeholder="Email" class="form-control form-control-lg" />
 												<label for="">Email</label>
 											</div>
 											<div class="form-group form-floating">
-												<input required="" type="password" name="password"
+												<form:input path="matKhau" required="" type="password" name="password"
 													placeholder="Password" class="form-control form-control-lg" />
 												<label for="">Password</label>
 											</div>
 											<div class="form-group form-floating">
-												<input required="" type="password" name="password"
+												<input required="" type="password" name="repassword"
 													placeholder="Confirm password"
 													class="form-control form-control-lg" />
 												<label for="">Confirm password</label>
@@ -68,7 +69,7 @@
 													class="btn col-12 btn-lg btn-fill-out btn-block hover-up"
 													name="register">Đăng ký</button>
 											</div>
-										</form>
+										</form:form>
 										<div class="divider-text-center mt-15 mb-15">
 											<span> or</span>
 										</div>

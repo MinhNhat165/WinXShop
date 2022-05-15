@@ -43,7 +43,7 @@
 													placeholder="Your Email" /> <label for="">Email</label>
 											</div>
 											<div class="form-floating">
-												<form:input required="" path="matKhau" type="password" name="password"
+												<form:input required="" path="" type="password" name="password"
 													class="form-control" placeholder="Password" /> <label
 													for="">Password</label>
 											</div>
