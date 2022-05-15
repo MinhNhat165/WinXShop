@@ -128,5 +128,6 @@ public class DonDat {
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
 	}
+	
 
 }

@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import winx.bean.UploadFile;
 import winx.entity.KhachHang;
+import winx.entity.TaiKhoan;
 import winx.entity.TinMoi;
 
 @Transactional
@@ -51,7 +52,7 @@ public class NewsController {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM TinMoi where MaTin=:MaTin";
 		Query query = session.createQuery(hql);
-		query.setParameter("MaKH", MaTin);
+		query.setParameter("MaTin", MaTin);
 		TinMoi n = (TinMoi) query.list().get(0);
 
 		return n;
@@ -115,18 +116,35 @@ public class NewsController {
 		return "admin/news";
 	}
 	// update news
-
-	@RequestMapping(value = "news/update.htm", method = RequestMethod.POST)
-	public String updateUser(@ModelAttribute("news") TinMoi news, ModelMap model) {
+	@RequestMapping(value="news/update/{id}.htm",params="linkEdit")
+		
+		public String updateNews(ModelMap model,
+				@PathVariable("id") String id) {
+			model.addAttribute("idModal", "modalShow");
+			model.addAttribute("news",this.getSingleNews(id));
+			TinMoi t = this.getSingleNews(id);
+			System.out.println(t.getTrangThai());
+				model.addAttribute("btnStatus", "btnEdit");
+			
+			List<TinMoi> list = getNews();
+			model.addAttribute("newsList", list);
+			
+			return "admin/news";
+		}
+	@RequestMapping(value = "news/update/{id}.htm",params="btnEdit", method = RequestMethod.POST)
+	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model) {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		try {
-			Date date = new Date();
-			news.ngayTao = date;
+			
+			Date dateNow = new Date();
+			news.ngayTao = dateNow;
 			news.trangThai = 1;
+//			System.out.println(news.getMaTin());
 			session.update(news);
 			t.commit();
-			model.addAttribute("message", "Sửa thành công!");
+			return "redirect:/admin/news.htm";
+//			model.addAttribute("message", "Sửa thành công!");
 		} catch (Exception e) {
 			t.rollback();
 			model.addAttribute("message", "Sửa thất bại!");
@@ -137,6 +155,50 @@ public class NewsController {
 		model.addAttribute("newsList", list);
 
 		return "admin/news";
+	}
+	// delete
+	@RequestMapping(value="news/delete/{id}.htm",params="linkDelete")
+	public String delete_User(@ModelAttribute("user") TinMoi news,
+			ModelMap model,
+			@PathVariable("id") String id) {
+			try {
+				TinMoi t = this.getSingleNews(id);
+				System.out.println(t);
+				Integer temp =this.deleteNews(this.getSingleNews(id));
+				if(temp!=0) {
+				model.addAttribute("message","Xóa thành công!");}
+				else {
+				model.addAttribute("message","Xóa thất bại!");}
+				
+				return "redirect:/admin/news.htm";
+			} catch(Exception e){
+				System.out.println(e);
+				
+			}
+			
+			
+			List<TinMoi> list = getNews();
+			model.addAttribute("newsList",list);
+		  
+			return "admin/news";
+	}
+	public Integer deleteNews(TinMoi news) {
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.delete(news);
+			t.commit();
+			System.out.println("success");
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			t.rollback();
+			return 0;
+		}
+		finally {
+			session.close();
+		}
+		return 1;
 	}
 
 }

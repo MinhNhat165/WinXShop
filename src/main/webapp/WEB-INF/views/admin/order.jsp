@@ -7,6 +7,7 @@
 <body>
 	<!-- flag -->
 	<div class="page-flag" data="order"></div>
+	<div class="modal-flag" idModal="${idModal}"></div>
 	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -58,10 +59,14 @@
 													<td>${o.ngayDat }</td>
 													<td>${o.tongTien }</td>
 													<td><button type="button"
-															class="btn btn-status-locked">${o.daThanhToan }</button></td>
+															class="btn btn-status-locked">${o.trangThai }</button></td>
 													<td class="text-center"><i
 														class="fas fa-info-circle green-color" data-toggle="modal"
-														data-target=#${o.maDD}></i></td>
+														data-target=#${o.maDD}></i>
+														<a href="admin/order/change-status/${o.maDD }.htm?linkEdit">
+															<i class="fa-solid fa-pen-to-square green-color"></i>
+														</a>
+														</td>
 												</tr>
 											</c:forEach>
 											<tr>
@@ -265,6 +270,39 @@
 				</div>
 			</c:forEach>
 			<!-- /.modal -->
+			<div class="modal fade" id="editStatus" tabindex="-1"
+				role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
+					<div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <form method="post" modelAttribute="order">
+			      <div class="modal-body">
+			        <label for="trangThai">Chon trang thai:</label>
+						  <select name="trangThai" path="trangThai" id="trangThai">
+						    <option value="0">Chờ xác nhận</option>
+						    <option value="1">Đang vận chuyển</option>
+						    <option value="2">Đã giao</option>
+						    <option value="3">Đã hủy</option>
+						  </select>
+			        
+			      </div>
+			      
+			      <div class="modal-footer">
+			      	
+				      	<button type="button"  class="btn btn-danger" data-dismiss="modal">Close</button>
+				        <button type="submit" name="${btnStatus}" class="btn btn-primary">Save changes</button>
+			      	
+			        
+			      </div>
+			      </form>
+				</div>
+			</div>
+			</div>
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
@@ -272,6 +310,9 @@
 	</div>
 	<%@include file="./script.jsp"%>
 	<script type="text/javascript">
+	if ($(".modal-flag").attr("idModal") === "modalCreate") {
+		$("#editStatus").modal("show");
+	}
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">
