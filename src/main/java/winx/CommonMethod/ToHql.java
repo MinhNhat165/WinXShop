@@ -1,5 +1,6 @@
 package winx.CommonMethod;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ToHql {
@@ -34,5 +35,15 @@ public class ToHql {
 			whereClauses = "WHERE " + whereClauses;
 
 		return whereClauses;
+	}
+
+	public String toHqlSingleColumAnd(String columName, String[] list) {
+		String hql = columName + " = '" + list[0] + "'";
+		for (int i = 1; i < list.length; i++) {
+
+			hql += " AND " + columName + " = '" + list[i] + "'";
+
+		}
+		return hql;
 	}
 }
