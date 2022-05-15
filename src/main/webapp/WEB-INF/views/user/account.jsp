@@ -74,22 +74,26 @@
                       role="tabpanel"
                       aria-labelledby="dashboard-tab"
                     >
+                   
                       <div class="card shadow">
                         <div class="card-header">
                           <h5 class="mb-0">Đổi mật khẩu</h5>
                         </div>
+                        ${message3 }
                         <div class="card-body">
                           <div class="row">
-                            <form class="col-4 mx-auto pt-5 card">
+                            <form class="col-4 mx-auto pt-5 card" method="post">
                               <div class="form-group col-md-12">
                                 <label for="input-current-password"
                                   >Mật khẩu hiện tại</label
                                 >
                                 <input
                                   type="password"
+                                  name="cpassword"
                                   class="form-control"
                                   id="input-current-password"
                                 />
+                                ${message}
                               </div>
                               <div class="form-group col-md-12">
                                 <label for="input-new-password"
@@ -97,6 +101,7 @@
                                 >
                                 <input
                                   type="password"
+                                  name="npassword"
                                   class="form-control"
                                   id="input-new-password"
                                 />
@@ -107,14 +112,16 @@
                                 >
                                 <input
                                   type="password"
+                                  name="renpassword"
                                   class="form-control"
                                   id="input-confirm-new-password"
                                 />
+                                ${message2}
                               </div>
 
                               <div class="form-group col-12">
                                 <button
-                                  type="submit"
+                                  type="submit" name="btnpw"
                                   class="btn btn-primary col-12"
                                 >
                                   Lưu thay đổi
