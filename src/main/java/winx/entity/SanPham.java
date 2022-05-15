@@ -55,7 +55,7 @@ public class SanPham {
 	@Column(name = "Loai")
 	private int loai;
 	@Column(name = "DiemDG")
-	private int diemDG;
+	private float diemDG;
 	@ManyToOne
 	@JoinColumn(name = "MaNH")
 	private NhanHang nhanHang;
@@ -70,13 +70,13 @@ public class SanPham {
 	private Collection<CTDD> dsCTDD;
 	@OneToMany(mappedBy = "sanPham")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Collection<CTDD> dsCTDG;
+	private Collection<CTDG> dsCTDG;
 
-	public int getDiemDG() {
+	public float getDiemDG() {
 		return diemDG;
 	}
 
-	public void setDiemDG(int diemDG) {
+	public void setDiemDG(float diemDG) {
 		this.diemDG = diemDG;
 	}
 
@@ -88,11 +88,11 @@ public class SanPham {
 		this.dsCTDD = dsCTDD;
 	}
 
-	public Collection<CTDD> getDsCTDG() {
+	public Collection<CTDG> getDsCTDG() {
 		return dsCTDG;
 	}
 
-	public void setDsCTDG(Collection<CTDD> dsCTDG) {
+	public void setDsCTDG(Collection<CTDG> dsCTDG) {
 		this.dsCTDG = dsCTDG;
 	}
 

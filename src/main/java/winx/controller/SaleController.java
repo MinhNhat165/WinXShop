@@ -283,14 +283,7 @@ public class SaleController extends CommonMethod {
 		return list;
 	}
 
-	public KhuyenMai getSale(String maKM) {
-		Session session = factory.getCurrentSession();
-		String hql = "from KhuyenMai where maKM = :maKM";
-		Query query = session.createQuery(hql);
-		query.setParameter("maKM", maKM);
-		KhuyenMai khuyenMai = (KhuyenMai) query.list().get(0);
-		return khuyenMai;
-	}
+
 
 	// những cái ko check dc bằng hibernate
 	public boolean checkSale(@Valid KhuyenMai khuyenMai, BindingResult result) {

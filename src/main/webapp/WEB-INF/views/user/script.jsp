@@ -24,3 +24,7 @@
 
 
 <script src="./resources/js/shop.js"></script>
+<script src="./resources/js/inputNumber.js"></script>
+<script src="./resources/js/quickView.js"></script>
+<script src=" <c:url value='/resources/js/alertify.min.js'/>"></script>
+<script src=" <c:url value='/resources/js/showMessage.js'/>"></script>

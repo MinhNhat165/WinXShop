@@ -28,11 +28,11 @@ public class CTDG implements Serializable {
 	@MapsId("maSP")
 	@JoinColumn(name = "MaSP")
 	private SanPham sanPham;
-	
 	@ManyToOne
 	@MapsId("maKH")
 	@JoinColumn(name = "MaKH")
 	private KhachHang khachHang;
+
 	@Column(name = "DiemDG")
 	private int diemDG;
 	@Column(name = "MoTa")

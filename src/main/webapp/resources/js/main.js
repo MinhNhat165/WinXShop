@@ -56,7 +56,7 @@
 			"$" +
 			$("#slider-range").slider("values", 0) +
 			" - $" +
-			$("#slider-range").slider("values", 1),
+			$("#slider-range").slider("values", 1)
 		);
 	}
 
@@ -181,8 +181,8 @@
 					'<span class="countdown-section"><span class="countdown-amount hover-up">%d</span><span class="countdown-period"> Ngày </span></span>' +
 					'<span class="countdown-section"><span class="countdown-amount hover-up">%H</span><span class="countdown-period"> Giờ </span></span>' +
 					'<span class="countdown-section"><span class="countdown-amount hover-up">%M</span><span class="countdown-period"> Phút </span></span>' +
-					'<span class="countdown-section"><span class="countdown-amount hover-up">%S</span><span class="countdown-period"> Giây </span></span>',
-				),
+					'<span class="countdown-section"><span class="countdown-amount hover-up">%S</span><span class="countdown-period"> Giây </span></span>'
+				)
 			);
 		});
 	});
@@ -366,8 +366,8 @@
 		sliderrange.slider({
 			range: true,
 			min: 50,
-			max: 1000,
-			values: [50, 500],
+			max: 10000,
+			values: [50, 10000],
 			step: 10,
 			slide: function(event, ui) {
 				priceStart.val(ui.values[0]);
@@ -632,7 +632,7 @@
 	$offCanvasNavSubMenu
 		.parent()
 		.prepend(
-			'<span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>',
+			'<span class="menu-expand"><i class="fi-rs-angle-small-down"></i></span>'
 		);
 
 	/*Close Off Canvas Sub Menu*/
@@ -742,10 +742,19 @@
 	let receiverName = $(".receiver-name");
 	let receiverPhoneNumber = $(".receiver-phone-number");
 	let receiverAddress = $(".receiver-address");
+	inputReceiverName.val(receiverName.text());
+	inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
+	inputReceiverAddress.val(receiverAddress.text());
 
 	btnEditInfoReceiver.on("click", function() {
+		console.log(receiverAddress.text())
 		$(".form-info-receiver").removeClass("d-none");
 		$(".info-receiver-content").addClass("d-none");
+		inputReceiverName.val(receiverName.text());
+		inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
+		inputReceiverAddress.val(receiverAddress.text());
+
+
 	});
 
 	btnSaveInfoReceiver.on("click", function() {

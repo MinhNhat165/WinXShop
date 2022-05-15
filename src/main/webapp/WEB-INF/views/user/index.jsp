@@ -5,10 +5,16 @@
 <html>
 
 <%@include file="./head.jsp"%>
-<body>
+<body style="max-width: 100vw; overflow-x: hidden;">
 	<%@include file="./header.jsp"%>
 	<!-- main -->
-	<main class="main">
+
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
+	<!-- end flag  -->
+	<!-- end flag -->
+
+	<main class="main" style="max-width: 100vw; overflow-x: hidden;">
 		<!-- Bản tin -->
 		<section class="home-slider position-relative pt-50">
 			<div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
@@ -21,7 +27,8 @@
 										<h1 class="animated fw-900 text-brand title">${news.tenTin}</h1>
 										<p class="animated content">${news.noiDung}</p>
 										<a class="animated btn btn-brush btn-brush-3"
-											href="shop-product-right.html"> Shop Now </a>
+											style="background-image: url('http://wp.alithemes.com/html/evara/evara-frontend/assets/imgs/theme/btn-brush-bg-2.png');"
+											href="shop.htm"> Shop Now </a>
 									</div>
 								</div>
 								<div class="col-lg-7 col-md-6">
@@ -47,37 +54,37 @@
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-1.png" alt="" />
-							<h4 class="bg-1">Free Shipping</h4>
+							<h4 class="bg-1">Miễn phí vận chuyển</h4>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-2.png" alt="" />
-							<h4 class="bg-3">Online Order</h4>
+							<h4 class="bg-3">Đặt hàng online</h4>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-3.png" alt="" />
-							<h4 class="bg-2">Save Money</h4>
+							<h4 class="bg-2">Tiết kiệm tiền</h4>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-4.png" alt="" />
-							<h4 class="bg-4">Promotions</h4>
+							<h4 class="bg-4">Quảng bá rộng rãi</h4>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-5.png" alt="" />
-							<h4 class="bg-5">Happy Sell</h4>
+							<h4 class="bg-5">Bán hàn vui vẻ</h4>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
 						<div class="banner-features wow fadeIn animated hover-up">
 							<img src="./resources/imgs/theme/icons/feature-6.png" alt="" />
-							<h4 class="bg-6">24/7 Support</h4>
+							<h4 class="bg-6">Hổ trợ 24/7</h4>
 						</div>
 					</div>
 				</div>
@@ -94,6 +101,12 @@
 						id="carausel-6-columns-3-arrows"></div>
 					<div class="carausel-6-columns text-center"
 						id="carausel-6-columns-3">
+						<c:forEach var="p" items="${brandList}">
+							<div class="brand-logo">
+								<img class="img-grey-hover" src="./resources/imgs/${p.anh}"
+									alt="" />
+							</div>
+						</c:forEach>
 						<div class="brand-logo">
 							<img class="img-grey-hover"
 								src="./resources/imgs/banner/brand-1.png" alt="" />
@@ -149,7 +162,7 @@
 								aria-controls="tab-three" aria-selected="false">Mới</button>
 						</li>
 					</ul>
-					<a href="#" class="view-more d-none d-md-flex">View More<svg
+					<a href="shop.htm" class="view-more d-none d-md-flex">Xem thêm<svg
 							width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24"
 							fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 8L10.5 11.5L7 15" stroke="currentColor"
@@ -166,19 +179,28 @@
 						aria-labelledby="tab-one">
 						<div class="row product-grid-4">
 							<c:forEach var="p" items="${productList}">
+								<form id="checkout${p.maSP }"
+									class="invisible position-absolute" action="checkout.htm"
+									method="post">
+									<input class="invisible position-absolute" type="number"
+										name="soLuong" min="1" step="1" value="1" style="width: 76px">
+									<input type="text" name="sanPham"
+										class="invisible position-absolute" value="${p.maSP}">
+								</form>
 								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
-									data-review="${p.diemDG == 0? " chưa có đáng giá
-									nào" : "hihih" }"
+									data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
 									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="ádfasd"
+									data-id="${p.maSP }" data-quantity="${p.slt }"
+									data-type="${p.loai}" data-description="${p.moTa }"
 									data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
 											<div class="product-img product-img-zoom">
-												<a href="product-detail.htm"> <img class="default-img"
+												<a href="product-detail/${p.maSP }.htm"> <img
+													style="min-height: 260px" class="default-img"
 													src="./resources/imgs/${p.anh}" alt="" />
 												</a>
 											</div>
@@ -187,436 +209,149 @@
 													data-bs-toggle="modal" onclick="handleQuickView(this)"
 													data-bs-target="#quickViewModal"><i
 													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-													class="action-btn hover-up" href="cart.htm"><i
+													class="action-btn hover-up" href="cart/add/${p.maSP}.htm"><i
 													class="fa-regular fa-cart-plus"></i> </a>
 											</div>
 											<div
 												class="product-badges product-badges-position product-badges-mrg">
-												<span class="hot">Hot</span>
+												<span class="new">New </span>
 											</div>
+											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+												</div>
+											</c:if>
+											<c:if
+												test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="best">Best Sell</span>
+												</div>
+											</c:if>
+
 										</div>
 										<div class="product-content-wrap">
 											<div class="product-category">
 												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
 											</div>
 											<h2>
-												<a href="shop-product-right.html">${p.tenSP}</a>
+												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
 											</h2>
-											<div class="rating-result">
-												<span> ${p.diemDG == 0? "chưa có đáng giá nào" : "hihih" }
-
-												</span>
+											<div class="">
+												<i class="fa-solid fa-star text-warning"></i> <span>
+													${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG } </span>
+											</div>
+											<div class="">
+												<span><i class="fa-solid fa-badge-dollar"></i>
+													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
 												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
 												</span> <span class="old-price">${p.gia } </span>
 											</div>
 											<div class="product-action-1 show">
-												<a aria-label="Buy Now" class="action-btn hover-up"
-													href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
+												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
+													form="checkout${p.maSP }" name="btnCheckout"
+													class="action-btn hover-up text-brand hover-white">
+													<i class="fa-regular  fa-credit-card hover-white"></i>
+												</button>
 											</div>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
-
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-8-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-8-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Shirt</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Mens Porcelain Shirt</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 						<!--End product-grid-4-->
 					</div>
 					<!--En tab one (Featured)-->
 					<div class="tab-pane fade" id="tab-two" role="tabpanel"
 						aria-labelledby="tab-two">
+
 						<div class="row product-grid-4">
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-9-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-9-2.jpg" alt="" />
-											</a>
+							<c:forEach var="p" items="${bestSaleProductList}">
+								<form id="checkout${p.maSP }"
+									class="invisible position-absolute" action="checkout.htm"
+									method="post">
+									<input class="invisible position-absolute" type="number"
+										name="soLuong" min="1" step="1" value="1" style="width: 76px">
+									<input type="text" name="sanPham"
+										class="invisible position-absolute" value="${p.maSP}">
+								</form>
+								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
+									data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
+									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+									data-old-price="${p.gia }" data-ml="${p.dungTich }"
+									data-id="${p.maSP }" data-quantity="${p.slt }"
+									data-type="${p.loai}" data-description="${p.moTa }"
+									data-img="${p.anh }"
+									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
+									<div class="product-cart-wrap mb-30">
+										<div class="product-img-action-wrap">
+											<div class="product-img product-img-zoom">
+												<a href="product-detail/${p.maSP }.htm"> <img
+													style="min-height: 260px" class="default-img"
+													src="./resources/imgs/${p.anh}" alt="" />
+												</a>
+											</div>
+											<div class="product-action-1">
+												<a aria-label="Quick view" class="action-btn hover-up"
+													data-bs-toggle="modal" onclick="handleQuickView(this)"
+													data-bs-target="#quickViewModal"><i
+													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
+													class="action-btn hover-up" href="cart/add/${p.maSP}.htm"><i
+													class="fa-regular fa-cart-plus"></i> </a>
+											</div>
+
+											<div
+												class="product-badges product-badges-position product-badges-mrg">
+												<span class="new">New </span>
+											</div>
+											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="hot">-${p.dsSPKM[0].khuyenMai.giaTriKM}</span>
+												</div>
+											</c:if>
+											<c:if
+												test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="best">Best Sell</span>
+												</div>
+											</c:if>
 										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">Hot</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Donec </a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Lorem ipsum dolor</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>90%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-10-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-10-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="new">New</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Music</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Sed tincidunt interdum</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>50%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$138.85 </span> <span class="old-price">$255.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
+										<div class="product-content-wrap">
+											<div class="product-category">
+												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
+											</div>
+											<h2>
+												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
+											</h2>
+											<div class="">
+												<i class="fa-solid fa-star text-warning"></i> <span>
+													${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG } </span>
+											</div>
+											<div class="">
+												<span><i class="fa-solid fa-badge-dollar"></i>
+													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
+											</div>
+											<div class="product-price">
+												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
+												</span> <span class="old-price">${p.gia } </span>
+											</div>
+											<div class="product-action-1 show">
+												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
+													form="checkout${p.maSP }" name="btnCheckout"
+													class="action-btn hover-up text-brand hover-white">
+													<i class="fa-regular  fa-credit-card hover-white"></i>
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-11-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-11-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="best">Best Sell</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Watch</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Fusce metus orci</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>95%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$338.85 </span> <span class="old-price">$445.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-12-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-12-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="sale">Sale</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Music</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Integer venenatis
-												libero</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$123.85 </span> <span class="old-price">$235.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-13-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-13-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">-30%</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Speaker</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Cras tempor orci id</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$28.85 </span> <span class="old-price">$45.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-14-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-14-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">-22%</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Camera</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Nullam cursus mi qui</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-15-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-15-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="new">New</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Phone</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Fusce fringilla
-												ultrices</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>98%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$1275.85 </span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-1-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-1-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Accessories </a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Sed sollicitudin est</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<!--End product-grid-4-->
 					</div>
@@ -624,347 +359,89 @@
 					<div class="tab-pane fade" id="tab-three" role="tabpanel"
 						aria-labelledby="tab-three">
 						<div class="row product-grid-4">
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-2-1.jpg" alt="" /> <img
-												class="hover-img"
-												src="./resources/imgs/shop/product-2-2.jpg" alt="" />
-											</a>
+							<c:forEach var="p" items="${newProductList}">
+								<form id="checkout${p.maSP }"
+									class="invisible position-absolute" action="checkout.htm"
+									method="post">
+									<input class="invisible position-absolute" type="number"
+										name="soLuong" min="1" step="1" value="1" style="width: 76px">
+									<input type="text" name="sanPham"
+										class="invisible position-absolute" value="${p.maSP}">
+								</form>
+								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
+									data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
+									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+									data-old-price="${p.gia }" data-ml="${p.dungTich }"
+									data-id="${p.maSP }" data-quantity="${p.slt }"
+									data-type="${p.loai}" data-description="${p.moTa }"
+									data-img="${p.anh }"
+									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
+									<div class="product-cart-wrap mb-30">
+										<div class="product-img-action-wrap">
+											<div class="product-img product-img-zoom">
+												<a href="product-detail/${p.maSP }.htm"> <img
+													style="min-height: 260px" class="default-img"
+													src="./resources/imgs/${p.anh}" alt="" />
+												</a>
+											</div>
+											<div class="product-action-1">
+												<a aria-label="Quick view" class="action-btn hover-up"
+													data-bs-toggle="modal" onclick="handleQuickView(this)"
+													data-bs-target="#quickViewModal"><i
+													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
+													class="action-btn hover-up" href="cart/add/${p.maSP}.htm"><i
+													class="fa-regular fa-cart-plus"></i> </a>
+											</div>
+
+											<div
+												class="product-badges product-badges-position product-badges-mrg">
+												<span class="new">New </span>
+											</div>
+											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+												</div>
+											</c:if>
+											<c:if
+												test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="best">Best Sell</span>
+												</div>
+											</c:if>
 										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">Hot</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Music</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Donec ut nisl rutrum</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>90%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-3-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-3-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="new">New</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Music</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Nullam dapibus pharetra</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>50%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$138.85 </span> <span class="old-price">$255.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
+										<div class="product-content-wrap">
+											<div class="product-category">
+												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
+											</div>
+											<h2>
+												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
+											</h2>
+											<div class="">
+												<i class="fa-solid fa-star text-warning"></i> <span>
+													${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG } </span>
+											</div>
+											<div class="">
+												<span><i class="fa-solid fa-badge-dollar"></i>
+													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
+											</div>
+											<div class="product-price">
+												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
+												</span> <span class="old-price">${p.gia } </span>
+											</div>
+											<div class="product-action-1 show">
+												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
+													form="checkout${p.maSP }" name="btnCheckout"
+													class="action-btn hover-up text-brand hover-white">
+													<i class="fa-regular  fa-credit-card hover-white"></i>
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-4-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="best">Best Sell</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Watch</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Morbi dictum finibus</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>95%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$338.85 </span> <span class="old-price">$445.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-5-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-5-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="sale">Sale</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Music</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Nunc volutpat massa</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$123.85 </span> <span class="old-price">$235.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-6-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">-30%</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Speaker</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Nullam ultricies luctus</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$28.85 </span> <span class="old-price">$45.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-7-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-7-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="hot">-22%</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Camera</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Nullam mattis enim</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-8-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-8-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-										<div
-											class="product-badges product-badges-position product-badges-mrg">
-											<span class="new">New</span>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Phone</a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html">Vivamus sollicitudin</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>98%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$1275.85 </span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-12 col-sm-6 product-cart">
-								<div class="product-cart-wrap mb-30">
-									<div class="product-img-action-wrap">
-										<div class="product-img product-img-zoom">
-											<a href="shop-product-right.html"> <img class="hover-img"
-												src="./resources/imgs/shop/product-9-1.jpg" alt="" /> <img
-												class="default-img"
-												src="./resources/imgs/shop/product-9-2.jpg" alt="" />
-											</a>
-										</div>
-										<div class="product-action-1">
-											<a aria-label="Quick view" class="action-btn hover-up"
-												data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-												class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-												class="action-btn hover-up" href="cart.htm"><i
-												class="fa-regular fa-cart-plus"></i> </a>
-										</div>
-									</div>
-									<div class="product-content-wrap">
-										<div class="product-category">
-											<a href="shop-grid-right.html">Accessories </a>
-										</div>
-										<h2>
-											<a href="shop-product-right.html"> Donec ut nisl rutrum</a>
-										</h2>
-										<div class="rating-result" title="90%">
-											<span> <span>70%</span>
-											</span>
-										</div>
-										<div class="product-price">
-											<span>$238.85 </span> <span class="old-price">$245.8</span>
-										</div>
-										<div class="product-action-1 show">
-											<a aria-label="Buy Now" class="action-btn hover-up"
-												href="cart.htm"><i class="fa-regular fa-credit-card"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<!--End product-grid-4-->
 					</div>
@@ -982,20 +459,20 @@
 						id="carausel-6-columns-2-arrows"></div>
 					<div class="carausel-6-columns carausel-arrow-center"
 						id="carausel-6-columns-2">
-						<c:forEach var="p" items="${newProductList }">
+						<c:forEach var="p" items="${newProductList}">
 
 							<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
-								data-review="${p.diemDG == 0? " chưa có đáng giá
-								nào" : "hihih" }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+								data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
+								data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
 								data-old-price="${p.gia }" data-ml="${p.dungTich }"
-								data-id="${maSP }" data-quantity="${p.slt }"
-								data-type="${p.loai}" data-description="ádfasd"
+								data-id="${p.maSP }" data-quantity="${p.slt }"
+								data-type="${p.loai}" data-description="${p.moTa }"
 								data-img="${p.anh }"
 								class="product-cart-wrap product small hover-up">
 								<div class="product-img-action-wrap">
 									<div class="product-img product-img-zoom">
-										<a href="shop-product-right.html"> <img
+										<a href="product-detail/${p.maSP }.htm"> <img
 											class="default-img" src="./resources/imgs/${p.anh}" alt="" />
 										</a>
 									</div>
@@ -1004,18 +481,26 @@
 											data-bs-toggle="modal" onclick="handleQuickView(this)"
 											data-bs-target="#quickViewModal"><i
 											class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-											class="action-btn small hover-up" href="cart.htm"><i
+											class="action-btn small hover-up"
+											href="cart/add/${p.maSP}.htm"><i
 											class="fa-regular fa-cart-plus"></i> </a>
 									</div>
 
 									<div
 										class="product-badges product-badges-position product-badges-mrg">
-										<span class="hot">Hot</span>
+										<span class="new">New</span>
 									</div>
+									<c:if
+										test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+										<div
+											class="product-badges product-badges-position product-badges-mrg">
+											<span class="best">Best Sell</span>
+										</div>
+									</c:if>
 								</div>
 								<div class="product-content-wrap">
 									<h2>
-										<a href="shop-product-right.html">${p.tenSP }</a>
+										<a href="product-detail/${p.maSP }.htm">${p.tenSP }</a>
 									</h2>
 									<div class="rating-result" title="90%">
 										<span> </span>
@@ -1030,243 +515,7 @@
 
 						</c:forEach>
 
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> 90%</span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-5-1.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
-						<div class="product-cart-wrap small hover-up">
-							<div class="product-img-action-wrap">
-								<div class="product-img product-img-zoom">
-									<a href="shop-product-right.html"> <img class="default-img"
-										src="./resources/imgs/shop/product-3-1.jpg" alt="" /> <img
-										class="hover-img" src="./resources/imgs/shop/product-4-2.jpg"
-										alt="" />
-									</a>
-								</div>
-								<div class="product-action-1">
-									<a aria-label="Quick view" class="action-btn small hover-up"
-										data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-										class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-										class="action-btn small hover-up" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i> </a>
-								</div>
-								<div
-									class="product-badges product-badges-position product-badges-mrg">
-									<span class="new">New</span>
-								</div>
-							</div>
-							<div class="product-content-wrap">
-								<h2>
-									<a href="shop-product-right.html">Aliquam posuere</a>
-								</h2>
-								<div class="rating-result" title="90%">
-									<span> </span>
-								</div>
-								<div class="product-price">
-									<span>$173.85 </span> <span class="old-price">$185.8</span>
-								</div>
-							</div>
-						</div>
-						<!--End product-cart-wrap-2-->
+
 					</div>
 				</div>
 			</div>
@@ -1275,55 +524,36 @@
 			<div class="container">
 				<div class="row">
 					<c:forEach var="s" items="${saleList }">
-						<div class="col-lg-6 deal-co">
-							<div class="deal wow fadeIn animated mb-md-4 mb-sm-4 mb-lg-0">
-								<div class="deal-top">
-									<h2 class="text-brand">${s.tenKM }</h2>
+						<div class="col-lg-6 deal-co mb-5">
+							<div class="deal wow fadeIn animated mb-md-4 mb-sm-4 mb-lg-0"
+								style="height: 380px; background-color: #edf4f4; background-image: url('./resources/imgs/image-from-rawpixel-id-2255880-original.png'); background-size: cover;">
+								<div class="deal-top text-center">
+									<h2 class="text-brand"
+										style="background-size: cover; text-shadow: 0 0 2px black; color: wheat !important; background-image: url('http://wp.alithemes.com/html/evara/evara-frontend/assets/imgs/theme/btn-brush-bg-2.png');">${s.tenKM }</h2>
 								</div>
 								<div class="deal-content">
-									<h6 class="product-title">
-										<a href="shop-product-right.html">${s.moTa}</a>
+									<h6 class="product-title " style="max-width: 100%;">
+										<a href="product-detail/${p.maSP }.htm"
+											style="color: #0c7772; text-shadow: 0px 0px 5px;">${s.moTa}</a>
 									</h6>
 								</div>
 								<div class="deal-bottom">
 									<p>Hết hạn trong:</p>
 									<div class="deals-countdown"
 										data-countdown="${s.ngayKT } 00:00:00"></div>
-									<a href="shop-grid-right.html" class="btn hover-up">Shop
-										Now <i class="fi-rs-arrow-right"></i>
+									<a href="shop.htm" style="background: white;"
+										class="btn hover-up">Shop Now<i
+										class="fa-solid fa-bag-shopping"></i></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-
-					<div class="col-lg-6 deal-co">
-						<div class="deal wow fadeIn animated">
-							<div class="deal-top">
-								<h2 class="text-brand">Men Clothing</h2>
-								<h5>Shirt & Bag</h5>
-							</div>
-							<div class="deal-content">
-								<h6 class="product-title">
-									<a href="shop-product-right.html">Try something new on
-										vacation</a>
-								</h6>
-							</div>
-							<div class="deal-bottom">
-								<p>Hurry Up! Offer End In:</p>
-								<div class="deals-countdown"
-									data-countdown="2026/03/25 00:00:00"></div>
-								<a href="shop-grid-right.html" class="btn hover-up">Shop Now
-									<i class="fi-rs-arrow-right"></i>
-								</a>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
 
-		<section class="bg-grey-9 section-padding">
+		<section class=" section-padding" style="background: #04696312">
 			<div class="container pt-25 pb-25">
 				<div class="heading-tab d-flex">
 					<div class="heading-tab-left wow fadeIn animated">
@@ -1343,76 +573,70 @@
 										id="carausel-4-columns-arrows"></div>
 									<div class="carausel-4-columns carausel-arrow-center"
 										id="carausel-4-columns">
-										<div class="product-cart-wrap small">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-4-2.jpg" alt="" />
-													</a>
+										<c:forEach var="p" items="${bestSaleProductList}">
+											<form id="checkout${p.maSP }"
+												class="invisible position-absolute" action="checkout.htm"
+												method="post">
+												<input class="invisible position-absolute" type="number"
+													name="soLuong" min="1" step="1" value="1"
+													style="width: 76px"> <input type="text"
+													name="sanPham" class="invisible position-absolute"
+													value="${p.maSP}">
+											</form>
+											<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
+												data-review="${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }"
+												data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+												data-old-price="${p.gia }" data-ml="${p.dungTich }"
+												data-id="${p.maSP }" data-quantity="${p.slt }"
+												data-type="${p.loai}" data-description="${p.moTa }"
+												data-img="${p.anh }" class="product-cart-wrap small product">
+												<div class="product-img-action-wrap">
+													<div class="product-img product-img-zoom">
+														<a href="product-detail/${p.maSP }.htm"> <img
+															class="default-img" src="./resources/imgs/${p.anh}"
+															alt="" />
+														</a>
+													</div>
+													<div class="product-action-1">
+														<a aria-label="Quick view" class="action-btn hover-up"
+															data-bs-toggle="modal" onclick="handleQuickView(this)"
+															data-bs-target="#quickViewModal"><i
+															class="fa-regular fa-eye"></i></a> <a
+															aria-label="Add To Card" class="action-btn hover-up"
+															href="cart/add/${p.maSP}.htm"> <i
+															class="fa-regular fa-cart-plus"></i>
+														</a>
+													</div>
+													<div
+														class="product-badges product-badges-position product-badges-mrg">
+														<span class="new">New</span>
+													</div>
+													<c:if
+														test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+														<div
+															class="product-badges product-badges-position product-badges-mrg">
+															<span class="best">Best Sell</span>
+														</div>
+													</c:if>
 												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"><i
-														class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fa-regular fa-cart-plus"></i> </a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="new">New</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<h2>
-													<a href="shop-product-right.html">Aliquam posuere</a>
-												</h2>
-												<div class="rating-result">
-													<span>9/10 </span>
-												</div>
-												<div class="product-price">
-													<span>$173.85 </span> <span class="old-price">$185.8</span>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap small">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-4-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-4-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"><i
-														class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fa-regular fa-cart-plus"></i> </a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="new">New</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<h2>
-													<a href="shop-product-right.html">Aliquam posuere</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> </span>
-												</div>
-												<div class="product-price">
-													<span>$173.85 </span> <span class="old-price">$185.8</span>
+												<div class="product-content-wrap">
+													<h2>
+														<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
+													</h2>
+													<div class="rating-result" title="90%">
+														<span> <span> ${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG }</span>
+														</span>
+													</div>
+													<div class="product-price">
+														<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
+														</span> <span class="old-price">${p.gia }</span>
+													</div>
 												</div>
 											</div>
-										</div>
+										</c:forEach>
+
+
 									</div>
 								</div>
 							</div>
@@ -1429,7 +653,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1456,7 +680,8 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Cotton Leaf Printed 2</a>
+													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
+														Printed 2</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1474,7 +699,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-7-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1501,7 +726,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Smart Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1519,7 +744,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-5-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1546,7 +771,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Hugy Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Hugy Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1564,7 +789,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-10-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1591,7 +816,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Smart Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1609,7 +834,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-12-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1636,7 +861,8 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Cotton Leaf Printed</a>
+													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
+														Printed</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1666,7 +892,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-8-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1693,7 +919,8 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Cotton Leaf Printed</a>
+													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
+														Printed</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1711,7 +938,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-13-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1738,7 +965,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Smart Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1756,7 +983,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-14-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1783,7 +1010,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Hugy Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Hugy Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1801,7 +1028,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-15-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1828,7 +1055,7 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Smart Speaker</a>
+													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1846,7 +1073,7 @@
 										<div class="product-cart-wrap">
 											<div class="product-img-action-wrap">
 												<div class="product-img product-img-zoom">
-													<a href="shop-product-right.html"> <img
+													<a href="product-detail/${p.maSP }.htm"> <img
 														class="default-img"
 														src="./resources/imgs/shop/product-11-1.jpg" alt="" /> <img
 														class="hover-img"
@@ -1873,7 +1100,8 @@
 													<a href="shop-grid-right.html">Watch</a>
 												</div>
 												<h2>
-													<a href="shop-product-right.html">Cotton Leaf Printed</a>
+													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
+														Printed</a>
 												</h2>
 												<div class="rating-result" title="90%">
 													<span> <span>70%</span>
@@ -1906,11 +1134,11 @@
 	<!-- Quick view -->
 	<div class="modal fade custom-modal" id="quickViewModal" tabindex="-1"
 		aria-labelledby="quickViewModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="modal-dialog rounded">
+			<div class="modal-content rounded">
 				<button type="button" class="btn-close" data-bs-dismiss="modal"
 					aria-label="Close"></button>
-				<div class="modal-body">
+				<div class="modal-body" style="background: #00800014;">
 					<div class="row">
 						<div class="col-md-6 col-sm-12 col-xs-12">
 							<img
@@ -1967,18 +1195,21 @@
 							</div>
 							<div class="bt-1 border-color-1 mt-30 mb-30"></div>
 							<div class="detail-extralink">
-								<div class="detail-qty border radius">
-									<a href="#" class="qty-down"><i
-										class="fa-solid fa-angle-down"></i></a> <span class="qty-val">1</span>
-									<a href="#" class="qty-up"><i class="fa-solid fa-angle-up"></i></a>
-								</div>
-								<div class="product-extra-link2">
+
+								<form>
+									<div class="quantity">
+										<input type="number" min="1" max="5" step="1" value="1">
+									</div>
+
+								</form>
+
+								<div class="product-extra-link2 ms-2">
 									<button type="submit" class="button button-add-to-cart">
 										Mua Ngay</button>
-									<a aria-label="Add To Card" class="action-btn hover-up"
-										href="cart.htm"><i class="fa-regular fa-cart-plus"></i></a> <a
-										aria-label="Compare" class="action-btn hover-up"
-										href="shop-compare.html"><i
+									<a aria-label="Add To Card"
+										class="action-btn hover-up add-to-cart" href="cart.htm"><i
+										class="fa-regular fa-cart-plus"></i></a> <a aria-label="Compare"
+										class="action-btn hover-up" href="shop-compare.html"><i
 										class="fa-regular fa-bags-shopping"></i></a>
 								</div>
 							</div>
@@ -1998,26 +1229,10 @@
 			</div>
 		</div>
 	</div>
-	</div>
 
 
 	<script type="text/javascript">
-	 let handleQuickView = (e) => {
-	        let product = e.closest(".product");
-	    
-	        $(".title-detail").text(product.getAttribute("data-name"));
-	        $(".review-score").text(product.getAttribute("data-review"));
-	        $(".brand-detail").text(product.getAttribute("data-brand"));
-	        $(".short-desc").text(product.getAttribute("data-description"));
-	        $(".price-detail").text(product.getAttribute("data-price"));
-	        $(".old-price-detail").text(product.getAttribute("data-old-price"));
-	        $(".capacity-detail").text(product.getAttribute("data-ml"));
-	        $("id-detail").text(product.getAttribute("data-id"));
-	        $(".quantity-detail").text(product.getAttribute("data-quantity"));
-	        $(".type-detail").text(product.getAttribute("data-type"));
-	        $(".image-detail").attr("src", "./resources/imgs/" + product.getAttribute("data-img"));
-	        
-	      };
+		
 	</script>
 </body>
 </html>

@@ -35,8 +35,7 @@
 
 				<a href="admin/brand/add.htm">
 					<button type="button"
-						class="btn btn-secondary green-bg-color shadow-none"
-						data-toggle="modal" data-target="#addbrand">
+						class="btn btn-secondary green-bg-color shadow-none">
 
 						<i class="fas fa-plus-circle"></i> Thêm
 					</button>
@@ -123,8 +122,8 @@
 										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 											<div class=" tm-edit-product-row">
 
-												<form:form action="admin/brand/insert.htm"
-													class="tm-edit-product-form" modelAttribute="nhanhang"
+												<form:form action="admin/brand/add.htm"
+													class="tm-edit-product-form" enctype="multipart/form-data" modelAttribute="nhanhang"
 													method="POST">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
@@ -144,18 +143,22 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-															<div class="tm-product-img-dummy mx-auto rounded">
-																<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																	onclick="document.getElementById('fileInput').click();"></i>
-															</div>
-															<div class="custom-file mt-3 mb-3">
-																<form:input path="anh" type="file"
-																	style="display: none;" />
-																<form:input path="anh" type="button"
-																	class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																	value="Thêm ảnh"
-																	onclick="document.getElementById('fileInput').click();" />
-															</div>
+																<div
+																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+
+																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
+																		onclick="document.getElementById('fileInput').click();"></i>
+																</div>
+																<div class="custom-file mt-3 mb-3">
+																	<input  name="anhh" type="file" class="file-upload"
+																		style="display: none;" />
+																		<form:errors
+																		path="anh"></form:errors>
+																	<button type="button"
+																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
+																		ảnh lên</button>
+																</div>
+
 
 														</div>
 														<div class="col-12 mt-4">
@@ -200,7 +203,7 @@
 											<div class=" tm-edit-product-row">
 
 												<form:form class="tm-edit-product-form"
-													modelAttribute="nhanhang" method="post">
+													modelAttribute="nhanhang" enctype="multipart/form-data" method="post">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
 															<div class="form-group mb-3">
@@ -242,19 +245,21 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-															<div class="tm-product-img-dummy mx-auto rounded">
-																<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																	onclick="document.getElementById('fileInput').click();"></i>
-															</div>
-															<div class="custom-file mt-3 mb-3">
-																<form:input path="anh" type="file"
-																	style="display: none;" />
-																<form:input path="anh" type="button"
-																	class="btn btn-primary btn-block mx-auto btn-green shadow-none"
-																	value="Sửa ảnh"
-																	onclick="document.getElementById('fileInput').click();" />
-															</div>
+																<div
+																	class="tm-product-img-dummy mx-auto rounded profile-pic">
 
+																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
+																		onclick="document.getElementById('fileInput').click();"></i>
+																</div>
+																<div class="custom-file mt-3 mb-3">
+																	<input  name="anh2" type="file" class="file-upload2"
+																		style="display: none;" />
+																		<form:errors
+																		path="anh"></form:errors>
+																	<button type="button"
+																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
+																		ảnh lên</button>
+																</div>
 														</div>
 
 														<div class="col-12 mt-4">
@@ -373,6 +378,39 @@
 		                </div>
 		            </div>
 		        </div>`);
+
+			var readURL = function(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function(e) {
+						$(".profile-pic").attr("src", e.target.result);
+						$(".profile-pic").css({
+							'background-image' : 'url(' + e.target.result + ')',
+							'background-size' : 'cover'
+						});
+
+					};
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			};
+
+			$(".file-upload").on("change", function() {
+				readURL(this);
+			});
+
+			$(".upload-button").on("click", function() {
+				$(".file-upload").click();
+			});
+			
+			$(".file-upload2").on("change", function() {
+				readURL(this);
+			});
+
+			$(".upload-button2").on("click", function() {
+				$(".file-upload2").click();
+			});
 	</script>
 </body>
 </html>

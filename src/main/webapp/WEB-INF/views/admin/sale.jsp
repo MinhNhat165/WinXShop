@@ -12,9 +12,10 @@
 
 <body>
 	<!--  flag -->
-	<div class=" flag-modal-create" isOpen=${isOpenModalCreate }></div>
+
 	<div class="modal-flag" idModal="${idModal}"></div>
 	<div class="page-flag" data="sale"></div>
+	<div class="alert-flag" aType='${typeMessage}' aMessage="${message }"></div>
 	<!-- end flag  -->
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
@@ -29,7 +30,7 @@
 
 
 		<div class="page-wrapper pt-0">
-			<div class="alert-flag" aType='${typeMessage}' aMessage="${message }"></div>
+			
 
 			<!-- ============================================================== -->
 			<div class="container-fluid">
