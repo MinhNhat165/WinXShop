@@ -78,45 +78,50 @@
 									</a>
 									<form action="checkout.htm" method="post"
 										class="cart-dropdown-wrap cart-dropdown-hm2">
-										<ul>
-											<c:forEach var="p" items="${user.dsGHSP }">
-												<li><input type="text"
-													class="invisible position-absolute"
-													value="${p.sanPham.maSP}" name="sanPham"></input> <input
-													class="invisible position-absolute" type="number"
-													value="${p.soLuong}" name="soLuong"></input>
-													<div class="shopping-cart-img">
-														<a href="shop-product-right.html"><img alt="Evara"
-															src="./resources/imgs/${p.sanPham.anh}" /></a>
-													</div>
-													<div class="shopping-cart-title">
-														<h4>
-															<a href="shop-product-right.html">${p.sanPham.tenSP}</a>
-														</h4>
-														<h4>
-															<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
-														</h4>
-													</div>
-													<div class="shopping-cart-delete">
-														<a href="cart/remove/${p.sanPham.maSP}.htm"><i
-															class="fa-regular fa-xmark"></i></a>
-													</div></li>
+										<c:if test="${user.dsGHSP.size() == 0 }">Chưa có sản phẩm nào trong giỏ. Thêm ngay !!!</c:if>
+										<c:if test="${user.dsGHSP.size() > 0 }">
+											<ul>
 
-											</c:forEach>
-										</ul>
-										<div class="shopping-cart-footer">
-											<div class="shopping-cart-total">
-												<h4>
-													Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
-												</h4>
+												<c:forEach var="p" items="${user.dsGHSP }">
+													<li><input type="text"
+														class="invisible position-absolute"
+														value="${p.sanPham.maSP}" name="sanPham"></input> <input
+														class="invisible position-absolute" type="number"
+														value="${p.soLuong}" name="soLuong"></input>
+														<div class="shopping-cart-img">
+															<a href="product-detail/${p.sanPham.maSP}.htm"><img
+																alt="Evara" src="./resources/imgs/${p.sanPham.anh}" /></a>
+														</div>
+														<div class="shopping-cart-title">
+															<h4>
+																<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
+															</h4>
+															<h4>
+																<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
+															</h4>
+														</div>
+														<div class="shopping-cart-delete">
+															<a href="cart/remove/${p.sanPham.maSP}.htm"><i
+																class="fa-regular fa-xmark"></i></a>
+														</div></li>
+
+												</c:forEach>
+											</ul>
+											<div class="shopping-cart-footer">
+												<div class="shopping-cart-total">
+													<h4>
+														Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
+													</h4>
+												</div>
+												<div class="shopping-cart-button">
+													<a href="cart.htm" class="outline">Giỏ hàng</a>
+													<button name="btnCheckout" class="btn btnCheckout">Mua
+														Ngay</button>
+												</div>
 											</div>
-											<div class="shopping-cart-button">
-												<a href="cart.htm" class="outline">Giỏ hàng</a>
-												<button name="btnCheckout" class="btn btnCheckout">Mua
-													Ngay</button>
-											</div>
-										</div>
+										</c:if>
 									</form>
+
 								</div>
 							</div>
 						</div>
@@ -128,18 +133,18 @@
 			<div class="container">
 				<div class="header-wrap header-space-between position-relative">
 					<div class="logo logo-width-1 d-block d-lg-none">
-						<a href="index.html"><img
-							src="./resources/imgs/theme/logo.svg" alt="logo" /></a>
+						<a href=""><img src="./resources/imgs/theme/logo.svg"
+							alt="logo" /></a>
 					</div>
 					<div class="header-nav d-none d-lg-flex">
 						<div class="main-categori-wrap d-none d-lg-block">
-							<a href="shop-grid-right.html"> Hãy mua theo cách của bạn </a>
+							<a href=""> Hãy mua theo cách của bạn </a>
 						</div>
 						<div
 							class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
 							<nav>
 								<ul>
-									<li><a class="active" href="index.html">Home </a></li>
+									<li><a class="active" href="">Home </a></li>
 									<li><a href="page-about.html">About</a></li>
 									<li><a href="shop.htm">Shop </a></li>
 
@@ -193,9 +198,9 @@
 					<!-- mobile menu start -->
 					<nav>
 						<ul class="mobile-menu">
-							<li><a class="active" href="index.html">Home </a></li>
+							<li><a class="active" href="/">Home </a></li>
 							<li><a href="page-about.html">About</a></li>
-							<li><a href="shop-grid-right.html">Shop </a></li>
+							<li><a href="shop.htm">Shop </a></li>
 
 							<li><a href="page-contact.html">Contact</a></li>
 						</ul>

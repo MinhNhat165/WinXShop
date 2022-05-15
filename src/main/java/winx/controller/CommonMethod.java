@@ -1,7 +1,11 @@
 package winx.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -47,6 +51,22 @@ public class CommonMethod {
 		Query query = session.createQuery(hql);
 		List<SanPham> list = query.list();
 		return list;
+	}
+
+	public List<SanPham> getTopBestSaleProduct() {
+
+		Session session = factory.getCurrentSession();
+		String hql = "from SanPham";
+		Query query = session.createQuery(hql);
+		List<SanPham> list = query.list();
+		List<SanPham> finalResult = new ArrayList<SanPham>();
+		for (SanPham sanPham : list) {
+			
+			if (sanPham.getDsCTDD().stream().collect(Collectors.summingInt(o -> o.getSoLuong())) > 9)
+				finalResult.add(sanPham);
+		}
+
+		return finalResult;
 	}
 
 	public List<TinMoi> getAllNews() {

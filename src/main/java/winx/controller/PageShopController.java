@@ -1,10 +1,14 @@
 package winx.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.xml.crypto.Data;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import winx.CommonMethod.ToHql;
 import winx.entity.SanPham;
 
 @Transactional
@@ -41,6 +46,7 @@ public class PageShopController extends CommonMethod {
 		}
 		model.addAttribute("DSNH", getAllBrand());
 		model.addAttribute("pagedListHolder", pagedListHolder);
+		model.addAttribute("bestSales", getTopBestSaleProduct());
 		return "user/shop";
 	}
 
@@ -67,12 +73,38 @@ public class PageShopController extends CommonMethod {
 		// get value filter
 		String giaBD = request.getParameter("giaBD");
 		String giaKT = request.getParameter("giaKT");
+		String diemBD = request.getParameter("diemBD");
+		String diemKT = request.getParameter("diemKT");
 		String[] nhanHang = request.getParameterValues("nhanHang");
 		String[] dungTich = request.getParameterValues("dungTich");
-		System.out.println(dungTich);
+		String[] loai = request.getParameterValues("loai");
+
+		ToHql toHql = new ToHql();
+		String nhanHangHql = "";
+		if (!(nhanHang == null))
+			nhanHangHql = toHql.toHqlSingleColumAnd("nhanHang", nhanHang);
+
+		String dungTichHql = "";
+		if (!(dungTich == null))
+			dungTichHql = toHql.toHqlSingleColumAnd("dungTich", dungTich);
+
+		String loaiHql = "";
+		if (!(loai == null))
+			loaiHql = toHql.toHqlSingleColumAnd("loai", loai);
+
+		String giaHql = toHql.toHqlRangeCondition(giaBD, giaKT, "gia");
+
+		String diemHql = toHql.toHqlRangeCondition(diemBD, diemKT, "diemDG");
+
+		List<String> clauses = new ArrayList<String>();
+		clauses.add(loaiHql);
+		clauses.add(nhanHangHql);
+		clauses.add(dungTichHql);
+		clauses.add(giaHql);
+		clauses.add(diemHql);
 
 		PagedListHolder<SanPham> pagedListHolder = new PagedListHolder<SanPham>(
-				this.searchProduct(request.getParameter("searchInput")));
+				getProductList(toHql.toHqlWhereClause(clauses), 0));
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);

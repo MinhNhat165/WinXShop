@@ -89,7 +89,11 @@
 												</div>
 											</form>
 										</div>
+
 										<ul class="product-meta font-xs color-grey mt-50">
+											<li class="">Đã bán: <span>
+													${SP.dsCTDD.stream().map(t -> (t.soLuong)).sum()} sản phẩm
+											</span><i class="fa-solid fa-badge-dollar"></i></li>
 											<li class="mb-5">Mã: <a href="#">${SP.maSP }</a></li>
 											<li class="mb-5">Tags: <a href="#" rel="tag"> <c:if
 														test="${SP.loai  == 0 }">Nữ</c:if> <c:if
@@ -254,8 +258,21 @@
 
 														<div
 															class="product-badges product-badges-position product-badges-mrg">
-															<span class="hot">Hot</span>
+															<span class="new">New </span>
 														</div>
+														<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+															<div
+																class="product-badges product-badges-position product-badges-mrg">
+																<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+															</div>
+														</c:if>
+														<c:if
+															test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+															<div
+																class="product-badges product-badges-position product-badges-mrg">
+																<span class="best">Best Sell</span>
+															</div>
+														</c:if>
 													</div>
 													<div class="product-content-wrap">
 														<h2>

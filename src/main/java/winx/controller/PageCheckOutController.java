@@ -105,17 +105,18 @@ public class PageCheckOutController extends CommonMethod {
 					session.save(ctdd);
 				}
 				t.commit();
-				ms.setType("success");
-				ms.setMessage("Đặt hàng thành công");
+				redirectAttributes.addFlashAttribute("message", new Message("success", "Đăt hàng thành công"));
+				return "redirect:/shop.htm";
 
 			} catch (Exception e) {
-				System.out.println(e);
 				ms.setType("error");
 				ms.setMessage("Đặt hàng thất bại");
+
 			} finally {
 
 				session.close();
 			}
+			model.addAttribute("mesage", ms);
 			return "user/checkout";
 		}
 

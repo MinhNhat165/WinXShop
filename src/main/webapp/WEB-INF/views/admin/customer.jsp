@@ -7,6 +7,7 @@
 <body>
 	<!-- flag -->
 	<div class="page-flag" data="customer"></div>
+	<div class="modal-flag" idModal="${idModal}"></div>
 	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -40,7 +41,7 @@
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
 											<tr>
-												<th>Mã khách hàng</th>
+												<th>Mã khách hàng${message }</th>
 												<th>Họ và tên</th>
 												<th>Username</th>
 												<th>SĐT</th>
@@ -57,10 +58,16 @@
 													<td>${u.sdt }</td>
 													<td><button type="button"
 															class="btn btn-status-activate">${u.taiKhoan.trangThai }</button></td>
-													<td><i class="fas fa-info-circle green-color"
-														data-toggle="modal" data-target=#${u.maKH}></i> <i
-														class=" fas fa-edit green-color" data-toggle="modal"
-														data-target="#bs-example-modal-lg"></i></td>
+													<td>
+													<a href="admin/customer/${u.maKH }.htm?linkShow">
+													<i class="fas fa-info-circle green-color"
+														></i> 
+													</a>
+													
+														<a href="admin/change-status/${u.taiKhoan.email }.htm?linkEdit"><i
+															class=" fas fa-edit green-color"
+															></i></a>
+													</td>
 
 												</tr>
 											</c:forEach>
@@ -84,9 +91,12 @@
 												<td><button type="button" class="btn btn-status-locked">
 														Khóa</button></td>
 												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#informodal"></i> <i
+													data-toggle="modal" data-target="#informodal"></i>
+													<a><i
 													class=" fas fa-edit green-color" data-toggle="modal"
-													data-target="#bs-example-modal-lg"></i></td>
+													data-target="#bs-example-modal-lg"></i></a>
+													
+												</td>
 											</tr>
 										</tbody>
 
@@ -105,9 +115,8 @@
 			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!--  Modal content for the above example -->
-			<c:forEach var="u" items="${users }">
-				<div class="modal fade" id=${u.maKH } tabindex="-1" role="dialog"
-					aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal fade" id="show-info" tabindex="-1" role="dialog"
+					 aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -121,6 +130,8 @@
 									<div
 										class="row container d-flex justify-content-center p-0 m-0">
 										<div class="col-md-12">
+										
+										
 											<div class="card user-card-full">
 
 												<div class="row m-l-0 m-r-0">
@@ -129,8 +140,9 @@
 														<div class="card-block text-center text-white">
 															<div class="m-b-25">
 																<img
-																	src="https://img.icons8.com/bubbles/100/000000/user.png"
+																	src=${user.anh }
 																	class="img-radius" alt="User-Profile-Image">
+																	
 															</div>
 															<h6 class="f-w-600">user001</h6>
 															<p>NV001</p>
@@ -145,19 +157,19 @@
 															<div class="row">
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">Họ và tên</p>
-																	<h6 class="text-muted f-w-400">${u.hoTen }</h6>
+																	<h6 class="text-muted f-w-400">${user.hoTen }</h6>
 																</div>
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">Địa chỉ</p>
-																	<h6 class="text-muted f-w-400">${u.diaChi }</h6>
+																	<h6 class="text-muted f-w-400">${user.diaChi }</h6>
 																</div>
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">Ngày sinh</p>
-																	<h6 class="text-muted f-w-400">${u.ngaySinh }</h6>
+																	<h6 class="text-muted f-w-400">${user.ngaySinh }</h6>
 																</div>
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">Phái</p>
-																	<h6 class="text-muted f-w-400">${u.phai }</h6>
+																	<h6 class="text-muted f-w-400">${user.phai }</h6>
 																</div>
 															</div>
 
@@ -167,11 +179,11 @@
 
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">Email</p>
-																	<h6 class="text-muted f-w-400">${u.taiKhoan.email }</h6>
+																	<h6 class="text-muted f-w-400">${user.taiKhoan.email }</h6>
 																</div>
 																<div class="col-sm-6">
 																	<p class="m-b-10 f-w-600">SĐT</p>
-																	<h6 class="text-muted f-w-400">${u.sdt }</h6>
+																	<h6 class="text-muted f-w-400">${user.sdt }</h6>
 																</div>
 															</div>
 
@@ -210,7 +222,43 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-			</c:forEach>
+			<!-- /.modal -->
+			<!-- footer -->
+			<!-- ============================================================== -->
+			
+			<!-- ============================================================== -->
+			<!-- End footer -->
+			<!-- ============================================================== -->
+			<!-- Center modal content -->
+			<!--<c:forEach var="u" items="${users }">-->
+			<div class="modal fade" id="editStatus" tabindex="-1"
+				role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
+					<div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      
+			        <p>Muốn đổi trạng thái k ??</p>
+			        
+			      </div>
+			      <form method="post" modelAttribute="taiKhoan">
+			      <div class="modal-footer">
+			      	
+				      	<button type="button"  class="btn btn-danger" data-dismiss="modal">Close</button>
+				        <button type="submit" name="${btnStatus}" class="btn btn-primary">Save changes</button>
+			      	
+			        
+			      </div>
+			      </form>
+				</div>
+			</div>
+			</div>
+			<!--</c:forEach>-->
 			<!-- /.modal -->
 			<!-- footer -->
 			<!-- ============================================================== -->
@@ -219,146 +267,26 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 			<!-- Center modal content -->
-			<div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
-				role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Chỉnh sửa</h4>
-							<button type="button" class="close v-close" data-dismiss="modal"
-								aria-hidden="true">×</button>
-						</div>
-						<div class="modal-body">
-							<div class="card">
-								<div class="card-body">
-									<div class="e-profile">
-										<div class="row">
-											<div class="col-12 col-sm-auto mb-3">
-												<div class="mx-auto" style="width: 140px;">
-													<div
-														class="d-flex justify-content-center align-items-center rounded"
-														style="height: 140px; background-color: rgb(233, 236, 239);">
-														<span
-															style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-													</div>
-												</div>
-											</div>
-											<div
-												class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-												<div class="text-center text-sm-left mb-2 mb-sm-0">
-													<h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-													<p class="mb-0">@johnny.s</p>
-													<div class="mt-2">
-														<button class="btn shadow-none btn-green" type="button">
-															<i class="fa fa-fw fa-camera"></i> <span
-																style="color: #fff !important">Đổi ảnh </span>
-														</button>
-													</div>
-												</div>
-
-											</div>
-										</div>
-
-										<div class="tab-content pt-3">
-											<div class="tab-pane active">
-												<form class="form" novalidate="">
-													<div class="row">
-														<div class="col">
-															<div class="row">
-																<div class="col">
-																	<div class="form-group">
-																		<label>Họ và tên</label> <input class="form-control"
-																			type="text" name="name" placeholder="John Smith"
-																			value="John Smith">
-																	</div>
-																</div>
-																<div class="col">
-																	<div class="form-group">
-																		<label>Username</label> <input class="form-control"
-																			type="text" name="username" placeholder="johnny.s"
-																			value="johnny.s">
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col">
-																	<div class="form-group">
-																		<label>Email</label> <input class="form-control"
-																			type="text" placeholder="user@example.com">
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col">
-																	<div class="form-group">
-																		<label>Địa chỉ</label> <input class="form-control"
-																			type="text" placeholder="user@example.com">
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col">
-																	<div class="form-group">
-																		<label>Ngày sinh</label> <input class="form-control"
-																			type="text" placeholder="user@example.com">
-																	</div>
-																</div>
-
-																<div class="col">
-																	<div class="form-group">
-																		<label>Phái</label>
-																		<div class="form-control">
-																			<div
-																				class="custom-control custom-radio custom-control-inline">
-																				<input type="radio" id="customRadioInline1"
-																					name="customRadioInline1"
-																					class="custom-control-input"> <label
-																					class="custom-control-label"
-																					for="customRadioInline1">Nam</label>
-																			</div>
-																			<div
-																				class="custom-control custom-radio custom-control-inline">
-																				<input type="radio" id="customRadioInline2"
-																					name="customRadioInline1"
-																					class="custom-control-input"> <label
-																					class="custom-control-label"
-																					for="customRadioInline2">Nữ</label>
-																			</div>
-																		</div>
-
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col d-flex justify-content-end">
-															<button class="btn btn-green" type="submit">Lưu</button>
-														</div>
-													</div>
-												</form>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+			<!-- Chi Tiet Khach Hang -->
+			
 					<!-- /.modal -->
 				</div>
 				<!-- ============================================================== -->
 				<!-- End Page wrapper  -->
 				<!-- ============================================================== -->
-			</div>
 		</div>
+		
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
-	</div>
+	
 	<%@include file="./script.jsp"%>
 	<script type="text/javascript">
+		if ($(".modal-flag").attr("idModal") === "modalCreate") {
+			$("#editStatus").modal("show");
+		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
+			$("#show-info").modal("show");
+		}
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">

@@ -7,7 +7,8 @@
 	<%@include file="./header.jsp"%>
 	<!-- flag -->
 
-	<div class="alert-flag" aType='${ms.type}' aMessage="${ms.message }"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">

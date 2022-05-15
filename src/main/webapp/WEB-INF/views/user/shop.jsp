@@ -6,11 +6,12 @@
 <html>
 
 <%@include file="./head.jsp"%>
-<body style="max-width: 100vw; transform: none; overflow-x: hidden;">
+<body style="max-width: 100vw; overflow-x: hidden !important;">
 	<%@include file="./header.jsp"%>
 	<main class="main bg-white pt-50 pb-50"
-		style="width: 100vw; overflow-x: scroll"
 		style="background: #04696312 !important;">
+		<div class="alert-flag" aType='${message.type}'
+			aMessage="${message.message }"></div>
 		<jsp:useBean id="pagedListHolder" scope="request"
 			type="org.springframework.beans.support.PagedListHolder" />
 		<c:url value="shop.htm" var="pagedLink">
@@ -97,9 +98,8 @@
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
 											<div class="product-img product-img-zoom">
-												<a href="product-detail/${p.maSP }.htm"
-													style="min-height: 160px"> <img
-													style="min-height: 250px" class=" default-img"
+												<a href="product-detail/${p.maSP }.htm"> <img
+													style="min-height: 260px" class=" default-img"
 													src="./resources/imgs/${p.anh}" alt="" />
 
 												</a>
@@ -126,11 +126,15 @@
 														test="${p.loai  == 2 }">Unisex</c:if>, ${p.nhanHang.tenNH}</a>
 											</div>
 											<h2>
-												<a href="shop-product-right.html">${p.tenSP}</a>
+												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
 											</h2>
 											<div class="rating-result" title="90%">
 												<span> <span> ${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG }</span>
 												</span>
+											</div>
+											<div class="">
+												<span><i class="fa-solid fa-badge-dollar"></i>
+													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán </span>
 											</div>
 											<div class="product-price">
 												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
@@ -139,8 +143,8 @@
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
 													form="checkout${p.maSP }" name="btnCheckout"
-													class="action-btn hover-up hover-white">
-													<i class="fa-regular text-brand fa-credit-card hover-white"></i>
+													class="action-btn hover-up text-brand hover-white">
+													<i class="fa-regular  fa-credit-card hover-white"></i>
 												</button>
 											</div>
 										</div>
@@ -342,45 +346,20 @@
 								<h5 class="widget-title mb-10">Bán Chạy</h5>
 								<div class="bt-1 border-color-1"></div>
 							</div>
-							<div class="single-post clearfix">
-								<div class="image">
-									<img src="assets/imgs/shop/product-16-2.jpg" alt="#" />
-								</div>
-								<div class="content pt-10">
-									<h5>
-										<a href="shop-product-detail.html">Chen Cardigan</a>
-									</h5>
-									<p class="price mb-0 mt-5">$99.50</p>
-								</div>
-							</div>
-							<div class="single-post clearfix">
-								<div class="image">
-									<img src="assets/imgs/shop/product-7-1.jpg" alt="#" />
-								</div>
-								<div class="content pt-10">
-									<h6>
-										<a href="shop-product-detail.html">Chen Sweater</a>
-									</h6>
-									<p class="price mb-0 mt-5">$89.50</p>
-									<div class="product-rate">
-										<div class="product-rating" style="width: 80%"></div>
+							<c:forEach var="p" items="${bestSales}">
+								<div class="single-post clearfix">
+									<div class="image">
+										<img src="./resources/imgs/${p.anh}" alt="#" />
+									</div>
+									<div class="content pt-10">
+										<h5>
+											<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
+										</h5>
+										<p class="price mb-0 mt-5">${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}</p>
 									</div>
 								</div>
-							</div>
-							<div class="single-post clearfix">
-								<div class="image">
-									<img src="assets/imgs/shop/product-7-1.jpg" alt="#" />
-								</div>
-								<div class="content pt-10">
-									<h6>
-										<a href="shop-product-detail.html">Colorful Jacket</a>
-									</h6>
-									<p class="price mb-0 mt-5">$25</p>
-									<div class="product-rate">
-										<div class="product-rating" style="width: 60%"></div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
+
 						</div>
 					</div>
 				</div>

@@ -19,4 +19,6 @@
 
 <!-- Template CSS -->
 <link rel="stylesheet" href="<c:url value='/resources/css/main.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/alertify.min.css'/>" />
 </head>

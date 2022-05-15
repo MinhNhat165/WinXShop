@@ -25,7 +25,7 @@ import winx.entity.TaiKhoan;
 @Transactional
 @Controller
 @RequestMapping("")
-public class UserController extends CommonMethod{
+public class UserController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 
@@ -40,32 +40,31 @@ public class UserController extends CommonMethod{
 			@RequestParam("email") String email) {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
-	  
-		  if(tkdn == null){
-			  model.addAttribute("message", "Sai thông tin đăng nhập!");
-			  return "user/login"; 
-		  }
-		 
+
+		if (tkdn == null) {
+			model.addAttribute("message", "Sai thông tin đăng nhập!");
+			return "user/login";
+		}
+
 		if (tkdn.getTrangThai() == false) {
 			model.addAttribute("message", "Tài khoản đang bị khóa!");
 
 			return "user/login";
 		}
-		
+
 		if (tkdn.getQuyen() == true) {
 			KhachHang kh = this.getKhachHang(tkdn.getEmail());
 			if (kh != null) {
 				ss.setAttribute("user", kh);
 				ss.setAttribute("tkkh", tkdn);
-				TaiKhoan tk = (TaiKhoan)ss.getAttribute("tkkh");
+				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
 				ss.setAttribute("vaitro", tkdn.getQuyen());
 				return "redirect:/home.htm";
 			} else {
 				model.addAttribute("message", "Tài khoản không tồn tại!");
 				return "user/login";
 			}
-		}
-		else {
+		} else {
 			model.addAttribute("message", "Tài khoản không tồn tại!");
 		}
 		return "user/login";
@@ -113,6 +112,7 @@ public class UserController extends CommonMethod{
 	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk, BindingResult errors,
 			@RequestParam("password") String pw, @RequestParam("repassword") String rpw) {
 		Session session = factory.openSession();
+
 		Transaction t = session.beginTransaction();
 		TaiKhoan tkhoan = (TaiKhoan) session.get(TaiKhoan.class, tk.getEmail());
 		if (!pw.equals(rpw)) {
@@ -138,18 +138,18 @@ public class UserController extends CommonMethod{
 					session.save(kh);
 					ts.commit();
 					return "redirect:account.htm";
-				}catch(Exception e){
+				} catch (Exception e) {
 					ts.rollback();
 					Transaction td = session.beginTransaction();
 					try {
 						session.delete(tk);
 						td.commit();
-					}catch(Exception e2) {
+					} catch (Exception e2) {
 						td.rollback();
 					}
-					
+
 				}
-				
+
 				return "user/register";
 			} catch (Exception e) {
 				t.rollback();
