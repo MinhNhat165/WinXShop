@@ -1,6 +1,10 @@
 package winx.controller;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +15,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -18,17 +23,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import winx.bean.UploadFile;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
 
 @Controller
 @Transactional
 @RequestMapping("admin")
-public class ProductController {
+public class ProductController extends CommonMethod{
 
 	@Autowired
 	SessionFactory factory;
+	@Autowired
+	@Qualifier("uploadFile")
+	UploadFile basePathUploadFile;
 	
 @RequestMapping(value="product", method=RequestMethod.GET)
 	
@@ -43,7 +54,9 @@ public class ProductController {
 	@RequestMapping(value="product/add.htm", method=RequestMethod.GET)
 	
 	public String add(ModelMap model) {
-		model.addAttribute("sanpham",new SanPham());
+		SanPham sp = new SanPham();
+		sp.setMaSP(generatorId("SP", "SanPham", "maSP"));
+		model.addAttribute("sanpham",sp);
 		List<SanPham> ds = getdsSanPham();
 		model.addAttribute("dssanpham", ds);
 		model.addAttribute("idModal", "modalCreate");
@@ -55,7 +68,7 @@ public class ProductController {
 	@RequestMapping(value="product/add.htm",params="btnAdd",method=RequestMethod.POST)
 	
 	public String addProduct(@ModelAttribute("sanpham") SanPham sp,ModelMap model,
-			BindingResult errors) {
+			BindingResult errors,@RequestParam("anh3") MultipartFile anh) {
 	
 		if(this.checkUniqueMaSP(sp.getMaSP()) == false) {
 			errors.rejectValue("maSP","sanpham","Mã đã tồn tại!");
@@ -68,23 +81,33 @@ public class ProductController {
 		if(this.checkProduct(sp.getTenSP(),sp.getMaSP(), sp.getDungTich(),sp.getLoai(),sp.getNhanHang().getMaNH())==false) {
 			errors.rejectValue("tenSP", "sanpham","Sản phẩm đã tồn tại!");
 		}
-		/*
-		 * if(sp.getSlt() < 0) {
-		 * errors.rejectValue("slt","sanpham","Giá trị không hợp lệ!"); }
-		 * if(sp.getDungTich() <= 0) {
-		 * errors.rejectValue("dungTich","sanpham","Giá trị không hợp lệ!"); }
-		 */
+		
+		  if(sp.getSlt() < 0) {
+		  errors.rejectValue("slt","sanpham","Giá trị không hợp lệ!"); }
+		  if(sp.getDungTich() <= 0) {
+		  errors.rejectValue("dungTich","sanpham","Giá trị không hợp lệ!"); }
+		
 		if(sp.getNgaySX().after(sp.getNgayHH())) {
 			errors.rejectValue("ngayHH","sanpham","Ngày hết hạn phải lớn hơn ngày sản xuất!");
 		}
+		
+		if (anh.isEmpty()) {
+			errors.rejectValue("anh", "nhanhang","Ảnh không được rỗng!");
+		}	
 	
 		if(!errors.hasErrors()) {
+			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
+			String tenAnh = date + anh.getOriginalFilename();
+			String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
+			
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		sp.setNgayThem(new Date());
+		
 		try {
-			
+			sp.setAnh(tenAnh);
 			session.save(sp);
+			anh.transferTo(new File(duongDanAnh));
 			t.commit();
 			model.addAttribute("sanpham",new SanPham());
 			return "redirect:/admin/product.htm";
@@ -129,7 +152,7 @@ public class ProductController {
 	@RequestMapping(value="product/update/{id}.htm",params="btnEdit", method=RequestMethod.POST)
 	
 	public String updateProduct(@ModelAttribute("sanpham") SanPham sp,
-			BindingResult errors,ModelMap model) {
+			BindingResult errors,ModelMap model,@RequestParam("anh3") MultipartFile anh) {
 
 		if(this.checkProduct(sp.getTenSP(),sp.getMaSP(), sp.getDungTich(),sp.getLoai(),sp.getNhanHang().getMaNH())==false) {
 			errors.rejectValue("tenSP", "sanpham","Sản phẩm đã tồn tại!");
@@ -140,23 +163,40 @@ public class ProductController {
 		if(sp.getNgaySX().after(sp.getNgayHH())) {
 			errors.rejectValue("ngayHH","sanpham","Ngày hết hạn phải lớn hơn ngày sản xuất!");
 		}
-		if(!errors.hasErrors()) {
-
-			Session session = factory.openSession();
-			Transaction t = session.beginTransaction();
-			
-			try {
-				session.update(sp);
-				t.commit();
-				return "redirect:/admin/product.htm";
-			}
-			catch(Exception e) {
-				t.rollback();
-			}
-			finally {
-				session.close();
-			}
+	
+		if(sp.getNgaySX().before(new Date())) {
+			errors.rejectValue("ngaySX","sanpham","Ngày Sản xuất phải bé hơn ngày hiện tại!");
 		}
+		if (anh.isEmpty()) {
+			errors.rejectValue("anh", "nhanhang","Ảnh không được rỗng!");
+		}	
+	
+		if(!errors.hasErrors()) {
+			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
+			String tenAnh = date + anh.getOriginalFilename();
+			String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
+			
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		sp.setNgayThem(new Date());
+		
+		try {
+			sp.setAnh(tenAnh);
+			session.update(sp);
+			anh.transferTo(new File(duongDanAnh));
+			t.commit();
+			model.addAttribute("sanpham",new SanPham());
+			return "redirect:/admin/product.htm";
+		}
+		catch(Exception e) {
+			t.rollback();
+
+		}
+		finally {
+			session.close();
+		}
+		}
+
 		
 		List<SanPham> ds = getdsSanPham();
 		model.addAttribute("dssanpham", ds);

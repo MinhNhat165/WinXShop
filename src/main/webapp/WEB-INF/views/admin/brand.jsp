@@ -35,8 +35,7 @@
 
 				<a href="admin/brand/add.htm">
 					<button type="button"
-						class="btn btn-secondary green-bg-color shadow-none"
-						data-toggle="modal" data-target="#addbrand">
+						class="btn btn-secondary green-bg-color shadow-none">
 
 						<i class="fas fa-plus-circle"></i> Thêm
 					</button>
@@ -124,7 +123,7 @@
 											<div class=" tm-edit-product-row">
 
 												<form:form action="admin/brand/add.htm"
-													class="tm-edit-product-form" modelAttribute="nhanhang"
+													class="tm-edit-product-form" enctype="multipart/form-data" modelAttribute="nhanhang"
 													method="POST">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
@@ -151,8 +150,10 @@
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input  name="anh" path="anh" type="file" class="file-upload"
+																	<input  name="anhh" type="file" class="file-upload"
 																		style="display: none;" />
+																		<form:errors
+																		path="anh"></form:errors>
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																		ảnh lên</button>
@@ -202,7 +203,7 @@
 											<div class=" tm-edit-product-row">
 
 												<form:form class="tm-edit-product-form"
-													modelAttribute="nhanhang" method="post">
+													modelAttribute="nhanhang" enctype="multipart/form-data" method="post">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
 															<div class="form-group mb-3">
@@ -251,8 +252,10 @@
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<form:input path="anh" name="anh" type="file" class="file-upload2"
+																	<input  name="anh2" type="file" class="file-upload2"
 																		style="display: none;" />
+																		<form:errors
+																		path="anh"></form:errors>
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
 																		ảnh lên</button>
