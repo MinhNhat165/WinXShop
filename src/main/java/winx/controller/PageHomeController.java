@@ -37,17 +37,18 @@ public class PageHomeController extends CommonMethod {
 		List<TinMoi> newsList = this.getAllNews();
 		List<NhanHang> brandList = this.getAllBrand();
 		List<SanPham> productList = this.getRandomProduct(8);
-		List<SanPham> newProductList = this.getProductList("WHERE DATEDIFF(day, ngayThem, getdate()) < 5 and slt > 0", 0);
+		List<SanPham> newProductList = this.getProductList("WHERE DATEDIFF(day, ngayThem, getdate()) < 5 and slt > 0",
+				0);
+		List<SanPham> bestSaleProductList = this.getTopBestSaleProduct();
 		model.addAttribute("newsList", newsList);
 		model.addAttribute("brandList", brandList);
 		model.addAttribute("productList", productList);
 		model.addAttribute("saleList", getSales(2));
 		model.addAttribute("user", getCustomer("KH000001"));
 		model.addAttribute("newProductList", newProductList);
+		model.addAttribute("bestSaleProductList", bestSaleProductList);
 		return "user/index";
 	}
-
-	
 
 	public List<KhuyenMai> getSales(int number) {
 		Session session = factory.getCurrentSession();

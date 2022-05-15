@@ -86,12 +86,12 @@
 													class="invisible position-absolute" type="number"
 													value="${p.soLuong}" name="soLuong"></input>
 													<div class="shopping-cart-img">
-														<a href="shop-product-right.html"><img alt="Evara"
-															src="./resources/imgs/${p.sanPham.anh}" /></a>
+														<a href="product-detail/${p.sanPham.maSP}.htm"><img
+															alt="Evara" src="./resources/imgs/${p.sanPham.anh}" /></a>
 													</div>
 													<div class="shopping-cart-title">
 														<h4>
-															<a href="shop-product-right.html">${p.sanPham.tenSP}</a>
+															<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
 														</h4>
 														<h4>
 															<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
@@ -128,18 +128,18 @@
 			<div class="container">
 				<div class="header-wrap header-space-between position-relative">
 					<div class="logo logo-width-1 d-block d-lg-none">
-						<a href="index.html"><img
-							src="./resources/imgs/theme/logo.svg" alt="logo" /></a>
+						<a href=""><img src="./resources/imgs/theme/logo.svg"
+							alt="logo" /></a>
 					</div>
 					<div class="header-nav d-none d-lg-flex">
 						<div class="main-categori-wrap d-none d-lg-block">
-							<a href="shop-grid-right.html"> Hãy mua theo cách của bạn </a>
+							<a href=""> Hãy mua theo cách của bạn </a>
 						</div>
 						<div
 							class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
 							<nav>
 								<ul>
-									<li><a class="active" href="index.html">Home </a></li>
+									<li><a class="active" href="">Home </a></li>
 									<li><a href="page-about.html">About</a></li>
 									<li><a href="shop.htm">Shop </a></li>
 
@@ -193,9 +193,9 @@
 					<!-- mobile menu start -->
 					<nav>
 						<ul class="mobile-menu">
-							<li><a class="active" href="index.html">Home </a></li>
+							<li><a class="active" href="/">Home </a></li>
 							<li><a href="page-about.html">About</a></li>
-							<li><a href="shop-grid-right.html">Shop </a></li>
+							<li><a href="shop.htm">Shop </a></li>
 
 							<li><a href="page-contact.html">Contact</a></li>
 						</ul>

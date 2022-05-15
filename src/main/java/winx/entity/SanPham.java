@@ -55,7 +55,7 @@ public class SanPham {
 	@Column(name = "Loai")
 	private int loai;
 	@Column(name = "DiemDG")
-	private int diemDG;
+	private float diemDG;
 	@ManyToOne
 	@JoinColumn(name = "MaNH")
 	private NhanHang nhanHang;
@@ -72,11 +72,11 @@ public class SanPham {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<CTDG> dsCTDG;
 
-	public int getDiemDG() {
+	public float getDiemDG() {
 		return diemDG;
 	}
 
-	public void setDiemDG(int diemDG) {
+	public void setDiemDG(float diemDG) {
 		this.diemDG = diemDG;
 	}
 

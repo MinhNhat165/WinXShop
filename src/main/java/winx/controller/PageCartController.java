@@ -54,11 +54,14 @@ public class PageCartController extends CommonMethod {
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
 		boolean isSuccess = addToCart(maSP, maKH, 1);
+
 		if (isSuccess) {
-			redirectAttributes.addFlashAttribute("message", "Sản phẩm đã được thêm vào giõ hàng");
+
+			redirectAttributes.addFlashAttribute("message",
+					new Message("success", "Sản phẩm đã được thêm vào giỏ hàng"));
 
 		} else
-			redirectAttributes.addFlashAttribute("message", "Thêm thất bại");
+			redirectAttributes.addFlashAttribute("message", new Message("error", "Thêm thất bại"));
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
 	}
