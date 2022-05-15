@@ -60,7 +60,7 @@ public class CommonMethod {
 
 	public List<SanPham> getRandomProduct(int number) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM SanPham ORDER BY RAND()";
+		String hql = "FROM SanPham WHERE slt > 0 ORDER BY RAND()";
 		Query query = session.createQuery(hql);
 		query.setMaxResults(number);
 		List<SanPham> list = query.list();
