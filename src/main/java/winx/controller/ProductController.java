@@ -161,46 +161,30 @@ public class ProductController extends CommonMethod {
 			errors.rejectValue("ngayHH", "sanpham", "Ngày hết hạn phải lớn hơn ngày sản xuất!");
 		}
 
-	
-		if(sp.getNgaySX().after(new Date())) {
-			errors.rejectValue("ngaySX","sanpham","Ngày Sản xuất phải bé hơn ngày hiện tại!");
+		if (sp.getNgaySX().after(new Date())) {
+			errors.rejectValue("ngaySX", "sanpham", "Ngày Sản xuất phải bé hơn ngày hiện tại!");
 		}
-		boolean checkanh=true;
-		if(anh.isEmpty()) {
-			checkanh= false;
+		boolean checkanh = true;
+		if (anh.isEmpty()) {
+			checkanh = false;
 		}
-		if(!errors.hasErrors()) {
+		if (!errors.hasErrors()) {
 			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 			String tenAnh = date + anh.getOriginalFilename();
 			String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
-			
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-		sp.setNgayThem(new Date());
-		
-		try {
-			if(checkanh) {
-				sp.setAnh(tenAnh);
-				anh.transferTo(new File(duongDanAnh));
-			}
-			
-			session.update(sp);
-			
-			t.commit();
-			model.addAttribute("sanpham",new SanPham());
-			return "redirect:/admin/product.htm";
-		}
-		catch(Exception e) {
-			t.rollback();
 
 			Session session = factory.openSession();
 			Transaction t = session.beginTransaction();
 			sp.setNgayThem(new Date());
 
 			try {
-				sp.setAnh(tenAnh);
+				if (checkanh) {
+					sp.setAnh(tenAnh);
+					anh.transferTo(new File(duongDanAnh));
+				}
+
 				session.update(sp);
-				anh.transferTo(new File(duongDanAnh));
+
 				t.commit();
 				model.addAttribute("sanpham", new SanPham());
 				return "redirect:/admin/product.htm";
