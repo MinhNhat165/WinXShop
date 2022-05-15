@@ -100,12 +100,12 @@ TaiKhoan tkdn = this.KTtaikhoan(tk);
 		KhachHang kh = list.get(0);
 		return kh;
 	}
-	@RequestMapping("register")
-	public String register(ModelMap model) {
-		model.addAttribute("taikhoan",new TaiKhoan());
-		
-		return "user/register";
-	}
+//	@RequestMapping("register")
+//	public String register(ModelMap model) {
+//		model.addAttribute("taikhoan",new TaiKhoan());
+//		
+//		return "user/register";
+//	}
 	
 	@RequestMapping("register")
 	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk) {

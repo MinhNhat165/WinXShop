@@ -121,10 +121,10 @@ public class CustomerController {
 		try {
 			String emailTaiKhoan = taiKhoan.getEmail();
 			taiKhoan = getTaiKhoan(emailTaiKhoan);
-			if(taiKhoan.getTrangThai()==(byte)1) {
-				taiKhoan.setTrangThai((byte)0);
+			if(taiKhoan.getTrangThai()) {
+				taiKhoan.setTrangThai(false);
 			} else {
-				taiKhoan.setTrangThai((byte)1);
+				taiKhoan.setTrangThai(true);
 			}
 			session.update(taiKhoan);
 			t.commit();
