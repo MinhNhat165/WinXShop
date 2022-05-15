@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import winx.entity.KhachHang;
 import winx.entity.SanPham;
@@ -105,9 +107,22 @@ TaiKhoan tkdn = this.KTtaikhoan(tk);
 	}
 	@RequestMapping("register")
 	public String register(ModelMap model) {
-//		model.addAttribute("taikhoan",new TaiKhoan());
+		model.addAttribute("taikhoan",new TaiKhoan());
 		
 		return "user/register";
 	}
 	
+	@RequestMapping("register")
+	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk) {
+		Session session = factory.getCurrentSession();
+		Transaction t = session.beginTransaction();
+		try {
+//			session.
+//			t.commit();
+			
+		}catch(Exception e){
+			
+		}
+		return "user/register";
+	}
 }
