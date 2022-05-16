@@ -181,7 +181,6 @@
 																		class="form-control validate" rows="3" required="true"></form:textarea>
 																</div>
 
-
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 																<div
@@ -191,10 +190,10 @@
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<input  name="anh3" type="file" class="file-upload"
+																	<input name="anh3" type="file" class="file-upload"
 																		style="display: none;" />
-																		<form:errors
-																		path="anh"></form:errors>
+																		<span class="text-danger"><form:errors
+																		path="anh"></form:errors></span>
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																		ảnh lên</button>

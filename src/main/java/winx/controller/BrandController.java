@@ -65,8 +65,6 @@ public class BrandController extends CommonMethod {
 	public String addBrand(ModelMap model, @ModelAttribute("nhanhang") NhanHang nh,
 			BindingResult errors,
 			@RequestParam("anhh") MultipartFile anh) {
-		
-		System.out.println(anh.getOriginalFilename());
 
 			if (this.checkUniqueMaNH(nh.getMaNH()) == false) { 
 				errors.rejectValue("maNH","nhanhang", "Mã đã tồn tại!");
