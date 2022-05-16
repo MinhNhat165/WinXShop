@@ -12,7 +12,6 @@
 
 <body>
 	<!--  flag -->
-
 	<div class="modal-flag" idModal="${idModal}"></div>
 	<div class="page-flag" data="sale"></div>
 	<div class="alert-flag" aType='${message.type}'
