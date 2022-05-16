@@ -11,15 +11,18 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import winx.bean.UploadFile;
 import winx.entity.KhachHang;
+import winx.entity.TaiKhoan;
 import winx.entity.TinMoi;
 
 @Transactional
@@ -57,7 +60,7 @@ public class PageAccountController {
 				model.addAttribute("message2","Mật khẩu không trùng khớp!");
 			}else {
 				Session session = factory.openSession();
-				Transaction t = session.beginTransaction();
+				 Transaction t = session.beginTransaction();
 				tk.setMatKhau(nPW);
 				try {
 					session.update(tk);
@@ -87,8 +90,7 @@ public class PageAccountController {
 	
 	
 	//Oanh
-	@Autowired
-	SessionFactory factory;
+
 	@Qualifier("uploadFile")
 	UploadFile basePathUploadFile;
 	public List<KhachHang> getCustomer(){
