@@ -87,7 +87,7 @@
 	</bean>
 	<bean id="uploadFile" class="winx.bean.UploadFile">
 		<property name="basePath"
-			value="T:\\Code\\eclipseEE\\Winx\\src\\main\\webapp\\resources\\imgs"></property>
+			value="D:\\PTIT_P\\WinXShop\\src\\main\\webapp\\resources\\imgs"></property>
 	</bean>
 	<!-- Cấu hình package chứa các controller -->
 
