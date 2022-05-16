@@ -56,7 +56,7 @@ const handleRemoveProductSale = (e) => {
 
 	if ($(`.product[product-id=${productRemove.getAttribute("product-id")}]`)) {
 		$(`[product-id=${productRemove.getAttribute("product-id")}]`).removeClass(
-			"product-checked bg-green-light",
+			"product-checked bg-green-light"
 		);
 	}
 	productRemove.remove();
