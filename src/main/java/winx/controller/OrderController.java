@@ -2,6 +2,8 @@ package winx.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -37,11 +39,7 @@ public class OrderController {
 	}
 	public DonDat getOrder(String MaDD) {
 		Session session = fa.getCurrentSession();
-		String hql = "FROM DonDat where MaDD=:MaDD";
-		Query query = session.createQuery(hql);
-		query.setParameter("MaDD", MaDD);
-		DonDat o = (DonDat) query.list().get(0);
-		
+		DonDat o = (DonDat) session.get(DonDat.class, MaDD);
 		return o;
 	}
 	//get list order
@@ -58,8 +56,7 @@ public class OrderController {
 			@PathVariable("id") String id) {
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("order",this.getOrder(id));
-		DonDat t = this.getOrder(id);
-		System.out.println(t);
+		
 		model.addAttribute("btnStatus", "btnEdit");
 		
 		List<DonDat> list = getOrders();
@@ -69,11 +66,14 @@ public class OrderController {
 	}
 
 	@RequestMapping(value="order/change-status/{id}.htm",params="btnEdit", method=RequestMethod.POST)
-	public String updateStatus(ModelMap model,@ModelAttribute("order") DonDat order) {	
+	public String updateStatus(HttpServletRequest request,  ModelMap model, @PathVariable("id") String id) {
+		DonDat order = getOrder(id);
+		String trangThai = request.getParameter("trangThai");
+		order.setTrangThai(Integer.parseInt(trangThai));
 		Session session = fa.openSession();
 		Transaction t = session.beginTransaction();	
 		try {
-			System.out.println(order.getMaDD());
+
 			session.update(order);
 			t.commit();
 			System.out.println("success");

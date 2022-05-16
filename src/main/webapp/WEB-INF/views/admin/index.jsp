@@ -31,7 +31,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">236</h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">${countCustomer }</h2>
                                         <span
                                             class="badge bg-cyan font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
                                     </div>
@@ -58,7 +58,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
-                                        18,306</h2>
+                                        ${countProduct }</h2>
                                     <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">
                                         Sản Phẩm
                                     </h6>
@@ -82,7 +82,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">${countOrder }</h2>
                                         <span
                                             class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
                                     </div>
@@ -110,7 +110,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">236</h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">${countBrand }</h2>
                                         <span
                                             class="badge bg-cyan font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
                                     </div>
@@ -138,7 +138,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
-                                        18,306</h2>
+                                        ${countSale }</h2>
                                     <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">
                                         Khuyến Mãi
                                     </h6>
@@ -161,7 +161,7 @@
                             <div class="d-flex d-lg-flex d-md-block align-items-center">
                                 <div>
                                     <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
+                                        <h2 class="text-dark mb-1 font-weight-medium">${countNews }</h2>
                                         <span
                                             class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
                                     </div>
