@@ -164,10 +164,10 @@ public class ProductController extends CommonMethod {
 		if (sp.getNgaySX().after(new Date())) {
 			errors.rejectValue("ngaySX", "sanpham", "Ngày Sản xuất phải bé hơn ngày hiện tại!");
 		}
+		boolean checkanh = true;
 		if (anh.isEmpty()) {
-			errors.rejectValue("anh", "nhanhang", "Ảnh không được rỗng!");
+			checkanh = false;
 		}
-
 		if (!errors.hasErrors()) {
 			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 			String tenAnh = date + anh.getOriginalFilename();
@@ -178,9 +178,13 @@ public class ProductController extends CommonMethod {
 			sp.setNgayThem(new Date());
 
 			try {
-				sp.setAnh(tenAnh);
+				if (checkanh) {
+					sp.setAnh(tenAnh);
+					anh.transferTo(new File(duongDanAnh));
+				}
+
 				session.update(sp);
-				anh.transferTo(new File(duongDanAnh));
+
 				t.commit();
 				model.addAttribute("sanpham", new SanPham());
 				return "redirect:/admin/product.htm";

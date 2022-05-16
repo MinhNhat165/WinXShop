@@ -2,7 +2,11 @@ package winx.controller;
 
 import java.util.List;
 
+
 import javax.transaction.Transactional;
+
+import javax.servlet.http.HttpSession;
+
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,6 +26,13 @@ import winx.entity.TinMoi;
 @Controller
 @RequestMapping("account")
 public class PageAccountController {
+	
+	@Autowired
+	SessionFactory factory;
+	@RequestMapping("account")
+	public String account(ModelMap model) {
+		return "user/account";
+	}
 
 	//nhat
 	
@@ -33,10 +44,37 @@ public class PageAccountController {
 	
 	
 	//Vi
+	@RequestMapping(value="account",params="btnpw")
+	public String changePW(HttpSession ss,@RequestParam("cpassword") String PW,
+			@RequestParam("npassword") String nPW,@RequestParam("renpassword") String rnPW,ModelMap model) {
+
+		TaiKhoan tk = (TaiKhoan)ss.getAttribute("tkkh");
+		if(tk.getMatKhau().trim().equals(PW) == false) {
+			model.addAttribute("message","Sai mật khẩu!");
+			
+		}else {
+			if(nPW.equals(rnPW) == false) {
+				model.addAttribute("message2","Mật khẩu không trùng khớp!");
+			}else {
+				Session session = factory.openSession();
+				Transaction t = session.beginTransaction();
+				tk.setMatKhau(nPW);
+				try {
+					session.update(tk);
+					t.commit();
+					model.addAttribute("message3", "Chỉnh sửa thành công!");
+				}catch(Exception e) {
+					t.rollback();
+					model.addAttribute("message3", "Chỉnh sửa thất bại!");
+				}
+			}
+		}
+
+		return "user/account";
+	}
 	
 	
-	
-	
+
 	
 	
 	

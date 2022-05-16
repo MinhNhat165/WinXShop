@@ -36,15 +36,15 @@
 										<div class="heading_s1">
 											<h3 class="mb-30">Đăng nhập</h3>
 										</div>
-										<form:form action=""  method="post" modelAttribute="taikhoan">
+										<form action="login.htm" method="post">
 											<div class="form-group form-floating">
-												<form:input path="email" type="text" required="" name="email"
+												<input type="text" required="" name="email"
 													class="form-control form-control-lg"
-													placeholder="Your Email" /> <label for="">Email</label>
+													placeholder="Email" /> <label for="">Email</label>
 											</div>
 											<div class="form-floating">
-												<form:input required="" path="" type="password" name="password"
-													class="form-control" placeholder="Password" /> <label
+												<input required=""  type="password" name="password"
+													class="form-control" placeholder="Mật khẩu" /> <label
 													for="">Password</label>
 											</div>
 											<div class="login_footer form-group">
@@ -60,14 +60,14 @@
 											</div>
 											<div class="form-group">
 												<button type="submit"
-													class="btn btn-fill-out btn-block hover-up" name="login">
+													class="btn btn-fill-out btn-block hover-up">
 													Đăng Nhập</button>
 											</div>
 											<div class="text-muted text-center">
 												Chưa có tài khoản? <a href="register.htm">Đăng ký
 													ngay!!!</a>
 											</div>
-										</form:form>
+										</form>
 									</div>
 								</div>
 							</div>

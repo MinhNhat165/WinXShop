@@ -1,5 +1,6 @@
 package winx.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,104 +20,142 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import winx.entity.KhachHang;
-import winx.entity.SanPham;
 import winx.entity.TaiKhoan;
-import winx.entity.TinMoi;
 
 @Transactional
 @Controller
 @RequestMapping("")
-public class UserController {
+public class UserController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 
-	@RequestMapping("account")
-	public String account(ModelMap model) {
-		return "user/account";
-	}
-
-	@RequestMapping(value="login",method=RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
-		
-		model.addAttribute("taikhoan",new TaiKhoan());	
+		model.addAttribute("taikhoan", new TaiKhoan());
 		return "user/login";
 	}
 
-	@RequestMapping(value="login",method=RequestMethod.POST)
-	public String login2(HttpSession ss,ModelMap model,
-			@ModelAttribute("taikhoan") TaiKhoan tk, BindingResult errors) {
-		
-TaiKhoan tkdn = this.KTtaikhoan(tk);
-		
-		if(tkdn == null){
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login2(HttpSession ss, ModelMap model, @RequestParam("password") String pw,
+			@RequestParam("email") String email) {
+
+		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
+
+		if (tkdn == null) {
 			model.addAttribute("message", "Sai thông tin đăng nhập!");
-			
 			return "user/login";
 		}
-		
-		if(tkdn.getTrangThai() == false) {
+
+		if (tkdn.getTrangThai() == false) {
 			model.addAttribute("message", "Tài khoản đang bị khóa!");
-			
+
 			return "user/login";
 		}
-		if (tkdn.getQuyen()== 1) {
-			KhachHang tkkh = this.getKhachHang(tkdn.getEmail());
-			if(tkkh != null) {
-				ss.setAttribute("user", tkkh);
+
+		if (tkdn.getQuyen() == true) {
+			KhachHang kh = this.getKhachHang(tkdn.getEmail());
+			if (kh != null) {
+				ss.setAttribute("user", kh);
+				ss.setAttribute("tkkh", tkdn);
+				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
 				ss.setAttribute("vaitro", tkdn.getQuyen());
 				return "redirect:/home.htm";
-			}else {
+			} else {
 				model.addAttribute("message", "Tài khoản không tồn tại!");
 				return "user/login";
 			}
-		} 
+		} else {
+			model.addAttribute("message", "Tài khoản không tồn tại!");
+		}
 		return "user/login";
 	}
-	
-	public TaiKhoan KTtaikhoan(TaiKhoan taiKhoan) {
+
+	public TaiKhoan KTtaikhoan(String email, String pw) {
+
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TaiKhoan WHERE quyen = '1' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '"
-				+ taiKhoan.getMatKhau() + "'";
+		String hql = "FROM TaiKhoan WHERE quyen = '1' AND email =:email and matKhau=:pw";
 		Query query = session.createQuery(hql);
+		query.setParameter("pw", pw);
+		query.setParameter("email", email);
 		List<TaiKhoan> list = query.list();
-		
-		if(list.size() == 0) {
+
+		if (list.size() == 0) {
 			return null;
 		}
 		TaiKhoan tk = list.get(0);
-		
+
 		return tk;
-		
+
 	}
+
 	public KhachHang getKhachHang(String email) {
 		Session session = factory.getCurrentSession();
 		String hql = "from KhachHang where email=:email";
 		Query query = session.createQuery(hql);
 		query.setParameter("email", email);
 		List<KhachHang> list = query.list();
-		if(list.size()==0) {
+		if (list.size() == 0) {
 			return null;
 		}
 		KhachHang kh = list.get(0);
 		return kh;
 	}
-//	@RequestMapping("register")
-//	public String register(ModelMap model) {
-//		model.addAttribute("taikhoan",new TaiKhoan());
-//		
-//		return "user/register";
-//	}
-	
+
 	@RequestMapping("register")
-	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk) {
-		Session session = factory.getCurrentSession();
+	public String register(ModelMap model) {
+		model.addAttribute("taikhoan", new TaiKhoan());
+
+		return "user/register";
+	}
+
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk, BindingResult errors,
+			@RequestParam("password") String pw, @RequestParam("repassword") String rpw) {
+		Session session = factory.openSession();
+
 		Transaction t = session.beginTransaction();
-		try {
-//			session.
-//			t.commit();
-			
-		}catch(Exception e){
-			
+		TaiKhoan tkhoan = (TaiKhoan) session.get(TaiKhoan.class, tk.getEmail());
+		if (!pw.equals(rpw)) {
+			errors.rejectValue("matKhau", "taikhoan", "Mật khẩu không trùng khớp");
+		}
+		if (tkhoan != null) {
+			errors.rejectValue("email", "taikhoan", "Tài khoản đã tồn tại!");
+		}
+		if (!errors.hasErrors()) {
+			try {
+				tk.setTrangThai(true);
+				tk.setNgayTao(new Date());
+				tk.setQuyen(true);
+				tk.setMatKhau(pw);
+				session.save(tk);
+				t.commit();
+				model.addAttribute("taikhoan", new TaiKhoan());
+				KhachHang kh = new KhachHang();
+				Transaction ts = session.beginTransaction();
+				try {
+					kh.setMaKH(generatorId("KH", "KhachHang", "maKH"));
+					kh.setTaiKhoan(tk);
+					session.save(kh);
+					ts.commit();
+					return "redirect:account.htm";
+				} catch (Exception e) {
+					ts.rollback();
+					Transaction td = session.beginTransaction();
+					try {
+						session.delete(tk);
+						td.commit();
+					} catch (Exception e2) {
+						td.rollback();
+					}
+
+				}
+
+				return "user/register";
+			} catch (Exception e) {
+				t.rollback();
+			} finally {
+				session.close();
+			}
 		}
 		return "user/register";
 	}

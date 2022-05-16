@@ -12,10 +12,10 @@
 
 <body>
 	<!--  flag -->
-
 	<div class="modal-flag" idModal="${idModal}"></div>
 	<div class="page-flag" data="sale"></div>
-	<div class="alert-flag" aType='${typeMessage}' aMessage="${message }"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- end flag  -->
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
@@ -30,7 +30,7 @@
 
 
 		<div class="page-wrapper pt-0">
-			
+
 
 			<!-- ============================================================== -->
 			<div class="container-fluid">

@@ -46,21 +46,25 @@
 											<h3 class="mb-30">Đăng ký tài khoản</h3>
 										</div>
 
-										<form:form action="register.html"  modelAttribute="taikhoan" method="post">
+										<form:form action="register.htm"  modelAttribute="taikhoan" method="post">
 											<div class="form-group form-floating">
 												<form:input path="email" type="text" required="" name="email"
 													placeholder="Email" class="form-control form-control-lg" />
+													<span class="text-danger"><form:errors
+																			path="email"></form:errors></span>
 												<label for="">Email</label>
 											</div>
 											<div class="form-group form-floating">
-												<form:input path="matKhau" required="" type="password" name="password"
-													placeholder="Password" class="form-control form-control-lg" />
+												<input required="" type="password" name="password"
+													placeholder="Nhập mật khẩu" class="form-control form-control-lg" />		
 												<label for="">Password</label>
 											</div>
 											<div class="form-group form-floating">
 												<input required="" type="password" name="repassword"
-													placeholder="Confirm password"
+													placeholder="Nhập lại mật khẩu"
 													class="form-control form-control-lg" />
+													<span class="text-danger"><form:errors
+																			path="matKhau"></form:errors></span>
 												<label for="">Confirm password</label>
 											</div>
 
