@@ -84,22 +84,22 @@ public class NewsController {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 				String tenAnh = date + anh.getOriginalFilename();
 				String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
-				System.out.println(duongDanAnh);
+				System.out.println("anh: "+duongDanAnh);
 
 				Session session = factory.openSession();
 				Transaction t = session.beginTransaction();
 				try {
 					Date dateNow = new Date();
 					news.ngayTao = dateNow;
-					news.trangThai = 1;
+					news.setTrangThai((byte)1);
 					news.setAnh(tenAnh);
 					session.save(news);
+					
 					t.commit();
 					anh.transferTo(new File(duongDanAnh));
-					model.addAttribute("message", "Thêm mới thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					System.out.println(e.getCause());
+					System.out.println("error catch " +e.getCause());
 					model.addAttribute("message", "Thêm mới thất bại!");
 				} finally {
 					session.close();

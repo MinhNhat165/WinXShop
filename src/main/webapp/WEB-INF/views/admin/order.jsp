@@ -59,7 +59,7 @@
 													<td>${o.ngayDat }</td>
 													<td>${o.tongTien }</td>
 													<td><button type="button"
-															class="btn btn-status-locked">${o.trangThai }</button></td>
+															class="btn btn-status-locked" id="order-status">${o.trangThai }</button></td>
 													<td class="text-center"><i
 														class="fas fa-info-circle green-color" data-toggle="modal"
 														data-target=#${o.maDD}></i>
@@ -283,11 +283,11 @@
 			      <form method="post" modelAttribute="order">
 			      <div class="modal-body">
 			        <label for="trangThai">Chon trang thai:</label>
-						  <select name="trangThai" path="trangThai" id="trangThai">
-						    <option value="0">Chờ xác nhận</option>
-						    <option value="1">Đang vận chuyển</option>
-						    <option value="2">Đã giao</option>
-						    <option value="3">Đã hủy</option>
+						  <select name="trangThai" id="trangThai">
+						    <option value="0" ${order.trangThai == 0? 'selected="selected"': ''}>Chờ xác nhận</option>
+						    <option value="1" ${order.trangThai == 1? 'selected="selected"': ''}>Đang vận chuyển</option>
+						    <option value="2" ${order.trangThai == 2? 'selected="selected"': ''}>Đã giao</option>
+						    <option value="3" ${order.trangThai == 3? 'selected="selected"': ''}>Đã hủy</option>
 						  </select>
 			        
 			      </div>
@@ -312,6 +312,16 @@
 	<script type="text/javascript">
 	if ($(".modal-flag").attr("idModal") === "modalCreate") {
 		$("#editStatus").modal("show");
+	}
+	var idOrderStatus = document.querySelector('#order-status');
+	if(idOrderStatus.textContent == "0"){
+		idOrderStatus.textContent = "Chờ xác nhận";
+	} else if(idOrderStatus.textContent == "1"){
+		idOrderStatus.textContent = "Đang vận chuyển";
+	}else if(idOrderStatus.textContent == "2"){
+		idOrderStatus.textContent = "Đã giao"
+	}else if(idOrderStatus.textContent == "3"){
+		idOrderStatus.textContent = "Đã hủy"
 	}
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
@@ -396,6 +406,7 @@
 	            </div>
 	        </div>`);
 	 $(".btn-create").remove();
+	 $(".trangThai")
 	 </script>
 </body>
 </html>
