@@ -55,25 +55,29 @@
 						</div>
 						<div class="header-action-right">
 							<div class="header-action-2">
-								<div class="header-action-icon-2 view-user">
-									<a href="account.htm"> <i class="fa-regular fa-circle-user"></i>
-									</a>
-									<div class="cart-dropdown-wrap cart-dropdown-hm2"
-										style="width: 240px; padding: 10px">
-										<ul>
-											<li class=""><a href="account.htm"> <img
-													src="./resources/imgs/${user.anh}" class="rounded-circle"
-													style="width: 36px; height: 36px;" alt="Avatar" />${user.taiKhoan.email}
-											</a></li>
-											<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
-													mua</a></li>
-											<li><a href="logout.htm"> <i
-													class="fa-regular fa-arrow-right-from-bracket"></i>Đăng
-													xuất
-											</a></li>
-										</ul>
+								<c:if test="${user != null}">
+									<div class="header-action-icon-2 view-user">
+										<a href="account.htm"> <i
+											class="fa-regular fa-circle-user"></i>
+										</a>
+										<div class="cart-dropdown-wrap cart-dropdown-hm2"
+											style="width: 240px; padding: 10px">
+											<ul>
+												<li class=""><a href="account.htm"> <img
+														src="./resources/imgs/${user.anh}" class="rounded-circle"
+														style="width: 36px; height: 36px;" alt="Avatar" />${user.taiKhoan.email}
+												</a></li>
+												<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
+														mua</a></li>
+												<li><a href="logout.htm"> <i
+														class="fa-regular fa-arrow-right-from-bracket"></i>Đăng
+														xuất
+												</a></li>
+											</ul>
+										</div>
 									</div>
-								</div>
+								</c:if>
+
 								<div class="header-action-icon-2">
 									<a class="mini-cart-icon" href="cart.htm"> <i
 										class="fa-regular fa-cart-shopping"></i> <span
