@@ -80,6 +80,7 @@ public class OrderController {
 	@RequestMapping(value = "order/change-status/{id}.htm", params = "btnEdit", method = RequestMethod.POST)
 	public String updateStatus(ModelMap model, @ModelAttribute("order") DonDat order, @PathVariable("id") String id) {
 		DonDat orderOld = getOrder(id);
+		System.out.println(order.getMaDD());
 		orderOld.setTrangThai(order.getTrangThai());
 		Session session = fa.openSession();
 		Transaction t = session.beginTransaction();
