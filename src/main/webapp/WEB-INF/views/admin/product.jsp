@@ -77,10 +77,15 @@
 													<td>2009/02/27</td>
 													<td><a
 														href="admin/product/show/${sp.getMaSP() }.htm?linkShow">
-															<i class="fas fa-info-circle green-color"></i>
+															<button class="btn btn-light btn-outline-info btn-sm">
+																<i class="fas fa-info-circle"></i>
+															</button>
+															
 													</a> <a
 														href="admin/product/update/${sp.getMaSP() }.htm?linkEdit">
-															<i class=" fas fa-edit green-color"></i>
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
 													</a></td>
 												</tr>
 
@@ -96,8 +101,8 @@
 						aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
-								<div class="modal-header">
-									<h4 class="modal-title" id="myCenterModalLabel">Sản Phẩm</h4>
+								<div class="modal-header green-bg-color">
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Sản Phẩm</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -244,8 +249,8 @@
 						role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
-								<div class="modal-header">
-									<h4 class="modal-title" id="myCenterModalLabel">Thông tin</h4>
+								<div class="modal-header green-bg-color">
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -303,8 +308,11 @@
 																	<div class="row">
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Giá</p>
-																			<h6 class="text-muted f-w-400">${sanpham.gia}
-																				VND</h6>
+																			<h6 class="text-muted f-w-400">
+																			<fmt:formatNumber pattern="###,### đ"
+															value="${sanpham.gia}" type="currency" />
+																			
+																				</h6>
 																		</div>
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Số lượng tồn</p>
