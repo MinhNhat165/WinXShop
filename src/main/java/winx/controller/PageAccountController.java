@@ -96,16 +96,16 @@ public class PageAccountController extends CommonMethod {
 	}
 
 	// get news
-	@RequestMapping(value = "account", method = RequestMethod.GET)
-	public String getCustomer(ModelMap model) {
-		KhachHang news = new KhachHang();
-		model.addAttribute("news", news);
-		List<KhachHang> list = getCustomer();
-		model.addAttribute("newsList", list);
 
-		return "user/account";
-	}
+		@RequestMapping(value = "account", method = RequestMethod.GET)
+		public String getCustomer(ModelMap model) {
+			KhachHang news = new KhachHang();
+			model.addAttribute("news", news);
+			List<KhachHang> list = getCustomer();
+			model.addAttribute("newsList", list);
 
-	// create news
+			return "user/account";
+		}
+
 
 }

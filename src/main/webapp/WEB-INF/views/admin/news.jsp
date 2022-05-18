@@ -65,15 +65,22 @@
 													<td>${n.trangThai }</td>
 													<td>
 														<a>
-															<i class="fas fa-info-circle green-color"
+															<button class="btn btn-light btn-outline-info btn-sm">
+															<i class="fas fa-info-circle"
 																data-toggle="modal" data-target=#${n.maTin}></i>
+															</button>
 														</a>
 														<a href="admin/news/update/${n.maTin }.htm?linkEdit">
-														<i
-															class="fas fa-edit green-color"></i>
+														<button class="btn btn-light btn-outline-warning btn-sm">
+																<i
+															class="fas fa-edit"></i>
+															</button>
+														
 														</a>
 														<a href="admin/news/delete/${n.maTin }.htm?linkDelete">
-															<i class="fa-solid fa-trash green-color"></i>
+														<button class="btn btn-light btn-outline-danger btn-sm">
+															<i class="fa-solid fa-trash"></i>
+															</button>
 														</a>
 													</td>
 												</tr>
@@ -114,8 +121,8 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Thêm Tin</h4>
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Thêm Tin</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
@@ -190,8 +197,8 @@
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
 						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
+							<div class="modal-header green-bg-color">
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Chỉnh Sửa</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -261,8 +268,8 @@
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
 						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myCenterModalLabel">Thông tin</h4>
+							<div class="modal-header green-bg-color">
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -273,7 +280,7 @@
 										<div class="">
 											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 												<div class="row tm-edit-product-row">
-													<form action="" class="tm-edit-product-form">
+													
 														<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 															<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
 																		
@@ -287,64 +294,39 @@
 																		</div>
 
 																	</div>
-															<div class="row mt-4">
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Ngày sản xuất</p>
-																	<h6 class="text-muted f-w-400">23/2/3</h6>
-																</div>
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Ngày hết hạn</p>
-																	<h6 class="text-muted f-w-400">23/2/3</h6>
-																</div>
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Ngày thêm</p>
-																	<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
-																</div>
-															</div>
+															
 														</div>
 
 														<div class="col-xl-6 col-lg-6 col-md-12">
-															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Mã sản phẩm</p>
-																<h6 class="text-muted f-w-400">SP001</h6>
+															<div class="row mt-4">
+															
+																<div class="form-group mb-3 col-xs-12 col-sm-6">
+																	<p class="m-b-10 f-w-600">Ngày tạo</p>
+																	<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
+																</div>
 															</div>
 															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Tên sản phẩm</p>
+																<p class="m-b-10 f-w-600">Tên tin</p>
 																<h6 class="text-muted f-w-400">Nước hoa</h6>
 															</div>
-															<div class="row">
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Giá</p>
-																	<h6 class="text-muted f-w-400">1.230.000 VND</h6>
-																</div>
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Số lượng</p>
-																	<h6 class="text-muted f-w-400">23</h6>
-																</div>
-															</div>
+														
 															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Mô tả</p>
+																<p class="m-b-10 f-w-600">Nội dung</p>
 																<h6 class="text-muted f-w-400">
 																	${n.noiDung }</h6>
 															</div>
 
 															<div class="row">
 																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Loại</p>
+																	<p class="m-b-10 f-w-600">Trạng thái</p>
 																	<h6 class="text-muted f-w-400">unisex</h6>
 																</div>
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Dung tích</p>
-																	<h6 class="text-muted f-w-400">320ml</h6>
-																</div>
+																
 															</div>
 
-															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Nhãn hàng</p>
-																<h6 class="text-muted f-w-400">Dior</h6>
-															</div>
+															
 														</div>
-													</form>
+													
 												</div>
 											</div>
 										</div>
