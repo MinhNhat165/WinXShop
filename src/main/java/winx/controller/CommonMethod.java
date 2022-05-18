@@ -18,6 +18,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import winx.CompositePK.GHSPPK;
+import winx.entity.DonDat;
 import winx.entity.GioHang_SanPham;
 import winx.entity.KhachHang;
 import winx.entity.KhuyenMai;
@@ -37,7 +38,24 @@ public class CommonMethod {
 		List<KhuyenMai> list = query.list();
 		return list;
 	}
-
+	
+	public List<DonDat> getAllOrder() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM DonDat";
+		Query query = session.createQuery(hql);
+		List<DonDat> list = query.list();
+		
+		return list;
+	}
+	
+	public List<KhachHang> getAllCustomer() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM KhachHang";
+		Query query = session.createQuery(hql);
+		List<KhachHang> list = query.list();	
+		return list;
+	}
+	
 	public List<NhanHang> getAllBrand() {
 		Session session = factory.getCurrentSession();
 		String hql = "from NhanHang";

@@ -226,18 +226,14 @@
 																	</div>
 																</div>
 																<div class="col-xl-6 col-lg-6 col-md-12">
-																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic">
-																	<i
-																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
-																</div>
-																<div class="custom-file mt-3 mb-3">
-																	<input type="file" class="file-upload" name="anh"
-																		id="anh" style="display: none" /> <input
-																		type="button"
-																		class="btn btn-primary btn-block mx-auto upload-button btn-green shadow-none"
-																		value="Thêm ảnh" />
-																</div>
+																<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
+																		
+																	</div>
+																	<div class="custom-file mt-3 mb-3">
+																		<input id="fileInput" type="file"
+																			style="display: none;" />
+																		
+																	</div>
 															</div>
 															</div>
 															<div class="col-12">
@@ -279,17 +275,18 @@
 												<div class="row tm-edit-product-row">
 													<form action="" class="tm-edit-product-form">
 														<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-															<div class="tm-product-img-dummy mx-auto rounded">
-																<img src=${n.getAnh() }>
-															</div>
-															<div class="custom-file mt-3 mb-3">
-																
-																<input id="fileInput" type="file" style="display: none" />
-																<div
-																	style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff;">
-																	<h4 class="mt-2">${n.maTin }</h4>
-																</div>
-															</div>
+															<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
+																		
+																	</div>
+																	<div class="custom-file mt-3 mb-3">
+																		<input id="fileInput" type="file"
+																			style="display: none;" />
+																		<div
+																			Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
+																			<h4 class="mt-2">${n.maTin}</h4>
+																		</div>
+
+																	</div>
 															<div class="row mt-4">
 																<div class="form-group mb-3 col-xs-12 col-sm-6">
 																	<p class="m-b-10 f-w-600">Ngày sản xuất</p>

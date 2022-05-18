@@ -270,7 +270,7 @@
                                 />
                               </div>
                               <div class="col-12 text-center text-brand-dark">
-                                <span class="fs-5">Nhatyugioh@gmail.com</span>
+                                <span class="fs-5">OanhXinh</span>
                               </div>
                             </div>
                             <div class="col-8">
