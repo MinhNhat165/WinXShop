@@ -300,6 +300,16 @@
 	if ($(".modal-flag").attr("idModal") === "modalCreate") {
 		$("#editStatus").modal("show");
 	}
+	var idOrderStatus = document.querySelector('#order-status');
+	if(idOrderStatus.textContent == "0"){
+		idOrderStatus.textContent = "Chờ xác nhận";
+	} else if(idOrderStatus.textContent == "1"){
+		idOrderStatus.textContent = "Đang vận chuyển";
+	}else if(idOrderStatus.textContent == "2"){
+		idOrderStatus.textContent = "Đã giao"
+	}else if(idOrderStatus.textContent == "3"){
+		idOrderStatus.textContent = "Đã hủy"
+	}
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">
@@ -383,9 +393,8 @@
 	            </div>
 	        </div>`);
 	 $(".btn-create").remove();
-	 
 
-</script>
-	</ body>
-	</ht
-																	ml>
+	 $(".trangThai")
+	 </script>
+</body>
+</html>
