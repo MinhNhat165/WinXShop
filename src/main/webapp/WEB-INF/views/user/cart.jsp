@@ -45,11 +45,12 @@
 									</div>
 									<div class="col-3 text-center product-name">
 										<h5 class="product-name">
-											<a href="shop-product-right.html">${p.sanPham.tenSP}</a>
+											<a href="product-detail/${p.maSP }.htm">${p.sanPham.tenSP}</a>
 										</h5>
 									</div>
 									<div class="col-2 text-center product-price">
-										<span>${p.sanPham.gia}đ</span>
+										<span><fmt:formatNumber pattern="###,### đ"
+												value="${p.sanPham.gia}" type="currency" /></span>
 									</div>
 									<div class="col-2 text-center product-1uantity">
 										<div class="quantity">
@@ -57,7 +58,13 @@
 												max="${p.sanPham.slt }" step="1" value="${p.soLuong }">
 										</div>
 									</div>
-									<div class="col-2 text-center">${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}đ</div>
+									<div class="col-2 text-center">
+
+										<fmt:formatNumber pattern="###,### đ"
+											value="${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}"
+											type="currency" />
+
+									</div>
 									<div class="col-1 text-center product-cart-action">
 										<a href="cart/remove/${p.sanPham.maSP }.htm"
 											class="text-muted"><i class="fa-regular fa-trash-can"></i></a>
@@ -87,7 +94,11 @@
 							<div
 								class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 								<span class="">Tổng thanh toán</span> <span class=""><span
-									class="text-brand">${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span></span>
+									class="text-brand"> <fmt:formatNumber
+											pattern="###,### đ"
+											value="${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}"
+											type="currency" />
+								</span></span>
 							</div>
 						</div>
 						<div class="row">

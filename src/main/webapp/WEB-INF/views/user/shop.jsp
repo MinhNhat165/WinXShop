@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 
 <%@include file="./head.jsp"%>
-<body style="max-width: 100vw; overflow-x: hidden !important;">
+<body style="max-width: 100vw;">
 	<%@include file="./header.jsp"%>
 	<main class="main bg-white pt-50 pb-50"
 		style="background: #04696312 !important;">
@@ -67,7 +68,7 @@
 									<div class="sort-by-dropdown">
 										<ul>
 											<li><a class="active" href="#">Tên</a></li>
-											<li><a href="#">Giá: Thấp đến Cao</a></li>
+											<li><a href="#">Giá: Thấp ến Cao</a></li>
 											<li><a href="#">Giá: Cao xuống Thấp</a></li>
 											<li><a href="#">Ngày bán</a></li>
 											<li><a href="#">Đánh giá</a></li>
@@ -86,14 +87,7 @@
 									<input type="text" name="sanPham"
 										class="invisible position-absolute" value="${p.maSP}">
 								</form>
-								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
-									data-review="${p.diemDG==0?'chưa có đáng giá
-									nào': p.diemDG }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${p.maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="${p.moTa }"
-									data-img="${p.anh }"
+								<div
 									class="col-lg-4 col-md-4 col-12 col-sm-6 product-cart product">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
@@ -106,8 +100,7 @@
 											</div>
 											<div class="product-action-1">
 												<a aria-label="Quick view" class="action-btn hover-up"
-													data-bs-toggle="modal" onclick="handleQuickView(this)"
-													data-bs-target="#quickViewModal"><i
+													data-bs-toggle="modal" data-bs-target=#${p.maSP}><i
 													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
 													class="action-btn hover-up" href="cart/add/${p.maSP}.htm">
 													<i class="fa-regular fa-cart-plus"></i>
@@ -134,11 +127,19 @@
 											</div>
 											<div class="">
 												<span><i class="fa-solid fa-badge-dollar"></i>
+
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán </span>
 											</div>
 											<div class="product-price">
-												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-												</span> <span class="old-price">${p.gia }</span>
+												<span> <fmt:formatNumber pattern="###,### đ"
+														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+														type="currency" />
+
+
+												</span> <span class="old-price"> <fmt:formatNumber
+														pattern="###,### đ" value="${p.gia }" type="currency" />
+
+												</span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -296,13 +297,13 @@
 																			<div class="input-group input-group-sm w-50">
 																				<input type="text" name="giaBD"
 																					class="form-control text-center" id="price-start" />
-																				<div class="input-group-text">000đ</div>
+																				<div class="input-group-text">đ</div>
 																			</div>
 
 																			<div class="input-group input-group-sm w-50">
 																				<input type="text" name="giaKT"
 																					class="form-control text-center" id="price-end" />
-																				<div class="input-group-text">000đ</div>
+																				<div class="input-group-text">đ</div>
 																			</div>
 																		</div>
 																	</div>
@@ -355,7 +356,11 @@
 										<h5>
 											<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
 										</h5>
-										<p class="price mb-0 mt-5">${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}</p>
+										<p class="price mb-0 mt-5">
+											<fmt:formatNumber pattern="###,### đ"
+												value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+												type="currency" />
+										</p>
 									</div>
 								</div>
 							</c:forEach>
@@ -366,109 +371,122 @@
 			</div>
 		</section>
 	</main>
-	<div class="modal fade custom-modal" id="quickViewModal" tabindex="-1"
-		aria-labelledby="quickViewModalLabel" aria-hidden="true">
-		<div class="modal-dialog rounded">
-			<div class="modal-content rounded">
-				<button type="button" class="btn-close" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-				<div class="modal-body" style="background: #00800014;">
-					<div class="row">
-						<div class="col-md-6 col-sm-12 col-xs-12">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-								class="rounded float-left image-detail" alt="..." />
-						</div>
-						<div class="col-md-6 col-sm-12 col-xs-12">
-							<div class="detail-info">
-								<h3 class="title-detail mt-30">Colorful Pattern Shirts
-									HD450</h3>
-								<div class="product-detail-rating">
-									<div class="pro-details-brand">
-										<span> Brands: <a href="shop-grid-right.html"
-											class="brand-detail">Bootstrap</a></span>
-									</div>
-									<div class="product-rate-cover text-end">
-										<div class="rating-result" title="90%">
-											<span> <span class="review-score">9</span>/10
-											</span> <span class="font-small ml-5 text-muted"> (25
-												reviews)</span>
+
+
+	<c:forEach var="p" items="${pagedListHolder.pageList}">
+		<div class="modal fade custom-modal" id="${p.maSP}" tabindex="-1"
+			aria-labelledby="quickViewModalLabel" aria-hidden="true">
+			<div class="modal-dialog rounded">
+				<div class="modal-content rounded">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+					<div class="modal-body" style="background: #00800014;">
+						<div class="row">
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<img src="./resources/imgs/${p.anh}"
+									class="rounded float-left image-detail" alt="..." />
+							</div>
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<div class="detail-info">
+									<h3 class="title-detail mt-30">${p.tenSP}</h3>
+									<div class="product-detail-rating">
+										<div class="pro-details-brand">
+											<span> Brands: <a href="shop-grid-right.html"
+												class="brand-detail">${p.nhanHang.tenNH}</a></span>
+										</div>
+										<div class="product-rate-cover text-end">
+											<div class="rating-result" title="90%">
+												<span> <span class="review-score">${p.diemDG==0?'chưa có đáng giá
+									nào': p.diemDG }</span>/10
+												</span> <span class="font-small ml-5 text-muted"> (25
+													reviews)</span>
+											</div>
 										</div>
 									</div>
+									<div class="clearfix product-price-cover">
+										<div class="product-price primary-color float-left">
+											<ins>
+												<span class="text-brand price-detail"> <fmt:formatNumber
+														pattern="###,### đ"
+														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+														type="currency" />
+												</span>
+											</ins>
+											<ins>
+												<span class="old-price font-md ml-15 old-price-detail">
+													<fmt:formatNumber pattern="###,### đ" value="${p.gia }"
+														type="currency" />
+												</span>
+											</ins>
+											<span class="save-price font-md color3 ml-15">Giảm
+												${p.dsSPKM[0].khuyenMai.giaTriKM} %</span>
+										</div>
+									</div>
+									<div class="bt-1 border-color-1 mt-15 mb-15"></div>
+									<div class="short-desc mb-30">
+										<p class="font-sm">${p.moTa}</p>
+									</div>
+
+
 								</div>
-								<div class="clearfix product-price-cover">
-									<div class="product-price primary-color float-left">
-										<ins>
-											<span class="text-brand price-detail">$120.00</span>
-										</ins>
-										<ins>
-											<span class="old-price font-md ml-15 old-price-detail">$200.00</span>
-										</ins>
-										<span class="save-price font-md color3 ml-15">25% Off</span>
+								<div class="attr-detail attr-size">
+									<strong class="mr-10">Dung tích</strong>
+									<ul class="list-filter size-filter font-small text-lowercase">
+
+										<li class="active "><a href="#"> <span
+												class="capacity-detail">${p.dungTich }</span> <span
+												class="text-lowercase">ml</span>
+										</a></li>
+
+									</ul>
+								</div>
+								<div class="bt-1 border-color-1 mt-30 mb-30"></div>
+								<div class="detail-extralink">
+
+									<form>
+										<div class="quantity">
+											<input type="number" min="1" max="${p.slt }" step="1"
+												value="1">
+										</div>
+
+									</form>
+
+									<div class="product-extra-link2 ms-2">
+										<button type="submit" class="button button-add-to-cart">
+											Mua Ngay</button>
+										<a aria-label="Add To Card"
+											class="action-btn hover-up add-to-cart" href="cart.htm"><i
+											class="fa-regular fa-cart-plus"></i></a> <a aria-label="Compare"
+											class="action-btn hover-up" href="shop-compare.html"><i
+											class="fa-regular fa-bags-shopping"></i></a>
 									</div>
 								</div>
-								<div class="bt-1 border-color-1 mt-15 mb-15"></div>
-								<div class="short-desc mb-30">
-									<p class="font-sm">Lorem ipsum dolor, sit amet consectetur
-										adipisicing elit. Aliquam rem officia, corrupti reiciendis
-										minima nisi modi,!</p>
-								</div>
-
-
-							</div>
-							<div class="attr-detail attr-size">
-								<strong class="mr-10">Dung tích</strong>
-								<ul class="list-filter size-filter font-small text-lowercase">
-
-									<li class="active "><a href="#"> <span
-											class="capacity-detail">400</span> <span
-											class="text-lowercase">ml</span>
-									</a></li>
-
+								<ul class="product-meta font-xs color-grey mt-50">
+									<li class="mb-5">Mã: <a href="#" class="id-detail">${p.maSP }</a></li>
+									<li class="mb-5">Tags: <a href="#" rel="tag"
+										class="type-detail">${p.loai}</a>
+									</li>
+									<li>Sẵn hàng:<span class="in-stock text-success body ml-5"><span
+											class="quantity-detail">${p.slt }</span> sản phẩm có sẵn</span>
+									</li>
 								</ul>
 							</div>
-							<div class="bt-1 border-color-1 mt-30 mb-30"></div>
-							<div class="detail-extralink">
-
-								<form>
-									<div class="quantity">
-										<input type="number" min="1" max="5" step="1" value="1">
-									</div>
-
-								</form>
-
-								<div class="product-extra-link2 ms-2">
-									<button type="submit" class="button button-add-to-cart">
-										Mua Ngay</button>
-									<a aria-label="Add To Card"
-										class="action-btn hover-up add-to-cart" href="cart.htm"><i
-										class="fa-regular fa-cart-plus"></i></a> <a aria-label="Compare"
-										class="action-btn hover-up" href="shop-compare.html"><i
-										class="fa-regular fa-bags-shopping"></i></a>
-								</div>
-							</div>
-							<ul class="product-meta font-xs color-grey mt-50">
-								<li class="mb-5">Mã: <a href="#" class="id-detail">SP0000001</a></li>
-								<li class="mb-5">Tags: <a href="#" rel="tag"
-									class="type-detail">Cloth</a>
-								</li>
-								<li>Sẵn hàng:<span class="in-stock text-success ml-5"><span
-										class="quantity-detail">8</span> sản phẩm có sẵn</span>
-								</li>
-							</ul>
+							<!-- Detail Info -->
 						</div>
-						<!-- Detail Info -->
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</c:forEach>
+
 	<%@include file="./footer.jsp"%>
 	<%@include file="./script.jsp"%>
 	<script type="text/javascript">
-		$("body").css({
-			"overflow-x" : "hidden !important"
-		});
+		$("body").css("overflow", "hidden visible");
+		$(document).ready(function() {
+			$(".body-overlay-1").remove();
+
+		})
 	</script>
 </body>
 </html>
