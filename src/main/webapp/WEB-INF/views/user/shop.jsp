@@ -465,5 +465,10 @@
 	</div>
 	<%@include file="./footer.jsp"%>
 	<%@include file="./script.jsp"%>
+	<script type="text/javascript">
+		$("body").css({
+			"overflow-x" : "hidden !important"
+		});
+	</script>
 </body>
 </html>

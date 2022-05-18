@@ -182,40 +182,50 @@
 											</div>
 										</div>
 										<!--comment form-->
-										<div class="comment-form">
-											<h4 class="mb-15">Đánh giá sản phẩm</h4>
-											<div class="product-rate d-inline-block mb-20"></div>
-											<div class="row">
-												<div class="col-lg-8 col-md-12">
-													<form class="form-contact comment_form"
-														action="product-detail/${SP.maSP }.htm" method="post"
-														id="commentForm">
-														<div class="row">
-															<div class="form-group col-3">
-																<div class="input-group input-group-sm">
-																	<input type="number" name="score" min="1" max="10"
-																		value="10"
-																		class="form-control text-center hidden-arrow" />
-																	<div
-																		class="input-group-text w-50 justify-content-center">
-																		<i class="fa-solid fa-star text-warning"></i>
+										<c:if test="${user != null}">
+											<div class="comment-form">
+												<h4 class="mb-15">Đánh giá sản phẩm</h4>
+												<div class="product-rate d-inline-block mb-20"></div>
+												<div class="row">
+													<div class="col-lg-8 col-md-12">
+														<form class="form-contact comment_form"
+															action="product-detail/review/${SP.maSP }.htm"
+															method="post" id="commentForm">
+															<div class="row">
+																<div class="form-group col-3">
+																	<div class="input-group input-group-sm">
+																		<input type="number" name="score" min="1" max="10"
+																			value="10"
+																			class="form-control text-center hidden-arrow" />
+																		<div
+																			class="input-group-text w-50 justify-content-center">
+																			<i class="fa-solid fa-star text-warning"></i>
+																		</div>
 																	</div>
+																</div>
+																<div class="form-group">
+																	<textarea class="form-control w-100" id="comment"
+																		cols="30" rows="9" name="content"
+																		placeholder="Viết nhận xét của bạn"></textarea>
 																</div>
 															</div>
 															<div class="form-group">
-																<textarea class="form-control w-100" id="comment"
-																	cols="30" rows="9" name="content"
-																	placeholder="Viết nhận xét của bạn"></textarea>
+																<button type="submit" class="btn btn-primary">
+																	Đánh giá</button>
 															</div>
-														</div>
-														<div class="form-group">
-															<button type="submit" class="btn btn-primary">
-																Đánh giá</button>
-														</div>
-													</form>
+														</form>
+													</div>
 												</div>
 											</div>
-										</div>
+										</c:if>
+										<c:if test="${user == null}">
+											<a href="login.htm">
+												<button class="btn btn-outline">Đăng nhập để đánh
+													giá</button>
+											</a>
+
+										</c:if>
+
 									</div>
 								</div>
 							</div>
