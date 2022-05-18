@@ -56,48 +56,25 @@
 													<td>${u.hoTen }</td>
 													<td>${u.taiKhoan.email }</td>
 													<td>${u.sdt }</td>
-													<td><button type="button"
-															class="btn btn-status-activate">${u.taiKhoan.trangThai }</button></td>
+													
+													<td><span
+														class="badge rounded-pill ${u.taiKhoan.trangThai?'bg-primary': 'bg-secondary text-white'} "
+														style="color: white !important">${u.taiKhoan.trangThai?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
 													<td>
 													<a href="admin/customer/${u.maKH }.htm?linkShow">
-													<i class="fas fa-info-circle green-color"
-														></i> 
+													<button class="btn btn-light btn-outline-info btn-sm">
+																<i class="fas fa-info-circle"></i>
+															</button>
 													</a>
 													
-														<a href="admin/change-status/${u.taiKhoan.email }.htm?linkEdit"><i
-															class=" fas fa-edit green-color"
-															></i></a>
+														<a href="admin/change-status/${u.taiKhoan.email }.htm?linkEdit"><button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button></a>
 													</td>
 
 												</tr>
 											</c:forEach>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td><button type="button"
-														class="btn btn-status-activate">Hoạt động</button></td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#informodal"></i> <i
-													class=" fas fa-edit green-color" data-toggle="modal"
-													data-target="#bs-example-modal-lg"></i></td>
-											</tr>
-											<tr>
-												<td>Cedric Kelly</td>
-												<td>Senior Javascript Developer</td>
-												<td>Edinburgh</td>
-												<td>22</td>
-												<td><button type="button" class="btn btn-status-locked">
-														Khóa</button></td>
-												<td><i class="fas fa-info-circle green-color"
-													data-toggle="modal" data-target="#informodal"></i>
-													<a><i
-													class=" fas fa-edit green-color" data-toggle="modal"
-													data-target="#bs-example-modal-lg"></i></a>
-													
-												</td>
-											</tr>
+										
 										</tbody>
 
 									</table>
@@ -118,9 +95,9 @@
 				<div class="modal fade" id="show-info" tabindex="-1" role="dialog"
 					 aria-hidden="true">
 					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myLargeModalLabel">Thông Tin</h4>
+						<div class="modal-content ">
+							<div class="modal-header green-bg-color">
+								<h4 class="modal-title text-white" id="myLargeModalLabel">Thông Tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -243,14 +220,13 @@
 			      </div>
 			      <div class="modal-body">
 			      
-			        <p>Muốn đổi trạng thái k ??</p>
+			        <p>Thay đổi trạng thái</p>
 			        
 			      </div>
 			      <form method="post" modelAttribute="taiKhoan">
 			      <div class="modal-footer">
 			      	
-				      	<button type="button"  class="btn btn-danger" data-dismiss="modal">Close</button>
-				        <button type="submit" name="${btnStatus}" class="btn btn-primary">Save changes</button>
+				        <button type="submit" name="${btnStatus}" class="btn-green btn-primary">Lưu</button>
 			      	
 			        
 			      </div>

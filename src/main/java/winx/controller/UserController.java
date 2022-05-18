@@ -63,7 +63,7 @@ public class UserController extends CommonMethod {
 				ss.setAttribute("tkkh", tkdn);
 				ss.setAttribute("maKH", kh.getMaKH());
 				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
-				ss.setAttribute("vaitro", tkdn.getQuyen());
+				ss.setAttribute("vaitrokh", kh.getTaiKhoan().getQuyen());
 
 				return "redirect:/";
 			} else {

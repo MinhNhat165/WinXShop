@@ -104,7 +104,7 @@ public class PageAccountController extends CommonMethod {
 			List<KhachHang> list = getCustomer();
 			model.addAttribute("newsList", list);
 
-			return "account/detail";
+			return "user/account";
 		}
 
 		// create news

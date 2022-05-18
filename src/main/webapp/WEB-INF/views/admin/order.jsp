@@ -71,7 +71,10 @@
 															<i class="fas fa-info-circle"></i>
 														</button> <a
 														href="admin/order/change-status/${o.maDD }.htm?linkEdit">
-															<i class="fa-solid fa-pen-to-square green-color"></i>
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
+															
 													</a>
 													</td>
 												</tr>
@@ -101,9 +104,9 @@
 				<div class="modal fade" id=${o.maDD } tabindex="-1" role="dialog"
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content ">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myCenterModalLabel">Thông tin</h4>
+						<div class="modal-content">
+							<div class="modal-header green-bg-color">
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -138,8 +141,7 @@
 														style="font-weight: 800 !important;">${o.tongTien }</h5>
 												</li>
 											</ul>
-											<a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed
-												to checkout</a>
+											
 										</div>
 									</div>
 								</div>
@@ -259,8 +261,8 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+						<div class="modal-header green-bg-color">
+							<h5 class="modal-title text-white">Đổi trạng thái</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -268,7 +270,7 @@
 						</div>
 						<form method="post" modelAttribute="order">
 							<div class="modal-body">
-								<label for="trangThai">Chon trang thai:</label> <select
+								<label for="trangThai">Chọn trạng thái:</label> <select
 									name="trangThai" path="trangThai" id="trangThai">
 									<option value="0">Chờ xác nhận</option>
 									<option value="1">Đang vận chuyển</option>
@@ -280,10 +282,9 @@
 
 							<div class="modal-footer">
 
-								<button type="button" class="btn btn-danger"
-									data-dismiss="modal">Close</button>
+								
 								<button type="submit" name="${btnStatus}"
-									class="btn btn-primary">Save changes</button>
+									class="btn btn-primary btn-green">Lưu</button>
 
 
 							</div>

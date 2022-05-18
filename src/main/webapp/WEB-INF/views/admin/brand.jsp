@@ -60,19 +60,14 @@
 												<tr>
 													<td>${b.getMaNH()}</td>
 													<td>${b.getTenNH()}</td>
-													<td><c:choose>
-															<c:when test="${ b.getTrangThai()==true}">
-																<button type="button" class="btn btn-status-activate">Hợp
-																	tác</button>
-															</c:when>
-															<c:otherwise>
-																<button type="button" class="btn btn-status-locked">
-																	Ngừng hợp tác</button>
-															</c:otherwise>
-														</c:choose></td>
+													<td><span
+														class="badge rounded-pill ${b.getTrangThai()?'bg-primary': 'bg-secondary text-white'} "
+														style="color: white !important">${b.getTrangThai()?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
 													<td class="text-center"><a
 														href="admin/brand/update/${b.getMaNH() }.htm?linkEdit">
-															<i class="fas fa-edit green-color"> </i>
+														<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
 													</a></td>
 
 												</tr>
@@ -108,8 +103,8 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Thêm Nhãn
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Thêm Nhãn
 								Hàng</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
@@ -189,8 +184,8 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Chỉnh Sửa</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
