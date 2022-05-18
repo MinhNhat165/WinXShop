@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 </head>
 <body>
 	<header class="header-area header-style-1 header-height-2">
@@ -104,7 +105,11 @@
 																<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
 															</h4>
 															<h4>
-																<span>${p.soLuong} × </span>${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}đ
+																<span>${p.soLuong} × </span>
+
+																<fmt:formatNumber pattern="###,### đ"
+																	value="${p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100}"
+																	type="currency" />
 															</h4>
 														</div>
 														<div class="shopping-cart-delete">
@@ -117,7 +122,10 @@
 											<div class="shopping-cart-footer">
 												<div class="shopping-cart-total">
 													<h4>
-														Tổng <span>${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}đ</span>
+														Tổng <span> <fmt:formatNumber pattern="###,### đ"
+																value="${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}"
+																type="currency" />
+														</span>
 													</h4>
 												</div>
 												<div class="shopping-cart-button">

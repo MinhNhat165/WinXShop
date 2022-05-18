@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -247,8 +248,13 @@
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
-												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-												</span> <span class="old-price">${p.gia } </span>
+
+												<span> <fmt:formatNumber pattern="###,### đ"
+														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+														type="currency" />
+												</span> <span class="old-price"> <fmt:formatNumber
+														pattern="###,### đ" value="${p.gia }" type="currency" />
+												</span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -338,8 +344,13 @@
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
-												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-												</span> <span class="old-price">${p.gia } </span>
+
+												<span> <fmt:formatNumber pattern="###,### đ"
+														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+														type="currency" />
+												</span> <span class="old-price"> <fmt:formatNumber
+														pattern="###,### đ" value="${p.gia }" type="currency" />
+												</span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -428,8 +439,13 @@
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
-												<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-												</span> <span class="old-price">${p.gia } </span>
+
+												<span> <fmt:formatNumber pattern="###,### đ"
+														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+														type="currency" />
+												</span> <span class="old-price"> <fmt:formatNumber
+														pattern="###,### đ" value="${p.gia }" type="currency" />
+												</span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -506,8 +522,13 @@
 										<span> </span>
 									</div>
 									<div class="product-price">
-										<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-										</span> <span class="old-price">${p.gia } </span>
+
+										<span> <fmt:formatNumber pattern="###,### đ"
+												value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+												type="currency" />
+										</span> <span class="old-price"> <fmt:formatNumber
+												pattern="###,### đ" value="${p.gia }" type="currency" />
+										</span>
 									</div>
 								</div>
 							</div>
@@ -629,8 +650,13 @@
 														</span>
 													</div>
 													<div class="product-price">
-														<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-														</span> <span class="old-price">${p.gia }</span>
+
+														<span> <fmt:formatNumber pattern="###,### đ"
+																value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+																type="currency" />
+														</span> <span class="old-price"> <fmt:formatNumber
+																pattern="###,### đ" value="${p.gia }" type="currency" />
+														</span>
 													</div>
 												</div>
 											</div>
