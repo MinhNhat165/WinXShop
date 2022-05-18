@@ -27,38 +27,36 @@ import winx.entity.TinMoi;
 
 @Transactional
 @Controller
-@RequestMapping("account")
-public class PageAccountController {
-	
+@RequestMapping("")
+public class PageAccountController extends CommonMethod {
+
 	@Autowired
 	SessionFactory factory;
+
 	@RequestMapping("account")
-	public String account(ModelMap model) {
+	public String account(ModelMap model, HttpSession ss) {
+		String maKH = (String) ss.getAttribute("maKH");
+		if (maKH != null) {
+			model.addAttribute("user", getCustomer(maKH));
+		}
 		return "user/account";
 	}
 
-	//nhat
-	
-	
-	
-	
-	
-	
-	
-	
-	//Vi
-	@RequestMapping(value="account",params="btnpw")
-	public String changePW(HttpSession ss,@RequestParam("cpassword") String PW,
-			@RequestParam("npassword") String nPW,@RequestParam("renpassword") String rnPW,ModelMap model) {
+	// nhat
 
-		TaiKhoan tk = (TaiKhoan)ss.getAttribute("tkkh");
-		if(tk.getMatKhau().trim().equals(PW) == false) {
-			model.addAttribute("message","Sai mật khẩu!");
-			
-		}else {
-			if(nPW.equals(rnPW) == false) {
-				model.addAttribute("message2","Mật khẩu không trùng khớp!");
-			}else {
+	// Vi
+	@RequestMapping(value = "account", params = "btnpw")
+	public String changePW(HttpSession ss, @RequestParam("cpassword") String PW, @RequestParam("npassword") String nPW,
+			@RequestParam("renpassword") String rnPW, ModelMap model) {
+
+		TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
+		if (tk.getMatKhau().trim().equals(PW) == false) {
+			model.addAttribute("message", "Sai mật khẩu!");
+
+		} else {
+			if (nPW.equals(rnPW) == false) {
+				model.addAttribute("message2", "Mật khẩu không trùng khớp!");
+			} else {
 				Session session = factory.openSession();
 				 Transaction t = session.beginTransaction();
 				tk.setMatKhau(nPW);
@@ -66,7 +64,7 @@ public class PageAccountController {
 					session.update(tk);
 					t.commit();
 					model.addAttribute("message3", "Chỉnh sửa thành công!");
-				}catch(Exception e) {
+				} catch (Exception e) {
 					t.rollback();
 					model.addAttribute("message3", "Chỉnh sửa thất bại!");
 				}
@@ -75,18 +73,6 @@ public class PageAccountController {
 
 		return "user/account";
 	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//Oanh
@@ -122,6 +108,5 @@ public class PageAccountController {
 		}
 
 		// create news
-	
 	
 }

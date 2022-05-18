@@ -74,7 +74,8 @@ public class AdminController extends CommonMethod {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
+	public String login(ModelMap model, HttpSession ss) {
+		ss.removeAttribute("admin");
 		TaiKhoan taiKhoan = new TaiKhoan();
 		model.addAttribute("TK", taiKhoan);
 		return "admin/login";

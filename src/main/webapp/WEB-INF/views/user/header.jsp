@@ -18,8 +18,11 @@
 					<div class="col-xl-3 col-lg-4">
 						<div class="header-info header-info-right">
 							<ul>
-								<li><i class="fa-light fa-user"></i><a href="login.htm">Đăng
-										nhập / Đăng ký</a></li>
+								<c:if test="${user == null}">
+									<li><i class="fa-light fa-user"></i><a href="login.htm">Đăng
+											nhập / Đăng ký</a></li>
+								</c:if>
+
 							</ul>
 						</div>
 					</div>
@@ -60,11 +63,11 @@
 										<ul>
 											<li class=""><a href="account.htm"> <img
 													src="./resources/imgs/${user.anh}" class="rounded-circle"
-													style="width: 36px; height: 36px;" alt="Avatar" />${user.hoTen }
+													style="width: 36px; height: 36px;" alt="Avatar" />${user.taiKhoan.email}
 											</a></li>
 											<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
 													mua</a></li>
-											<li><a> <i
+											<li><a href="logout.htm"> <i
 													class="fa-regular fa-arrow-right-from-bracket"></i>Đăng
 													xuất
 											</a></li>
@@ -82,7 +85,7 @@
 										<c:if test="${user.dsGHSP.size() > 0 }">
 											<ul>
 
-												<c:forEach var="p" items="${user.dsGHSP }">
+												<c:forEach var="p" items="${user.dsGHSP}">
 													<li><input type="text"
 														class="invisible position-absolute"
 														value="${p.sanPham.maSP}" name="sanPham"></input> <input

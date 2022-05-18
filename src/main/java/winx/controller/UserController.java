@@ -57,6 +57,7 @@ public class UserController extends CommonMethod {
 			if (kh != null) {
 				ss.setAttribute("user", kh);
 				ss.setAttribute("tkkh", tkdn);
+				ss.setAttribute("maKH", kh.getMaKH());
 				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
 				ss.setAttribute("vaitro", tkdn.getQuyen());
 				return "redirect:/home.htm";
@@ -110,7 +111,7 @@ public class UserController extends CommonMethod {
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk, BindingResult errors,
-			@RequestParam("password") String pw, @RequestParam("repassword") String rpw) {
+			@RequestParam("password") String pw, @RequestParam("repassword") String rpw, HttpSession ss) {
 		Session session = factory.openSession();
 
 		Transaction t = session.beginTransaction();
@@ -135,7 +136,9 @@ public class UserController extends CommonMethod {
 				try {
 					kh.setMaKH(generatorId("KH", "KhachHang", "maKH"));
 					kh.setTaiKhoan(tk);
+					kh.setAnh("user.png");
 					session.save(kh);
+					ss.setAttribute("maKH", kh.getMaKH());
 					ts.commit();
 					return "redirect:account.htm";
 				} catch (Exception e) {
@@ -158,5 +161,13 @@ public class UserController extends CommonMethod {
 			}
 		}
 		return "user/register";
+	}
+
+	@RequestMapping("logout")
+	public String logout(HttpSession ss) {
+		ss.removeAttribute("user");
+		ss.removeAttribute("tkkh");
+		ss.removeAttribute("maKH");
+		return "redirect:/login.htm";
 	}
 }

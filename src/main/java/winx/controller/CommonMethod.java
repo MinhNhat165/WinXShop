@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -79,7 +81,7 @@ public class CommonMethod {
 		List<SanPham> list = query.list();
 		List<SanPham> finalResult = new ArrayList<SanPham>();
 		for (SanPham sanPham : list) {
-			
+
 			if (sanPham.getDsCTDD().stream().collect(Collectors.summingInt(o -> o.getSoLuong())) > 9)
 				finalResult.add(sanPham);
 		}
@@ -128,6 +130,14 @@ public class CommonMethod {
 
 		Session session = factory.getCurrentSession();
 		KhachHang khachHang = (KhachHang) session.get(KhachHang.class, maKH);
+		return khachHang;
+	}
+
+	public KhachHang getCustomerClient(HttpServletRequest request) {
+		HttpSession ss = request.getSession();
+		KhachHang kh = (KhachHang) ss.getAttribute("user");
+		Session session = factory.getCurrentSession();
+		KhachHang khachHang = (KhachHang) session.get(KhachHang.class, kh.getMaKH());
 		return khachHang;
 	}
 
