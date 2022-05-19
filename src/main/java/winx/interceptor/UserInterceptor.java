@@ -11,14 +11,14 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
+
 		HttpSession ss = request.getSession();
-		if( ss.getAttribute("vaitrokh")==null) {
+		if (ss.getAttribute("user") == null) {
 			response.sendRedirect(request.getContextPath() + "/login.htm");
 			return false;
 		}
 		return true;
-		
+
 	}
-	
+
 }

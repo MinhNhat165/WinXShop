@@ -64,10 +64,6 @@ public class AdminController extends CommonMethod {
 		return "admin/sale";
 	}
 
-//	@RequestMapping("brand")
-//	public String brand(ModelMap model) {
-//		return "admin/brand";
-//	}
 	@RequestMapping("news")
 	public String news(ModelMap model) {
 		return "admin/news";

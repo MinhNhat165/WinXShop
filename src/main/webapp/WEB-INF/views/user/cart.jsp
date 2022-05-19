@@ -45,7 +45,7 @@
 									</div>
 									<div class="col-3 text-center product-name">
 										<h5 class="product-name">
-											<a href="product-detail/${p.maSP }.htm">${p.sanPham.tenSP}</a>
+											<a href="product-detail/${p.sanPham.maSP }.htm">${p.sanPham.tenSP}</a>
 										</h5>
 									</div>
 									<div class="col-2 text-center product-price">
