@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-	console.log($(".page-flag").attr("data"))
 	jQuery('<div class="quantity-nav"><button type="button" class="quantity-button quantity-up">&#xf106;</button><a><button type="button" class="quantity-button quantity-down">&#xf107</button></a></div>').insertAfter('.quantity input');
 	jQuery('.quantity').each(function() {
 		var spinner = jQuery(this),

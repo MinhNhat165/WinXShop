@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <%@include file="./head.jsp"%>
@@ -18,16 +20,6 @@
 			<!-- ============================================================== -->
 			<!-- Bread crumb and right sidebar toggle -->
 			<!-- ============================================================== -->
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">Đơn
-							Đặt</h4>
-					</div>
-				</div>
-			</div>
-
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
 			<div class="container-fluid">
@@ -38,6 +30,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách đơn đặt</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -55,42 +48,37 @@
 											<c:forEach var="o" items="${orders }">
 												<tr>
 													<td>${o.maDD }</td>
-													<td>${o.khachHang.hoTen }</td>
+													<td>${o.tenNguoiNhan }</td>
 													<td>${o.ngayDat }</td>
-													<td>${o.tongTien }</td>
-													<td><button type="button"
-															class="btn btn-status-locked" id="order-status">${o.trangThai }</button></td>
-													<td class="text-center"><i
-														class="fas fa-info-circle green-color" data-toggle="modal"
-														data-target=#${o.maDD}></i>
-														<a href="admin/order/change-status/${o.maDD }.htm?linkEdit">
-															<i class="fa-solid fa-pen-to-square green-color"></i>
-														</a>
-														</td>
+													<td><fmt:formatNumber pattern="###,### đ"
+															value="${o.tongTien }" type="currency" /></td>
+													<td><c:if test="${o.trangThai == 0}">
+															<span class="badge rounded-pill bg-danger"
+																style="color: white !important">Chờ xác nhận</span>
+														</c:if> <c:if test="${o.trangThai == 1}">
+															<span class="badge rounded-pill bg-primary"
+																style="color: white !important">Đang vận chuyển</span>
+														</c:if> <c:if test="${o.trangThai == 2}">
+															<span class="badge rounded-pill bg-success"
+																style="color: white !important">Đã giao</span>
+														</c:if> <c:if test="${o.trangThai == 3}">
+															<span class="badge rounded-pill bg-secondary"
+																style="color: white !important">Huỷ</span>
+														</c:if>
+													<td class="text-center">
+														<button class="btn btn-light btn-outline-info btn-sm"
+															data-toggle="modal" data-target=#${o.maDD}>
+															<i class="fas fa-info-circle"></i>
+														</button> <a
+														href="admin/order/change-status/${o.maDD }.htm?linkEdit">
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
+
+													</a>
+													</td>
 												</tr>
 											</c:forEach>
-											<tr>
-												<td>Tiger Nixon</td>
-												<td>System Architect</td>
-												<td>Edinburgh</td>
-												<td>61</td>
-												<td><button type="button" class="btn btn-status-locked">
-														Khóa</button></td>
-												<td class="text-center"><i
-													class="fas fa-info-circle green-color" data-toggle="modal"
-													data-target=#${u.maDD}></i></td>
-											</tr>
-										</tbody>
-										<tfoot>
-											<tr>
-												<th>Mã đơn đặt</th>
-												<th>Khách đặt</th>
-												<th>Ngày đặt</th>
-												<th>Giá</th>
-												<th>Trạng thái</th>
-												<th class="text-center">Option</th>
-											</tr>
-										</tfoot>
 									</table>
 								</div>
 							</div>
@@ -116,9 +104,10 @@
 				<div class="modal fade" id=${o.maDD } tabindex="-1" role="dialog"
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content ">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myCenterModalLabel">Thông tin</h4>
+						<div class="modal-content">
+							<div class="modal-header green-bg-color">
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+									tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -153,8 +142,7 @@
 														style="font-weight: 800 !important;">${o.tongTien }</h5>
 												</li>
 											</ul>
-											<a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed
-												to checkout</a>
+
 										</div>
 									</div>
 								</div>
@@ -270,38 +258,40 @@
 				</div>
 			</c:forEach>
 			<!-- /.modal -->
-			<div class="modal fade" id="editStatus" tabindex="-1"
-				role="dialog" aria-hidden="true">
+			<div class="modal fade" id="editStatus" tabindex="-1" role="dialog"
+				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
 					<div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">Modal title</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <form method="post" modelAttribute="order">
-			      <div class="modal-body">
-			        <label for="trangThai">Chon trang thai:</label>
-						  <select name="trangThai" id="trangThai">
-						    <option value="0" ${order.trangThai == 0? 'selected="selected"': ''}>Chờ xác nhận</option>
-						    <option value="1" ${order.trangThai == 1? 'selected="selected"': ''}>Đang vận chuyển</option>
-						    <option value="2" ${order.trangThai == 2? 'selected="selected"': ''}>Đã giao</option>
-						    <option value="3" ${order.trangThai == 3? 'selected="selected"': ''}>Đã hủy</option>
-						  </select>
-			        
-			      </div>
-			      
-			      <div class="modal-footer">
-			      	
-				      	<button type="button"  class="btn btn-danger" data-dismiss="modal">Close</button>
-				        <button type="submit" name="${btnStatus}" class="btn btn-primary">Save changes</button>
-			      	
-			        
-			      </div>
-			      </form>
+						<div class="modal-header green-bg-color">
+							<h5 class="modal-title text-white">Đổi trạng thái</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form method="post" modelAttribute="order">
+							<div class="modal-body">
+								<label for="trangThai">Chọn trạng thái:</label> <select
+									name="trangThai" path="trangThai" id="trangThai">
+									<option value="0">Chờ xác nhận</option>
+									<option value="1">Đang vận chuyển</option>
+									<option value="2">Đã giao</option>
+									<option value="3">Đã hủy</option>
+								</select>
+
+							</div>
+
+							<div class="modal-footer">
+
+
+								<button type="submit" name="${btnStatus}"
+									class="btn btn-primary btn-green">Lưu</button>
+
+
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 		<!-- ============================================================== -->
@@ -420,7 +410,7 @@
 	            </div>
 	        </div>`);
 	 $(".btn-create").remove();
-	 $(".trangThai")
 	 </script>
 </body>
 </html>
+

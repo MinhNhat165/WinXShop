@@ -7,12 +7,12 @@
 	<%@include file="./header.jsp"%>
 	<!-- flag -->
 
-	<div class="alert-flag" aType='${message.type}'
-		aMessage="${message.message }"></div>
+
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">
-				<form action="checkout.htm" method="post" class="row">
+				<form action="checkout.htm" method="post"
+					class="row needs-validation">
 					<div class="col-9">
 						<div
 							class="col-12 bg-white p-10 rounded mb-10 bg-brand text-white">
@@ -48,11 +48,19 @@
 										</h5>
 									</div>
 									<div class="col-2 text-center product-price">
-										<span>${p.sanPham.gia}đ </span>
+										<span> <fmt:formatNumber pattern="###,### đ"
+												value="${p.sanPham.gia}" type="currency" />
+
+										</span>
 									</div>
 									<div class="col-2 text-center product-1uantity">
 										${p.soLuong}</div>
-									<div class="col-2 text-center">${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}đ</div>
+									<div class="col-2 text-center">
+
+										<fmt:formatNumber pattern="###,### đ"
+											value="${(p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100)*p.soLuong}"
+											type="currency" />
+									</div>
 									<div class="col-1 text-center product-cart-action">
 										<a href="#" class="text-muted"><i
 											class="fa-regular fa-trash-can"></i></a>
@@ -79,17 +87,18 @@
 								<div class="col-12 px-0">
 									<input type="text" name="tenNguoiNhan"
 										class="form-control form-control-sm input-receiver-name"
-										placeholder="Tên người nhận" aria-label="name" />
+										placeholder="Tên người nhận" aria-label="name" required />
+									<div class="invalid-feedback">Please choose a username.</div>
 								</div>
 								<div class="col-12 px-0">
 									<input type="text" name="sdtNguoiNhan"
 										class="form-control form-control-sm input-receiver-phone-number"
-										placeholder="SĐT người nhận" aria-label="name" />
+										placeholder="SĐT người nhận" aria-label="name" required />
 								</div>
 								<div class="col-12 px-0">
 									<input type="text" name="diaChiNguoiNhan"
 										class="form-control form-control-sm input-receiver-address"
-										placeholder="Địa chỉ người nhận" aria-label="name" />
+										placeholder="Địa chỉ người nhận" aria-label="name" required />
 								</div>
 								<div class="col-12 mb-4 px-0 text-end">
 									<button type="button"
@@ -106,8 +115,7 @@
 									<span class="receiver-phone-number">${user.sdt }</span>
 								</div>
 								<div class="col-12 d-flex j pt-5 pb-10 px-0 ">
-									<span class="receiver-address">C3 Man Thiện, Phường Hiệp
-										Phú, TP.Thủ Đức</span>
+									<span class="receiver-address">${user.diaChi }</span>
 								</div>
 							</div>
 						</div>
@@ -153,7 +161,12 @@
 								<div
 									class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 									<span class="">Tổng thanh toán</span> <span class=""><span
-										class="text-brand">${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}</span>đ</span>
+										class="text-brand"> <fmt:formatNumber
+												pattern="###,### đ"
+												value="${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}"
+												type="currency" />
+
+									</span></span>
 								</div>
 							</div>
 							<div class="row">

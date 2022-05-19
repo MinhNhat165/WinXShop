@@ -26,21 +26,24 @@ import winx.entity.SanPham;
 public class PageProductDetailController extends CommonMethod {
 
 	@RequestMapping(value = "/{maSP}.htm", method = RequestMethod.GET)
-	public String productDetail(HttpServletRequest request, ModelMap model, @PathVariable("maSP") String maSP) {
-		HttpSession ss = request.getSession();
+	public String productDetail(HttpSession ss, ModelMap model, @PathVariable("maSP") String maSP) {
 		String maKH = (String) ss.getAttribute("maKH");
-		model.addAttribute("user", getCustomer(maKH));
+		if (maKH != null) {
+			model.addAttribute("user", getCustomer(maKH));
+		}
 		model.addAttribute("SP", getProduct(maSP));
 		model.addAttribute("productList", getRandomProduct(4));
 
 		return "user/product-detail";
 	}
 
-	@RequestMapping(value = "/{maSP}.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "review/{maSP}.htm", method = RequestMethod.POST)
 	public String reviewProduct(HttpServletRequest request, ModelMap model, @RequestParam("score") int score,
 			@RequestParam("content") String content, @PathVariable("maSP") String maSP) {
+		HttpSession ss = request.getSession();
+		String maKH = (String) ss.getAttribute("maKH");
 
-		CTDG dg = new CTDG(getProduct(maSP), getCustomer("KH000001"), score, content, new Date());
+		CTDG dg = new CTDG(getProduct(maSP), getCustomer(maKH), score, content, new Date());
 
 		Session session = factory.openSession();
 

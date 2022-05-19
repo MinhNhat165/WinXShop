@@ -17,33 +17,18 @@
 		data-boxed-layout="full">
 		<%@include file="./sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">
-							Nhãn hàng</h4>
-					</div>
-				</div>
-			</div>
-
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
 			<div class="container-fluid">
 				<!-- ============================================================== -->
 				<!-- basic table -->
 
-				<a href="admin/brand/add.htm">
-					<button type="button"
-						class="btn btn-secondary green-bg-color shadow-none">
 
-						<i class="fas fa-plus-circle"></i> Thêm
-					</button>
-				</a>
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách nhã hàng</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -60,33 +45,20 @@
 												<tr>
 													<td>${b.getMaNH()}</td>
 													<td>${b.getTenNH()}</td>
-													<td><c:choose>
-															<c:when test="${ b.getTrangThai()==true}">
-																<button type="button" class="btn btn-status-activate">Hợp
-																	tác</button>
-															</c:when>
-															<c:otherwise>
-																<button type="button" class="btn btn-status-locked">
-																	Ngừng hợp tác</button>
-															</c:otherwise>
-														</c:choose></td>
+													<td><span
+														class="badge rounded-pill ${b.getTrangThai()?'bg-primary': 'bg-secondary text-white'} "
+														style="color: white !important">${b.getTrangThai()?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
 													<td class="text-center"><a
 														href="admin/brand/update/${b.getMaNH() }.htm?linkEdit">
-															<i class="fas fa-edit green-color"> </i>
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
 													</a></td>
 
 												</tr>
 											</c:forEach>
 
 										</tbody>
-										<tfoot>
-											<tr>
-												<th>Mã nhãn hàng</th>
-												<th>Tên nhãn hàng</th>
-												<th>Trạng thái</th>
-												<th class="text-center">Option</th>
-											</tr>
-										</tfoot>
 									</table>
 								</div>
 							</div>
@@ -108,9 +80,9 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Thêm Nhãn
-								Hàng</h4>
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Thêm
+								Nhãn Hàng</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
@@ -123,8 +95,8 @@
 											<div class=" tm-edit-product-row">
 
 												<form:form action="admin/brand/add.htm"
-													class="tm-edit-product-form" enctype="multipart/form-data" modelAttribute="nhanhang"
-													method="POST">
+													class="tm-edit-product-form" enctype="multipart/form-data"
+													modelAttribute="nhanhang" method="POST">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
 															<div class="form-group mb-3">
@@ -143,21 +115,20 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+															<div
+																class="tm-product-img-dummy mx-auto rounded profile-pic">
 
-																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																		onclick="document.getElementById('fileInput').click();"></i>
-																</div>
-																<div class="custom-file mt-3 mb-3">
-																	<input  name="anhh" type="file" class="file-upload"
-																		style="display: none;" />
-																		<form:errors
-																		path="anh"></form:errors>
-																	<button type="button"
-																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
-																		ảnh lên</button>
-																</div>
+																<i class="fas fa-cloud-upload-alt tm-upload-icon"
+																	onclick="document.getElementById('fileInput').click();"></i>
+															</div>
+															<div class="custom-file mt-3 mb-3">
+																<input name="anhh" type="file" class="file-upload"
+																	style="display: none;" />
+																<form:errors path="anh"></form:errors>
+																<button type="button"
+																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
+																	ảnh lên</button>
+															</div>
 
 
 														</div>
@@ -189,8 +160,9 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Chỉnh
+								Sửa</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
@@ -203,7 +175,8 @@
 											<div class=" tm-edit-product-row">
 
 												<form:form class="tm-edit-product-form"
-													modelAttribute="nhanhang" enctype="multipart/form-data" method="post">
+													modelAttribute="nhanhang" enctype="multipart/form-data"
+													method="post">
 													<div class="row col-12">
 														<div class="col-xl-6 col-lg-6 col-md-12">
 															<div class="form-group mb-3">
@@ -245,21 +218,20 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic">
+															<div
+																class="tm-product-img-dummy mx-auto rounded profile-pic">
 
-																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																		onclick="document.getElementById('fileInput').click();"></i>
-																</div>
-																<div class="custom-file mt-3 mb-3">
-																	<input  name="anh2" type="file" class="file-upload2"
-																		style="display: none;" />
-																		<form:errors
-																		path="anh"></form:errors>
-																	<button type="button"
-																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
-																		ảnh lên</button>
-																</div>
+																<i class="fas fa-cloud-upload-alt tm-upload-icon"
+																	onclick="document.getElementById('fileInput').click();"></i>
+															</div>
+															<div class="custom-file mt-3 mb-3">
+																<input name="anh2" type="file" class="file-upload2"
+																	style="display: none;" />
+																<form:errors path="anh"></form:errors>
+																<button type="button"
+																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
+																	ảnh lên</button>
+															</div>
 														</div>
 
 														<div class="col-12 mt-4">

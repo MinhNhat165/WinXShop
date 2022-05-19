@@ -38,6 +38,17 @@
 			<mvc:exclude-mapping path="/admin/login.htm" />
 			<bean class="winx.interceptor.AdminInterceptor" />
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/account.htm" />
+			<mvc:mapping path="/review/**" />
+			<mvc:mapping path="/cart.htm" />
+			<mvc:mapping path="/cart/**" />
+			<mvc:mapping path="/account.htm" />
+			<mvc:mapping path="/checkout.htm" />
+			<bean class="winx.interceptor.UserInterceptor" />
+		</mvc:interceptor>
+		
 	</mvc:interceptors>
 	<!-- Cấu hình Hibernate -->
 
@@ -87,7 +98,8 @@
 	</bean>
 	<bean id="uploadFile" class="winx.bean.UploadFile">
 		<property name="basePath"
-			value="D:\\PTIT_P\\WinXShop\\src\\main\\webapp\\resources\\imgs"></property>
+			value="T:\\Code\\Code Web\\React\\WinXShop\\src\\main\\webapp\\resources\\imgs"></property>
+
 	</bean>
 	<!-- Cấu hình package chứa các controller -->
 

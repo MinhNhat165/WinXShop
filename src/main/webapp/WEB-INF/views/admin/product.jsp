@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <%@include file="./head.jsp"%>
@@ -18,29 +19,18 @@
 		data-boxed-layout="full">
 		<%@include file="./sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">Sản
-							Phẩm</h4>
-					</div>
 
-				</div>
-			</div>
 
 			<!-- ============================================================== -->
 			<div class="container-fluid">
 				<!-- ============================================================== -->
 				<!-- basic table -->
-				<a href="admin/product/add.htm"><button type="button"
-						class="btn btn-secondary green-bg-color shadow-none">
-						<i class=" fas fa-plus-circle"></i> Thêm
-					</button></a>
+
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách sản phẩm</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -60,7 +50,8 @@
 												<tr>
 													<td>${sp.getMaSP()}</td>
 													<td>${sp.getTenSP()}</td>
-													<td>${sp.getGia()}</td>
+													<td><fmt:formatNumber pattern="###,### đ"
+															value="${sp.getGia()}" type="currency" /></td>
 													<td><c:choose>
 															<c:when test="${sp.loai==0}">
 																						Nam
@@ -75,10 +66,15 @@
 													<td>2009/02/27</td>
 													<td><a
 														href="admin/product/show/${sp.getMaSP() }.htm?linkShow">
-															<i class="fas fa-info-circle green-color"></i>
+															<button class="btn btn-light btn-outline-info btn-sm">
+																<i class="fas fa-info-circle"></i>
+															</button>
+
 													</a> <a
 														href="admin/product/update/${sp.getMaSP() }.htm?linkEdit">
-															<i class=" fas fa-edit green-color"></i>
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
+															</button>
 													</a></td>
 												</tr>
 
@@ -94,8 +90,9 @@
 						aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
-								<div class="modal-header">
-									<h4 class="modal-title" id="myCenterModalLabel">Sản Phẩm</h4>
+								<div class="modal-header green-bg-color">
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Sản
+										Phẩm</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -107,8 +104,9 @@
 												<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 
 													<div class="row tm-edit-product-row">
-														<form:form  class="tm-edit-product-form col-12 row"
-															method="post" enctype="multipart/form-data"  modelAttribute="sanpham">
+														<form:form class="tm-edit-product-form col-12 row"
+															method="post" enctype="multipart/form-data"
+															modelAttribute="sanpham">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
 
@@ -183,17 +181,18 @@
 
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+															<form:input class="invisible position-absolute" path="anh"/>
 																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic" style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
+																	class="tm-product-img-dummy mx-auto rounded profile-pic"
+																	style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
 
 																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
 																		onclick="document.getElementById('fileInput').click();"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
 																	<input name="anh3" type="file" class="file-upload"
-																		style="display: none;" />
-																		<span class="text-danger"><form:errors
-																		path="anh"></form:errors></span>
+																		style="display: none;" /> <span class="text-danger"><form:errors
+																			path="anh"></form:errors></span>
 																	<button type="button"
 																		class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																		ảnh lên</button>
@@ -203,8 +202,7 @@
 																		<label for="stock">Ngày sản xuất </label>
 																		<form:input path="ngaySX" type="date"
 																			class="form-control validate" required="true" />
-																			<form:errors
-																		path="ngaySX"></form:errors>
+																		<form:errors path="ngaySX"></form:errors>
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Ngày hết hạn </label>
@@ -242,8 +240,9 @@
 						role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
-								<div class="modal-header">
-									<h4 class="modal-title" id="myCenterModalLabel">Thông tin</h4>
+								<div class="modal-header green-bg-color">
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+										tin</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -260,8 +259,9 @@
 															class="tm-edit-product-form">
 															<div class="row col-12">
 																<div class="col-xl-6 col-lg-6 col-md-12">
-																	<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
-																		
+																	<div class="tm-product-img-dummy mx-auto rounded"
+																		style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
+
 																	</div>
 																	<div class="custom-file mt-3 mb-3">
 																		<input id="fileInput" type="file"
@@ -300,8 +300,11 @@
 																	<div class="row">
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Giá</p>
-																			<h6 class="text-muted f-w-400">${sanpham.gia}
-																				VND</h6>
+																			<h6 class="text-muted f-w-400">
+																				<fmt:formatNumber pattern="###,### đ"
+																					value="${sanpham.gia}" type="currency" />
+
+																			</h6>
 																		</div>
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Số lượng tồn</p>

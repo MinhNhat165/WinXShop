@@ -3,6 +3,7 @@ package winx.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -30,14 +31,17 @@ public class UserController extends CommonMethod {
 	SessionFactory factory;
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
+	public String login(ModelMap model, HttpSession ss) {
+		ss.removeAttribute("user");
+		ss.removeAttribute("tkkh");
+		ss.removeAttribute("maKH");
 		model.addAttribute("taikhoan", new TaiKhoan());
 		return "user/login";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login2(HttpSession ss, ModelMap model, @RequestParam("password") String pw,
-			@RequestParam("email") String email) {
+	public String login2(HttpSession ss, HttpServletRequest request, ModelMap model,
+			@RequestParam("password") String pw, @RequestParam("email") String email) {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
 //		System.out.print(tkdn);
@@ -58,9 +62,11 @@ public class UserController extends CommonMethod {
 			if (kh != null) {
 				ss.setAttribute("user", kh);
 				ss.setAttribute("tkkh", tkdn);
+				ss.setAttribute("maKH", kh.getMaKH());
 				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
-				ss.setAttribute("vaitro", tkdn.getQuyen());
-				return "redirect:/home.htm";
+				ss.setAttribute("vaitrokh", kh.getTaiKhoan().getQuyen());
+
+				return "redirect:/";
 			} else {
 				model.addAttribute("message", "Tài khoản không tồn tại!");
 				return "user/login";
@@ -111,7 +117,7 @@ public class UserController extends CommonMethod {
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register2(ModelMap model, @ModelAttribute("taikhoan") TaiKhoan tk, BindingResult errors,
-			@RequestParam("password") String pw, @RequestParam("repassword") String rpw) {
+			@RequestParam("password") String pw, @RequestParam("repassword") String rpw, HttpSession ss) {
 		Session session = factory.openSession();
 
 		Transaction t = session.beginTransaction();
@@ -136,7 +142,9 @@ public class UserController extends CommonMethod {
 				try {
 					kh.setMaKH(generatorId("KH", "KhachHang", "maKH"));
 					kh.setTaiKhoan(tk);
+					kh.setAnh("user.png");
 					session.save(kh);
+					ss.setAttribute("maKH", kh.getMaKH());
 					ts.commit();
 					return "redirect:account.htm";
 				} catch (Exception e) {
@@ -159,5 +167,13 @@ public class UserController extends CommonMethod {
 			}
 		}
 		return "user/register";
+	}
+
+	@RequestMapping("logout")
+	public String logout(HttpSession ss) {
+		ss.removeAttribute("user");
+		ss.removeAttribute("tkkh");
+		ss.removeAttribute("maKH");
+		return "redirect:/login.htm";
 	}
 }

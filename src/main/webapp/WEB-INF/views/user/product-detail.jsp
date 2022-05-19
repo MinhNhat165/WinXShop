@@ -44,10 +44,14 @@
 										<div class="clearfix product-price-cover">
 											<div class="product-price primary-color float-left">
 												<ins>
-													<span class="text-brand">${SP.gia - SP.gia * SP.dsSPKM[0].khuyenMai.giaTriKM/100}</span>
+													<span class="text-brand"><fmt:formatNumber
+															pattern="###,### đ"
+															value="${SP.gia - SP.gia * SP.dsSPKM[0].khuyenMai.giaTriKM/100}"
+															type="currency" /></span>
 												</ins>
 												<ins>
-													<span class="old-price font-md ml-15">${SP.gia }</span>
+													<span class="old-price font-md ml-15"><fmt:formatNumber
+															pattern="###,### đ" value="${SP.gia }" type="currency" /></span>
 												</ins>
 												<span class="save-price font-md color3 ml-15">Giảm
 													${SP.dsSPKM[0].khuyenMai.giaTriKM} % </span>
@@ -182,40 +186,50 @@
 											</div>
 										</div>
 										<!--comment form-->
-										<div class="comment-form">
-											<h4 class="mb-15">Đánh giá sản phẩm</h4>
-											<div class="product-rate d-inline-block mb-20"></div>
-											<div class="row">
-												<div class="col-lg-8 col-md-12">
-													<form class="form-contact comment_form"
-														action="product-detail/${SP.maSP }.htm" method="post"
-														id="commentForm">
-														<div class="row">
-															<div class="form-group col-3">
-																<div class="input-group input-group-sm">
-																	<input type="number" name="score" min="1" max="10"
-																		value="10"
-																		class="form-control text-center hidden-arrow" />
-																	<div
-																		class="input-group-text w-50 justify-content-center">
-																		<i class="fa-solid fa-star text-warning"></i>
+										<c:if test="${user != null}">
+											<div class="comment-form">
+												<h4 class="mb-15">Đánh giá sản phẩm</h4>
+												<div class="product-rate d-inline-block mb-20"></div>
+												<div class="row">
+													<div class="col-lg-8 col-md-12">
+														<form class="form-contact comment_form"
+															action="product-detail/review/${SP.maSP }.htm"
+															method="post" id="commentForm">
+															<div class="row">
+																<div class="form-group col-3">
+																	<div class="input-group input-group-sm">
+																		<input type="number" name="score" min="1" max="10"
+																			value="10"
+																			class="form-control text-center hidden-arrow" />
+																		<div
+																			class="input-group-text w-50 justify-content-center">
+																			<i class="fa-solid fa-star text-warning"></i>
+																		</div>
 																	</div>
+																</div>
+																<div class="form-group">
+																	<textarea class="form-control w-100" id="comment"
+																		cols="30" rows="9" name="content"
+																		placeholder="Viết nhận xét của bạn"></textarea>
 																</div>
 															</div>
 															<div class="form-group">
-																<textarea class="form-control w-100" id="comment"
-																	cols="30" rows="9" name="content"
-																	placeholder="Viết nhận xét của bạn"></textarea>
+																<button type="submit" class="btn btn-primary">
+																	Đánh giá</button>
 															</div>
-														</div>
-														<div class="form-group">
-															<button type="submit" class="btn btn-primary">
-																Đánh giá</button>
-														</div>
-													</form>
+														</form>
+													</div>
 												</div>
 											</div>
-										</div>
+										</c:if>
+										<c:if test="${user == null}">
+											<a href="login.htm">
+												<button class="btn btn-outline">Đăng nhập để đánh
+													giá</button>
+											</a>
+
+										</c:if>
+
 									</div>
 								</div>
 							</div>
@@ -282,8 +296,13 @@
 															<span> </span>
 														</div>
 														<div class="product-price">
-															<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-															</span> <span class="old-price">${p.gia } </span>
+
+															<span> <fmt:formatNumber pattern="###,### đ"
+																	value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+																	type="currency" />
+															</span> <span class="old-price"> <fmt:formatNumber
+																	pattern="###,### đ" value="${p.gia }" type="currency" />
+															</span>
 														</div>
 													</div>
 												</div>

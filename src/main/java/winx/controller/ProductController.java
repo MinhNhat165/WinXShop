@@ -114,6 +114,7 @@ public class ProductController extends CommonMethod {
 				model.addAttribute("sanpham", new SanPham());
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
+				System.out.println(e);
 				t.rollback();
 
 			} finally {
@@ -190,6 +191,7 @@ public class ProductController extends CommonMethod {
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
 				t.rollback();
+				System.out.println(e.getCause());
 
 			} finally {
 				session.close();

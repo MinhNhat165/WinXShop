@@ -365,10 +365,10 @@
 	$(function() {
 		sliderrange.slider({
 			range: true,
-			min: 50,
-			max: 10000,
-			values: [50, 10000],
-			step: 10,
+			min: 0,
+			max: 10000000,
+			values: [0, 10000000],
+			step: 1000,
 			slide: function(event, ui) {
 				priceStart.val(ui.values[0]);
 				priceEnd.val(ui.values[1]);
@@ -746,16 +746,18 @@
 	inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
 	inputReceiverAddress.val(receiverAddress.text());
 
-	btnEditInfoReceiver.on("click", function() {
-		console.log(receiverAddress.text())
+	console.log(receiverPhoneNumber.text())
+	if (!receiverPhoneNumber.text() || receiverName.text() || receiverAddress.tex()) {
+		showEditForm()
+	}
+	function showEditForm() {
 		$(".form-info-receiver").removeClass("d-none");
 		$(".info-receiver-content").addClass("d-none");
 		inputReceiverName.val(receiverName.text());
 		inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
 		inputReceiverAddress.val(receiverAddress.text());
-
-
-	});
+	}
+	btnEditInfoReceiver.on("click", showEditForm());
 
 	btnSaveInfoReceiver.on("click", function() {
 		$(".form-info-receiver").addClass("d-none");

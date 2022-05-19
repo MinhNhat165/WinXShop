@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.entity.GioHang_SanPham;
+import winx.entity.KhachHang;
 import winx.entity.KhuyenMai;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
+import winx.entity.TaiKhoan;
 import winx.entity.TinMoi;
 
 @Transactional
@@ -33,18 +35,23 @@ public class PageHomeController extends CommonMethod {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String home(ModelMap model, HttpSession ss) {
-		ss.setAttribute("maKH", "KH000001");
+		String maKH = (String) ss.getAttribute("maKH");
+		if (maKH != null) {
+			model.addAttribute("user", getCustomer(maKH));
+		}
+
 		List<TinMoi> newsList = this.getAllNews();
 		List<NhanHang> brandList = this.getAllBrand();
 		List<SanPham> productList = this.getRandomProduct(8);
 		List<SanPham> newProductList = this.getProductList("WHERE DATEDIFF(day, ngayThem, getdate()) < 5 and slt > 0",
 				0);
 		List<SanPham> bestSaleProductList = this.getTopBestSaleProduct();
+
 		model.addAttribute("newsList", newsList);
 		model.addAttribute("brandList", brandList);
 		model.addAttribute("productList", productList);
 		model.addAttribute("saleList", getSales(2));
-		model.addAttribute("user", getCustomer("KH000002"));
+
 		model.addAttribute("newProductList", newProductList);
 		model.addAttribute("bestSaleProductList", bestSaleProductList);
 		return "user/index";

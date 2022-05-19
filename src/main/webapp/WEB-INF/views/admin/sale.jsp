@@ -67,11 +67,11 @@
 														class="badge rounded-pill ${km.trangThai?'bg-primary': 'bg-secondary text-white'} "
 														style="color: white !important">${km.trangThai?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
 													<td><a href="admin/sale/detail/${km.maKM}.htm">
-															<button class="btn btn-outline-info btn-sm">
+															<button class="btn btn-light btn-outline-info btn-sm">
 																<i class="fas fa-info-circle"></i>
 															</button>
 													</a> <a href="admin/sale/update/${km.maKM}.htm">
-															<button class="btn btn-outline-warning btn-sm">
+															<button class="btn btn-light btn-outline-warning btn-sm">
 																<i class="fas fa-edit"></i>
 															</button>
 													</a></td>

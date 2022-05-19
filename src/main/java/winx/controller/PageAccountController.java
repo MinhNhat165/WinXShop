@@ -8,12 +8,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+
 import java.util.Locale;
+
 
 import javax.transaction.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,7 +29,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
+
 
 import winx.bean.UploadFile;
 import winx.entity.DonDat;
@@ -38,6 +41,7 @@ import winx.entity.TinMoi;
 
 @Transactional
 @Controller
+
 //@RequestMapping("account")
 public class PageAccountController {
 	
@@ -48,28 +52,22 @@ public class PageAccountController {
 //		return "user/account";
 //	}
 
-	//nhat
-	
-	
-	
-	
-	
-	
-	
-	
-	//Vi
-	@RequestMapping(value="account",params="btnpw")
-	public String changePW(HttpSession ss,@RequestParam("cpassword") String PW,
-			@RequestParam("npassword") String nPW,@RequestParam("renpassword") String rnPW,ModelMap model) {
 
-		TaiKhoan tk = (TaiKhoan)ss.getAttribute("tkkh");
-		if(tk.getMatKhau().trim().equals(PW) == false) {
-			model.addAttribute("message","Sai mật khẩu!");
-			
-		}else {
-			if(nPW.equals(rnPW) == false) {
-				model.addAttribute("message2","Mật khẩu không trùng khớp!");
-			}else {
+	// nhat
+
+	// Vi
+	@RequestMapping(value = "account", params = "btnpw")
+	public String changePW(HttpSession ss, @RequestParam("cpassword") String PW, @RequestParam("npassword") String nPW,
+			@RequestParam("renpassword") String rnPW, ModelMap model) {
+
+		TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
+		if (tk.getMatKhau().trim().equals(PW) == false) {
+			model.addAttribute("message", "Sai mật khẩu!");
+
+		} else {
+			if (nPW.equals(rnPW) == false) {
+				model.addAttribute("message2", "Mật khẩu không trùng khớp!");
+			} else {
 				Session session = factory.openSession();
 				 Transaction t = session.beginTransaction();
 				tk.setMatKhau(nPW);
@@ -77,7 +75,7 @@ public class PageAccountController {
 					session.update(tk);
 					t.commit();
 					model.addAttribute("message3", "Chỉnh sửa thành công!");
-				}catch(Exception e) {
+				} catch (Exception e) {
 					t.rollback();
 					model.addAttribute("message3", "Chỉnh sửa thất bại!");
 				}
@@ -86,6 +84,7 @@ public class PageAccountController {
 
 		return "user/account";
 	}
+
 	
 	
 
@@ -102,17 +101,23 @@ public class PageAccountController {
 	
 	//Oanh
 
+
 	@Qualifier("uploadFile")
 	UploadFile basePathUploadFile;
-	public List<KhachHang> getCustomer(){
+
+	public List<KhachHang> getCustomer() {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM KhachHang";
 		Query query = session.createQuery(hql);
 		List<KhachHang> list = query.list();
 		return list;
 	}
+
 	
 	public KhachHang getSingleCustomer(String maKH) {
+
+
+
 		Session session = factory.getCurrentSession();
 		String hql = "FROM KhachHang where MaKH=:MaKH";
 		Query query = session.createQuery(hql);
@@ -121,8 +126,10 @@ public class PageAccountController {
 
 		return n;
 	}
+
 	
 	// //
+
 		@RequestMapping(value = "account", method = RequestMethod.GET)
 		public String getCustomer(HttpServletRequest request,ModelMap model) {
 			HttpSession ss = request.getSession();
@@ -226,6 +233,7 @@ public class PageAccountController {
 			DonDat t = this.getSingleOrder(id);
 			System.out.println(t.getTrangThai());
 
+
 			model.addAttribute("btnStatus", "btnEdit");
 			
 			List<DonDat> list = getOrderByCustomerId(maKH);
@@ -268,3 +276,4 @@ public class PageAccountController {
 	}
 	
 	
+

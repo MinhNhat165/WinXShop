@@ -64,17 +64,14 @@ public class AdminController extends CommonMethod {
 		return "admin/sale";
 	}
 
-//	@RequestMapping("brand")
-//	public String brand(ModelMap model) {
-//		return "admin/brand";
-//	}
 	@RequestMapping("news")
 	public String news(ModelMap model) {
 		return "admin/news";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
+	public String login(ModelMap model, HttpSession ss) {
+		ss.removeAttribute("admin");
 		TaiKhoan taiKhoan = new TaiKhoan();
 		model.addAttribute("TK", taiKhoan);
 		return "admin/login";
