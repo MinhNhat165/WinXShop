@@ -181,6 +181,7 @@
 
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+															<form:input class="invisible position-absolute" path="anh"/>
 																<div
 																	class="tm-product-img-dummy mx-auto rounded profile-pic"
 																	style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
