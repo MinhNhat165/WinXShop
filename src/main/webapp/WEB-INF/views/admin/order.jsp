@@ -323,6 +323,20 @@
 	}else if(idOrderStatus.textContent == "3"){
 		idOrderStatus.textContent = "Đã hủy"
 	}
+	
+	var arr = document.querySelectorAll('#order-status');
+	for (let i = 0; i < arr.length; i++) {
+	    if(arr[i].innerText == 0){
+	    	arr[i].innerText = "Chờ xác nhận"
+	    } else if(arr[i].innerText == 1){
+	    	arr[i].innerText = "Đang vận chuyển"
+	    }else if(arr[i].innerText == 2){
+	    	arr[i].innerText = "Đã giao"
+	    }else if(arr[i].innerText == 3){
+	    	arr[i].innerText = "Đã hủy"
+	    }
+	}
+	
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">

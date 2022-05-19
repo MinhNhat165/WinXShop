@@ -30,13 +30,13 @@ public class KhachHang {
 	private String anh;
 	@Column(name = "NgaySinh")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySinh;
 
 	@Column(name = "DiaChi")
 	private String diaChi;
 	@Column(name = "Phai")
-	private byte phai;
+	private int phai;
 	@Column(name = "SDT")
 	private String sdt;
 	@OneToOne
@@ -91,11 +91,11 @@ public class KhachHang {
 		this.diaChi = diaChi;
 	}
 
-	public byte getPhai() {
+	public int getPhai() {
 		return phai;
 	}
 
-	public void setPhai(byte phai) {
+	public void setPhai(int phai) {
 		this.phai = phai;
 	}
 

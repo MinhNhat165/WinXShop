@@ -44,7 +44,7 @@ public class PageHomeController extends CommonMethod {
 		model.addAttribute("brandList", brandList);
 		model.addAttribute("productList", productList);
 		model.addAttribute("saleList", getSales(2));
-		model.addAttribute("user", getCustomer("KH000001"));
+		model.addAttribute("user", getCustomer("KH000002"));
 		model.addAttribute("newProductList", newProductList);
 		model.addAttribute("bestSaleProductList", bestSaleProductList);
 		return "user/index";

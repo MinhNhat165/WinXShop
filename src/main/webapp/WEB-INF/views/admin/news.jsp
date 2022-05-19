@@ -203,45 +203,52 @@
 											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 												<div class="row tm-edit-product-row">
 													<div class="col-12">
-														<form modelAttribute="news"
-															method="post" class="tm-edit-product-form">
-															<div class="row mb-4">
-																<div class="col-xl-6 col-lg-6 col-md-12">
-																	<div class="form-group mb-3">
-																		<label for="maTin">Mã tin </label> <input id="maTin"
-																			name="maTin" path="maTin" type="text"
-																			value=${news.maTin } class="form-control validate"
-																			required />
-																	</div>
-																	<div class="form-group mb-3">
-																		<label for="tenTin">Tên tin </label> <input
-																			id="tenTin" name="tenTin" path="tenTin" type="text"
-																			value=${news.tenTin } class="form-control validate"
-																			required />
-																	</div>
-																	<div class="form-group mb-3">
-																		<label for="noiDung">Mô tả</label>
-																		<textarea path="noiDung" id="noiDung" name="noiDung"
-																			class="form-control validate" rows="3" required>${news.noiDung }</textarea>
-																	</div>
+														<form:form action="admin/news/update/${news.maTin }.htm" modelAttribute="news"
+														method="post" enctype="multipart/form-data"
+														class="tm-edit-product-form">
+														<div class="row mb-4">
+
+															<div class="col-xl-6 col-lg-6 col-md-12">
+																<div class="form-group mb-3">
+																	<label for="name">Mã tin </label>
+																	<form:input path="maTin" id="maTin" type="text"
+																		class="form-control validate" required="true" />
 																</div>
-																<div class="col-xl-6 col-lg-6 col-md-12">
-																<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
-																		
-																	</div>
-																	<div class="custom-file mt-3 mb-3">
-																		<input id="fileInput" type="file"
-																			style="display: none;" />
-																		
-																	</div>
+																<div class="form-group mb-3">
+																	<label for="name">Tên tin </label>
+																	<form:input path="tenTin" id="tenTin" name="tenTin"
+																		type="text" class="form-control validate"
+																		required="true" />
+																</div>
+																<div class="form-group mb-3">
+																	<label for="description">Mô tả</label>
+																	<form:textarea id="noiDung" path="noiDung"
+																		name="noiDung" class="form-control validate" rows="3"
+																		required="true"></form:textarea>
+																</div>
 															</div>
+															<div class="col-xl-6 col-lg-6 col-md-12">
+																<div
+																	class="tm-product-img-dummy mx-auto rounded profile-pic" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
+																	<i
+																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
+																</div>
+																<div class="custom-file mt-3 mb-3">
+																	<input type="file" class="file-upload" name="anh1"
+																		id="anh1" style="display: none" /> <input
+																		type="button"
+																		class="btn btn-primary btn-block mx-auto upload-button btn-green shadow-none"
+																		value="Thêm ảnh" />
+																</div>
 															</div>
-															<div class="col-12">
+														</div>
+														<div class="col-12">
 																<button type="submit" name="${btnStatus}"
 																	class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
 																	Cập nhật</button>
 															</div>
-														</form>
+													</form:form>
+														
 													</div>
 												</div>
 											</div>
