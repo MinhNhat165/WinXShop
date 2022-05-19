@@ -181,13 +181,14 @@
 
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-															<form:input class="invisible position-absolute" path="anh"/>
+																<form:input class="invisible position-absolute"
+																	path="anh" />
 																<div
 																	class="tm-product-img-dummy mx-auto rounded profile-pic"
 																	style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
 
-																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																		onclick="document.getElementById('fileInput').click();"></i>
+																	<i
+																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
 																	<input name="anh3" type="file" class="file-upload"

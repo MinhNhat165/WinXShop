@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -24,6 +25,7 @@ public class KhachHang {
 	@Id
 	@Column(name = "MaKH")
 	private String maKH;
+
 	@Column(name = "HoTen")
 	private String hoTen;
 	@Column(name = "Anh")
