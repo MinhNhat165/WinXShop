@@ -37,7 +37,7 @@ public class PageCheckOutController extends CommonMethod {
 	SessionFactory factory;
 
 	@RequestMapping(value = "", method = RequestMethod.POST, params = "btnCheckout")
-	public String index(HttpServletRequest request, ModelMap model) {
+	public String index(HttpServletRequest request, ModelMap model, RedirectAttributes redirectAttributes) {
 
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
@@ -45,6 +45,8 @@ public class PageCheckOutController extends CommonMethod {
 		String[] dsSanPham = request.getParameterValues("sanPham");
 		if (dsSanPham == null) {
 			String referer = request.getHeader("Referer");
+			redirectAttributes.addFlashAttribute("message",
+					new Message("error", "Vui lòng chọn ít nhất 1 sản phẩm để đặt hàng"));
 			return "redirect:" + referer;
 		}
 		String[] soLuong = request.getParameterValues("soLuong");
@@ -65,7 +67,7 @@ public class PageCheckOutController extends CommonMethod {
 		String[] dsSanPham = request.getParameterValues("dsSanPham");
 		Message ms = new Message("error", "Hãy chọn ít nhất 1 sản phẩm để dặt hàng");
 		if (dsSanPham.length > 0) {
-
+			System.out.println(request.getParameter("tenNguoiNhan"));
 			HttpSession ss = request.getSession();
 			String maKH = (String) ss.getAttribute("maKH");
 			KhachHang khachHang = getCustomer(maKH);

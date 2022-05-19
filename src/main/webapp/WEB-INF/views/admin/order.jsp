@@ -48,7 +48,7 @@
 											<c:forEach var="o" items="${orders }">
 												<tr>
 													<td>${o.maDD }</td>
-													<td>${o.khachHang.hoTen }</td>
+													<td>${o.tenNguoiNhan }</td>
 													<td>${o.ngayDat }</td>
 													<td><fmt:formatNumber pattern="###,### đ"
 															value="${o.tongTien }" type="currency" /></td>
@@ -74,7 +74,7 @@
 															<button class="btn btn-light btn-outline-warning btn-sm">
 																<i class="fas fa-edit"></i>
 															</button>
-															
+
 													</a>
 													</td>
 												</tr>
@@ -106,7 +106,8 @@
 					<div class="modal-dialog modal-lg modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-header green-bg-color">
-								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+									tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -141,7 +142,7 @@
 														style="font-weight: 800 !important;">${o.tongTien }</h5>
 												</li>
 											</ul>
-											
+
 										</div>
 									</div>
 								</div>
@@ -282,7 +283,7 @@
 
 							<div class="modal-footer">
 
-								
+
 								<button type="submit" name="${btnStatus}"
 									class="btn btn-primary btn-green">Lưu</button>
 

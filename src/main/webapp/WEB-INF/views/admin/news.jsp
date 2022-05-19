@@ -16,16 +16,7 @@
 		data-boxed-layout="full">
 		<%@include file="./sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">
-							Tin Mới</h4>
-					</div>
 
-				</div>
-			</div>
 			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
@@ -33,15 +24,12 @@
 			<div class="container-fluid">
 				<!-- ============================================================== -->
 				<!-- basic table -->
-				<button type="button"
-					class="btn btn-secondary green-bg-color shadow-none"
-					data-toggle="modal" data-target="#addproduct">
-					<i class="fas fa-plus-circle"></i> Thêm
-				</button>
+
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách tin mới</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -49,10 +37,8 @@
 											<tr>
 												<th>Mã tin</th>
 												<th>Tên tin</th>
-												
 												<th>Ngày tạo</th>
-												<th>Trạng thái</th>
-												<th>Option</th>
+												<th>Thao tác</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -60,42 +46,26 @@
 												<tr>
 													<td>${n.maTin }</td>
 													<td>${n.tenTin }</td>
-													
 													<td>${n.ngayTao }</td>
-													<td>${n.trangThai }</td>
-													<td>
-														<a>
+													<td><a>
 															<button class="btn btn-light btn-outline-info btn-sm">
-															<i class="fas fa-info-circle"
-																data-toggle="modal" data-target=#${n.maTin}></i>
+																<i class="fas fa-info-circle" data-toggle="modal"
+																	data-target=#${n.maTin}></i>
 															</button>
-														</a>
-														<a href="admin/news/update/${n.maTin }.htm?linkEdit">
-														<button class="btn btn-light btn-outline-warning btn-sm">
-																<i
-															class="fas fa-edit"></i>
+													</a> <a href="admin/news/update/${n.maTin}.htm?linkEdit">
+															<button class="btn btn-light btn-outline-warning btn-sm">
+																<i class="fas fa-edit"></i>
 															</button>
-														
-														</a>
-														<a href="admin/news/delete/${n.maTin }.htm?linkDelete">
-														<button class="btn btn-light btn-outline-danger btn-sm">
-															<i class="fa-solid fa-trash"></i>
+
+													</a> <a href="admin/news/delete/${n.maTin }.htm?linkDelete">
+															<button class="btn btn-light btn-outline-danger btn-sm">
+																<i class="fa-solid fa-trash"></i>
 															</button>
-														</a>
-													</td>
+													</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
-										<tfoot>
-											<tr>
-												<th>Name</th>
-												<th>Position</th>
-												<th>Office</th>
-												<th>Age</th>
-												<th>Start date</th>
-												
-											</tr>
-										</tfoot>
+
 									</table>
 								</div>
 							</div>
@@ -122,7 +92,8 @@
 				<div class="modal-dialog modal-lg modal-dialog-centered">
 					<div class="modal-content">
 						<div class="modal-header green-bg-color">
-							<h4 class="modal-title text-white" id="myCenterModalLabel">Thêm Tin</h4>
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Thêm
+								Tin</h4>
 							<button type="button" class="close v-close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 						</div>
@@ -192,64 +163,65 @@
 			</div>
 			<!-- /.modal -->
 			<!-- Center modal content -->
-			
-				<div class="modal fade" id="show-news" tabindex="-1" role="dialog"
-					aria-hidden="true">
-					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header green-bg-color">
-								<h4 class="modal-title text-white" id="myCenterModalLabel">Chỉnh Sửa</h4>
-								<button type="button" class="close v-close" data-dismiss="modal"
-									aria-hidden="true">×</button>
-							</div>
-							<div class="modal-body">
-								<div
-									class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
-									<div class="row">
-										<div class="col-12">
-											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-												<div class="row tm-edit-product-row">
-													<div class="col-12">
-														<form modelAttribute="news"
-															method="post" class="tm-edit-product-form">
-															<div class="row mb-4">
-																<div class="col-xl-6 col-lg-6 col-md-12">
-																	<div class="form-group mb-3">
-																		<label for="maTin">Mã tin </label> <input id="maTin"
-																			name="maTin" path="maTin" type="text"
-																			value=${news.maTin } class="form-control validate"
-																			required />
-																	</div>
-																	<div class="form-group mb-3">
-																		<label for="tenTin">Tên tin </label> <input
-																			id="tenTin" name="tenTin" path="tenTin" type="text"
-																			value=${news.tenTin } class="form-control validate"
-																			required />
-																	</div>
-																	<div class="form-group mb-3">
-																		<label for="noiDung">Mô tả</label>
-																		<textarea path="noiDung" id="noiDung" name="noiDung"
-																			class="form-control validate" rows="3" required>${news.noiDung }</textarea>
-																	</div>
+
+			<div class="modal fade" id="show-news" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Chỉnh
+								Sửa</h4>
+							<button type="button" class="close v-close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
+						<div class="modal-body">
+							<div
+								class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+								<div class="row">
+									<div class="col-12">
+										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+											<div class="row tm-edit-product-row">
+												<div class="col-12">
+													<form modelAttribute="news" method="post"
+														class="tm-edit-product-form">
+														<div class="row mb-4">
+															<div class="col-xl-6 col-lg-6 col-md-12">
+																<div class="form-group mb-3">
+																	<label for="maTin">Mã tin </label> <input id="maTin"
+																		name="maTin" path="maTin" type="text"
+																		value=${news.maTin } class="form-control validate"
+																		required />
 																</div>
-																<div class="col-xl-6 col-lg-6 col-md-12">
-																<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
-																		
-																	</div>
-																	<div class="custom-file mt-3 mb-3">
-																		<input id="fileInput" type="file"
-																			style="display: none;" />
-																		
-																	</div>
+																<div class="form-group mb-3">
+																	<label for="tenTin">Tên tin </label> <input id="tenTin"
+																		name="tenTin" path="tenTin" type="text"
+																		value=${news.tenTin } class="form-control validate"
+																		required />
+																</div>
+																<div class="form-group mb-3">
+																	<label for="noiDung">Mô tả</label>
+																	<textarea path="noiDung" id="noiDung" name="noiDung"
+																		class="form-control validate" rows="3" required>${news.noiDung }</textarea>
+																</div>
 															</div>
+															<div class="col-xl-6 col-lg-6 col-md-12">
+																<div class="tm-product-img-dummy mx-auto rounded"
+																	style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
+
+																</div>
+																<div class="custom-file mt-3 mb-3">
+																	<input id="fileInput" type="file"
+																		style="display: none;" />
+
+																</div>
 															</div>
-															<div class="col-12">
-																<button type="submit" name="${btnStatus}"
-																	class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-																	Cập nhật</button>
-															</div>
-														</form>
-													</div>
+														</div>
+														<div class="col-12">
+															<button type="submit" name="${btnStatus}"
+																class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+																Cập nhật</button>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -258,18 +230,20 @@
 							</div>
 						</div>
 					</div>
-					<!-- /.modal-dialog -->
 				</div>
-			
+				<!-- /.modal-dialog -->
+			</div>
+
 			<!-- /.modal -->
 			<!-- Center modal content -->
 			<c:forEach var="n" items="${newsList }">
-				<div class="modal fade" id= ${n.maTin } tabindex="-1" role="dialog"
+				<div class="modal fade" id=${n.maTin } tabindex="-1" role="dialog"
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-header green-bg-color">
-								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
+								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+									tin</h4>
 								<button type="button" class="close v-close" data-dismiss="modal"
 									aria-hidden="true">×</button>
 							</div>
@@ -280,53 +254,52 @@
 										<div class="">
 											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 												<div class="row tm-edit-product-row">
-													
-														<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-															<div class="tm-product-img-dummy mx-auto rounded" style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
-																		
-																	</div>
-																	<div class="custom-file mt-3 mb-3">
-																		<input id="fileInput" type="file"
-																			style="display: none;" />
-																		<div
-																			Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
-																			<h4 class="mt-2">${n.maTin}</h4>
-																		</div>
 
-																	</div>
-															
+													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+														<div class="tm-product-img-dummy mx-auto rounded"
+															style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
+
+														</div>
+														<div class="custom-file mt-3 mb-3">
+															<input id="fileInput" type="file" style="display: none;" />
+															<div
+																Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
+																<h4 class="mt-2">${n.maTin}</h4>
+															</div>
+
 														</div>
 
-														<div class="col-xl-6 col-lg-6 col-md-12">
-															<div class="row mt-4">
-															
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Ngày tạo</p>
-																	<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
-																</div>
-															</div>
-															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Tên tin</p>
-																<h6 class="text-muted f-w-400">Nước hoa</h6>
-															</div>
-														
-															<div class="form-group mb-3">
-																<p class="m-b-10 f-w-600">Nội dung</p>
-																<h6 class="text-muted f-w-400">
-																	${n.noiDung }</h6>
-															</div>
+													</div>
 
-															<div class="row">
-																<div class="form-group mb-3 col-xs-12 col-sm-6">
-																	<p class="m-b-10 f-w-600">Trạng thái</p>
-																	<h6 class="text-muted f-w-400">unisex</h6>
-																</div>
-																
-															</div>
+													<div class="col-xl-6 col-lg-6 col-md-12">
+														<div class="row mt-4">
 
-															
+															<div class="form-group mb-3 col-xs-12 col-sm-6">
+																<p class="m-b-10 f-w-600">Ngày tạo</p>
+																<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
+															</div>
 														</div>
-													
+														<div class="form-group mb-3">
+															<p class="m-b-10 f-w-600">Tên tin</p>
+															<h6 class="text-muted f-w-400">${n.tenTin}</h6>
+														</div>
+
+														<div class="form-group mb-3">
+															<p class="m-b-10 f-w-600">Nội dung</p>
+															<h6 class="text-muted f-w-400">${n.noiDung }</h6>
+														</div>
+
+														<div class="row">
+															<div class="form-group mb-3 col-xs-12 col-sm-6">
+																<p class="m-b-10 f-w-600">Trạng thái</p>
+																<h6 class="text-muted f-w-400">unisex</h6>
+															</div>
+
+														</div>
+
+
+													</div>
+
 												</div>
 											</div>
 										</div>
@@ -353,6 +326,13 @@
 	if ($(".modal-flag").attr("idModal") === "modalShow") {
 		$("#show-news").modal("show");
 	} 
+
+	$(".btn-create").remove();
+	searchBar.append(`<button type="button"
+			class="btn btn-secondary mb-0 green-bg-color shadow-none"
+			data-toggle="modal" data-target="#addproduct">
+			<i class="fas fa-plus-circle"></i> Thêm
+		</button>`);
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">

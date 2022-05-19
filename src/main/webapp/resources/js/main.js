@@ -746,16 +746,18 @@
 	inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
 	inputReceiverAddress.val(receiverAddress.text());
 
-	btnEditInfoReceiver.on("click", function() {
-		console.log(receiverAddress.text())
+	console.log(receiverPhoneNumber.text())
+	if (!receiverPhoneNumber.text() || receiverName.text() || receiverAddress.tex()) {
+		showEditForm()
+	}
+	function showEditForm() {
 		$(".form-info-receiver").removeClass("d-none");
 		$(".info-receiver-content").addClass("d-none");
 		inputReceiverName.val(receiverName.text());
 		inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
 		inputReceiverAddress.val(receiverAddress.text());
-
-
-	});
+	}
+	btnEditInfoReceiver.on("click", showEditForm());
 
 	btnSaveInfoReceiver.on("click", function() {
 		$(".form-info-receiver").addClass("d-none");

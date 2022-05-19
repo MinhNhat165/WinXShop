@@ -15,16 +15,7 @@
 		data-boxed-layout="full">
 		<%@include file="./sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">Khách
-							Hàng</h4>
-					</div>
 
-				</div>
-			</div>
 
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -36,6 +27,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách khách hàng</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -56,25 +48,23 @@
 													<td>${u.hoTen }</td>
 													<td>${u.taiKhoan.email }</td>
 													<td>${u.sdt }</td>
-													
+
 													<td><span
 														class="badge rounded-pill ${u.taiKhoan.trangThai?'bg-primary': 'bg-secondary text-white'} "
 														style="color: white !important">${u.taiKhoan.trangThai?'Còn hiệu lực': 'Hết hiệu lực' }</span></td>
-													<td>
-													<a href="admin/customer/${u.maKH }.htm?linkShow">
-													<button class="btn btn-light btn-outline-info btn-sm">
+													<td><a href="admin/customer/${u.maKH }.htm?linkShow">
+															<button class="btn btn-light btn-outline-info btn-sm">
 																<i class="fas fa-info-circle"></i>
 															</button>
-													</a>
-													
-														<a href="admin/change-status/${u.taiKhoan.email }.htm?linkEdit"><button class="btn btn-light btn-outline-warning btn-sm">
+													</a> <a
+														href="admin/change-status/${u.taiKhoan.email }.htm?linkEdit"><button
+																class="btn btn-light btn-outline-warning btn-sm">
 																<i class="fas fa-edit"></i>
-															</button></a>
-													</td>
+															</button></a></td>
 
 												</tr>
 											</c:forEach>
-										
+
 										</tbody>
 
 									</table>
@@ -92,147 +82,148 @@
 			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!--  Modal content for the above example -->
-				<div class="modal fade" id="show-info" tabindex="-1" role="dialog"
-					 aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content ">
-							<div class="modal-header green-bg-color">
-								<h4 class="modal-title text-white" id="myLargeModalLabel">Thông Tin</h4>
-								<button type="button" class="close v-close" data-dismiss="modal"
-									aria-hidden="true">×</button>
-							</div>
+			<div class="modal fade" id="show-info" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content ">
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myLargeModalLabel">Thông
+								Tin</h4>
+							<button type="button" class="close v-close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
 
-							<div class="modal-body">
-								<div class="page-content page-container" id="page-content">
-									<div
-										class="row container d-flex justify-content-center p-0 m-0">
-										<div class="col-md-12">
-										
-										
-											<div class="card user-card-full">
+						<div class="modal-body">
+							<div class="page-content page-container" id="page-content">
+								<div class="row container d-flex justify-content-center p-0 m-0">
+									<div class="col-md-12">
 
-												<div class="row m-l-0 m-r-0">
 
-													<div class="col-sm-4 bg-c-lite-green user-profile div-img">
-														<div class="card-block text-center text-white">
-															<div class="m-b-25">
-																<img
-																	src=${user.anh }
-																	class="img-radius" alt="User-Profile-Image">
-																	
-															</div>
-															<h6 class="f-w-600">user001</h6>
-															<p>NV001</p>
-															<i
-																class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+										<div class="card user-card-full">
+
+											<div class="row m-l-0 m-r-0">
+
+												<div class="col-sm-4 bg-c-lite-green user-profile div-img">
+													<div class="card-block text-center text-white">
+														<div class="m-b-25">
+															<img src=${user.anh } class="img-radius"
+																alt="User-Profile-Image">
+
 														</div>
+														<h6 class="f-w-600">user001</h6>
+														<p>NV001</p>
+														<i
+															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 													</div>
-													<div class="col-sm-8">
-														<div class="card-block">
-															<h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Thông
-																tin cơ bản</h6>
-															<div class="row">
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">Họ và tên</p>
-																	<h6 class="text-muted f-w-400">${user.hoTen }</h6>
-																</div>
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">Địa chỉ</p>
-																	<h6 class="text-muted f-w-400">${user.diaChi }</h6>
-																</div>
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">Ngày sinh</p>
-																	<h6 class="text-muted f-w-400">${user.ngaySinh }</h6>
-																</div>
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">Phái</p>
-																	<h6 class="text-muted f-w-400">${user.phai }</h6>
-																</div>
+												</div>
+												<div class="col-sm-8">
+													<div class="card-block">
+														<h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Thông
+															tin cơ bản</h6>
+														<div class="row">
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">Họ và tên</p>
+																<h6 class="text-muted f-w-400">${user.hoTen }</h6>
 															</div>
-
-															<h6 class="m-b-20 p-b-5 b-b-default f-w-600 mt-3">Thông
-																tin liên hệ</h6>
-															<div class="row">
-
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">Email</p>
-																	<h6 class="text-muted f-w-400">${user.taiKhoan.email }</h6>
-																</div>
-																<div class="col-sm-6">
-																	<p class="m-b-10 f-w-600">SĐT</p>
-																	<h6 class="text-muted f-w-400">${user.sdt }</h6>
-																</div>
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">Địa chỉ</p>
+																<h6 class="text-muted f-w-400">${user.diaChi }</h6>
 															</div>
-
-															<ul class="social-link list-unstyled m-t-40 m-b-10">
-																<li><a href="#!" data-toggle="tooltip"
-																	data-placement="bottom" title=""
-																	data-original-title="facebook" data-abc="true"><i
-																		class="mdi mdi-facebook feather icon-facebook facebook"
-																		aria-hidden="true"></i></a></li>
-																<li><a href="#!" data-toggle="tooltip"
-																	data-placement="bottom" title=""
-																	data-original-title="twitter" data-abc="true"><i
-																		class="mdi mdi-twitter feather icon-twitter twitter"
-																		aria-hidden="true"></i></a></li>
-																<li><a href="#!" data-toggle="tooltip"
-																	data-placement="bottom" title=""
-																	data-original-title="instagram" data-abc="true"><i
-																		class="mdi mdi-instagram feather icon-instagram instagram"
-																		aria-hidden="true"></i></a></li>
-															</ul>
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">Ngày sinh</p>
+																<h6 class="text-muted f-w-400">${user.ngaySinh }</h6>
+															</div>
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">Phái</p>
+																<h6 class="text-muted f-w-400">${user.phai }</h6>
+															</div>
 														</div>
+
+														<h6 class="m-b-20 p-b-5 b-b-default f-w-600 mt-3">Thông
+															tin liên hệ</h6>
+														<div class="row">
+
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">Email</p>
+																<h6 class="text-muted f-w-400">${user.taiKhoan.email }</h6>
+															</div>
+															<div class="col-sm-6">
+																<p class="m-b-10 f-w-600">SĐT</p>
+																<h6 class="text-muted f-w-400">${user.sdt }</h6>
+															</div>
+														</div>
+
+														<ul class="social-link list-unstyled m-t-40 m-b-10">
+															<li><a href="#!" data-toggle="tooltip"
+																data-placement="bottom" title=""
+																data-original-title="facebook" data-abc="true"><i
+																	class="mdi mdi-facebook feather icon-facebook facebook"
+																	aria-hidden="true"></i></a></li>
+															<li><a href="#!" data-toggle="tooltip"
+																data-placement="bottom" title=""
+																data-original-title="twitter" data-abc="true"><i
+																	class="mdi mdi-twitter feather icon-twitter twitter"
+																	aria-hidden="true"></i></a></li>
+															<li><a href="#!" data-toggle="tooltip"
+																data-placement="bottom" title=""
+																data-original-title="instagram" data-abc="true"><i
+																	class="mdi mdi-instagram feather icon-instagram instagram"
+																	aria-hidden="true"></i></a></li>
+														</ul>
 													</div>
-
-
 												</div>
 
 
 											</div>
+
+
 										</div>
 									</div>
-
 								</div>
+
 							</div>
 						</div>
-						<!-- /.modal-content -->
 					</div>
-					<!-- /.modal-dialog -->
+					<!-- /.modal-content -->
 				</div>
+				<!-- /.modal-dialog -->
+			</div>
 			<!-- /.modal -->
 			<!-- footer -->
 			<!-- ============================================================== -->
-			
+
 			<!-- ============================================================== -->
 			<!-- End footer -->
 			<!-- ============================================================== -->
 			<!-- Center modal content -->
 			<!--<c:forEach var="u" items="${users }">-->
-			<div class="modal fade" id="editStatus" tabindex="-1"
-				role="dialog" aria-hidden="true">
+			<div class="modal fade" id="editStatus" tabindex="-1" role="dialog"
+				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
 					<div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">Modal title</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      
-			        <p>Thay đổi trạng thái</p>
-			        
-			      </div>
-			      <form method="post" modelAttribute="taiKhoan">
-			      <div class="modal-footer">
-			      	
-				        <button type="submit" name="${btnStatus}" class="btn-green btn-primary">Lưu</button>
-			      	
-			        
-			      </div>
-			      </form>
+						<div class="modal-header">
+							<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+
+							<p>Thay đổi trạng thái</p>
+
+						</div>
+						<form method="post" modelAttribute="taiKhoan">
+							<div class="modal-footer">
+
+								<button type="submit" name="${btnStatus}"
+									class="btn-green btn-primary">Lưu</button>
+
+
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
 			</div>
 			<!--</c:forEach>-->
 			<!-- /.modal -->
@@ -244,18 +235,18 @@
 			<!-- ============================================================== -->
 			<!-- Center modal content -->
 			<!-- Chi Tiet Khach Hang -->
-			
-					<!-- /.modal -->
-				</div>
-				<!-- ============================================================== -->
-				<!-- End Page wrapper  -->
-				<!-- ============================================================== -->
+
+			<!-- /.modal -->
 		</div>
-		
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
-	
+	</div>
+
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
+
 	<%@include file="./script.jsp"%>
 	<script type="text/javascript">
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {

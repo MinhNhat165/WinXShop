@@ -7,12 +7,12 @@
 	<%@include file="./header.jsp"%>
 	<!-- flag -->
 
-	<div class="alert-flag" aType='${message.type}'
-		aMessage="${message.message }"></div>
+
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">
-				<form action="checkout.htm" method="post" class="row">
+				<form action="checkout.htm" method="post"
+					class="row needs-validation">
 					<div class="col-9">
 						<div
 							class="col-12 bg-white p-10 rounded mb-10 bg-brand text-white">
@@ -87,17 +87,18 @@
 								<div class="col-12 px-0">
 									<input type="text" name="tenNguoiNhan"
 										class="form-control form-control-sm input-receiver-name"
-										placeholder="Tên người nhận" aria-label="name" />
+										placeholder="Tên người nhận" aria-label="name" required />
+									<div class="invalid-feedback">Please choose a username.</div>
 								</div>
 								<div class="col-12 px-0">
 									<input type="text" name="sdtNguoiNhan"
 										class="form-control form-control-sm input-receiver-phone-number"
-										placeholder="SĐT người nhận" aria-label="name" />
+										placeholder="SĐT người nhận" aria-label="name" required />
 								</div>
 								<div class="col-12 px-0">
 									<input type="text" name="diaChiNguoiNhan"
 										class="form-control form-control-sm input-receiver-address"
-										placeholder="Địa chỉ người nhận" aria-label="name" />
+										placeholder="Địa chỉ người nhận" aria-label="name" required />
 								</div>
 								<div class="col-12 mb-4 px-0 text-end">
 									<button type="button"
@@ -114,8 +115,7 @@
 									<span class="receiver-phone-number">${user.sdt }</span>
 								</div>
 								<div class="col-12 d-flex j pt-5 pb-10 px-0 ">
-									<span class="receiver-address">C3 Man Thiện, Phường Hiệp
-										Phú, TP.Thủ Đức</span>
+									<span class="receiver-address">${user.diaChi }</span>
 								</div>
 							</div>
 						</div>

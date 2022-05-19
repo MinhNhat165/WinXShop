@@ -19,29 +19,18 @@
 		data-boxed-layout="full">
 		<%@include file="./sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">Sản
-							Phẩm</h4>
-					</div>
 
-				</div>
-			</div>
 
 			<!-- ============================================================== -->
 			<div class="container-fluid">
 				<!-- ============================================================== -->
 				<!-- basic table -->
-				<a href="admin/product/add.htm"><button type="button"
-						class="btn btn-secondary green-bg-color shadow-none">
-						<i class=" fas fa-plus-circle"></i> Thêm
-					</button></a>
+
 				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
+								<h5 class="card-title fs-3">Danh sách sản phẩm</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -80,7 +69,7 @@
 															<button class="btn btn-light btn-outline-info btn-sm">
 																<i class="fas fa-info-circle"></i>
 															</button>
-															
+
 													</a> <a
 														href="admin/product/update/${sp.getMaSP() }.htm?linkEdit">
 															<button class="btn btn-light btn-outline-warning btn-sm">
@@ -102,7 +91,8 @@
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
 								<div class="modal-header green-bg-color">
-									<h4 class="modal-title text-white" id="myCenterModalLabel">Sản Phẩm</h4>
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Sản
+										Phẩm</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -250,7 +240,8 @@
 						<div class="modal-dialog modal-lg modal-dialog-centered">
 							<div class="modal-content ">
 								<div class="modal-header green-bg-color">
-									<h4 class="modal-title text-white" id="myCenterModalLabel">Thông tin</h4>
+									<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+										tin</h4>
 									<button type="button" class="close v-close"
 										data-dismiss="modal" aria-hidden="true">×</button>
 								</div>
@@ -309,10 +300,10 @@
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Giá</p>
 																			<h6 class="text-muted f-w-400">
-																			<fmt:formatNumber pattern="###,### đ"
-															value="${sanpham.gia}" type="currency" />
-																			
-																				</h6>
+																				<fmt:formatNumber pattern="###,### đ"
+																					value="${sanpham.gia}" type="currency" />
+
+																			</h6>
 																		</div>
 																		<div class="form-group mb-3 col-xs-12 col-sm-6">
 																			<p class="m-b-10 f-w-600">Số lượng tồn</p>
