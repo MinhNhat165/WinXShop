@@ -44,10 +44,14 @@
 										<div class="clearfix product-price-cover">
 											<div class="product-price primary-color float-left">
 												<ins>
-													<span class="text-brand">${SP.gia - SP.gia * SP.dsSPKM[0].khuyenMai.giaTriKM/100}</span>
+													<span class="text-brand"><fmt:formatNumber
+															pattern="###,### đ"
+															value="${SP.gia - SP.gia * SP.dsSPKM[0].khuyenMai.giaTriKM/100}"
+															type="currency" /></span>
 												</ins>
 												<ins>
-													<span class="old-price font-md ml-15">${SP.gia }</span>
+													<span class="old-price font-md ml-15"><fmt:formatNumber
+															pattern="###,### đ" value="${SP.gia }" type="currency" /></span>
 												</ins>
 												<span class="save-price font-md color3 ml-15">Giảm
 													${SP.dsSPKM[0].khuyenMai.giaTriKM} % </span>
@@ -292,8 +296,13 @@
 															<span> </span>
 														</div>
 														<div class="product-price">
-															<span>${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}
-															</span> <span class="old-price">${p.gia } </span>
+
+															<span> <fmt:formatNumber pattern="###,### đ"
+																	value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+																	type="currency" />
+															</span> <span class="old-price"> <fmt:formatNumber
+																	pattern="###,### đ" value="${p.gia }" type="currency" />
+															</span>
 														</div>
 													</div>
 												</div>
