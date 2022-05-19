@@ -123,8 +123,7 @@ public class NewsController {
 			model.addAttribute("idModal", "modalShow");
 			model.addAttribute("news",this.getSingleNews(id));
 			TinMoi t = this.getSingleNews(id);
-			System.out.println(t.getTrangThai());
-				model.addAttribute("btnStatus", "btnEdit");
+			model.addAttribute("btnStatus", "btnEdit");
 			
 			List<TinMoi> list = getNews();
 			model.addAttribute("newsList", list);
@@ -132,25 +131,45 @@ public class NewsController {
 			return "admin/news";
 		}
 	@RequestMapping(value = "news/update/{id}.htm",params="btnEdit", method = RequestMethod.POST)
-	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model) {
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-		try {
-			
-			Date dateNow = new Date();
-			news.ngayTao = dateNow;
-			news.trangThai = 1;
-//			System.out.println(news.getMaTin());
-			session.update(news);
-			t.commit();
-			return "redirect:/admin/news.htm";
-//			model.addAttribute("message", "Sửa thành công!");
-		} catch (Exception e) {
-			t.rollback();
-			model.addAttribute("message", "Sửa thất bại!");
-		} finally {
-			session.close();
+	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model, @RequestParam("anh1") MultipartFile anh1) {
+		
+		if (anh1.isEmpty()) {
+			System.out.println("rong");
+
+		} else {
+			try {
+				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
+				String tenAnh = date + anh1.getOriginalFilename();
+				String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
+				System.out.println("anh: "+duongDanAnh);
+
+				Session session = factory.openSession();
+				Transaction t = session.beginTransaction();
+				try {
+					
+					Date dateNow = new Date();
+					news.ngayTao = dateNow;
+					news.setTrangThai((byte)1);
+					news.setAnh(tenAnh);
+					
+					session.update(news);
+					t.commit();
+					anh1.transferTo(new File(duongDanAnh));
+					return "redirect:/admin/news.htm";
+//					model.addAttribute("message", "Sửa thành công!");
+				} catch (Exception e) {
+					System.out.println(e);
+					t.rollback();
+					model.addAttribute("message", "Sửa thất bại!");
+				} finally {
+					session.close();
+				}
+				
+			}catch(Exception e){
+				
+			}
 		}
+		
 		List<TinMoi> list = getNews();
 		model.addAttribute("newsList", list);
 

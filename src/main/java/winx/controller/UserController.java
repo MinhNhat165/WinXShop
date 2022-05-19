@@ -44,8 +44,9 @@ public class UserController extends CommonMethod {
 			@RequestParam("password") String pw, @RequestParam("email") String email) {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
-
+//		System.out.print(tkdn);
 		if (tkdn == null) {
+			
 			model.addAttribute("message", "Sai thông tin đăng nhập!");
 			return "user/login";
 		}

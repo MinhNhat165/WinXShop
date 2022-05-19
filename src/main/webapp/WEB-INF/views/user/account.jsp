@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
 <%@include file="./head.jsp"%>
 <body>
 	<%@include file="./header.jsp"%>
+	<div class="page-flag" data="account"></div>
+	<div class="modal-flag" idModal="${idModal}"></div>
 	  <main class="main bg-light vh-90">
+	  
       <section class="pt-50">
         <div class="container">
           <div class="row">
@@ -184,6 +188,7 @@
                               <div class="col-2 text-center">Thao tác</div>
                             </div>
                           </div>
+                          <c:forEach var="o" items="${orders }">
                           <div class="col-12">
                             <div
                               class="col-12 bg-white p-10 rounded-1 mb-5 product border border-brand"
@@ -194,19 +199,19 @@
                                 <div class="col-2 text-center product-name">
                                   <h5 class="order-id">
                                     <a href="shop-product-right.html"
-                                      >HD000001
+                                      >${o.getMaDD() }
                                     </a>
                                   </h5>
                                 </div>
                                 <div class="col-3 text-center order-date">
-                                  <span>29/04/2022 </span>
+                                  <span>${o.getNgayDat() } </span>
                                 </div>
                                 <div class="col-2 text-center product-state">
-                                  <span class="badge rounded-pill bg-brand"
-                                    >Đang vận chuyển</span
+                                  <span class="badge rounded-pill bg-brand order-status" id="order-status"
+                                    >${o.getTrangThai() }</span
                                   >
                                 </div>
-                                <div class="col-3 text-center">65.000 VND</div>
+                                <div class="col-3 text-center">${o.getTongTien() } VND</div>
                                 <div
                                   class="col-2 d-flex justify-content-center gap-md-3 order-action"
                                 >
@@ -219,13 +224,14 @@
                                     ><i class="fa-regular fa-trash-can"></i
                                   ></a>
                                   <a
-                                    href="#"
+                                    href="order/change-status/${o.getMaDD()}.htm?linkEdit"
                                     class="text-muted my-tooltip"
                                     aria-label="Huỷ đơn"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#confirm-modal"
-                                    ><i class="fa-regular fa-ban"></i
-                                  ></a>
+                                    data-bs-target=#${o.getMaDD()}
+                                    >
+                                    <i class="fa-regular fa-ban"></i>
+                                    </a>
                                   <a
                                     href="#"
                                     class="text-muted my-tooltip"
@@ -238,6 +244,7 @@
                               </div>
                             </div>
                           </div>
+                          </c:forEach>
                         </div>
                       </div>
                     </div>
@@ -256,7 +263,7 @@
                           <div class="row">
                             <div class="col-md-4">
                               <div class="avatar-wrapper">
-                                <img class="profile-pic" src="" />
+                                <img class="profile-pic" src=${user.anh } />
                                 <div class="upload-button">
                                   <i
                                     class="fa fa-arrow-circle-up"
@@ -270,14 +277,14 @@
                                 />
                               </div>
                               <div class="col-12 text-center text-brand-dark">
-                                <span class="fs-5">OanhXinh</span>
+                                <span class="fs-5">${user.getHoTen() }</span>
                               </div>
                             </div>
                             <div class="col-8">
                               <form
-                              	action="dsaas"
+                              	action="account/update.htm"
+                              	modelAttribute="kh"
                                 method="post"
-                                name="enq"
                                 class="needs-validation"
                               >
                                 <div class="row">
@@ -287,10 +294,13 @@
                                       <span class="required">*</span></label
                                     >
                                     <input
+                                    	
                                       class="form-control"
-                                      name="name"
+                                      name="hoTen"
+                                      id="hoTen"
                                       type="text"
-                                      required
+                                      value=${user.getHoTen() }
+                                      
                                     />
                                   </div>
 
@@ -303,9 +313,10 @@
                                     <div class="col-sm-12 d-flex gap-4 ml-10">
                                       <div class="form-check custom-radio">
                                         <input
+   
                                           class="form-check-input"
                                           type="radio"
-                                          name="gender"
+                                          name="phai"
                                           id="female"
                                           value="0"
                                           checked
@@ -321,7 +332,7 @@
                                         <input
                                           class="form-check-input"
                                           type="radio"
-                                          name="gender"
+                                          name="phai"
                                           id="male"
                                           value="1"
                                         />
@@ -340,10 +351,12 @@
                                       <span class="required">*</span></label
                                     >
                                     <input
-                                      required=""
+                                    	
+                                      id="ngaySinh"
                                       class="form-control"
-                                      name="date"
+                                      name="ngaySinh"
                                       type="date"
+                                      value=${user.getNgaySinh() }
                                     />
                                   </div>
                                   <div class="form-group col-md-12">
@@ -352,10 +365,12 @@
                                       <span class="required">*</span></label
                                     >
                                     <input
-                                      required=""
+                                    	
                                       class="form-control"
-                                      name="address"
+                                      name="diaChi"
+                                      id="diaChi"
                                       type="text"
+                                      value=${user.getDiaChi() }
                                     />
                                   </div>
                                   <div class="form-group col-md-12">
@@ -364,10 +379,12 @@
                                       <span class="required">*</span></label
                                     >
                                     <input
-                                      required=""
+                                    	
+                                      id="sdt"
                                       class="form-control"
-                                      name="phone"
-                                      type="tel"
+                                      name="sdt"
+                                      type="text"
+                                      value=${user.getSdt() }
                                     />
                                   </div>
 
@@ -375,8 +392,8 @@
                                     <button
                                       type="submit"
                                       class="btn"
-                                      name="submit"
-                                      value="Submit"
+                                      
+                                      
                                     >
                                       Xác nhận
                                     </button>
@@ -397,22 +414,24 @@
       </section>
     </main>
 	   <!-- confirm modal -->
+	 <c:forEach var="o" items="${orders }">
     <div
       class="modal fade"
-      id="confirm-modal"
+      id=${o.getMaDD() }
       tabindex="-1"
-      aria-labelledby="confirm-modal"
+     role="dialog"
       aria-hidden="true"
     >
       <div
         class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm"
       >
         <div class="modal-content">
+        <form method="post" modelAttribute="donDat" action="order/change-status/${o.getMaDD()}.htm">
           <div class="modal-body">
-            Bạn có chắn chắn muốn xoá sản phẩm đang chọn
+            Bạn có chắn chắn muốn hủy sản phẩm đang chọn
           </div>
           <div class="text-end p-10">
-            <button type="button" class="btn">Xác nhận</button>
+            <button type="submit" class="btn" name="${btnStatus}">Xác nhận</button>
             <button
               type="button"
               class="btn btn-secondary"
@@ -421,9 +440,11 @@
               huỷ
             </button>
           </div>
+          </form>
         </div>
       </div>
     </div>
+    </c:forEach>
     <!-- order details modal -->
     <div
       class="modal fade"
@@ -558,7 +579,29 @@
         </div>
       </div>
     </div>
+    
+    
 	<%@include file="./footer.jsp"%>
 	<%@include file="./script.jsp"%>
+	<script type="text/javascript">
+
+		if ($(".modal-flag").attr("idModal") === "modalCreate") {
+	    	console.log("active");
+			$("#edit-status").modal("show");
+		}else if ($(".modal-flag").attr("idModal") === "modalShow") {
+			$("#order-details").modal("show");
+		}
+
+		var arr = document.querySelectorAll('#order-status');
+		for (let i = 0; i < arr.length; i++) {
+		    if(arr[i].innerText == 3){
+		    	arr[i].innerText = "Da Huy"
+		    } else if(arr[i].innerText == 0){
+		    	arr[i].innerText = "Dang Xac nhan"
+		    }
+		}
+		
+	    
+    </script>
 </body>
 </html>
