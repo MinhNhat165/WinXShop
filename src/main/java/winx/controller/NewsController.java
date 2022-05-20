@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.bean.UploadFile;
 import winx.entity.KhachHang;
+import winx.entity.SanPham;
 import winx.entity.TaiKhoan;
 import winx.entity.TinMoi;
 
@@ -73,7 +75,7 @@ public class NewsController {
 	@RequestMapping(value = "news", method = RequestMethod.POST)
 	public String insert(ModelMap model, @ModelAttribute("news") TinMoi news, BindingResult result,
 
-			@RequestParam("anh") MultipartFile anh) {
+			@RequestParam("anh") MultipartFile anh, RedirectAttributes redirectAttributes) {
 
 		if (anh.isEmpty()) {
 			System.out.println("rong");
@@ -97,10 +99,14 @@ public class NewsController {
 					
 					t.commit();
 					anh.transferTo(new File(duongDanAnh));
+					model.addAttribute("sanpham", new SanPham());
+					redirectAttributes.addFlashAttribute("message",
+							new Message("success","Thêm mới thành công"));
+					return "redirect:/admin/news.htm";
+					
 				} catch (Exception e) {
 					t.rollback();
 					System.out.println("error catch " +e.getCause());
-					model.addAttribute("message", "Thêm mới thất bại!");
 				} finally {
 					session.close();
 				}
@@ -112,6 +118,9 @@ public class NewsController {
 
 		List<TinMoi> list = getNews();
 		model.addAttribute("newsList", list);
+		
+		model.addAttribute("message",
+				new Message("error","Thêm mới thất bại!"));
 
 		return "admin/news";
 	}
@@ -131,7 +140,7 @@ public class NewsController {
 			return "admin/news";
 		}
 	@RequestMapping(value = "news/update/{id}.htm",params="btnEdit", method = RequestMethod.POST)
-	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model, @RequestParam("anh1") MultipartFile anh1) {
+	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model, @RequestParam("anh1") MultipartFile anh1, RedirectAttributes redirectAttributes) {
 		
 		if (anh1.isEmpty()) {
 			System.out.println("rong");
@@ -155,6 +164,10 @@ public class NewsController {
 					session.update(news);
 					t.commit();
 					anh1.transferTo(new File(duongDanAnh));
+					model.addAttribute("tinmoi", new TinMoi());
+					redirectAttributes.addFlashAttribute("message",
+							new Message("success","Chỉnh sửa thành công"));
+					
 					return "redirect:/admin/news.htm";
 //					model.addAttribute("message", "Sửa thành công!");
 				} catch (Exception e) {
@@ -172,6 +185,8 @@ public class NewsController {
 		
 		List<TinMoi> list = getNews();
 		model.addAttribute("newsList", list);
+		model.addAttribute("message",
+				new Message("error","Chỉnh sửa thất bại!"));
 
 		return "admin/news";
 	}
@@ -179,15 +194,23 @@ public class NewsController {
 	@RequestMapping(value="news/delete/{id}.htm",params="linkDelete")
 	public String delete_User(@ModelAttribute("user") TinMoi news,
 			ModelMap model,
-			@PathVariable("id") String id) {
+			@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
 			try {
 				TinMoi t = this.getSingleNews(id);
 				System.out.println(t);
 				Integer temp =this.deleteNews(this.getSingleNews(id));
 				if(temp!=0) {
-				model.addAttribute("message","Xóa thành công!");}
+				model.addAttribute("message","Xóa thành công!");
+				redirectAttributes.addFlashAttribute("message",
+						new Message("success","Xoá thành công"));
+				}
+				
+				
 				else {
-				model.addAttribute("message","Xóa thất bại!");}
+					model.addAttribute("message","Xóa thất bại!");
+					model.addAttribute("message",
+							new Message("error","Xóa thất bại!"));
+				}
 				
 				return "redirect:/admin/news.htm";
 			} catch(Exception e){

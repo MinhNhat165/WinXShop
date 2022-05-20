@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.entity.DonDat;
 import winx.entity.KhachHang;
@@ -113,7 +114,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value="change-status/{email}.htm",params="btnEdit", method=RequestMethod.POST)
-	public String updateStatus(ModelMap model,@ModelAttribute("taiKhoan") TaiKhoan taiKhoan) {
+	public String updateStatus(ModelMap model,@ModelAttribute("taiKhoan") TaiKhoan taiKhoan,RedirectAttributes redirectAttributes) {
 		Session session = fa.openSession();
 		Transaction t = session.beginTransaction();	
 		System.out.println("???????"+taiKhoan.getEmail());
@@ -128,6 +129,8 @@ public class CustomerController {
 			}
 			session.update(taiKhoan);
 			t.commit();
+			redirectAttributes.addFlashAttribute("message",
+					new Message("success","Đổi trạng thái thành công"));
 			System.out.println("success");
 			return "redirect:/admin/customer.htm";
 		}
@@ -141,6 +144,8 @@ public class CustomerController {
 
 		List<KhachHang> list = getUsers();
 		model.addAttribute("users", list);
+		model.addAttribute("message",
+				new Message("success","Đổi trạng thái thất bại"));
 		
 		return "admin/customer";	
 	}
