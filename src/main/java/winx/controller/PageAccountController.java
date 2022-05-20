@@ -137,53 +137,66 @@ public class PageAccountController {
 
 		return "user/account";
 	}
-
-//
+	
 	@RequestMapping(value = "account/update.htm", method = RequestMethod.POST)
-	public String updateNews(ModelMap model, @ModelAttribute("kh") KhachHang user, HttpServletRequest request)
+	public String uploadAvatar(ModelMap model, @ModelAttribute("kh") KhachHang user, HttpServletRequest request, @RequestParam("profile-img") MultipartFile profileImg)
 			throws ParseException {
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
-		user = getUser(maKH);
-		String hoTen = request.getParameter("hoTen");
-		String phai = request.getParameter("phai");
-		boolean phaiI = false;
-		if (phai.equals("1")) {
-			phaiI = true;
-		}
-		System.out.println(phai);
-		System.out.println(phaiI);
-		String diaChi = request.getParameter("diaChi");
-		String sdt = request.getParameter("sdt");
-		String ngaySinhString = request.getParameter("ngaySinh");
-
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date ngaySinh = formatter.parse(ngaySinhString);
-
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-//			System.out.print(user.getTaiKhoan().getEmail());
-		try {
-//				
-			user.setHoTen(hoTen);
-			user.setPhai(phaiI);
-			System.out.println(user.isPhai());
-			user.setDiaChi(diaChi);
-			user.setSdt(sdt);
-			user.setNgaySinh(ngaySinh);
-
-			session.merge(user);
-			t.commit();
+		if (profileImg.isEmpty()) {
+			System.out.println("rong");
 			return "redirect:/account.htm";
+		} else {
+			try {
+				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
+				String tenAnh = date + profileImg.getOriginalFilename();
+				String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
+				System.out.println("anh: "+duongDanAnh);
 
-			// System.out.println("success");
+				user = getUser(maKH);
+				String hoTen = request.getParameter("hoTen");
+				String phai = request.getParameter("phai");
+				boolean phaiI = false;
+				if (phai.equals("1")) {
+					phaiI = true;
+				}
+				System.out.println(phai);
+				System.out.println(phaiI);
+				String diaChi = request.getParameter("diaChi");
+				String sdt = request.getParameter("sdt");
+				String ngaySinhString = request.getParameter("ngaySinh");
 
-		} catch (Exception e) {
-			System.out.println("errorr " + e);
-			t.rollback();
-		} finally {
-			session.close();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+				Date ngaySinh = formatter.parse(ngaySinhString);
+				
+				Session session = factory.openSession();
+				Transaction t = session.beginTransaction();
+
+				try {					
+					user.setHoTen(hoTen);
+					user.setPhai(phaiI);
+					System.out.println(user.isPhai());
+					user.setDiaChi(diaChi);
+					user.setSdt(sdt);
+					user.setNgaySinh(ngaySinh);
+					user.setAnh("./resources/imgs/"+tenAnh);
+
+					session.merge(user);
+					t.commit();
+					profileImg.transferTo(new File(duongDanAnh));
+					return "redirect:/account.htm";
+
+				} catch (Exception e) {
+					System.out.println("errorr " + e);
+					t.rollback();
+				} finally {
+					session.close();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
+		
 		KhachHang us = getUser(maKH);
 		model.addAttribute("user", us);
 

@@ -171,22 +171,26 @@
 												<h5>Thông tin cá nhân</h5>
 											</div>
 											<div class="card-body">
+											<form action="account/update.htm" modelAttribute="kh"
+															method="post" enctype="multipart/form-data" class="needs-validation">
 												<div class="row">
+												
 													<div class="col-md-4">
 														<div class="avatar-wrapper">
 															<img class="profile-pic" src=${user.anh } />
 															<div class="upload-button">
 																<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 															</div>
-															<input class="file-upload" type="file" accept="image/*" />
+															<input class="file-upload" id="profile-img" name="profile-img" type="file" />
 														</div>
 														<div class="col-12 text-center text-brand-dark">
 															<span class="fs-5">${user.taiKhoan.email}</span>
 														</div>
 													</div>
+													
 													<div class="col-8">
-														<form action="account/update.htm" modelAttribute="kh"
-															method="post" class="needs-validation">
+														
+															
 															<div class="row">
 																<div class="form-group col-md-12">
 																	<label>Họ và tên <span class="required">*</span>
@@ -233,8 +237,12 @@
 																<div class="col-md-12">
 																	<button type="submit" class="btn">Xác nhận</button>
 																</div>
+																</div>
+																
 															</div>
-														</form>
+															</div>
+															</form>
+														</div>
 													</div>
 												</div>
 											</div>
