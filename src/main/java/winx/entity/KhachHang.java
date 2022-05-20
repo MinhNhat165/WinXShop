@@ -38,7 +38,7 @@ public class KhachHang {
 	@Column(name = "DiaChi")
 	private String diaChi;
 	@Column(name = "Phai")
-	private int phai;
+	private boolean phai;
 	@Column(name = "SDT")
 	private String sdt;
 	@OneToOne
@@ -93,11 +93,11 @@ public class KhachHang {
 		this.diaChi = diaChi;
 	}
 
-	public int getPhai() {
+	public boolean isPhai() {
 		return phai;
 	}
 
-	public void setPhai(int phai) {
+	public void setPhai(boolean phai) {
 		this.phai = phai;
 	}
 
