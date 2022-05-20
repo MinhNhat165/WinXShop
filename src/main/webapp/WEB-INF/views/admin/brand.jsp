@@ -6,7 +6,8 @@
 <html>
 <%@include file="./head.jsp"%>
 <body>
-
+<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- flag -->
 	<div class="modal-flag" idModal="${idModal}"></div>
 	<div class="page-flag" data="brand"></div>
@@ -28,7 +29,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title fs-3">Danh sách nhã hàng</h5>
+								<h5 class="card-title fs-3">Danh sách nhãn hàng</h5>
 								<div>
 									<table id="zero_config"
 										class="table table-striped table-bordered no-wrap green-color">
@@ -115,16 +116,17 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
+														<form:input class="invisible position-absolute" path="anh"/>
 															<div
 																class="tm-product-img-dummy mx-auto rounded profile-pic">
 
-																<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																	onclick="document.getElementById('fileInput').click();"></i>
+																<i
+																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon upload-button"></i>
 															</div>
 															<div class="custom-file mt-3 mb-3">
 																<input name="anhh" type="file" class="file-upload"
 																	style="display: none;" />
-																<form:errors path="anh"></form:errors>
+																<span class="text-danger"><form:errors path="anh"></form:errors></span>
 																<button type="button"
 																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																	ảnh lên</button>
@@ -218,16 +220,19 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
+														<form:input class="invisible position-absolute" path="anh"/>
 															<div
-																class="tm-product-img-dummy mx-auto rounded profile-pic">
+																	class="tm-product-img-dummy mx-auto rounded profile-pic"
+																	style="background-image: url('.//resources//imgs//${nhanhang.anh}');background-size: cover">
 
-																<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																	onclick="document.getElementById('fileInput').click();"></i>
-															</div>
+																	<i
+																		class="fas fa-cloud-upload-alt tm-upload-icon upload-button2"></i>
+																</div>
+															
 															<div class="custom-file mt-3 mb-3">
 																<input name="anh2" type="file" class="file-upload2"
 																	style="display: none;" />
-																<form:errors path="anh"></form:errors>
+																<span class="text-danger"><form:errors path="anh"></form:errors></span>
 																<button type="button"
 																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
 																	ảnh lên</button>
@@ -261,7 +266,8 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	
+	<%@include file="./common/script.jsp"%>
 	<script>
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {
 			$("#editbrand").modal("show");

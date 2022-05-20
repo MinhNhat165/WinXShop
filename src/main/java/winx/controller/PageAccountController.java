@@ -23,8 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,14 +58,27 @@ public class PageAccountController {
 	@RequestMapping(value = "account", params = "btnpw")
 	public String changePW(HttpSession ss, @RequestParam("cpassword") String PW, @RequestParam("npassword") String nPW,
 			@RequestParam("renpassword") String rnPW, ModelMap model) {
-
+		
+		Boolean isErrors = false;
 		TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
-		System.out.println(tk);
+		
 		if (tk.getMatKhau().trim().equals(PW) == false) {
 			model.addAttribute("message1", "Sai mật khẩu!");
-
-		}
-		else {
+		} else {
+			if(nPW.trim().isEmpty()) {
+				model.addAttribute("message3", "Nội dung không được để trống!");
+				isErrors = true;
+			}
+			
+			if(rnPW.trim().isEmpty()) {
+				model.addAttribute("message2", "Nội dung không được để trống!");
+				isErrors = true;
+			}
+			
+			if(isErrors) {
+				return "user/account";
+			}
+			
 			if (nPW.equals(rnPW) == false) {
 				model.addAttribute("message2", "Mật khẩu không trùng khớp!");
 			} else {
@@ -73,10 +88,10 @@ public class PageAccountController {
 				try {
 					session.update(tk);
 					t.commit();
-					model.addAttribute("message3", "Chỉnh sửa thành công!");
+					model.addAttribute("message",new Message("success","Chỉnh sửa thành công!"));
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message3", "Chỉnh sửa thất bại!");
+					model.addAttribute("message", new Message("error","Chỉnh sửa thất bại!"));
 				}
 			}
 		}
