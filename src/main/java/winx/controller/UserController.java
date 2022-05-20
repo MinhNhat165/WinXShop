@@ -45,6 +45,7 @@ public class UserController extends CommonMethod {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
 
+
 		Boolean isErrors = false;
 		if(email.isEmpty()) {
 			model.addAttribute("message1", "Nội dung không được để trống!");
@@ -57,7 +58,9 @@ public class UserController extends CommonMethod {
 		if(isErrors) {
 			return "user/login";
 		}
+
 		if (tkdn == null) {
+			
 			model.addAttribute("message", "Sai thông tin đăng nhập!");
 			return "user/login";
 		}

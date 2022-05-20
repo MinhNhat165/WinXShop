@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -24,19 +25,20 @@ public class KhachHang {
 	@Id
 	@Column(name = "MaKH")
 	private String maKH;
+
 	@Column(name = "HoTen")
 	private String hoTen;
 	@Column(name = "Anh")
 	private String anh;
 	@Column(name = "NgaySinh")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySinh;
 
 	@Column(name = "DiaChi")
 	private String diaChi;
 	@Column(name = "Phai")
-	private byte phai;
+	private boolean phai;
 	@Column(name = "SDT")
 	private String sdt;
 	@OneToOne
@@ -91,11 +93,11 @@ public class KhachHang {
 		this.diaChi = diaChi;
 	}
 
-	public byte getPhai() {
+	public boolean isPhai() {
 		return phai;
 	}
 
-	public void setPhai(byte phai) {
+	public void setPhai(boolean phai) {
 		this.phai = phai;
 	}
 

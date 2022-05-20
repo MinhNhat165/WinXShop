@@ -107,6 +107,7 @@ public class PageCheckOutController extends CommonMethod {
 					session.save(ctdd);
 				}
 				t.commit();
+				
 				redirectAttributes.addFlashAttribute("message", new Message("success", "Đăt hàng thành công"));
 				return "redirect:/shop.htm";
 
