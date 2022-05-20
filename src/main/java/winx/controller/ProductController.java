@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.bean.UploadFile;
 import winx.entity.NhanHang;
@@ -67,7 +68,7 @@ public class ProductController extends CommonMethod {
 	@RequestMapping(value = "product/add.htm", params = "btnAdd", method = RequestMethod.POST)
 
 	public String addProduct(@ModelAttribute("sanpham") SanPham sp, ModelMap model, BindingResult errors,
-			@RequestParam("anh3") MultipartFile anh) {
+			@RequestParam("anh3") MultipartFile anh,RedirectAttributes redirectAttributes) {
 
 		if (this.checkUniqueMaSP(sp.getMaSP()) == false) {
 			errors.rejectValue("maSP", "sanpham", "Mã đã tồn tại!");
@@ -92,7 +93,9 @@ public class ProductController extends CommonMethod {
 		if (sp.getNgaySX().after(sp.getNgayHH())) {
 			errors.rejectValue("ngayHH", "sanpham", "Ngày hết hạn phải lớn hơn ngày sản xuất!");
 		}
-
+		if (sp.getNgaySX().after(new Date())) {
+			errors.rejectValue("ngaySX", "sanpham", "Ngày Sản xuất phải bé hơn ngày hiện tại!");
+		}
 		if (anh.isEmpty()) {
 			errors.rejectValue("anh", "nhanhang", "Ảnh không được rỗng!");
 		}
@@ -109,9 +112,11 @@ public class ProductController extends CommonMethod {
 			try {
 				sp.setAnh(tenAnh);
 				session.save(sp);
-				anh.transferTo(new File(duongDanAnh));
 				t.commit();
+				anh.transferTo(new File(duongDanAnh));
 				model.addAttribute("sanpham", new SanPham());
+				redirectAttributes.addFlashAttribute("message",
+						new Message("success","Thêm mới thành công"));
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
 				System.out.println(e);
@@ -126,6 +131,8 @@ public class ProductController extends CommonMethod {
 		model.addAttribute("dssanpham", ds);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("btnStatus", "btnAdd");
+		model.addAttribute("message",
+				new Message("error","Thêm mới thất bại!"));
 		model.addAttribute("sanpham", sp);
 
 		return "admin/product";
@@ -149,7 +156,7 @@ public class ProductController extends CommonMethod {
 	@RequestMapping(value = "product/update/{id}.htm", params = "btnEdit", method = RequestMethod.POST)
 
 	public String updateProduct(@ModelAttribute("sanpham") SanPham sp, BindingResult errors, ModelMap model,
-			@RequestParam("anh3") MultipartFile anh) {
+			@RequestParam("anh3") MultipartFile anh,RedirectAttributes redirectAttributes) {
 
 		if (this.checkProduct(sp.getTenSP(), sp.getMaSP(), sp.getDungTich(), sp.getLoai(),
 				sp.getNhanHang().getMaNH()) == false) {
@@ -188,6 +195,8 @@ public class ProductController extends CommonMethod {
 
 				t.commit();
 				model.addAttribute("sanpham", new SanPham());
+				redirectAttributes.addFlashAttribute("message",
+						new Message("success","Chỉnh sửa thành công"));
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
 				t.rollback();
@@ -202,6 +211,8 @@ public class ProductController extends CommonMethod {
 		model.addAttribute("dssanpham", ds);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("btnStatus", "btnEdit");
+		model.addAttribute("message",
+				new Message("error","Chỉnh sửa thất bại!"));
 
 		return "admin/product";
 	}

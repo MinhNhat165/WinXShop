@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</header>
-	${message}
+	
 	<main class="main my-background">
 		<section class="">
 			<div class="container">
@@ -38,15 +38,17 @@
 										</div>
 										<form action="login.htm" method="post">
 											<div class="form-group form-floating">
-												<input type="text" required="" name="email"
+												<input type="text"  name="email"
 													class="form-control form-control-lg" placeholder="Email" />
 												<label for="">Email</label>
 											</div>
+											<span class="text-danger">${message1}</span>
 											<div class="form-floating">
-												<input required="" type="password" name="password"
+												<input  type="password" name="password"
 													class="form-control" placeholder="Mật khẩu" /> <label
 													for="">Password</label>
 											</div>
+											<span class="text-danger">${message}</span>
 											<div class="login_footer form-group">
 												<div class="chek-form">
 													<div class="custome-checkbox">

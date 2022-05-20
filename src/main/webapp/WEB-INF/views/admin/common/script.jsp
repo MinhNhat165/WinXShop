@@ -24,3 +24,4 @@
 	src=" <c:url value='/resources/admin/dist/js/customTableData.js'/>"></script>
 <script
 	src=" <c:url value='/resources/js/alertify.min.js'/>"></script>
+	<script src=" <c:url value='/resources/js/showMessage.js'/>"></script>
