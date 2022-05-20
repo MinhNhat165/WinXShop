@@ -11,6 +11,8 @@
 	<!-- flag -->
 	<div class="page-flag" data="product"></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- End-flag -->
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
@@ -186,8 +188,8 @@
 																	class="tm-product-img-dummy mx-auto rounded profile-pic"
 																	style="background-image: url('.//resources//imgs//${sanpham.anh}');background-size: cover">
 
-																	<i class="fas fa-cloud-upload-alt tm-upload-icon"
-																		onclick="document.getElementById('fileInput').click();"></i>
+																	<i
+																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
 																	<input name="anh3" type="file" class="file-upload"
@@ -202,7 +204,7 @@
 																		<label for="stock">Ngày sản xuất </label>
 																		<form:input path="ngaySX" type="date"
 																			class="form-control validate" required="true" />
-																		<form:errors path="ngaySX"></form:errors>
+																		<span class="text-danger"><form:errors path="ngaySX"></form:errors></span>
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Ngày hết hạn </label>
@@ -375,7 +377,7 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script>
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {
 			$("#product").modal("show");
@@ -383,30 +385,31 @@
 			$("#showproduct").modal("show");
 		}
 
-		var readURL = function(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
 
-				reader.onload = function(e) {
-					$(".profile-pic").attr("src", e.target.result);
-					$(".profile-pic").css({
-						'background-image' : 'url(' + e.target.result + ')',
-						'background-size' : 'cover'
-					});
+		 var readURL = function(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
 
-				};
+					reader.onload = function(e) {
+						$(".profile-pic").attr("src", e.target.result);
+						$(".profile-pic").css({
+							'background-image' : 'url(' + e.target.result + ')',
+							'background-size' : 'cover'
+						});
 
-				reader.readAsDataURL(input.files[0]);
-			}
-		};
+					};
 
-		$(".file-upload").on("change", function() {
-			readURL(this);
-		});
+					reader.readAsDataURL(input.files[0]);
+				}
+			};
 
-		$(".upload-button").on("click", function() {
-			$(".file-upload").click();
-		});
+			$(".file-upload").on("change", function() {
+				readURL(this);
+			});
+
+			$(".upload-button").on("click", function() {
+				$(".file-upload").click();
+			});
 		$("#zero_config_filter")
         .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">

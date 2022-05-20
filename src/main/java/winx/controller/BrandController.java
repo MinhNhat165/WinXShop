@@ -39,7 +39,6 @@ public class BrandController extends CommonMethod {
 	@Autowired
 	@Qualifier("uploadFile")
 	UploadFile basePathUploadFile;
-	
 
 	@RequestMapping(value = "brand", method = RequestMethod.GET)
 	public String add(ModelMap model) {
@@ -48,7 +47,6 @@ public class BrandController extends CommonMethod {
 		model.addAttribute("dsnhanhang", list);
 		return "admin/brand";
 	}
-
 
 	@RequestMapping(value = "brand/add.htm", method = RequestMethod.GET)
 	public String index(ModelMap model) {
@@ -62,27 +60,26 @@ public class BrandController extends CommonMethod {
 	}
 
 	@RequestMapping(value = "brand/add.htm", params = "btnAdd", method = RequestMethod.POST)
-	public String addBrand(ModelMap model, @ModelAttribute("nhanhang") NhanHang nh,
-			BindingResult errors,
-			@RequestParam("anhh") MultipartFile anh) {
+	public String addBrand(ModelMap model, @ModelAttribute("nhanhang") NhanHang nh, BindingResult errors,
+			@RequestParam("anhh") MultipartFile anh,RedirectAttributes redirectAttributes) {
 
-			if (this.checkUniqueMaNH(nh.getMaNH()) == false) { 
-				errors.rejectValue("maNH","nhanhang", "Mã đã tồn tại!");
-				} 
-			if (this.checkUniqueTENNH(nh.getTenNH(),nh.getMaNH()) == false) { 
-				errors.rejectValue("tenNH", "nhanhang","Nhãn hàng đã tồn tại!");
-				}
+		if (this.checkUniqueMaNH(nh.getMaNH()) == false) {
+			errors.rejectValue("maNH", "nhanhang", "Mã đã tồn tại!");
+		}
+		if (this.checkUniqueTENNH(nh.getTenNH(), nh.getMaNH()) == false) {
+			errors.rejectValue("tenNH", "nhanhang", "Nhãn hàng đã tồn tại!");
+		}
 
-			if (anh.isEmpty()) {
-				errors.rejectValue("anh", "nhanhang","Ảnh không được rỗng!");
-			}
+		if (anh.isEmpty()) {
+			errors.rejectValue("anh", "nhanhang", "Ảnh không được rỗng!");
+		}
 
 		if (!errors.hasErrors()) {
 			nh.setTrangThai(true);
 			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 			String tenAnh = date + anh.getOriginalFilename();
 			String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
-			
+
 			Session session = factory.openSession();
 			Transaction t = session.beginTransaction();
 			try {
@@ -93,20 +90,24 @@ public class BrandController extends CommonMethod {
 				nh.setMaNH(null);
 				nh.setTenNH(null);
 				nh.setAnh(null);
+				redirectAttributes.addFlashAttribute("message",
+						new Message("success","Thêm mới thành công!"));
 				return "redirect:/admin/brand.htm";
 			} catch (Exception e) {
 				t.rollback();
+				System.out.println(e);
 			} finally {
 				session.close();
 			}
+
 		}
-		
-		
+
 		List<NhanHang> list = getDSNhanHang();
 		model.addAttribute("dsnhanhang", list);
 		model.addAttribute("idModal", "modalShow");
 		model.addAttribute("nhanhang", nh);
-		model.addAttribute("message", "Thêm mới thất bại!");
+		model.addAttribute("message",
+				new Message("error","Thêm mới thất bại!"));
 
 		return "admin/brand";
 	}
@@ -115,7 +116,6 @@ public class BrandController extends CommonMethod {
 
 	public String showupdateNhanHang(ModelMap model, @PathVariable("id") String id) {
 
-		
 		model.addAttribute("nhanhang", this.getNhanHang(id));
 		model.addAttribute("idModal", "modalCreate");
 		List<NhanHang> list = getDSNhanHang();
@@ -133,14 +133,14 @@ public class BrandController extends CommonMethod {
 			errors.rejectValue("tenNH", "nhanhang", "Nhãn hàng đã tồn tại!");
 		}
 		if (anh.isEmpty()) {
-			errors.rejectValue("anh", "nhanhang","Ảnh không được rỗng!");
+			errors.rejectValue("anh", "nhanhang", "Ảnh không được rỗng!");
 		}
 		if (!errors.hasErrors()) {
 			nh.setTrangThai(true);
 			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 			String tenAnh = date + anh.getOriginalFilename();
 			String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
-			
+
 			Session session = factory.openSession();
 			Transaction t = session.beginTransaction();
 			try {
@@ -151,6 +151,8 @@ public class BrandController extends CommonMethod {
 				nh.setMaNH(null);
 				nh.setTenNH(null);
 				nh.setAnh(null);
+				redirectAttributes.addFlashAttribute("message",
+						new Message("success","Chỉnh sửa thành công!"));
 				return "redirect:/admin/brand.htm";
 			} catch (Exception e) {
 				t.rollback();
@@ -161,6 +163,8 @@ public class BrandController extends CommonMethod {
 		model.addAttribute("idModal", "modalCreate");
 		List<NhanHang> list = getDSNhanHang();
 		model.addAttribute("dsnhanhang", list);
+		model.addAttribute("message",
+				new Message("error","Thêm mới thất bại!"));
 		return "admin/brand";
 
 	}

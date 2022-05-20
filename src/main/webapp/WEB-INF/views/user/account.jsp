@@ -79,7 +79,7 @@
                         <div class="card-header">
                           <h5 class="mb-0">Đổi mật khẩu</h5>
                         </div>
-                        ${message3 }
+                      
                         <div class="card-body">
                           <div class="row">
                             <form class="col-4 mx-auto pt-5 card" method="post">
@@ -93,7 +93,7 @@
                                   class="form-control"
                                   id="input-current-password"
                                 />
-                                ${message}
+                              <span class="text-danger">  ${message1}</span>
                               </div>
                               <div class="form-group col-md-12">
                                 <label for="input-new-password"
@@ -105,6 +105,7 @@
                                   class="form-control"
                                   id="input-new-password"
                                 />
+                                 <span class="text-danger">  ${message3}</span>
                               </div>
                               <div class="form-group col-md-12">
                                 <label for="input-confirm-new-password"
@@ -116,7 +117,7 @@
                                   class="form-control"
                                   id="input-confirm-new-password"
                                 />
-                                ${message2}
+                               <span class="text-danger">${message2}</span> 
                               </div>
 
                               <div class="form-group col-12">
