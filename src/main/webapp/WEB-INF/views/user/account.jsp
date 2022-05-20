@@ -58,7 +58,7 @@
 															<label for="input-current-password">Mật khẩu hiện
 																tại</label> <input type="password" name="cpassword"
 																class="form-control" id="input-current-password" />
-															${message}
+															${message1}
 														</div>
 														<div class="form-group col-md-12">
 															<label for="input-new-password">Mật khẩu mới</label> <input

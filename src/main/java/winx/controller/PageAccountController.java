@@ -58,10 +58,12 @@ public class PageAccountController {
 			@RequestParam("renpassword") String rnPW, ModelMap model) {
 
 		TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
+		System.out.println(tk);
 		if (tk.getMatKhau().trim().equals(PW) == false) {
-			model.addAttribute("message", "Sai mật khẩu!");
+			model.addAttribute("message1", "Sai mật khẩu!");
 
-		} else {
+		}
+		else {
 			if (nPW.equals(rnPW) == false) {
 				model.addAttribute("message2", "Mật khẩu không trùng khớp!");
 			} else {
