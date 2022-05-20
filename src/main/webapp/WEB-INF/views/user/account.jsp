@@ -9,119 +9,7 @@
 <body>
 	<%@include file="./header.jsp"%>
 
-	  <main class="main bg-light vh-90">
-      <section class="pt-50">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="dashboard-menu">
-                    <ul class="nav flex-column" role="tablist">
-                      <li class="nav-item">
-                        <a
-                          class="nav-link active"
-                          id="account-detail-tab"
-                          data-bs-toggle="tab"
-                          href="#account-detail"
-                          role="tab"
-                          aria-controls="account-detail"
-                          aria-selected="true"
-                          ><i class="fa-regular fa-user mr-10"></i>Thông tin cá
-                          nhân</a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          class="nav-link"
-                          id="dashboard-tab"
-                          data-bs-toggle="tab"
-                          href="#dashboard"
-                          role="tab"
-                          aria-controls="dashboard"
-                          aria-selected="false"
-                          ><i class="fa-regular fa-arrows-rotate mr-10"></i> Đổi
-                          mật khẩu</a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          class="nav-link"
-                          id="orders-tab"
-                          data-bs-toggle="tab"
-                          href="#orders"
-                          role="tab"
-                          aria-controls="orders"
-                          aria-selected="false"
-                          ><i class="fa-regular fa-ballot-check mr-10"></i>Đơn
-                          đặt</a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="page-login.html"
-                          ><i
-                            class="fa-regular fa-arrow-right-from-bracket mr-10"
-                          ></i
-                          >Đăng xuất</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-md-9">
-                  <div class="tab-content dashboard-content">
-                    <div
-                      class="tab-pane fade"
-                      id="dashboard"
-                      role="tabpanel"
-                      aria-labelledby="dashboard-tab"
-                    >
-                   
-                      <div class="card shadow">
-                        <div class="card-header">
-                          <h5 class="mb-0">Đổi mật khẩu</h5>
-                        </div>
-                      
-                        <div class="card-body">
-                          <div class="row">
-                            <form class="col-4 mx-auto pt-5 card" method="post">
-                              <div class="form-group col-md-12">
-                                <label for="input-current-password"
-                                  >Mật khẩu hiện tại</label
-                                >
-                                <input
-                                  type="password"
-                                  name="cpassword"
-                                  class="form-control"
-                                  id="input-current-password"
-                                />
-                              <span class="text-danger">  ${message1}</span>
-                              </div>
-                              <div class="form-group col-md-12">
-                                <label for="input-new-password"
-                                  >Mật khẩu mới</label
-                                >
-                                <input
-                                  type="password"
-                                  name="npassword"
-                                  class="form-control"
-                                  id="input-new-password"
-                                />
-                                 <span class="text-danger">  ${message3}</span>
-                              </div>
-                              <div class="form-group col-md-12">
-                                <label for="input-confirm-new-password"
-                                  >Xác nhận mật khẩu mới</label
-                                >
-                                <input
-                                  type="password"
-                                  name="renpassword"
-                                  class="form-control"
-                                  id="input-confirm-new-password"
-                                />
-                               <span class="text-danger">${message2}</span> 
-                              </div>
-
+	<main class="main bg-light vh-90">
 
 		<section class="pt-50">
 			<div class="container">
@@ -161,37 +49,41 @@
 											<div class="card-header">
 												<h5 class="mb-0">Đổi mật khẩu</h5>
 											</div>
-											${message3 }
+
 											<div class="card-body">
 												<div class="row">
 													<form class="col-4 mx-auto pt-5 card" method="post">
 														<div class="form-group col-md-12">
-															<label for="input-current-password">Mật khẩu hiện
-																tại</label> <input type="password" name="cpassword"
+															<label for="input-current-password">Mật
+																khẩu hiện tại</label> <input type="password" name="cpassword"
 																class="form-control" id="input-current-password" />
-															${message1}
+															<span class="text-danger"> ${message1}</span>
 														</div>
 														<div class="form-group col-md-12">
-															<label for="input-new-password">Mật khẩu mới</label> <input
-																type="password" name="npassword" class="form-control"
-																id="input-new-password" />
+															<label for="input-new-password">Mật
+																khẩu mới</label> <input type="password" name="npassword"
+																class="form-control" id="input-new-password" />
+															<span class="text-danger"> ${message3}</span>
 														</div>
 														<div class="form-group col-md-12">
-															<label for="input-confirm-new-password">Xác nhận
-																mật khẩu mới</label> <input type="password" name="renpassword"
-																class="form-control" id="input-confirm-new-password" />
-															${message2}
+															<label for="input-confirm-new-password">Xác
+																nhận mật khẩu mới</label> <input type="password"
+																name="renpassword" class="form-control"
+																id="input-confirm-new-password" />
+															<span class="text-danger">${message2}</span>
 														</div>
 
 														<div class="form-group col-12">
 															<button type="submit" name="btnpw"
-																class="btn btn-primary col-12">Lưu thay đổi</button>
+																class="btn btn-primary col-12">
+																Lưu thay đổi</button>
 														</div>
 													</form>
 												</div>
 											</div>
 										</div>
 									</div>
+
 									<div class="tab-pane fade" id="orders" role="tabpanel"
 										aria-labelledby="orders-tab">
 										<div class="card shadow">
