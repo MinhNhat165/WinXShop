@@ -8,6 +8,8 @@
 	<!-- flag -->
 	<div class="page-flag" data="customer"></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -107,7 +109,7 @@
 													<div class="card-block text-center text-white">
 														<div class="m-b-25">
 															<img src=${user.anh } class="img-radius"
-																alt="User-Profile-Image">
+																alt="User-Profile-Image" style="width: 200px;">
 
 														</div>
 														<h6 class="f-w-600">user001</h6>
@@ -247,7 +249,7 @@
 	<!-- End Page wrapper  -->
 	<!-- ============================================================== -->
 
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {
 			$("#editStatus").modal("show");

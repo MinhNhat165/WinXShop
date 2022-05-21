@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.entity.DonDat;
 import winx.entity.KhachHang;
@@ -78,7 +79,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "order/change-status/{id}.htm", params = "btnEdit", method = RequestMethod.POST)
-	public String updateStatus(ModelMap model, @ModelAttribute("order") DonDat order, @PathVariable("id") String id) {
+	public String updateStatus(ModelMap model, @ModelAttribute("order") DonDat order, @PathVariable("id") String id, RedirectAttributes redirectAttributes) {
 		DonDat orderOld = getOrder(id);
 		System.out.println(order.getMaDD());
 		orderOld.setTrangThai(order.getTrangThai());
@@ -91,22 +92,23 @@ public class OrderController {
 			String mailMessage = "";
 			if (order.getTrangThai() != 0) {
 				if (orderOld.getTrangThai() == 1)
-					mailMessage = "Đơn hàng" + orderOld.getMaDD()
-							+ " của bạn đã được xác nhận và đang trong quá trình vận chuyển";
+					mailMessage = "Ä�Æ¡n hÃ ng" + orderOld.getMaDD()
+							+ " cá»§a báº¡n Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c nháº­n vÃ  Ä‘ang trong quÃ¡ trÃ¬nh váº­n chuyá»ƒn";
 				else if (orderOld.getTrangThai() == 2)
-					mailMessage = "Đơn hàng " + orderOld.getMaDD() + " của bạn đã được giao và hoàn tất thành toán";
+					mailMessage = "Ä�Æ¡n hÃ ng " + orderOld.getMaDD() + " cá»§a báº¡n Ä‘Ã£ Ä‘Æ°á»£c giao vÃ  hoÃ n táº¥t thÃ nh toÃ¡n";
 				else if (orderOld.getTrangThai() == 3)
-					mailMessage = "Đơn hàng " + orderOld.getMaDD() + " của bạn đã bị huỷ";
+					mailMessage = "Ä�Æ¡n hÃ ng " + orderOld.getMaDD() + " cá»§a báº¡n Ä‘Ã£ bá»‹ huá»·";
 				MimeMessage mail = mailer.createMimeMessage();
 				MimeMessageHelper helper = new MimeMessageHelper(mail, true);
 				helper.setFrom("nguyenminhnhat301101@gmail.com", "WinxShop");
 				helper.setTo(orderOld.getKhachHang().getTaiKhoan().getEmail());
 				helper.setReplyTo("nguyenminhnhat301101@gmail.com");
-				helper.setSubject("Thông báo về tình trạng đơn hàng của bạn");
+				helper.setSubject("ThÃ´ng bÃ¡o vá»� tÃ¬nh tráº¡ng Ä‘Æ¡n hÃ ng cá»§a báº¡n");
 				helper.setText(mailMessage);
 				mailer.send(mail);
 			}
-
+			redirectAttributes.addFlashAttribute("message",
+					new Message("success","Đổi trạng thái thành công"));
 			return "redirect:/admin/order.htm";
 		} catch (Exception e) {
 			System.out.println(e);
@@ -117,6 +119,8 @@ public class OrderController {
 
 		List<DonDat> list = getOrders();
 		model.addAttribute("orders", list);
+		model.addAttribute("message",
+				new Message("success","Đổi trạng thái thất bại"));
 
 		return "admin/order";
 	}

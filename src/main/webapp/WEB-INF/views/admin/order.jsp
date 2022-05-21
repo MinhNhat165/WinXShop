@@ -10,6 +10,8 @@
 	<!-- flag -->
 	<div class="page-flag" data="order"></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -298,7 +300,7 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 	if ($(".modal-flag").attr("idModal") === "modalCreate") {
 		$("#editStatus").modal("show");

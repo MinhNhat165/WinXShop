@@ -9,6 +9,8 @@
 	<!-- flag -->
 	<div class="page-flag" data="news"></div>
 	<div class="modal-flag" idModal="${idModal}"></div>
+	<div class="alert-flag" aType='${message.type}'
+		aMessage="${message.message }"></div>
 	<!-- End-flag -->
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -256,7 +258,7 @@
 							</div>
 							<div class="modal-body">
 								<div
-									class="container tm-mt-big tm-mb-big h-100 d-flex align-items-center justify-content-center">
+									class="">
 									<div class="row">
 										<div class="">
 											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -328,7 +330,8 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 	if ($(".modal-flag").attr("idModal") === "modalShow") {
 		$("#show-news").modal("show");
