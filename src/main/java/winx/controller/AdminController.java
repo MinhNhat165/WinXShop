@@ -34,14 +34,14 @@ public class AdminController extends CommonMethod {
 		int countCustomer = getAllCustomer().size();
 		int countOrder = getAllOrder().size();
 		int countBrand = getAllBrand().size();
-		
+
 		model.addAttribute("countSale", countSale);
 		model.addAttribute("countNews", countNews);
 		model.addAttribute("countProduct", countProduct);
 		model.addAttribute("countCustomer", countCustomer);
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("countBrand", countBrand);
-		
+
 		return "admin/index";
 	}
 
