@@ -175,9 +175,9 @@
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
-											<div class="product-img product-img-zoom">
+											<div class="product-img product-img-zoom bg-light bg-light">
 												<a href="product-detail/${p.maSP }.htm"> <img
-													style="min-height: 260px" class="default-img"
+													style="min-height: 260px;" class="default-img"
 													src="./resources/imgs/${p.anh}" alt="" />
 												</a>
 											</div>
@@ -275,10 +275,10 @@
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
-											<div class="product-img product-img-zoom">
+											<div class="product-img product-img-zoom bg-light">
 												<a href="product-detail/${p.maSP }.htm"> <img
-													style="min-height: 260px" class="default-img"
-													src="./resources/imgs/${p.anh}" alt="" />
+													style="min-height: 240px; max-height: 240px"
+													class="default-img" src="./resources/imgs/${p.anh}" alt="" />
 												</a>
 											</div>
 											<div class="product-action-1">
@@ -297,7 +297,7 @@
 											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
 												<div
 													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">-${p.dsSPKM[0].khuyenMai.giaTriKM}</span>
+													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
 												</div>
 											</c:if>
 											<c:if
@@ -310,7 +310,10 @@
 										</div>
 										<div class="product-content-wrap">
 											<div class="product-category">
-												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
+												<a href="shop-grid-right.html"><c:if
+														test="${p.loai  == 0 }">Nữ</c:if> <c:if
+														test="${p.loai  == 1 }">Nam</c:if> <c:if
+														test="${p.loai  == 2 }">Unisex</c:if>, ${p.nhanHang.tenNH}</a>
 											</div>
 											<h2>
 												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
@@ -371,7 +374,7 @@
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
-											<div class="product-img product-img-zoom">
+											<div class="product-img product-img-zoom bg-light">
 												<a href="product-detail/${p.maSP }.htm"> <img
 													style="min-height: 260px" class="default-img"
 													src="./resources/imgs/${p.anh}" alt="" />
@@ -393,7 +396,7 @@
 											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
 												<div
 													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">-${p.dsSPKM[0].khuyenMai.giaTriKM}</span>
+													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
 												</div>
 											</c:if>
 											<c:if
@@ -406,7 +409,10 @@
 										</div>
 										<div class="product-content-wrap">
 											<div class="product-category">
-												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
+												<a href="shop-grid-right.html"><c:if
+														test="${p.loai  == 0 }">Nữ</c:if> <c:if
+														test="${p.loai  == 1 }">Nam</c:if> <c:if
+														test="${p.loai  == 2 }">Unisex</c:if>, ${p.nhanHang.tenNH}</a>
 											</div>
 											<h2>
 												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
@@ -463,9 +469,9 @@
 								data-id="${p.maSP }" data-quantity="${p.slt }"
 								data-type="${p.loai}" data-description="${p.moTa }"
 								data-img="${p.anh }"
-								class="product-cart-wrap product small hover-up">
+								class="product-cart-wrap product small  ms-2">
 								<div class="product-img-action-wrap">
-									<div class="product-img product-img-zoom">
+									<div class="product-img product-img-zoom bg-light">
 										<a href="product-detail/${p.maSP }.htm"> <img
 											class="default-img" src="./resources/imgs/${p.anh}" alt="" />
 										</a>
@@ -482,8 +488,14 @@
 
 									<div
 										class="product-badges product-badges-position product-badges-mrg">
-										<span class="new">New</span>
+										<span class="new">New </span>
 									</div>
+									<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+										<div
+											class="product-badges product-badges-position product-badges-mrg">
+											<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+										</div>
+									</c:if>
 									<c:if
 										test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
 										<div
@@ -584,7 +596,7 @@
 												data-img="${p.anh }"
 												class="product-cart-wrap product small hover-up">
 												<div class="product-img-action-wrap">
-													<div class="product-img product-img-zoom">
+													<div class="product-img product-img-zoom bg-light">
 														<a href="product-detail/${p.maSP }.htm"> <img
 															class="default-img" src="./resources/imgs/${p.anh}"
 															alt="" />
@@ -604,8 +616,14 @@
 
 													<div
 														class="product-badges product-badges-position product-badges-mrg">
-														<span class="new">New</span>
+														<span class="new">New </span>
 													</div>
+													<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+														<div
+															class="product-badges product-badges-position product-badges-mrg">
+															<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+														</div>
+													</c:if>
 													<c:if
 														test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
 														<div
@@ -755,7 +773,11 @@
 
 
 	<script type="text/javascript">
-		
+		$(document).ready(function() {
+			console.log($(".slick-track"))
+			$(".slick-track").css("align-items", "center")
+			$(".slick-track").css("display", "flex")
+		});
 	</script>
 </body>
 </html>

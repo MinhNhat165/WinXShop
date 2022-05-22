@@ -145,7 +145,10 @@
 													class="d-flex justify-content-between py-3 border-bottom">
 													<strong class="text-muted">Tổng tiền</strong>
 													<h5 class="font-weight-bold"
-														style="font-weight: 800 !important;">${o.tongTien }</h5>
+														style="font-weight: 800 !important;">
+														<fmt:formatNumber pattern="###,### đ"
+															value="${o.tongTien }" type="currency" />
+													</h5>
 												</li>
 											</ul>
 
@@ -180,73 +183,30 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
-																	<th scope="row" class="border-0">
-																		<div class="p-2">
-																			<img
-																				src="https://bootstrapious.com/i/snippets/sn-cart/product-1.jpg"
-																				alt="" width="70"
-																				class="img-fluid rounded shadow-sm">
-																			<div class="ml-3 d-inline-block align-middle">
-																				<h5 class="mb-0">
-																					<a href="#"
-																						class="text-dark d-inline-block align-middle">Timex
-																						Unisex Originals</a>
-																				</h5>
-																				<span
-																					class="text-muted font-weight-normal font-italic d-block">Category:
-																					Watches</span>
-																			</div>
-																		</div>
-																	</th>
-																	<td class="align-middle text-center"><strong>3</strong>
-																	</td>
-																	<td class="align-middle text-center"><strong>10%</strong></td>
-																</tr>
-																<tr>
-																	<th scope="row">
-																		<div class="p-2">
-																			<img
-																				src="https://bootstrapious.com/i/snippets/sn-cart/product-2.jpg"
-																				alt="" width="70"
-																				class="img-fluid rounded shadow-sm">
-																			<div class="ml-3 d-inline-block align-middle">
-																				<h5 class="mb-0">
-																					<a href="#" class="text-dark d-inline-block">Lumix
-																						camera lense</a>
-																				</h5>
-																				<span
-																					class="text-muted font-weight-normal font-italic">Category:
-																					Electronics</span>
-																			</div>
-																		</div>
-																	</th>
-																	<td class="align-middle text-center"><strong>3</strong>
-																	</td>
-																	<td class="align-middle text-center"><strong>30%</strong></td>
+																<c:forEach var="d" items="${o.dsCTDD}">
 
-																</tr>
-																<tr>
-																	<th scope="row">
-																		<div class="p-2">
-																			<img
-																				src="https://bootstrapious.com/i/snippets/sn-cart/product-3.jpg"
-																				alt="" width="70"
-																				class="img-fluid rounded shadow-sm">
-																			<div class="ml-3 d-inline-block align-middle">
-																				<h5 class="mb-0">
-																					<a href="#" class="text-dark d-inline-block">Gray
-																						Nike running shoe</a>
-																				</h5>
-																				<span
-																					class="text-muted font-weight-normal font-italic">Category:
-																					Fashion</span>
+																	<tr>
+																		<th scope="row" class="border-0">
+																			<div class="p-2">
+																				<img src="./resources/imgs/${d.sanPham.anh}" alt=""
+																					width="70" class="img-fluid rounded shadow-sm">
+																				<div class="ml-3 d-inline-block align-middle">
+																					<h5 class="mb-0">
+																						<a href="#"
+																							class="text-dark d-inline-block align-middle">${d.sanPham.tenSP}</a>
+																					</h5>
+
+																				</div>
 																			</div>
-																		</div>
-																	<td class="align-middle text-center"><strong>3</strong>
-																	</td>
-																	<td class="align-middle text-center"><strong>20%</strong></td>
-																</tr>
+																		</th>
+																		<td class="align-middle text-center"><strong>${d.soLuong}</strong>
+																		</td>
+																		<td class="align-middle text-center"><strong>${d.khuyenMai.giaTriKM}
+																				%</strong></td>
+																	</tr>
+																</c:forEach>
+
+
 															</tbody>
 														</table>
 													</div>
@@ -309,7 +269,7 @@
 	if ($(".modal-flag").attr("idModal") === "modalCreate") {
 		$("#editStatus").modal("show");
 	}
-	var idOrderStatus = document.querySelector('#order-status');
+/* 	var idOrderStatus = document.querySelector('#order-status');
 	if(idOrderStatus.textContent == "0"){
 		idOrderStatus.textContent = "Chờ xác nhận";
 	} else if(idOrderStatus.textContent == "1"){
@@ -318,7 +278,7 @@
 		idOrderStatus.textContent = "Đã giao"
 	}else if(idOrderStatus.textContent == "3"){
 		idOrderStatus.textContent = "Đã hủy"
-	}
+	} */
 	
 	var arr = document.querySelectorAll('#order-status');
 	for (let i = 0; i < arr.length; i++) {

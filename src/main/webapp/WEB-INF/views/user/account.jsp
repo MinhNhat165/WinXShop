@@ -88,7 +88,7 @@
 											<div class="card-header">
 												<h5 class="mb-0 d-flex justify-content-between align-center">
 													Đơn đặt của bạn
-													<form class="row popup">
+													<form:form class="row popup">
 														<div class="d-flex gap-1">
 															<div class="input-group">
 																<input type="text" class="form-control"
@@ -104,7 +104,7 @@
 																<div class="popup-card p-10"></div>
 															</div>
 														</div>
-													</form>
+													</form:form>
 												</h5>
 											</div>
 											<div class="card-body shadow">
@@ -126,19 +126,40 @@
 															<div class="row align-items-center custome-checkbox">
 																<div class="col-2 text-center product-name">
 																	<h5 class="order-id">
-																		<a href="shop-product-right.html">${o.getMaDD() }
-																		</a>
+																		<a href="shop-product-right.html">${o.maDD } </a>
 																	</h5>
 																</div>
 																<div class="col-3 text-center order-date">
-																	<span>${o.getNgayDat() } </span>
+																	<span>${o.ngayDat} </span>
 																</div>
 																<div class="col-2 text-center product-state">
-																	<span class="badge rounded-pill bg-brand order-status"
-																		id="order-status">${o.getTrangThai() }</span>
+																	<c:if test="${o.trangThai == 0}">
+																		<span
+																			class="badge rounded-pill bg-warning order-status"
+																			id="order-status">Đang chờ xác nhận </span>
+																	</c:if>
+																	<c:if test="${o.trangThai == 1}">
+																		<span
+																			class="badge rounded-pill bg-primary order-status"
+																			id="order-status">Đang giao </span>
+																	</c:if>
+																	<c:if test="${o.trangThai == 2}">
+																		<span class="badge rounded-pill bg-brand order-status"
+																			id="order-status">Đã giao </span>
+																	</c:if>
+																	<c:if test="${o.trangThai == 3}">
+																		<span
+																			class="badge rounded-pill bg-secondary order-status"
+																			id="order-status">Huỷ </span>
+																	</c:if>
+
 																</div>
-																<div class="col-3 text-center">${o.getTongTien() }
-																	VND</div>
+																<div class="col-3 text-center">
+
+																	<fmt:formatNumber pattern="###,### đ"
+																		value="${o.tongTien }" type="currency" />
+
+																</div>
 																<div
 																	class="col-2 d-flex justify-content-center gap-md-3 order-action">
 																	<a
@@ -249,9 +270,7 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			</div>
-			</div>
+
 		</section>
 	</main>
 	<!-- confirm modal -->
@@ -296,8 +315,8 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th colspan="2">Product</th>
-												<th>Total</th>
+												<th colspan="2">Sản phẩm</th>
+												<th>Tổng</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -367,15 +386,6 @@
 			$("#edit-status").modal("show");
 		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
 			$("#order-details").modal("show");
-		}
-
-		var arr = document.querySelectorAll('#order-status');
-		for (let i = 0; i < arr.length; i++) {
-			if (arr[i].innerText == 3) {
-				arr[i].innerText = "Da Huy"
-			} else if (arr[i].innerText == 0) {
-				arr[i].innerText = "Dang Xac nhan"
-			}
 		}
 	</script>
 </body>

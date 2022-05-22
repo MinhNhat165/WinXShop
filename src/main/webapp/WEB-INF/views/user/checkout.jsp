@@ -30,14 +30,11 @@
 								class="col-12 bg-white p-10 rounded-1 mb-10 product border border-brand">
 								<input type="checkbox" class="invisible position-absolute"
 									value="${p.sanPham.maSP }" checked name="dsSanPham" /> <input
-									class="invisible position-absolute type="
-									checkbox"
-									value="${p.soLuong }" checked
-									name="soLuong" /> <input
-									class="invisible position-absolute
-									type="
-									checkbox" value="${p.sanPham.dsSPKM[0].khuyenMai.maKM }"
-									checked name="khuyenMai" />
+									class="invisible position-absolute" type="checkbox"
+									value="${p.soLuong }" checked name="soLuong" /> <input
+									class="invisible position-absolute" type="checkbox"
+									value="${p.sanPham.dsSPKM[0].khuyenMai.maKM }" checked
+									name="khuyenMai" />
 								<div class="row align-items-center custome-checkbox">
 									<div class="col-1 text-center product-img">
 										<img src="./resources/imgs/${p.sanPham.anh}" alt="#" />
@@ -156,14 +153,14 @@
 								<div
 									class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 									<span class="">Số Lượng</span> <span class=""><span
-										class="text-brand">3 </span>Sản phẩm</span>
+										class="text-brand">${dsGHSP.size()} </span>Sản phẩm</span>
 								</div>
 								<div
 									class="col-12 d-flex justify-content-between pt-20 pb-10 px-0">
 									<span class="">Tổng thanh toán</span> <span class=""><span
 										class="text-brand"> <fmt:formatNumber
 												pattern="###,### đ"
-												value="${user.dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}"
+												value="${dsGHSP.stream().map(p -> (p.sanPham.gia-(p.sanPham.gia*p.sanPham.dsSPKM[0].khuyenMai.giaTriKM)/100) * p.soLuong).sum()}"
 												type="currency" />
 
 									</span></span>

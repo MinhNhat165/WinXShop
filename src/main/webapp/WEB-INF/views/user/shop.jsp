@@ -91,7 +91,7 @@
 									class="col-lg-4 col-md-4 col-12 col-sm-6 product-cart product">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
-											<div class="product-img product-img-zoom">
+											<div class="product-img product-img-zoom bg-light">
 												<a href="product-detail/${p.maSP }.htm"> <img
 													style="min-height: 260px" class=" default-img"
 													src="./resources/imgs/${p.anh}" alt="" />

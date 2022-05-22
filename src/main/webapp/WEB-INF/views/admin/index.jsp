@@ -17,17 +17,10 @@
 		data-boxed-layout="full">
 		<%@include file="./common/sidebar.jsp"%>
 		<div class="page-wrapper pt-0">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 align-self-center">
-						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">Trang
-							Chủ</h4>
-					</div>
-				</div>
-			</div>
+
 
 			<div class="container-fluid">
+				<h5 class="card-title fs-3 green-color">Trang chủ</h5>
 
 				<div class="card-group">
 					<div class="card border-right tc-control">
@@ -36,8 +29,7 @@
 								<div>
 									<div class="d-inline-flex align-items-center">
 										<h2 class="text-dark mb-1 font-weight-medium">${countCustomer }</h2>
-										<span
-											class="badge bg-cyan font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
+
 									</div>
 									<h6
 										class="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -84,8 +76,7 @@
 								<div>
 									<div class="d-inline-flex align-items-center">
 										<h2 class="text-dark mb-1 font-weight-medium">${countOrder }</h2>
-										<span
-											class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
+
 									</div>
 									<h6
 										class="text-muted font-weight-normal mb-0 w-100 text-truncate">Đơn
@@ -113,8 +104,6 @@
 								<div>
 									<div class="d-inline-flex align-items-center">
 										<h2 class="text-dark mb-1 font-weight-medium">${countBrand }</h2>
-										<span
-											class="badge bg-cyan font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none">+18.33%</span>
 									</div>
 									<h6
 										class="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -162,8 +151,7 @@
 								<div>
 									<div class="d-inline-flex align-items-center">
 										<h2 class="text-dark mb-1 font-weight-medium">${countNews }</h2>
-										<span
-											class="badge bg-danger font-12 text-white font-weight-medium badge-pill ml-2 d-md-none d-lg-block">-18.33%</span>
+
 									</div>
 									<h6
 										class="text-muted font-weight-normal mb-0 w-100 text-truncate">Tin
