@@ -117,7 +117,9 @@
 																style="width: 200px;">
 
 														</div>
+
 														<h6 class="fw-bold green-color">${user.hoTen}</h6>
+
 
 														<i
 															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
