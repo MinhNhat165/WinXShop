@@ -57,33 +57,33 @@ public class CustomerController {
 	}
 	
 	//update customer
-	@RequestMapping(value="customer/{MaKH}.htm", method=RequestMethod.GET)
-	public String updateAccount(ModelMap model, @ModelAttribute("user") KhachHang user) {
-		
-		return "admin/customer";	
-	}
-	@RequestMapping(value="account/{MaKH}.htm", method=RequestMethod.POST)
-	public String update_Account(ModelMap model,@ModelAttribute("user") KhachHang user,@PathVariable("MaKH") String maKH) {
-		Session session = fa.openSession();
-		Transaction t = session.beginTransaction();
-		try {
-			session.update(user);
-			t.commit();
-			model.addAttribute("message","Update thành công!");
-		}
-		catch(Exception e) {
-			t.rollback();
-			model.addAttribute("message","Update thất bại!");			
-		}
-		finally {
-			session.close();
-		}
-
-		List<KhachHang> list = getUsers();
-		model.addAttribute("users", list);
-		
-		return "admin/customer";	
-	}
+//	@RequestMapping(value="customer/{MaKH}.htm", method=RequestMethod.GET)
+//	public String updateAccount(ModelMap model, @ModelAttribute("user") KhachHang user) {
+//		
+//		return "admin/customer";	
+//	}
+//	@RequestMapping(value="account/{MaKH}.htm", method=RequestMethod.POST)
+//	public String update_Account(ModelMap model,@ModelAttribute("user") KhachHang user,@PathVariable("MaKH") String maKH) {
+//		Session session = fa.openSession();
+//		Transaction t = session.beginTransaction();
+//		try {
+//			session.update(user);
+//			t.commit();
+//			model.addAttribute("message","Update thành công!");
+//		}
+//		catch(Exception e) {
+//			t.rollback();
+//			model.addAttribute("message","Update thất bại!");			
+//		}
+//		finally {
+//			session.close();
+//		}
+//
+//		List<KhachHang> list = getUsers();
+//		model.addAttribute("users", list);
+//		
+//		return "admin/customer";	
+//	}
 	@RequestMapping(value="customer/{id}.htm",params="linkShow")
 		
 		public String showshowProduct(@PathVariable("id") String id,
@@ -117,8 +117,7 @@ public class CustomerController {
 	public String updateStatus(ModelMap model,@ModelAttribute("taiKhoan") TaiKhoan taiKhoan,RedirectAttributes redirectAttributes) {
 		Session session = fa.openSession();
 		Transaction t = session.beginTransaction();	
-		System.out.println("???????"+taiKhoan.getEmail());
-		System.out.println("???????"+taiKhoan.getQuyen());
+
 		try {
 			String emailTaiKhoan = taiKhoan.getEmail();
 			taiKhoan = getTaiKhoan(emailTaiKhoan);
@@ -145,7 +144,7 @@ public class CustomerController {
 		List<KhachHang> list = getUsers();
 		model.addAttribute("users", list);
 		model.addAttribute("message",
-				new Message("success","Đổi trạng thái thất bại"));
+				new Message("error","Đổi trạng thái thất bại"));
 		
 		return "admin/customer";	
 	}

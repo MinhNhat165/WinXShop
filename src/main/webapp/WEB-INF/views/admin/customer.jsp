@@ -39,7 +39,7 @@
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
 											<tr>
-												<th>Mã khách hàng${message }</th>
+												<th>Mã khách hàng</th>
 												<th>Họ và tên</th>
 												<th>Username</th>
 												<th>SĐT</th>
@@ -117,7 +117,7 @@
 
 														</div>
 														<h6 class="f-w-600">user001</h6>
-														<p>NV001</p>
+														<p>${user.maKH }</p>
 														<i
 															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 													</div>

@@ -33,8 +33,8 @@ import winx.entity.TinMoi;
 
 @Transactional
 @Controller
-@RequestMapping("admin")
-public class NewsController {
+@RequestMapping("/admin/")
+public class NewsController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 	@Autowired
@@ -72,7 +72,19 @@ public class NewsController {
 	}
 
 	// create news
-	@RequestMapping(value = "news", method = RequestMethod.POST)
+	@RequestMapping(value = "news/add-news", method = RequestMethod.GET)
+	public String add(ModelMap model) {
+		TinMoi tin = new TinMoi();
+		tin.setMaTin(generatorId("TM", "TinMoi", "maTin"));
+		model.addAttribute("idModal", "modalCreate");
+		model.addAttribute("news", tin);
+		List<TinMoi> list = getNews();
+		model.addAttribute("newsList", list);
+		
+
+		return "admin/news";
+	}
+	@RequestMapping(value = "news/add-news.htm", method = RequestMethod.POST)
 	public String insert(ModelMap model, @ModelAttribute("news") TinMoi news, BindingResult result,
 
 			@RequestParam("anh") MultipartFile anh, RedirectAttributes redirectAttributes) {
@@ -99,7 +111,6 @@ public class NewsController {
 					
 					t.commit();
 					anh.transferTo(new File(duongDanAnh));
-					model.addAttribute("sanpham", new SanPham());
 					redirectAttributes.addFlashAttribute("message",
 							new Message("success","Thêm mới thành công"));
 					return "redirect:/admin/news.htm";
@@ -141,11 +152,12 @@ public class NewsController {
 		}
 	@RequestMapping(value = "news/update/{id}.htm",params="btnEdit", method = RequestMethod.POST)
 	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model, @RequestParam("anh1") MultipartFile anh1, RedirectAttributes redirectAttributes) {
+			boolean checkanh = true;
+			if (anh1.isEmpty()) {
+				checkanh = false;
+				System.out.println("RONG");
+			}
 		
-		if (anh1.isEmpty()) {
-			System.out.println("rong");
-
-		} else {
 			try {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 				String tenAnh = date + anh1.getOriginalFilename();
@@ -155,15 +167,23 @@ public class NewsController {
 				Session session = factory.openSession();
 				Transaction t = session.beginTransaction();
 				try {
-					
+					TinMoi temp = getSingleNews(news.getMaTin());
+					String oldImg = temp.getAnh();
+					System.out.println(oldImg);
+					if (checkanh) {
+						news.setAnh(tenAnh);
+						anh1.transferTo(new File(duongDanAnh));
+						
+					}else {
+						news.setAnh(oldImg);
+						anh1.transferTo(new File(duongDanAnh));
+					}
 					Date dateNow = new Date();
 					news.ngayTao = dateNow;
 					news.setTrangThai((byte)1);
-					news.setAnh(tenAnh);
 					
 					session.update(news);
 					t.commit();
-					anh1.transferTo(new File(duongDanAnh));
 					model.addAttribute("tinmoi", new TinMoi());
 					redirectAttributes.addFlashAttribute("message",
 							new Message("success","Chỉnh sửa thành công"));
@@ -181,7 +201,7 @@ public class NewsController {
 			}catch(Exception e){
 				
 			}
-		}
+		
 		
 		List<TinMoi> list = getNews();
 		model.addAttribute("newsList", list);
