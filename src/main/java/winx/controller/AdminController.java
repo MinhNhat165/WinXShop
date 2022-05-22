@@ -34,14 +34,14 @@ public class AdminController extends CommonMethod {
 		int countCustomer = getAllCustomer().size();
 		int countOrder = getAllOrder().size();
 		int countBrand = getAllBrand().size();
-		
+
 		model.addAttribute("countSale", countSale);
 		model.addAttribute("countNews", countNews);
 		model.addAttribute("countProduct", countProduct);
 		model.addAttribute("countCustomer", countCustomer);
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("countBrand", countBrand);
-		
+
 		return "admin/index";
 	}
 
@@ -81,7 +81,7 @@ public class AdminController extends CommonMethod {
 	public String handleLogin(ModelMap model, @ModelAttribute("TK") TaiKhoan taiKhoan, HttpSession ss,
 			BindingResult result) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND matKhau = '"
+		String hql = "FROM TaiKhoan WHERE quyen = '0' AND email = '" + taiKhoan.getEmail() + "' AND password = '"
 				+ taiKhoan.getMatKhau() + "'";
 
 		Query query = session.createQuery(hql);
