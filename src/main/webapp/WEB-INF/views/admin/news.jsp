@@ -210,14 +210,16 @@
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div
 																	class="tm-product-img-dummy mx-auto rounded profile-pic" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
-																	<i
-																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
+																	
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<input type="file" class="file-upload" name="anh1"
-																		id="anh1" style="display: none" /> <input
-																		type="button"
-																		class="btn btn-primary btn-block mx-auto upload-button btn-green shadow-none"
+																	<label style="position: absolute;background-color: #088178;color: #fff;cursor: pointer;padding: 10px 141px;">Thêm ảnh</label>
+																	<input
+																		style="opacity: 0;position: absolute;cursor: pointer;"
+																		type="file"
+																		name="anh1"
+																		id="anh1"
+																		class="file-upload"
 																		value="Thêm ảnh" />
 																</div>
 															</div>
