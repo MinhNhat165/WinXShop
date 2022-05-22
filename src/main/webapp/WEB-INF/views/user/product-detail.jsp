@@ -18,13 +18,10 @@
 						<div class="product-detail accordion-detail">
 							<div class="row mb-50">
 								<div class="col-md-6 col-sm-12 col-xs-12">
-									<div class="detail-gallery">
-										<!-- MAIN SLIDES -->
-										<div class="product-image-slider rounded-3 overflow-hidden">
-											<figure class="rounded">
-												<img src="./resources/imgs/${SP.anh}" alt="product image" />
-											</figure>
-										</div>
+									<div class="product-img product-img-zoom">
+										<a href="product-detail/${SP.maSP }.htm"> <img
+											class="default-img" src="./resources/imgs/${SP.anh}" alt="" />
+										</a>
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-12 col-xs-12">

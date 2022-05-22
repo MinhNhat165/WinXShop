@@ -39,7 +39,7 @@
 										class="table table-striped table-bordered no-wrap green-color">
 										<thead>
 											<tr>
-												<th>Mã khách hàng${message }</th>
+												<th>Mã khách hàng</th>
 												<th>Họ và tên</th>
 												<th>Username</th>
 												<th>SĐT</th>
@@ -112,12 +112,13 @@
 												<div class="col-sm-4 bg-c-lite-green user-profile div-img">
 													<div class="card-block text-center text-white">
 														<div class="m-b-25">
-															<img src=${user.anh } class="img-radius"
-																alt="User-Profile-Image" style="width: 200px;">
+															<img src="./resources/imgs/${user.anh }"
+																class="img-radius" alt="User-Profile-Image"
+																style="width: 200px;">
 
 														</div>
-														<h6 class="f-w-600">user001</h6>
-														<p>NV001</p>
+														<h6 class="fw-bold green-color">${user.hoTen}</h6>
+
 														<i
 															class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 													</div>
@@ -141,7 +142,7 @@
 															</div>
 															<div class="col-sm-6">
 																<p class="m-b-10 f-w-600">Phái</p>
-																<h6 class="text-muted f-w-400">${user.phai }</h6>
+																<h6 class="text-muted f-w-400">${user.phai?'Nam':'Nữ'}</h6>
 															</div>
 														</div>
 
@@ -205,10 +206,9 @@
 			<!--<c:forEach var="u" items="${users }">-->
 			<div class="modal fade" id="editStatus" tabindex="-1" role="dialog"
 				aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered v-modal-dialog">
+				<div class="modal-dialog modal-dialog-centered modal-sm v-modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -216,14 +216,14 @@
 						</div>
 						<div class="modal-body">
 
-							<p>Thay đổi trạng thái</p>
+							<p>Nhấn lưu để thay đổi trạng thái khách hàng</p>
 
 						</div>
 						<form method="post" modelAttribute="taiKhoan">
 							<div class="modal-footer">
 
 								<button type="submit" name="${btnStatus}"
-									class="btn-green btn-primary">Lưu</button>
+									class="btn-green btn btn-primary">Lưu</button>
 
 
 							</div>

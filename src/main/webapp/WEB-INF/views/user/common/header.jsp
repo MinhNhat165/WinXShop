@@ -62,7 +62,7 @@
 									<a href="account.htm"> <i class="fa-regular fa-circle-user"></i>
 									</a>
 									<div class="cart-dropdown-wrap cart-dropdown-hm2"
-										style="width: 240px; padding: 10px">
+										style="min-width: 240px; padding: 10px">
 										<ul>
 											<li class=""><a href="account.htm"> <img
 													src="./resources/imgs/${user.anh}" class="rounded-circle"

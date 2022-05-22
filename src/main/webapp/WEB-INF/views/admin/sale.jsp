@@ -280,14 +280,14 @@
 									onclick="handleClickProduct(this)">
 									<div class="col-2">${p.maSP}</div>
 									<div class="col-1">
-										<img
-											src="https://lzd-img-global.slatic.net/g/p/40ff970a47db984b7316ee248fd41dfa.jpg_720x720q80.jpg_.webp"
-											alt="" style="width: 50px; height: 50px" />
+										<img src="./resources/imgs/${p.anh}" alt=""
+											style="width: 50px; height: 50px" />
 									</div>
 									<div class="col-6">${ p.tenSP}</div>
 									<div class="col-3" style="cursor: pointer">
 										Giá: <span class="green-color" data-bs-toggle="collapse"
-											href="#TTDK0001"> ${p.gia} </span>
+											href="#TTDK0001"> <fmt:formatNumber
+												pattern="###,### đ" value="${p.gia }" type="currency" /></span>
 									</div>
 								</div>
 							</c:forEach>
