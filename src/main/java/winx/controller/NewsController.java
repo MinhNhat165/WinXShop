@@ -33,8 +33,8 @@ import winx.entity.TinMoi;
 
 @Transactional
 @Controller
-@RequestMapping("admin")
-public class NewsController {
+@RequestMapping("/admin/")
+public class NewsController extends CommonMethod {
 	@Autowired
 	SessionFactory factory;
 	@Autowired
@@ -72,7 +72,19 @@ public class NewsController {
 	}
 
 	// create news
-	@RequestMapping(value = "news", method = RequestMethod.POST)
+	@RequestMapping(value = "news/add-news", method = RequestMethod.GET)
+	public String add(ModelMap model) {
+		TinMoi tin = new TinMoi();
+		tin.setMaTin(generatorId("TM", "TinMoi", "maTin"));
+		model.addAttribute("idModal", "modalCreate");
+		model.addAttribute("news", tin);
+		List<TinMoi> list = getNews();
+		model.addAttribute("newsList", list);
+		
+
+		return "admin/news";
+	}
+	@RequestMapping(value = "news/add-news.htm", method = RequestMethod.POST)
 	public String insert(ModelMap model, @ModelAttribute("news") TinMoi news, BindingResult result,
 
 			@RequestParam("anh") MultipartFile anh, RedirectAttributes redirectAttributes) {
@@ -99,7 +111,6 @@ public class NewsController {
 					
 					t.commit();
 					anh.transferTo(new File(duongDanAnh));
-					model.addAttribute("sanpham", new SanPham());
 					redirectAttributes.addFlashAttribute("message",
 							new Message("success","Thêm mới thành công"));
 					return "redirect:/admin/news.htm";

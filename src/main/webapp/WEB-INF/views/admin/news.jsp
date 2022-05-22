@@ -108,14 +108,14 @@
 											<div class="row tm-edit-product-row">
 												<div class="col-12">
 
-													<form:form action="admin/news.htm" modelAttribute="news"
+													<form:form action="admin/news/add-news.htm" modelAttribute="news"
 														method="post" enctype="multipart/form-data"
 														class="tm-edit-product-form">
 														<div class="row mb-4">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div class="form-group mb-3">
-																	<label for="name">Mã tin </label>
+																	<label>Mã tin </label>
 																	<form:input path="maTin" id="maTin" type="text"
 																		class="form-control validate" required="true" />
 																</div>
@@ -139,11 +139,15 @@
 																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon"></i>
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<input type="file" class="file-upload" name="anh"
-																		id="anh" style="display: none" /> <input
-																		type="button"
-																		class="btn btn-primary btn-block mx-auto upload-button btn-green shadow-none"
+																	<label style="position: absolute;background-color: #088178;color: #fff;cursor: pointer;padding: 10px 141px;">Thêm ảnh</label>
+																	<input
+																		style="opacity: 0;position: absolute;cursor: pointer;"
+																		type="file"
+																		name="anh"
+																		id="anh"
+																		class="file-upload"
 																		value="Thêm ảnh" />
+																</div>
 																</div>
 															</div>
 														</div>
@@ -337,14 +341,15 @@
 	<script type="text/javascript">
 	if ($(".modal-flag").attr("idModal") === "modalShow") {
 		$("#show-news").modal("show");
-	} 
+	} else if ($(".modal-flag").attr("idModal") === "modalCreate") {
+		$("#addproduct").modal("show");
+	}
 
 	$(".btn-create").remove();
-	searchBar.append(`<button type="button"
-			class="btn btn-secondary mb-0 green-bg-color shadow-none"
-			data-toggle="modal" data-target="#addproduct">
+	searchBar.append(`<a href="/Winx/admin/news/add-news.htm"><button type="button"
+			class="btn btn-secondary mb-0 green-bg-color shadow-none">
 			<i class="fas fa-plus-circle"></i> Thêm
-		</button>`);
+		</button></a>`);
 	 $("#zero_config_filter")
      .append(`<div class="search-bar-table d-flex align-items-stretch">
 	        	    <div class="position-relative">
