@@ -75,8 +75,9 @@
 											<form id="checkout" action="checkout.htm" method="post">
 
 												<div class="quantity">
-													<input type="number" name="soLuong" min="1"
-														max="${SP.slt }" step="1" value="1" style="width: 76px">
+													<input type="number" name="soLuong" class="input-soLuong"
+														min="1" max="${SP.slt }" step="1" value="1"
+														style="width: 76px">
 												</div>
 												<input type="text" name="sanPham"
 													class="invisible position-absolute" value="${SP.maSP }">
@@ -84,15 +85,24 @@
 												<div class="product-extra-link2 ms-2">
 													<button type="submit" form="checkout" name="btnCheckout"
 														class="button button-add-to-cart ms-2">Mua Ngay</button>
-													<a aria-label="Add To Card" class="action-btn hover-up"
-														href="cart/add/${SP.maSP }.htm"><i
-														class="fa-regular fa-cart-plus"></i></a> <a
-														aria-label="Compare" class="action-btn hover-up"
-														href="shop-compare.html"><i
-														class="fa-regular fa-bags-shopping"></i></a>
+
+													<button type="submit" form="formCart" name="btnCheckout"
+														class=" action-btn p-btn hover-up">
+														<i class="fa-regular fa-cart-plus"></i>
+													</button>
+													<a aria-label="Compare" class="action-btn hover-up"
+														href="shop.htm"><i class="fa-regular fa-bags-shopping"></i></a>
 												</div>
 											</form>
 										</div>
+
+										<form id="formCart" action="cart/add/${SP.maSP}.htm">
+
+											<input type="number"
+												class="add-number invisible position-absolute" value="1"
+												name="add-number">
+										</form>
+
 
 										<ul class="product-meta font-xs color-grey mt-50">
 											<li class="">Đã bán: <span>
@@ -322,5 +332,11 @@
 	</main>
 	<%@include file="./footer.jsp"%>
 	<%@include file="./script.jsp"%>
+
+	<script type="text/javascript">
+		$(".input-soLuong").change(function() {
+			$(".add-number").val(this.value)
+		})
+	</script>
 </body>
 </html>

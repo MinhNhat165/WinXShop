@@ -54,29 +54,27 @@
 												<div class="row">
 													<form class="col-4 mx-auto pt-5 card" method="post">
 														<div class="form-group col-md-12">
-															<label for="input-current-password">Mật
-																khẩu hiện tại</label> <input type="password" name="cpassword"
-																class="form-control" id="input-current-password" />
-															<span class="text-danger"> ${message1}</span>
+															<label for="input-current-password">Mật khẩu hiện
+																tại</label> <input type="password" name="cpassword"
+																class="form-control" id="input-current-password" /> <span
+																class="text-danger"> ${message1}</span>
 														</div>
 														<div class="form-group col-md-12">
-															<label for="input-new-password">Mật
-																khẩu mới</label> <input type="password" name="npassword"
-																class="form-control" id="input-new-password" />
-															<span class="text-danger"> ${message3}</span>
+															<label for="input-new-password">Mật khẩu mới</label> <input
+																type="password" name="npassword" class="form-control"
+																id="input-new-password" /> <span class="text-danger">
+																${message3}</span>
 														</div>
 														<div class="form-group col-md-12">
-															<label for="input-confirm-new-password">Xác
-																nhận mật khẩu mới</label> <input type="password"
-																name="renpassword" class="form-control"
-																id="input-confirm-new-password" />
+															<label for="input-confirm-new-password">Xác nhận
+																mật khẩu mới</label> <input type="password" name="renpassword"
+																class="form-control" id="input-confirm-new-password" />
 															<span class="text-danger">${message2}</span>
 														</div>
 
 														<div class="form-group col-12">
 															<button type="submit" name="btnpw"
-																class="btn btn-primary col-12">
-																Lưu thay đổi</button>
+																class="btn btn-primary col-12">Lưu thay đổi</button>
 														</div>
 													</form>
 												</div>
@@ -143,17 +141,14 @@
 																	VND</div>
 																<div
 																	class="col-2 d-flex justify-content-center gap-md-3 order-action">
-																	<a href="#" class="text-muted my-tooltip"
-																		aria-label="Xoá" data-bs-toggle="modal"
-																		data-bs-target="#confirm-modal"><i
-																		class="fa-regular fa-trash-can"></i></a> <a
+																	<a
 																		href="order/change-status/${o.getMaDD()}.htm?linkEdit"
 																		class="text-muted my-tooltip" aria-label="Huỷ đơn"
 																		data-bs-toggle="modal" data-bs-target=#${o.getMaDD()}>
 																		<i class="fa-regular fa-ban"></i>
 																	</a> <a href="#" class="text-muted my-tooltip"
-																		data-bs-toggle="modal" data-bs-target="#order-details"
-																		aria-label="Chi tiết"><i
+																		data-bs-toggle="modal"
+																		data-bs-target=#d-${o.getMaDD()} aria-label="Chi tiết"><i
 																		class="fa-regular fa-circle-info"></i></a>
 																</div>
 															</div>
@@ -171,26 +166,29 @@
 												<h5>Thông tin cá nhân</h5>
 											</div>
 											<div class="card-body">
-											<form action="account/update.htm" modelAttribute="kh"
-															method="post" enctype="multipart/form-data" class="needs-validation">
-												<div class="row">
-												
-													<div class="col-md-4">
-														<div class="avatar-wrapper">
-															<img class="profile-pic" src=${user.anh } />
-															<div class="upload-button">
-																<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+												<form:form action="account/update.htm" modelAttribute="kh"
+													method="post" enctype="multipart/form-data"
+													class="needs-validation">
+													<div class="row">
+
+														<div class="col-md-4">
+															<div class="avatar-wrapper">
+																<img class="profile-pic"
+																	src="./resources/imgs/${user.anh }" />
+																<div class="upload-button">
+																	<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+																</div>
+																<input class="file-upload" id="profile-img"
+																	name="profile-img" type="file" />
 															</div>
-															<input class="file-upload" id="profile-img" name="profile-img" type="file" />
+															<div class="col-12 text-center text-brand-dark">
+																<span class="fs-5">${user.taiKhoan.email}</span>
+															</div>
 														</div>
-														<div class="col-12 text-center text-brand-dark">
-															<span class="fs-5">${user.taiKhoan.email}</span>
-														</div>
-													</div>
-													
-													<div class="col-8">
-														
-															
+
+														<div class="col-8">
+
+
 															<div class="row">
 																<div class="form-group col-md-12">
 																	<label>Họ và tên <span class="required">*</span>
@@ -237,14 +235,11 @@
 																<div class="col-md-12">
 																	<button type="submit" class="btn">Xác nhận</button>
 																</div>
-																</div>
-																
 															</div>
-															</div>
-															</form>
+
 														</div>
 													</div>
-												</div>
+												</form:form>
 											</div>
 										</div>
 									</div>
@@ -253,6 +248,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			</div>
+			</div>
 			</div>
 		</section>
 	</main>
@@ -279,106 +277,86 @@
 		</div>
 	</c:forEach>
 	<!-- order details modal -->
-	<div class="modal fade" id="order-details" tabindex="-1"
-		aria-labelledby="confirm-modal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="row">
-					<div class="col-md-12 mx-auto">
-						<div class="order_review border-0">
-							<div class="mb-20 d-flex justify-content-between">
-								<h4>
-									Đơn đặt:<span class="text-brand"> DD00001</span>
-								</h4>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="table-responsive order_table text-center">
-								<table class="table">
-									<thead>
-										<tr>
-											<th colspan="2">Product</th>
-											<th>Total</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="image product-thumbnail"><img
-												src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-												alt="#" /></td>
-											<td>
-												<h5>
-													<a href="shop-product-full.html">Yidarton Women Summer
-														Blue</a>
-												</h5> <span class="product-qty align-middle"><i
-													class="fa-regular fa-xmark"></i> 2</span>
-											</td>
-											<td>180.000 đ</td>
-										</tr>
-										<tr>
-											<td class="image product-thumbnail"><img
-												src="https://upload.wikimedia.org/wikipedia/commons/9/90/Spiderman.JPG"
-												alt="#" /></td>
-											<td>
-												<h5>
-													<a href="shop-product-full.html">LDB MOON Women Summe</a>
-												</h5> <span class="product-qty align-middle"><i
-													class="fa-regular fa-xmark"></i> 2</span>
-											</td>
-											<td>65.000 đ</td>
-										</tr>
-										<tr>
-											<td class="image product-thumbnail"><img
-												src="assets/imgs/shop/product-3-1.jpg" alt="#" /></td>
-											<td><i class="ti-check-box font-small text-muted mr-10"></i>
-												<h5>
-													<a href="shop-product-full.html">Women's Short Sleeve
-														Loose</a>
-												</h5> <span class="product-qty align-middle"><i
-													class="fa-regular fa-xmark"></i> 2</span></td>
-											<td>35.000 đ</td>
-										</tr>
-										<tr>
-											<th>Tổng</th>
-											<td class="product-subtotal" colspan="2">280.000 đ</td>
-										</tr>
-										<tr>
-											<th>Phí vận chuyển</th>
-											<td colspan="2"><em>Miễn phí</em></td>
-										</tr>
-										<tr>
-											<th>Tổng thanh toán</th>
-											<td colspan="2" class="product-subtotal"><span
-												class="font-xl text-brand fw-900">280.000 đ</span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="bt-1 border-color-1 mt-30 mb-30"></div>
-							<div class="payment_method">
-								<div class="mb-25">
-									<h5>
-										Địa chỉ giao hàng: <span class="text-brand">c3 Man
-											Thiện, Hiệp Phú, Tp.Thủ Đức</span>
-									</h5>
+	<c:forEach var="o" items="${orders}">
+		<div class="modal fade" id="d-${o.maDD}" tabindex="-1"
+			aria-labelledby="confirm-modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col-md-12 mx-auto">
+							<div class="order_review border-0">
+								<div class="mb-20 d-flex justify-content-between">
+									<h4>
+										Đơn đặt:<span class="text-brand"> DD00001</span>
+									</h4>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
 								</div>
-							</div>
-							<div class="bt-1 border-color-1 mt-30 mb-30"></div>
+								<div class="table-responsive order_table text-center">
+									<table class="table">
+										<thead>
+											<tr>
+												<th colspan="2">Product</th>
+												<th>Total</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="c" items="${o.dsCTDD}">
+												<tr>
+													<td class="image product-thumbnail"><img
+														src="./resources/imgs/${c.sanPham.anh}" alt="#" /></td>
+													<td>
+														<h5>
+															<a href="shop-product-full.html">${c.sanPham.tenSP}</a>
+														</h5> <span class="product-qty align-middle"><i
+															class="fa-regular fa-xmark"></i> ${c.soLuong}</span>
+													</td>
+													<td><fmt:formatNumber pattern="###,### đ"
+															value="${(c.sanPham.gia-(c.sanPham.gia*c.khuyenMai.giaTriKM)/100)*c.soLuong}"
+															type="currency" /></td>
+												</tr>
+											</c:forEach>
 
-							<div class="payment_method">
-								<div class="mb-25">
-									<h5>
-										Phương thức thanh toán: <span class="text-brand">Thanh
-											toán khi nhận hàng</span>
-									</h5>
+
+											<tr>
+												<th>Tổng</th>
+												<td class="product-subtotal" colspan="2"><fmt:formatNumber
+														pattern="###,### đ" value="${o.tongTien}" type="currency" /></td>
+											</tr>
+											<tr>
+												<th>Phí vận chuyển</th>
+												<td colspan="2"><em>Miễn phí</em></td>
+											</tr>
+											<tr>
+												<th>Tổng thanh toán</th>
+												<td colspan="2" class="product-subtotal"><span
+													class="font-xl text-brand fw-900"> <fmt:formatNumber
+															pattern="###,### đ" value="${o.tongTien}" type="currency" />
+
+
+												</span></td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
+								<div class="bt-1 border-color-1 mt-30 mb-30"></div>
+								<div class="payment_method">
+									<div class="mb-25">
+										<h5>
+											Địa chỉ giao hàng: <span class="text-brand">${o.diaChi}</span>
+										</h5>
+									</div>
+								</div>
+								<div class="bt-1 border-color-1 mt-30 mb-30"></div>
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</c:forEach>
+
 
 
 	<%@include file="./footer.jsp"%>

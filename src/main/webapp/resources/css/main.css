@@ -9673,4 +9673,22 @@ input[type=number] {
 	color:white !important;
 }
 
+.product-extra-link2 .p-btn {
+	background: #fff none repeat scroll 0 0;
+    border: 1px solid #e5e5e5;
+    color: #333;
+    border-radius: 4px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    width: 40px;
+    margin: 0 3px;
+    transition: all 0.5s ease-out 0s;
+    -webkit-transition: all 0.5s ease-out 0s;
+}
+
+
 /*# sourceMappingURL=main.css.map */
