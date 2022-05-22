@@ -5,15 +5,14 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body style="max-width: 100vw; overflow-x: hidden;">
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 	<!-- main -->
 
 	<div class="alert-flag" aType='${message.type}'
 		aMessage="${message.message }"></div>
 	<!-- end flag  -->
-	<!-- end flag -->
 
 	<main class="main" style="max-width: 100vw; overflow-x: hidden;">
 		<!-- Bản tin -->
@@ -25,11 +24,11 @@
 							<div class="row align-items-center slider-animated-1">
 								<div class="col-lg-5 col-md-6">
 									<div class="hero-slider-content-2">
-										<h1 class="animated fw-900 text-brand title">${news.tenTin}</h1>
+										<h1 class="animated fw-bold text-brand title">${news.tenTin}</h1>
 										<p class="animated content">${news.noiDung}</p>
 										<a class="animated btn btn-brush btn-brush-3"
 											style="background-image: url('http://wp.alithemes.com/html/evara/evara-frontend/assets/imgs/theme/btn-brush-bg-2.png');"
-											href="shop.htm"> Shop Now </a>
+											href="shop.htm"> Mua ngay </a>
 									</div>
 								</div>
 								<div class="col-lg-7 col-md-6">
@@ -94,7 +93,7 @@
 		<section class="section-padding">
 			<div class="container">
 				<h3 class="section-title mb-20 wow fadeIn animated">
-					<span>Featured</span> Brands
+					<span>Nhãn Hàng</span>
 				</h3>
 				<div
 					class="carausel-6-columns-cover position-relative wow fadeIn animated">
@@ -108,34 +107,7 @@
 									alt="" />
 							</div>
 						</c:forEach>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-1.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-2.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-3.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-4.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-5.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-6.png" alt="" />
-						</div>
-						<div class="brand-logo">
-							<img class="img-grey-hover"
-								src="./resources/imgs/banner/brand-3.png" alt="" />
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -188,14 +160,18 @@
 									<input type="text" name="sanPham"
 										class="invisible position-absolute" value="${p.maSP}">
 								</form>
+								<fmt:formatNumber var="price" pattern="###,### đ"
+									value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+									type="currency" />
+								<fmt:formatNumber pattern="###,### đ" var="oldPrice"
+									value="${p.gia }" type="currency" />
 								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
 									data-review="${p.diemDG==0?'chưa có đáng giá
 									nào': p.diemDG }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${p.maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="${p.moTa }"
-									data-img="${p.anh }"
+									data-price="${price}" data-old-price="${oldPrice}"
+									data-ml="${p.dungTich }" data-id="${p.maSP }"
+									data-quantity="${p.slt }" data-type="${p.loai}"
+									data-description="${p.moTa }" data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
@@ -234,7 +210,10 @@
 										</div>
 										<div class="product-content-wrap">
 											<div class="product-category">
-												<a href="shop-grid-right.html">${p.nhanHang.tenNH}</a>
+												<a href="shop-grid-right.html"><c:if
+														test="${p.loai  == 0 }">Nữ</c:if> <c:if
+														test="${p.loai  == 1 }">Nam</c:if> <c:if
+														test="${p.loai  == 2 }">Unisex</c:if>, ${p.nhanHang.tenNH}</a>
 											</div>
 											<h2>
 												<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
@@ -249,12 +228,8 @@
 											</div>
 											<div class="product-price">
 
-												<span> <fmt:formatNumber pattern="###,### đ"
-														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-														type="currency" />
-												</span> <span class="old-price"> <fmt:formatNumber
-														pattern="###,### đ" value="${p.gia }" type="currency" />
-												</span>
+												<span> ${price} </span> <span class="old-price">
+													${oldPrice} </span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -265,6 +240,7 @@
 											</div>
 										</div>
 									</div>
+
 								</div>
 							</c:forEach>
 						</div>
@@ -284,14 +260,18 @@
 									<input type="text" name="sanPham"
 										class="invisible position-absolute" value="${p.maSP}">
 								</form>
+								<fmt:formatNumber var="bPrice" pattern="###,### đ"
+									value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+									type="currency" />
+								<fmt:formatNumber pattern="###,### đ" var="bOldPrice"
+									value="${p.gia }" type="currency" />
 								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
 									data-review="${p.diemDG==0?'chưa có đáng giá
 									nào': p.diemDG }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${p.maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="${p.moTa }"
-									data-img="${p.anh }"
+									data-price="${bPrice}" data-old-price="${bOldPrice }"
+									data-ml="${p.dungTich }" data-id="${p.maSP }"
+									data-quantity="${p.slt }" data-type="${p.loai}"
+									data-description="${p.moTa }" data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
@@ -337,20 +317,17 @@
 											</h2>
 											<div class="">
 												<i class="fa-solid fa-star text-warning"></i> <span>
-													${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG } </span>
+													${p.diemDG == 0? "
+										chưa có đáng giá nào" :p.diemDG }
+												</span>
 											</div>
 											<div class="">
 												<span><i class="fa-solid fa-badge-dollar"></i>
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
-
-												<span> <fmt:formatNumber pattern="###,### đ"
-														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-														type="currency" />
-												</span> <span class="old-price"> <fmt:formatNumber
-														pattern="###,### đ" value="${p.gia }" type="currency" />
-												</span>
+												<span> ${bPrice} </span> <span class="old-price">
+													${bOldPrice} </span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -366,7 +343,7 @@
 						</div>
 						<!--End product-grid-4-->
 					</div>
-					<!--En tab two (Popular)-->
+					<!--End tab two (Popular)-->
 					<div class="tab-pane fade" id="tab-three" role="tabpanel"
 						aria-labelledby="tab-three">
 						<div class="row product-grid-4">
@@ -379,14 +356,18 @@
 									<input type="text" name="sanPham"
 										class="invisible position-absolute" value="${p.maSP}">
 								</form>
+								<fmt:formatNumber var="bPrice" pattern="###,### đ"
+									value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
+									type="currency" />
+								<fmt:formatNumber pattern="###,### đ" var="bOldPrice"
+									value="${p.gia }" type="currency" />
 								<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
 									data-review="${p.diemDG==0?'chưa có đáng giá
 									nào': p.diemDG }"
-									data-price="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-									data-old-price="${p.gia }" data-ml="${p.dungTich }"
-									data-id="${p.maSP }" data-quantity="${p.slt }"
-									data-type="${p.loai}" data-description="${p.moTa }"
-									data-img="${p.anh }"
+									data-price="${bPrice}" data-old-price="${bOldPrice }"
+									data-ml="${p.dungTich }" data-id="${p.maSP }"
+									data-quantity="${p.slt }" data-type="${p.loai}"
+									data-description="${p.moTa }" data-img="${p.anh }"
 									class="col-lg-3 col-md-4 col-12 col-sm-6 product product-cart">
 									<div class="product-cart-wrap mb-30">
 										<div class="product-img-action-wrap">
@@ -412,7 +393,7 @@
 											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
 												<div
 													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+													<span class="hot">-${p.dsSPKM[0].khuyenMai.giaTriKM}</span>
 												</div>
 											</c:if>
 											<c:if
@@ -432,20 +413,17 @@
 											</h2>
 											<div class="">
 												<i class="fa-solid fa-star text-warning"></i> <span>
-													${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG } </span>
+													${p.diemDG == 0? "
+										chưa có đáng giá nào" :p.diemDG }
+												</span>
 											</div>
 											<div class="">
 												<span><i class="fa-solid fa-badge-dollar"></i>
 													${p.dsCTDD.stream().map(t -> (t.soLuong)).sum()} đã bán</span>
 											</div>
 											<div class="product-price">
-
-												<span> <fmt:formatNumber pattern="###,### đ"
-														value="${p.gia - p.gia * p.dsSPKM[0].khuyenMai.giaTriKM/100}"
-														type="currency" />
-												</span> <span class="old-price"> <fmt:formatNumber
-														pattern="###,### đ" value="${p.gia }" type="currency" />
-												</span>
+												<span> ${bPrice} </span> <span class="old-price">
+													${bOldPrice} </span>
 											</div>
 											<div class="product-action-1 show">
 												<button aria-label="Mua ngay" type="submit" title="Mua ngay"
@@ -467,8 +445,8 @@
 			</div>
 		</section>
 
-		<section class="section-padding bg-white">
-			<div class="container wow fadeIn animated">
+		<section class="section-padding  " style="background: #d7eeec;">
+			<div class="container fadeIn animated">
 				<h3 class="section-title mb-20">Sản Phẩm Mới</h3>
 				<div class="carausel-6-columns-cover position-relative">
 					<div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow"
@@ -564,7 +542,7 @@
 										data-countdown="${s.ngayKT } 00:00:00"></div>
 									<a href="shop.htm" style="background: white;"
 										class="btn hover-up">Shop Now<i
-										class="fa-solid fa-bag-shopping"></i></i>
+										class="fa-solid fa-bag-shopping"></i>
 									</a>
 								</div>
 							</div>
@@ -574,7 +552,7 @@
 			</div>
 		</section>
 
-		<section class=" section-padding" style="background: #04696312">
+		<section class=" section-padding" style="background: #d7eeec">
 			<div class="container pt-25 pb-25">
 				<div class="heading-tab d-flex">
 					<div class="heading-tab-left wow fadeIn animated">
@@ -595,15 +573,7 @@
 									<div class="carausel-4-columns carausel-arrow-center"
 										id="carausel-4-columns">
 										<c:forEach var="p" items="${bestSaleProductList}">
-											<form id="checkout${p.maSP }"
-												class="invisible position-absolute" action="checkout.htm"
-												method="post">
-												<input class="invisible position-absolute" type="number"
-													name="soLuong" min="1" step="1" value="1"
-													style="width: 76px"> <input type="text"
-													name="sanPham" class="invisible position-absolute"
-													value="${p.maSP}">
-											</form>
+
 											<div data-name="${p.tenSP }" data-brand="${p.nhanHang.tenNH}"
 												data-review="${p.diemDG==0?'chưa có đáng giá
 									nào': p.diemDG }"
@@ -611,7 +581,8 @@
 												data-old-price="${p.gia }" data-ml="${p.dungTich }"
 												data-id="${p.maSP }" data-quantity="${p.slt }"
 												data-type="${p.loai}" data-description="${p.moTa }"
-												data-img="${p.anh }" class="product-cart-wrap small product">
+												data-img="${p.anh }"
+												class="product-cart-wrap product small hover-up">
 												<div class="product-img-action-wrap">
 													<div class="product-img product-img-zoom">
 														<a href="product-detail/${p.maSP }.htm"> <img
@@ -620,15 +591,17 @@
 														</a>
 													</div>
 													<div class="product-action-1">
-														<a aria-label="Quick view" class="action-btn hover-up"
-															data-bs-toggle="modal" onclick="handleQuickView(this)"
+														<a aria-label="Quick view"
+															class="action-btn small hover-up" data-bs-toggle="modal"
+															onclick="handleQuickView(this)"
 															data-bs-target="#quickViewModal"><i
 															class="fa-regular fa-eye"></i></a> <a
-															aria-label="Add To Card" class="action-btn hover-up"
-															href="cart/add/${p.maSP}.htm"> <i
-															class="fa-regular fa-cart-plus"></i>
-														</a>
+															aria-label="Add To Card"
+															class="action-btn small hover-up"
+															href="cart/add/${p.maSP}.htm"><i
+															class="fa-regular fa-cart-plus"></i> </a>
 													</div>
+
 													<div
 														class="product-badges product-badges-position product-badges-mrg">
 														<span class="new">New</span>
@@ -643,11 +616,10 @@
 												</div>
 												<div class="product-content-wrap">
 													<h2>
-														<a href="product-detail/${p.maSP }.htm">${p.tenSP}</a>
+														<a href="product-detail/${p.maSP }.htm">${p.tenSP }</a>
 													</h2>
 													<div class="rating-result" title="90%">
-														<span> <span> ${p.diemDG == 0? "chưa có đáng giá nào" : p.diemDG }</span>
-														</span>
+														<span> </span>
 													</div>
 													<div class="product-price">
 
@@ -660,6 +632,8 @@
 													</div>
 												</div>
 											</div>
+
+
 										</c:forEach>
 
 
@@ -667,484 +641,8 @@
 								</div>
 							</div>
 							<!--End tab-pane-->
-							<div class="tab-pane fade" id="tab-two-1" role="tabpanel"
-								aria-labelledby="tab-two-1">
-								<div
-									class="carausel-4-columns-cover arrow-center position-relative">
-									<div
-										class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-										id="carausel-4-columns-2-arrows"></div>
-									<div class="carausel-4-columns carausel-arrow-center"
-										id="carausel-4-columns-2">
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-6-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-6-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">Hot</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
-														Printed 2</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-7-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-7-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="new">New</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$138.85 </span> <span class="old-price">$145.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-5-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-5-1.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="best">Best Sell</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Hugy Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$152.85 </span> <span class="old-price">$156.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-10-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-10-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">-12%</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-12-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-12-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="sale">Sale</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
-														Printed</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="tab-three-1" role="tabpanel"
-								aria-labelledby="tab-three-1">
-								<div
-									class="carausel-4-columns-cover arrow-center position-relative">
-									<div
-										class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-										id="carausel-4-columns-3-arrows"></div>
-									<div class="carausel-4-columns carausel-arrow-center"
-										id="carausel-4-columns-3">
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-8-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-8-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">Hot</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
-														Printed</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-13-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-13-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="new">New</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$138.85 </span> <span class="old-price">$145.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-14-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-14-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="best">Best Sell</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Hugy Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$152.85 </span> <span class="old-price">$156.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-15-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-15-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="hot">-12%</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Smart Speaker</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-										<div class="product-cart-wrap">
-											<div class="product-img-action-wrap">
-												<div class="product-img product-img-zoom">
-													<a href="product-detail/${p.maSP }.htm"> <img
-														class="default-img"
-														src="./resources/imgs/shop/product-11-1.jpg" alt="" /> <img
-														class="hover-img"
-														src="./resources/imgs/shop/product-11-2.jpg" alt="" />
-													</a>
-												</div>
-												<div class="product-action-1">
-													<a aria-label="Quick view"
-														class="action-btn small hover-up" data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"> <i class="fi-rs-eye"></i>
-													</a> <a aria-label="Add To Card"
-														class="action-btn small hover-up" href="cart.htm"><i
-														class="fi-rs-heart"></i></a> <a aria-label="Compare"
-														class="action-btn small hover-up" href="shop-compare.html"><i
-														class="fi-rs-shuffle"></i></a>
-												</div>
-												<div
-													class="product-badges product-badges-position product-badges-mrg">
-													<span class="sale">Sale</span>
-												</div>
-											</div>
-											<div class="product-content-wrap">
-												<div class="product-category">
-													<a href="shop-grid-right.html">Watch</a>
-												</div>
-												<h2>
-													<a href="product-detail/${p.maSP }.htm">Cotton Leaf
-														Printed</a>
-												</h2>
-												<div class="rating-result" title="90%">
-													<span> <span>70%</span>
-													</span>
-												</div>
-												<div class="product-price">
-													<span>$238.85 </span> <span class="old-price">$245.8</span>
-												</div>
-												<div class="product-action-1 show">
-													<a aria-label="Add To Cart" class="action-btn hover-up"
-														href="cart.htm"><i class="fi-rs-shopping-bag-add"></i></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+
 						</div>
 						<!--End tab-content-->
 					</div>
@@ -1155,8 +653,8 @@
 	</main>
 
 	<!--footer  -->
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<!-- Quick view -->
 	<div class="modal fade custom-modal" id="quickViewModal" tabindex="-1"
 		aria-labelledby="quickViewModalLabel" aria-hidden="true">
@@ -1177,14 +675,13 @@
 									HD450</h3>
 								<div class="product-detail-rating">
 									<div class="pro-details-brand">
-										<span> Brands: <a href="shop-grid-right.html"
+										<span> Nhãn hàng: <a href="shop-grid-right.html"
 											class="brand-detail">Bootstrap</a></span>
 									</div>
 									<div class="product-rate-cover text-end">
 										<div class="rating-result" title="90%">
 											<span> <span class="review-score">9</span>/10
-											</span> <span class="font-small ml-5 text-muted"> (25
-												reviews)</span>
+											</span> <span class="font-small ml-5 text-muted"></span>
 										</div>
 									</div>
 								</div>

@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body>
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 	<!-- flag -->
 
 
@@ -181,9 +181,9 @@
 			</div>
 		</section>
 	</main>
-	<%@include file="./footer.jsp"%>
+	<%@include file="./common/footer.jsp"%>
 
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 		if ($(".alert-flag").attr("aType")) {
 			alertify.notify($(".alert-flag").attr("aMessage"), $(".alert-flag")

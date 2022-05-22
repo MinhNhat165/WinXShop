@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body>
 	<header class="header-area header-style-5 vh-5">
 		<div class="header-bottom sticky-bar sticky-white-bg">
@@ -92,7 +92,7 @@
 			</div>
 		</section>
 	</main>
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 </body>
 </html>

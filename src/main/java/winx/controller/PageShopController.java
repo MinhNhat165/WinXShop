@@ -121,7 +121,7 @@ public class PageShopController extends CommonMethod {
 
 	public List<SanPham> searchProduct(String tenSP) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM SanPham where tenSP LIKE :tenSP";
+		String hql = "FROM SanPham where slt > 0 AND tenSP LIKE :tenSP";
 		Query query = session.createQuery(hql);
 		query.setParameter("tenSP", "%" + tenSP + "%");
 		List<SanPham> list = query.list();
