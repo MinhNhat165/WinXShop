@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body>
 	<!-- flag   -->
 	<div class="page-flag" data="cart"></div>
 	<!-- end flag  -->
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 	<main class="main bg-light pt-50" style="height: 664px">
 		<section class="mb-50">
 			<div class="container">
@@ -112,7 +112,7 @@
 			</div>
 		</section>
 	</main>
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 </body>
 </html>

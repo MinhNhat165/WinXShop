@@ -4,9 +4,11 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<%@include file="./head.jsp"%>
+<head>
+<%@include file="./common/head.jsp"%>
+</head>
 <body>
-<div class="alert-flag" aType='${message.type}'
+	<div class="alert-flag" aType='${message.type}'
 		aMessage="${message.message }"></div>
 	<!-- flag -->
 	<div class="modal-flag" idModal="${idModal}"></div>
@@ -16,7 +18,9 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<%@include file="./sidebar.jsp"%>
+		<!-- sidebar  -->
+		<%@include file="./common/sidebar.jsp"%>
+		<!-- End sidebar  -->
 		<div class="page-wrapper pt-0">
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -116,17 +120,18 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-														<form:input class="invisible position-absolute" path="anh"/>
+															<form:input class="invisible position-absolute"
+																path="anh" />
 															<div
 																class="tm-product-img-dummy mx-auto rounded profile-pic">
 
 																<i
-																		class="fas fa-cloud-upload-alt upload-button tm-upload-icon upload-button"></i>
+																	class="fas fa-cloud-upload-alt upload-button tm-upload-icon upload-button"></i>
 															</div>
 															<div class="custom-file mt-3 mb-3">
 																<input name="anhh" type="file" class="file-upload"
-																	style="display: none;" />
-																<span class="text-danger"><form:errors path="anh"></form:errors></span>
+																	style="display: none;" /> <span class="text-danger"><form:errors
+																		path="anh"></form:errors></span>
 																<button type="button"
 																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button">Tải
 																	ảnh lên</button>
@@ -220,19 +225,20 @@
 															</div>
 														</div>
 														<div class="col-xl-6 col-lg-6 col-md-12">
-														<form:input class="invisible position-absolute" path="anh"/>
+															<form:input class="invisible position-absolute"
+																path="anh" />
 															<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic"
-																	style="background-image: url('.//resources//imgs//${nhanhang.anh}');background-size: cover">
+																class="tm-product-img-dummy mx-auto rounded profile-pic"
+																style="background-image: url('.//resources//imgs//${nhanhang.anh}');background-size: cover">
 
-																	<i
-																		class="fas fa-cloud-upload-alt tm-upload-icon upload-button2"></i>
-																</div>
-															
+																<i
+																	class="fas fa-cloud-upload-alt tm-upload-icon upload-button2"></i>
+															</div>
+
 															<div class="custom-file mt-3 mb-3">
 																<input name="anh2" type="file" class="file-upload2"
-																	style="display: none;" />
-																<span class="text-danger"><form:errors path="anh"></form:errors></span>
+																	style="display: none;" /> <span class="text-danger"><form:errors
+																		path="anh"></form:errors></span>
 																<button type="button"
 																	class="btn btn-primary btn-block mx-auto btn-green shadow-none upload-button2">Tải
 																	ảnh lên</button>
@@ -266,7 +272,7 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-	
+
 	<%@include file="./common/script.jsp"%>
 	<script>
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {

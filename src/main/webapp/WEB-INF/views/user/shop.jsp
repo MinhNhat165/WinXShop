@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body style="max-width: 100vw;">
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 	<main class="main bg-white pt-50 pb-50"
 		style="background: #04696312 !important;">
 		<div class="alert-flag" aType='${message.type}'
@@ -108,8 +108,21 @@
 											</div>
 											<div
 												class="product-badges product-badges-position product-badges-mrg">
-												<span class="hot">Hot</span>
+												<span class="new">New </span>
 											</div>
+											<c:if test="${p.dsSPKM[0].khuyenMai.giaTriKM > 0 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="hot" style="min-width: 44px">-${p.dsSPKM[0].khuyenMai.giaTriKM}%</span>
+												</div>
+											</c:if>
+											<c:if
+												test="${p.dsCTDD.stream().map(t -> (t.soLuong)).sum() > 10 }">
+												<div
+													class="product-badges product-badges-position product-badges-mrg">
+													<span class="best">Best Sell</span>
+												</div>
+											</c:if>
 										</div>
 										<div class="product-content-wrap">
 											<div class="product-category">
@@ -311,7 +324,7 @@
 															</div>
 															<div class="list-group">
 																<div class="list-group-item mb-10 mt-10">
-																	<label class="fw-900 mt-15">Loại</label>
+																	<label class="fw-bold mt-15">Loại</label>
 																	<div class="custome-checkbox">
 																		<input class="form-check-input" name="loai"
 																			type="checkbox" id="nu" value="0" /> <label
@@ -398,8 +411,7 @@
 											<div class="rating-result" title="90%">
 												<span> <span class="review-score">${p.diemDG==0?'chưa có đáng giá
 									nào': p.diemDG }</span>/10
-												</span> <span class="font-small ml-5 text-muted"> (25
-													reviews)</span>
+												</span> <span class="font-small ml-5 text-muted"> </span>
 											</div>
 										</div>
 									</div>
@@ -479,8 +491,8 @@
 		</div>
 	</c:forEach>
 
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 		$("body").css("overflow", "hidden visible");
 		$(document).ready(function() {

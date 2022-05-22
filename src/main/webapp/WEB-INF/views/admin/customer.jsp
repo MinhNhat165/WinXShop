@@ -3,7 +3,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<%@include file="./head.jsp"%>
+<head>
+<%@include file="./common/head.jsp"%>
+</head>
 <body>
 	<!-- flag -->
 	<div class="page-flag" data="customer"></div>
@@ -15,7 +17,9 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<%@include file="./sidebar.jsp"%>
+		<!-- sidebar  -->
+		<%@include file="./common/sidebar.jsp"%>
+		<!-- End sidebar  -->
 		<div class="page-wrapper pt-0">
 
 

@@ -5,7 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<%@include file="./head.jsp"%>
+<head>
+<%@include file="./common/head.jsp"%>
+</head>
+
 
 <body>
 	<!-- flag -->
@@ -19,7 +22,9 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<%@include file="./sidebar.jsp"%>
+		<!-- sidebar  -->
+		<%@include file="./common/sidebar.jsp"%>
+		<!-- End sidebar  -->
 		<div class="page-wrapper pt-0">
 
 
@@ -205,7 +210,8 @@
 																		<label for="stock">Ngày sản xuất </label>
 																		<form:input path="ngaySX" type="date"
 																			class="form-control validate" required="true" />
-																		<span class="text-danger"><form:errors path="ngaySX"></form:errors></span>
+																		<span class="text-danger"><form:errors
+																				path="ngaySX"></form:errors></span>
 																	</div>
 																	<div class="form-group mb-3 col-xs-12 col-sm-6">
 																		<label for="stock">Ngày hết hạn </label>

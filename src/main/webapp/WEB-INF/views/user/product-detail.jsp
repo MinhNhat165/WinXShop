@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body>
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 	<main class="main bg-light pt-20 pb-50">
 		<section
 			class="col-sm-12 col-md-10 col-lg-8 mx-auto bg-white p-20 pt-30 shadow rounded">
@@ -330,8 +330,8 @@
 			</div>
 		</section>
 	</main>
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 
 	<script type="text/javascript">
 		$(".input-soLuong").change(function() {

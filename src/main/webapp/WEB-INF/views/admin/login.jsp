@@ -4,7 +4,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<%@include file="./head.jsp"%>
+<head>
+<%@include file="./common/head.jsp"%>
+</head>
+
 <body>
 	<div class="main-wrapper">
 		<!-- ============================================================== -->
@@ -69,6 +72,6 @@
 		<!-- Login box.scss -->
 		<!-- ============================================================== -->
 	</div>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/script.jsp"%>
 </body>
 </html>

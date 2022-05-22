@@ -4,7 +4,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<%@include file="./head.jsp"%>
+<head>
+<%@include file="./common/head.jsp"%>
+</head>
+
 <body>
 	<!-- flag -->
 	<div class="page-flag" data="news"></div>
@@ -16,7 +19,9 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<%@include file="./sidebar.jsp"%>
+		<!-- sidebar  -->
+		<%@include file="./common/sidebar.jsp"%>
+		<!-- End sidebar  -->
 		<div class="page-wrapper pt-0">
 
 			<!-- ============================================================== -->
@@ -166,26 +171,26 @@
 			<!-- /.modal -->
 			<!-- Center modal content -->
 
-				<div class="modal fade" id="show-news" tabindex="-1" role="dialog"
-					aria-hidden="true">
-					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
-								<button type="button" class="close v-close" data-dismiss="modal"
-									aria-hidden="true">×</button>
-							</div>
-							<div class="modal-body">
-								<div
-									class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
-									<div class="row">
-										<div class="col-12">
-											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-												<div class="row tm-edit-product-row">
-													<div class="col-12">
-														<form:form action="admin/news/update/${news.maTin }.htm" modelAttribute="news"
-														method="post" enctype="multipart/form-data"
-														class="tm-edit-product-form">
+			<div class="modal fade" id="show-news" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myCenterModalLabel">Chỉnh Sửa</h4>
+							<button type="button" class="close v-close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
+						<div class="modal-body">
+							<div
+								class="container tm-mt-big tm-mb-big h-100 align-items-center justify-content-center">
+								<div class="row">
+									<div class="col-12">
+										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+											<div class="row tm-edit-product-row">
+												<div class="col-12">
+													<form:form action="admin/news/update/${news.maTin }.htm"
+														modelAttribute="news" method="post"
+														enctype="multipart/form-data" class="tm-edit-product-form">
 														<div class="row mb-4">
 
 															<div class="col-xl-6 col-lg-6 col-md-12">
@@ -209,130 +214,128 @@
 															</div>
 															<div class="col-xl-6 col-lg-6 col-md-12">
 																<div
-																	class="tm-product-img-dummy mx-auto rounded profile-pic" style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
-																	
+																	class="tm-product-img-dummy mx-auto rounded profile-pic"
+																	style="background-image: url('.//resources//imgs//${news.anh}');background-size: cover">
+
 																</div>
 																<div class="custom-file mt-3 mb-3">
-																	<label style="position: absolute;background-color: #088178;color: #fff;cursor: pointer;padding: 10px 141px;">Thêm ảnh</label>
-																	<input
-																		style="opacity: 0;position: absolute;cursor: pointer;"
-																		type="file"
-																		name="anh1"
-																		id="anh1"
-																		class="file-upload"
+																	<label
+																		style="position: absolute; background-color: #088178; color: #fff; cursor: pointer; padding: 10px 141px;">Thêm
+																		ảnh</label> <input
+																		style="opacity: 0; position: absolute; cursor: pointer;"
+																		type="file" name="anh1" id="anh1" class="file-upload"
 																		value="Thêm ảnh" />
 																</div>
 															</div>
 														</div>
 														<div class="col-12">
-																<button type="submit" name="${btnStatus}"
-																	class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
-																	Cập nhật</button>
-															</div>
+															<button type="submit" name="${btnStatus}"
+																class="btn btn-primary btn-block text-uppercase btn-green shadow-none">
+																Cập nhật</button>
+														</div>
 													</form:form>
-														
-													</div>
 
 												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+
+		<!-- /.modal -->
+		<!-- Center modal content -->
+		<c:forEach var="n" items="${newsList }">
+			<div class="modal fade" id=${n.maTin } tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header green-bg-color">
+							<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
+								tin</h4>
+							<button type="button" class="close v-close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
+						<div class="modal-body">
+							<div class="">
+								<div class="row">
+									<div class="">
+										<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+											<div class="row tm-edit-product-row">
+
+												<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+													<div class="tm-product-img-dummy mx-auto rounded"
+														style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
+
+													</div>
+													<div class="custom-file mt-3 mb-3">
+														<input id="fileInput" type="file" style="display: none;" />
+														<div
+															Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
+															<h4 class="mt-2">${n.maTin}</h4>
+														</div>
+
+													</div>
+
+												</div>
+
+												<div class="col-xl-6 col-lg-6 col-md-12">
+													<div class="row mt-4">
+
+														<div class="form-group mb-3 col-xs-12 col-sm-6">
+															<p class="m-b-10 f-w-600">Ngày tạo</p>
+															<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
+														</div>
+													</div>
+													<div class="form-group mb-3">
+														<p class="m-b-10 f-w-600">Tên tin</p>
+														<h6 class="text-muted f-w-400">${n.tenTin}</h6>
+													</div>
+
+													<div class="form-group mb-3">
+														<p class="m-b-10 f-w-600">Nội dung</p>
+														<h6 class="text-muted f-w-400">${n.noiDung }</h6>
+													</div>
+
+													<div class="row">
+														<div class="form-group mb-3 col-xs-12 col-sm-6">
+															<p class="m-b-10 f-w-600">Trạng thái</p>
+															<h6 class="text-muted f-w-400">unisex</h6>
+														</div>
+
+													</div>
+
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<!-- /.modal -->
+								</div>
+								<!-- ============================================================== -->
+								<!-- End Page wrapper  -->
+								<!-- ============================================================== -->
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /.modal-dialog -->
 			</div>
-
-			<!-- /.modal -->
-			<!-- Center modal content -->
-			<c:forEach var="n" items="${newsList }">
-				<div class="modal fade" id=${n.maTin } tabindex="-1" role="dialog"
-					aria-hidden="true">
-					<div class="modal-dialog modal-lg modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header green-bg-color">
-								<h4 class="modal-title text-white" id="myCenterModalLabel">Thông
-									tin</h4>
-								<button type="button" class="close v-close" data-dismiss="modal"
-									aria-hidden="true">×</button>
-							</div>
-							<div class="modal-body">
-								<div
-									class="">
-									<div class="row">
-										<div class="">
-											<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-												<div class="row tm-edit-product-row">
-
-													<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-														<div class="tm-product-img-dummy mx-auto rounded"
-															style="background-image: url('.//resources//imgs//${n.anh}');background-size: cover">
-
-														</div>
-														<div class="custom-file mt-3 mb-3">
-															<input id="fileInput" type="file" style="display: none;" />
-															<div
-																Style="padding: 4px 8px; background-color: #088178; text-align: center; color: #fff">
-																<h4 class="mt-2">${n.maTin}</h4>
-															</div>
-
-														</div>
-
-													</div>
-
-													<div class="col-xl-6 col-lg-6 col-md-12">
-														<div class="row mt-4">
-
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<p class="m-b-10 f-w-600">Ngày tạo</p>
-																<h6 class="text-muted f-w-400">${n.ngayTao }</h6>
-															</div>
-														</div>
-														<div class="form-group mb-3">
-															<p class="m-b-10 f-w-600">Tên tin</p>
-															<h6 class="text-muted f-w-400">${n.tenTin}</h6>
-														</div>
-
-														<div class="form-group mb-3">
-															<p class="m-b-10 f-w-600">Nội dung</p>
-															<h6 class="text-muted f-w-400">${n.noiDung }</h6>
-														</div>
-
-														<div class="row">
-															<div class="form-group mb-3 col-xs-12 col-sm-6">
-																<p class="m-b-10 f-w-600">Trạng thái</p>
-																<h6 class="text-muted f-w-400">unisex</h6>
-															</div>
-
-														</div>
-
-
-													</div>
-
-												</div>
-											</div>
-										</div>
-										<!-- /.modal -->
-									</div>
-									<!-- ============================================================== -->
-									<!-- End Page wrapper  -->
-									<!-- ============================================================== -->
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /.modal-dialog -->
-				</div>
-			</c:forEach>
-			<!-- /.modal -->
-		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+		</c:forEach>
+		<!-- /.modal -->
 	</div>
-	
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
+	</div>
+
 	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 	if ($(".modal-flag").attr("idModal") === "modalShow") {

@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 
-<%@include file="./head.jsp"%>
+<%@include file="./common/head.jsp"%>
 <body>
-	<%@include file="./header.jsp"%>
+	<%@include file="./common/header.jsp"%>
 
 	<main class="main bg-light vh-90">
 
@@ -359,8 +359,8 @@
 
 
 
-	<%@include file="./footer.jsp"%>
-	<%@include file="./script.jsp"%>
+	<%@include file="./common/footer.jsp"%>
+	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
 		if ($(".modal-flag").attr("idModal") === "modalCreate") {
 			console.log("active");

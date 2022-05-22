@@ -1,10 +1,12 @@
 let handleQuickView = (e) => {
 	let product = e.closest(".product");
 
+
 	$(".title-detail").text(product.getAttribute("data-name"));
 	$(".review-score").text(product.getAttribute("data-review"));
 	$(".brand-detail").text(product.getAttribute("data-brand"));
 	$(".short-desc").text(product.getAttribute("data-description"));
+	console.log(product.getAttribute("data-old-price"))
 	$(".price-detail").text(product.getAttribute("data-price"));
 	$(".old-price-detail").text(product.getAttribute("data-old-price"));
 	$(".capacity-detail").text(product.getAttribute("data-ml"));
