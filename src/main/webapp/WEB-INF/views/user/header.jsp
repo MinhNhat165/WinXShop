@@ -12,7 +12,7 @@
 				<div class="col-xl-3 col-lg-4">
 					<div class="header-info">
 						<ul>
-							<li><i class="fi-rs-smartphone"></i> <a href="#">0865181655</a>
+							<li><i class="fa-regular fa-phone"></i> <a href="#">0865181655</a>
 							</li>
 						</ul>
 					</div>
@@ -159,11 +159,10 @@
 						class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
 						<nav>
 							<ul>
-								<li><a class="active" href="">Home </a></li>
-								<li><a href="page-about.html">About</a></li>
-								<li><a href="shop.htm">Shop </a></li>
-
-								<li><a href="page-contact.html">Contact</a></li>
+								<li><a class="active" href="">Trang chủ</a></li>
+								<li><a href="shop.htm">Shop</a></li>
+								<li><a href="cart.htm">Giỏ hàng</a></li>
+								<li><a href="account.htm">Tài khoản</a></li>
 							</ul>
 						</nav>
 					</div>

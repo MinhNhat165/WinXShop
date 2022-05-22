@@ -54,7 +54,7 @@ public class PageCartController extends CommonMethod {
 			@PathVariable("maSP") String maSP, RedirectAttributes redirectAttributes) {
 
 		String maKH = (String) ss.getAttribute("maKH");
-		boolean isSuccess = addToCart(maSP, maKH, 1);
+		boolean isSuccess = addToCart(maSP, maKH, Integer.parseInt(request.getParameter("add-number")));
 
 		if (isSuccess) {
 

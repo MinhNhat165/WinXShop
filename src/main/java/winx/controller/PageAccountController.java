@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import winx.bean.UploadFile;
 import winx.entity.DonDat;
@@ -47,6 +48,9 @@ public class PageAccountController {
 
 	@Autowired
 	SessionFactory factory;
+	@Autowired
+	@Qualifier("uploadFile")
+	UploadFile basePathUploadFile;
 //	@RequestMapping("account")
 //	public String account(ModelMap model) {
 //		return "user/account";
@@ -58,27 +62,27 @@ public class PageAccountController {
 	@RequestMapping(value = "account", params = "btnpw")
 	public String changePW(HttpSession ss, @RequestParam("cpassword") String PW, @RequestParam("npassword") String nPW,
 			@RequestParam("renpassword") String rnPW, ModelMap model) {
-		
+
 		Boolean isErrors = false;
 		TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
-		
+
 		if (tk.getMatKhau().trim().equals(PW) == false) {
 			model.addAttribute("message1", "Sai mật khẩu!");
 		} else {
-			if(nPW.trim().isEmpty()) {
+			if (nPW.trim().isEmpty()) {
 				model.addAttribute("message3", "Nội dung không được để trống!");
 				isErrors = true;
 			}
-			
-			if(rnPW.trim().isEmpty()) {
+
+			if (rnPW.trim().isEmpty()) {
 				model.addAttribute("message2", "Nội dung không được để trống!");
 				isErrors = true;
 			}
-			
-			if(isErrors) {
+
+			if (isErrors) {
 				return "user/account";
 			}
-			
+
 			if (nPW.equals(rnPW) == false) {
 				model.addAttribute("message2", "Mật khẩu không trùng khớp!");
 			} else {
@@ -88,10 +92,10 @@ public class PageAccountController {
 				try {
 					session.update(tk);
 					t.commit();
-					model.addAttribute("message",new Message("success","Chỉnh sửa thành công!"));
+					model.addAttribute("message", new Message("success", "Chỉnh sửa thành công!"));
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", new Message("error","Chỉnh sửa thất bại!"));
+					model.addAttribute("message", new Message("error", "Chỉnh sửa thất bại!"));
 				}
 			}
 		}
@@ -100,9 +104,6 @@ public class PageAccountController {
 	}
 
 	// Oanh
-
-	@Qualifier("uploadFile")
-	UploadFile basePathUploadFile;
 
 	public List<KhachHang> getCustomer() {
 		Session session = factory.getCurrentSession();
@@ -137,66 +138,68 @@ public class PageAccountController {
 
 		return "user/account";
 	}
-	
+
 	@RequestMapping(value = "account/update.htm", method = RequestMethod.POST)
-	public String uploadAvatar(ModelMap model, @ModelAttribute("kh") KhachHang user, HttpServletRequest request, @RequestParam("profile-img") MultipartFile profileImg)
+	public String uploadAvatar(ModelMap model, @ModelAttribute("kh") KhachHang user, HttpServletRequest request,
+			@RequestParam("profile-img") MultipartFile profileImg, RedirectAttributes redirectAttributes)
 			throws ParseException {
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
+		boolean checkanh = true;
+		System.out.println(profileImg);
 		if (profileImg.isEmpty()) {
-			System.out.println("rong");
-			return "redirect:/account.htm";
-		} else {
-			try {
-				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
-				String tenAnh = date + profileImg.getOriginalFilename();
-				String duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
-				System.out.println("anh: "+duongDanAnh);
-
-				user = getUser(maKH);
-				String hoTen = request.getParameter("hoTen");
-				String phai = request.getParameter("phai");
-				boolean phaiI = false;
-				if (phai.equals("1")) {
-					phaiI = true;
-				}
-				System.out.println(phai);
-				System.out.println(phaiI);
-				String diaChi = request.getParameter("diaChi");
-				String sdt = request.getParameter("sdt");
-				String ngaySinhString = request.getParameter("ngaySinh");
-
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-				Date ngaySinh = formatter.parse(ngaySinhString);
-				
-				Session session = factory.openSession();
-				Transaction t = session.beginTransaction();
-
-				try {					
-					user.setHoTen(hoTen);
-					user.setPhai(phaiI);
-					System.out.println(user.isPhai());
-					user.setDiaChi(diaChi);
-					user.setSdt(sdt);
-					user.setNgaySinh(ngaySinh);
-					user.setAnh("./resources/imgs/"+tenAnh);
-
-					session.merge(user);
-					t.commit();
-					profileImg.transferTo(new File(duongDanAnh));
-					return "redirect:/account.htm";
-
-				} catch (Exception e) {
-					System.out.println("errorr " + e);
-					t.rollback();
-				} finally {
-					session.close();
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+			checkanh = false;
 		}
-		
+		String tenAnh = "";
+		String duongDanAnh = "";
+		if (checkanh) {
+			String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
+			tenAnh = date + profileImg.getOriginalFilename();
+			duongDanAnh = basePathUploadFile.getBasePath() + File.separator + tenAnh;
+			System.out.println("anh: " + duongDanAnh);
+		}
+
+		user = getUser(maKH);
+		String hoTen = request.getParameter("hoTen");
+		String phai = request.getParameter("phai");
+		boolean phaiI = false;
+		if (phai.equals("1")) {
+			phaiI = true;
+		}
+		System.out.println(phai);
+		System.out.println(phaiI);
+		String diaChi = request.getParameter("diaChi");
+		String sdt = request.getParameter("sdt");
+		String ngaySinhString = request.getParameter("ngaySinh");
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date ngaySinh = formatter.parse(ngaySinhString);
+
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+
+		try {
+			if (checkanh) {
+				user.setAnh(tenAnh);
+				profileImg.transferTo(new File(duongDanAnh));
+			}
+			user.setHoTen(hoTen);
+			user.setPhai(phaiI);
+			user.setDiaChi(diaChi);
+			user.setSdt(sdt);
+			user.setNgaySinh(ngaySinh);
+			session.merge(user);
+			t.commit();
+			redirectAttributes.addFlashAttribute("message", new Message("success", "Chỉnh sửa thành công"));
+			return "redirect:/account.htm";
+
+		} catch (Exception e) {
+			System.out.println("errorr " + e);
+			t.rollback();
+		} finally {
+			session.close();
+		}
+
 		KhachHang us = getUser(maKH);
 		model.addAttribute("user", us);
 
