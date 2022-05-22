@@ -152,11 +152,12 @@ public class NewsController extends CommonMethod {
 		}
 	@RequestMapping(value = "news/update/{id}.htm",params="btnEdit", method = RequestMethod.POST)
 	public String updateNews(@ModelAttribute("news") TinMoi news, ModelMap model, @RequestParam("anh1") MultipartFile anh1, RedirectAttributes redirectAttributes) {
+			boolean checkanh = true;
+			if (anh1.isEmpty()) {
+				checkanh = false;
+				System.out.println("RONG");
+			}
 		
-		if (anh1.isEmpty()) {
-			System.out.println("rong");
-
-		} else {
 			try {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHHmmss-"));
 				String tenAnh = date + anh1.getOriginalFilename();
@@ -166,20 +167,39 @@ public class NewsController extends CommonMethod {
 				Session session = factory.openSession();
 				Transaction t = session.beginTransaction();
 				try {
+					TinMoi temp = getSingleNews(news.getMaTin());
+					String oldImg = temp.getAnh();
+					System.out.println(oldImg);
+					if (checkanh) {
+						news.setAnh(tenAnh);
+						anh1.transferTo(new File(duongDanAnh));
+						Date dateNow = new Date();
+						news.ngayTao = dateNow;
+						news.setTrangThai((byte)1);
+						news.setAnh(tenAnh);
+						
+						session.update(news);
+						t.commit();
+						model.addAttribute("tinmoi", new TinMoi());
+						redirectAttributes.addFlashAttribute("message",
+								new Message("success","Chỉnh sửa thành công"));
+						
+						return "redirect:/admin/news.htm";
+					}else {
+						Date dateNow = new Date();
+						news.ngayTao = dateNow;
+						news.setTrangThai((byte)1);
+						news.setAnh(oldImg);
+						
+						session.update(news);
+						t.commit();
+						model.addAttribute("tinmoi", new TinMoi());
+						redirectAttributes.addFlashAttribute("message",
+								new Message("success","Chỉnh sửa thành công"));
+						anh1.transferTo(new File(duongDanAnh));
+						return "redirect:/admin/news.htm";
+					}
 					
-					Date dateNow = new Date();
-					news.ngayTao = dateNow;
-					news.setTrangThai((byte)1);
-					news.setAnh(tenAnh);
-					
-					session.update(news);
-					t.commit();
-					anh1.transferTo(new File(duongDanAnh));
-					model.addAttribute("tinmoi", new TinMoi());
-					redirectAttributes.addFlashAttribute("message",
-							new Message("success","Chỉnh sửa thành công"));
-					
-					return "redirect:/admin/news.htm";
 //					model.addAttribute("message", "Sửa thành công!");
 				} catch (Exception e) {
 					System.out.println(e);
@@ -192,7 +212,7 @@ public class NewsController extends CommonMethod {
 			}catch(Exception e){
 				
 			}
-		}
+		
 		
 		List<TinMoi> list = getNews();
 		model.addAttribute("newsList", list);
