@@ -173,33 +173,22 @@ public class NewsController extends CommonMethod {
 					if (checkanh) {
 						news.setAnh(tenAnh);
 						anh1.transferTo(new File(duongDanAnh));
-						Date dateNow = new Date();
-						news.ngayTao = dateNow;
-						news.setTrangThai((byte)1);
-						news.setAnh(tenAnh);
 						
-						session.update(news);
-						t.commit();
-						model.addAttribute("tinmoi", new TinMoi());
-						redirectAttributes.addFlashAttribute("message",
-								new Message("success","Chỉnh sửa thành công"));
-						
-						return "redirect:/admin/news.htm";
 					}else {
-						Date dateNow = new Date();
-						news.ngayTao = dateNow;
-						news.setTrangThai((byte)1);
 						news.setAnh(oldImg);
-						
-						session.update(news);
-						t.commit();
-						model.addAttribute("tinmoi", new TinMoi());
-						redirectAttributes.addFlashAttribute("message",
-								new Message("success","Chỉnh sửa thành công"));
 						anh1.transferTo(new File(duongDanAnh));
-						return "redirect:/admin/news.htm";
 					}
+					Date dateNow = new Date();
+					news.ngayTao = dateNow;
+					news.setTrangThai((byte)1);
 					
+					session.update(news);
+					t.commit();
+					model.addAttribute("tinmoi", new TinMoi());
+					redirectAttributes.addFlashAttribute("message",
+							new Message("success","Chỉnh sửa thành công"));
+					
+					return "redirect:/admin/news.htm";
 //					model.addAttribute("message", "Sửa thành công!");
 				} catch (Exception e) {
 					System.out.println(e);
