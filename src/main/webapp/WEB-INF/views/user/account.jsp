@@ -8,7 +8,7 @@
 <%@include file="./common/head.jsp"%>
 <body>
 	<%@include file="./common/header.jsp"%>
-
+	<div class="tab-flag" data="${tabId}"></div>
 	<main class="main bg-light vh-90">
 
 		<section class="pt-50">
@@ -25,8 +25,8 @@
 											aria-controls="account-detail" aria-selected="true"><i
 												class="fa-regular fa-user mr-10"></i>Thông tin cá nhân</a></li>
 										<li class="nav-item"><a class="nav-link"
-											id="dashboard-tab" data-bs-toggle="tab" href="#dashboard"
-											role="tab" aria-controls="dashboard" aria-selected="false"><i
+											id="change-pwd-tab" data-bs-toggle="tab" href="#change-pwd"
+											role="tab" aria-controls="change-pwd" aria-selected="false"><i
 												class="fa-regular fa-arrows-rotate mr-10"></i> Đổi mật khẩu</a>
 										</li>
 										<li class="nav-item"><a class="nav-link" id="orders-tab"
@@ -34,16 +34,16 @@
 											aria-controls="orders" aria-selected="false"><i
 												class="fa-regular fa-ballot-check mr-10"></i>Đơn đặt</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="page-login.html"><i
+											href="logout.htm"><i
 												class="fa-regular fa-arrow-right-from-bracket mr-10"></i>Đăng
 												xuất</a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-md-9">
-								<div class="tab-content dashboard-content">
-									<div class="tab-pane fade" id="dashboard" role="tabpanel"
-										aria-labelledby="dashboard-tab">
+								<div class="tab-content change-pwd-content">
+									<div class="tab-pane fade" id="change-pwd" role="tabpanel"
+										aria-labelledby="change-pwd-tab">
 
 										<div class="card shadow">
 											<div class="card-header">
@@ -387,6 +387,11 @@
 		} else if ($(".modal-flag").attr("idModal") === "modalShow") {
 			$("#order-details").modal("show");
 		}
+		let tabId = $(".tab-flag").attr("data")
+		$(".tab-pane").removeClass("active show")
+		$(".nav-link").removeClass("active")
+		$('a[href=#' + tabId + ']').addClass("active show")
+		$("#" + tabId).addClass("active show")
 	</script>
 </body>
 </html>

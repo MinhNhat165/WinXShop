@@ -82,15 +82,15 @@ public class PageShopController extends CommonMethod {
 		ToHql toHql = new ToHql();
 		String nhanHangHql = "";
 		if (!(nhanHang == null))
-			nhanHangHql = toHql.toHqlSingleColumAnd("nhanHang", nhanHang);
+			nhanHangHql = toHql.toHqlSingleColumOr("nhanHang", nhanHang);
 
 		String dungTichHql = "";
 		if (!(dungTich == null))
-			dungTichHql = toHql.toHqlSingleColumAnd("dungTich", dungTich);
+			dungTichHql = toHql.toHqlSingleColumOr("dungTich", dungTich);
 
 		String loaiHql = "";
 		if (!(loai == null))
-			loaiHql = toHql.toHqlSingleColumAnd("loai", loai);
+			loaiHql = toHql.toHqlSingleColumOr("loai", loai);
 
 		String giaHql = toHql.toHqlRangeCondition(giaBD, giaKT, "gia");
 

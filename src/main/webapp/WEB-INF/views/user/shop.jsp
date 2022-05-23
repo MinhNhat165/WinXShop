@@ -99,9 +99,9 @@
 												</a>
 											</div>
 											<div class="product-action-1">
-												<a aria-label="Quick view" class="action-btn hover-up"
+												<a aria-label="Xem nhanh" class="action-btn hover-up"
 													data-bs-toggle="modal" data-bs-target=#${p.maSP}><i
-													class="fa-regular fa-eye"></i></a> <a aria-label="Add To Card"
+													class="fa-regular fa-eye"></i></a> <a aria-label="Thêm vào giỏ"
 													class="action-btn hover-up" href="cart/add/${p.maSP}.htm">
 													<i class="fa-regular fa-cart-plus"></i>
 												</a>
@@ -466,7 +466,7 @@
 									<div class="product-extra-link2 ms-2">
 										<button type="submit" class="button button-add-to-cart">
 											Mua Ngay</button>
-										<a aria-label="Add To Card"
+										<a aria-label="Thêm vào giỏ"
 											class="action-btn hover-up add-to-cart" href="cart.htm"><i
 											class="fa-regular fa-cart-plus"></i></a> <a aria-label="Compare"
 											class="action-btn hover-up" href="shop-compare.html"><i

@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<main class="main my-background">
 		<section class="">
 			<div class="container">
@@ -38,15 +38,14 @@
 										</div>
 										<form action="login.htm" method="post">
 											<div class="form-group form-floating">
-												<input type="text"  name="email"
+												<input type="text" name="email" value="${email}"
 													class="form-control form-control-lg" placeholder="Email" />
 												<label for="">Email</label>
 											</div>
 											<span class="text-danger">${message1}</span>
 											<div class="form-floating">
-												<input  type="password" name="password"
-													class="form-control" placeholder="Mật khẩu" /> <label
-													for="">Password</label>
+												<input type="password" name="password" class="form-control"
+													placeholder="Mật khẩu" /> <label for="">Password</label>
 											</div>
 											<span class="text-danger">${message}</span>
 											<div class="login_footer form-group">
@@ -77,7 +76,7 @@
 							<div class="col-lg-6 align-items-center">
 								<div class="text-center mb-md-5 mb-lg-0 mb-sm-5">
 									<h1>
-										<a href="index.html"><img
+										<a href=""><img
 											src="<c:url value='/resources/imgs/theme/logo.svg'/>"
 											alt="logo" /></a>
 									</h1>

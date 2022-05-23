@@ -5,8 +5,11 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -27,7 +30,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import winx.CommonMethod.ToHql;
 import winx.bean.UploadFile;
+import winx.entity.KhuyenMai;
 import winx.entity.NhanHang;
 import winx.entity.SanPham;
 
@@ -68,7 +73,7 @@ public class ProductController extends CommonMethod {
 	@RequestMapping(value = "product/add.htm", params = "btnAdd", method = RequestMethod.POST)
 
 	public String addProduct(@ModelAttribute("sanpham") SanPham sp, ModelMap model, BindingResult errors,
-			@RequestParam("anh3") MultipartFile anh,RedirectAttributes redirectAttributes) {
+			@RequestParam("anh3") MultipartFile anh, RedirectAttributes redirectAttributes) {
 
 		if (this.checkUniqueMaSP(sp.getMaSP()) == false) {
 			errors.rejectValue("maSP", "sanpham", "Mã đã tồn tại!");
@@ -115,8 +120,7 @@ public class ProductController extends CommonMethod {
 				t.commit();
 				anh.transferTo(new File(duongDanAnh));
 				model.addAttribute("sanpham", new SanPham());
-				redirectAttributes.addFlashAttribute("message",
-						new Message("success","Thêm mới thành công"));
+				redirectAttributes.addFlashAttribute("message", new Message("success", "Thêm mới thành công"));
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
 				System.out.println(e);
@@ -131,8 +135,7 @@ public class ProductController extends CommonMethod {
 		model.addAttribute("dssanpham", ds);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("btnStatus", "btnAdd");
-		model.addAttribute("message",
-				new Message("error","Thêm mới thất bại!"));
+		model.addAttribute("message", new Message("error", "Thêm mới thất bại!"));
 		model.addAttribute("sanpham", sp);
 
 		return "admin/product";
@@ -156,7 +159,7 @@ public class ProductController extends CommonMethod {
 	@RequestMapping(value = "product/update/{id}.htm", params = "btnEdit", method = RequestMethod.POST)
 
 	public String updateProduct(@ModelAttribute("sanpham") SanPham sp, BindingResult errors, ModelMap model,
-			@RequestParam("anh3") MultipartFile anh,RedirectAttributes redirectAttributes) {
+			@RequestParam("anh3") MultipartFile anh, RedirectAttributes redirectAttributes) {
 
 		if (this.checkProduct(sp.getTenSP(), sp.getMaSP(), sp.getDungTich(), sp.getLoai(),
 				sp.getNhanHang().getMaNH()) == false) {
@@ -195,8 +198,7 @@ public class ProductController extends CommonMethod {
 
 				t.commit();
 				model.addAttribute("sanpham", new SanPham());
-				redirectAttributes.addFlashAttribute("message",
-						new Message("success","Chỉnh sửa thành công"));
+				redirectAttributes.addFlashAttribute("message", new Message("success", "Chỉnh sửa thành công"));
 				return "redirect:/admin/product.htm";
 			} catch (Exception e) {
 				t.rollback();
@@ -211,8 +213,7 @@ public class ProductController extends CommonMethod {
 		model.addAttribute("dssanpham", ds);
 		model.addAttribute("idModal", "modalCreate");
 		model.addAttribute("btnStatus", "btnEdit");
-		model.addAttribute("message",
-				new Message("error","Chỉnh sửa thất bại!"));
+		model.addAttribute("message", new Message("error", "Chỉnh sửa thất bại!"));
 
 		return "admin/product";
 	}
@@ -226,6 +227,35 @@ public class ProductController extends CommonMethod {
 		model.addAttribute("dssanpham", ds);
 
 		return "admin/product";
+	}
+
+	// filter
+	@RequestMapping(value = "index", params = "btnFilter", method = RequestMethod.POST)
+	public String productFilter(@RequestParam Map<String, String> allParams, ModelMap model) {
+
+		Session session = factory.getCurrentSession();
+		ToHql toHql = new ToHql();
+
+		String whereClause = "";
+
+		String ngayBD = toHql.toHqlRangeCondition(allParams.get("ngayBDLeft"), allParams.get("ngayBDRight"), "ngayBD");
+		String ngayKT = toHql.toHqlRangeCondition(allParams.get("ngayKTLeft"), allParams.get("ngayKTRight"), "ngayKT");
+
+		String trangThai = allParams.get("trangThai");
+		if (trangThai.equals("1") || trangThai.equals("0")) {
+			trangThai = "trangThai = " + trangThai;
+		} else
+			trangThai = "";
+
+		List<String> conditionCluaseList = new ArrayList<>();
+		conditionCluaseList.addAll(Arrays.asList(ngayBD, ngayKT, trangThai));
+		whereClause = toHql.toHqlWhereClause(conditionCluaseList);
+		String hql = "from KhuyenMai " + whereClause;
+		Query query = session.createQuery(hql);
+		List<NhanHang> list = query.list();
+		model.addAttribute("DSKM", list);
+		model.addAttribute("KM", new KhuyenMai());
+		return "admin/sale";
 	}
 
 	@ModelAttribute("dsnhanhang")

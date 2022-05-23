@@ -746,7 +746,6 @@
 	inputReceiverPhoneNumber.val(receiverPhoneNumber.text());
 	inputReceiverAddress.val(receiverAddress.text());
 
-	console.log(receiverPhoneNumber.text())
 	if (!receiverPhoneNumber.text() || receiverName.text() || receiverAddress.tex()) {
 		showEditForm()
 	}

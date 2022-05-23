@@ -432,44 +432,29 @@
 	                    <div class="card-body">
 	                        <form action="admin/sale/index.htm" method="post" class="row g-3" id="form-filter">
 	                            <div class="col-12 mt-0 px-0">
-	                                <label for="input-start-date" class="form-label">Ngày bắt đầu</label>
+	                                <label for="input-start-date" class="form-label">Giá</label>
 	
 	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
 	                                    <div class="input-group">
-	                                        <input type="date" name="ngayBDLeft" class="form-control" />
+	                                        <input type="number" name="priceLeft" class="form-control" />
 	                                    </div>
 	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-start-date-right">
 	                                        Đến
 	                                    </button>
 	
 	                                    <div class="input-group collapse range-filter-right" id="input-start-date-right">
-	                                        <input type="date" name="ngayBDRight" class="form-control" />
+	                                        <input type="number" name="priceRight" class="form-control" />
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <div class="col-12 mt-0 px-0">
-	                                <label for="input-start-date" class="form-label">Ngày kết thúc </label>
-	
-	                                <div class="col-12 px-0 d-flex gap-1 justify-content-around align-items-stretch">
-	                                    <div class="input-group">
-	                                        <input type="date" name="ngayKTLeft" class="form-control" />
-	                                    </div>
-	                                    <button type="button" class="btn btn-green btn-sm btn-range-filter" data-toggle="collapse" data-target="#input-end-date-right">
-	                                        Đến
-	                                    </button>
-	
-	                                    <div class="input-group collapse range-filter-right" id="input-end-date-right">
-	                                        <input type="date" class="form-control" name="ngayKTRight" />
-	                                    </div>
-	                                </div>
-	                            </div>
+	                            
 	                            <div class="col-md-12 px-0">
 	                                <label for="inputAddress" class="form-label">Trạng thái</label>
 	                                <div class="col-md-12 d-flex px-0">
 	                                    <div class="form-check pl-1">
 	                                        <input name="trangThai" type="radio" class="form-check-input-filter invisible position-absolute" id="trangThai" value="2" checked />
 	                                        <label class="py-1 px-2" for="trangThai">
-	                                            Tất cả
+	                                            Nhãn hàng
 	                                        </label>
 	                                    </div>
 	                                    <div class="form-check pl-1">

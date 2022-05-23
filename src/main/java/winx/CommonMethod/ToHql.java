@@ -46,4 +46,14 @@ public class ToHql {
 		}
 		return hql;
 	}
+
+	public String toHqlSingleColumOr(String columName, String[] list) {
+		String hql = columName + " = '" + list[0] + "'";
+		for (int i = 1; i < list.length; i++) {
+
+			hql += " OR " + columName + " = '" + list[i] + "'";
+
+		}
+		return hql;
+	}
 }
