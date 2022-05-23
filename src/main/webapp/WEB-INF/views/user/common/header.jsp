@@ -35,7 +35,7 @@
 		<div class="container">
 			<div class="header-wrap">
 				<div class="logo logo-width-1">
-					<a href="home.htm"><img src="./resources/imgs/theme/logo.svg"
+					<a href=""><img src="./resources/imgs/theme/logo.svg"
 						alt="logo" /></a>
 				</div>
 				<div class="header-right">
@@ -68,8 +68,8 @@
 													src="./resources/imgs/${user.anh}" class="rounded-circle"
 													style="width: 36px; height: 36px;" alt="Avatar" />${user.taiKhoan.email}
 											</a></li>
-											<li><a><i class="fa-regular fa-ballot-check"></i>Đơn
-													mua</a></li>
+											<li><a href="account/orders.htm"><i
+													class="fa-regular fa-ballot-check"></i>Đơn mua</a></li>
 											<li><a href="logout.htm"> <i
 													class="fa-regular fa-arrow-right-from-bracket"></i>Đăng
 													xuất

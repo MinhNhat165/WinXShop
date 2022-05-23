@@ -12,7 +12,7 @@
 			<div class="container">
 				<div class="header-wrap header-space-between position-relative">
 					<div class="logo logo-width-1">
-						<a href="index.html"><img
+						<a href=""><img
 							src="<c:url value='/resources/imgs/theme/logo.svg'/>" alt="logo" /></a>
 					</div>
 					<h3 class="text-brand">Đăng Ký</h3>
@@ -30,7 +30,7 @@
 							<div class="col-lg-6 align-items-center">
 								<div class="text-center mb-md-5 mb-lg-0 mb-sm-5">
 									<h1>
-										<a href="index.html"><img
+										<a href=""><img
 											src="<c:url value='/resources/imgs/theme/logo.svg'/>" /></a>
 									</h1>
 									<h2 class="text-brand lh-sm">Shop bán nước hoa chất lượng

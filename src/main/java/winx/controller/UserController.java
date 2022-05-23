@@ -45,17 +45,6 @@ public class UserController extends CommonMethod {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
 
-		if (tkdn == null) {
-
-			model.addAttribute("message", "Sai thông tin đăng nhập!");
-			return "user/login";
-		}
-
-		if (tkdn.getTrangThai() == false) {
-			model.addAttribute("message", "Tài khoản đang bị khóa!");
-
-			return "user/login";
-		}
 
 		Boolean isErrors = false;
 		if (email.isEmpty()) {
@@ -67,6 +56,21 @@ public class UserController extends CommonMethod {
 			isErrors = true;
 		}
 		if (isErrors) {
+			model.addAttribute("email", email);
+			return "user/login";
+		}
+
+		if (tkdn == null) {
+			model.addAttribute("email", email);
+
+			model.addAttribute("message", "Sai thông tin đăng nhập!");
+			return "user/login";
+		}
+
+		if (tkdn.getTrangThai() == false) {
+			model.addAttribute("email", email);
+			model.addAttribute("message", "Tài khoản đang bị khóa!");
+
 			return "user/login";
 		}
 
@@ -85,6 +89,7 @@ public class UserController extends CommonMethod {
 		} else {
 			model.addAttribute("message", "Tài khoản không tồn tại!");
 		}
+
 		return "user/login";
 	}
 

@@ -400,7 +400,7 @@
 	                        Bộ lọc
 	                    </div>
 	                    <div class="card-body">
-	                        <form action="admin/sale/index.htm" method="post" class="row g-3" id="form-filter">
+	                        <form action="admin/sale.htm" method="post" class="row g-3" id="form-filter">
 	                            <div class="col-12 mt-0 px-0">
 	                                <label for="input-start-date" class="form-label">Ngày bắt đầu</label>
 	

@@ -246,7 +246,7 @@ public class SaleController extends CommonMethod {
 	}
 
 	// filter
-	@RequestMapping(value = "index", params = "btnFilter", method = RequestMethod.POST)
+	@RequestMapping(params = "btnFilter", method = RequestMethod.POST)
 	public String saleFilter(@RequestParam Map<String, String> allParams, ModelMap model) {
 
 		Session session = factory.getCurrentSession();

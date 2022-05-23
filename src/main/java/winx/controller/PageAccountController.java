@@ -51,14 +51,34 @@ public class PageAccountController {
 	@Autowired
 	@Qualifier("uploadFile")
 	UploadFile basePathUploadFile;
-//	@RequestMapping("account")
-//	public String account(ModelMap model) {
-//		return "user/account";
-//	}
 
-	// nhat
+	@RequestMapping(value = "account", method = RequestMethod.GET)
+	public String getCustomer(HttpServletRequest request, ModelMap model) {
+		HttpSession ss = request.getSession();
+		String maKH = (String) ss.getAttribute("maKH");
+		KhachHang cus = getSingleCustomer(maKH);
+		List<DonDat> orders = getOrderByCustomerId(maKH);
 
-	// Vi
+		model.addAttribute("user", cus);
+		model.addAttribute("orders", orders);
+		model.addAttribute("tabId", "account-detail");
+
+		return "user/account";
+	}
+
+	@RequestMapping(value = "account/orders.htm", method = RequestMethod.GET)
+	public String getAccountOrder(HttpServletRequest request, ModelMap model, RedirectAttributes redirectAttributes) {
+		HttpSession ss = request.getSession();
+		String maKH = (String) ss.getAttribute("maKH");
+		KhachHang cus = getSingleCustomer(maKH);
+		List<DonDat> orders = getOrderByCustomerId(maKH);
+
+		model.addAttribute("user", cus);
+		model.addAttribute("orders", orders);
+		model.addAttribute("tabId", "orders");
+		return "user/account";
+	}
+
 	@RequestMapping(value = "account", params = "btnpw")
 	public String changePW(HttpSession ss, @RequestParam("cpassword") String PW, @RequestParam("npassword") String nPW,
 			@RequestParam("renpassword") String rnPW, ModelMap model) {
@@ -99,6 +119,7 @@ public class PageAccountController {
 				}
 			}
 		}
+		model.addAttribute("tabId", "change-pwd");
 
 		return "user/account";
 	}
@@ -125,19 +146,6 @@ public class PageAccountController {
 	}
 
 	// //
-
-	@RequestMapping(value = "account", method = RequestMethod.GET)
-	public String getCustomer(HttpServletRequest request, ModelMap model) {
-		HttpSession ss = request.getSession();
-		String maKH = (String) ss.getAttribute("maKH");
-		KhachHang cus = getSingleCustomer(maKH);
-		List<DonDat> orders = getOrderByCustomerId(maKH);
-
-		model.addAttribute("user", cus);
-		model.addAttribute("orders", orders);
-
-		return "user/account";
-	}
 
 	@RequestMapping(value = "account/update.htm", method = RequestMethod.POST)
 	public String uploadAvatar(ModelMap model, @ModelAttribute("kh") KhachHang user, HttpServletRequest request,
@@ -280,9 +288,6 @@ public class PageAccountController {
 		} finally {
 			session.close();
 		}
-
-//			List<DonDat> list = getOrderByCustomerId(maKH);
-//			model.addAttribute("orders", list);
 
 		return "user/account";
 	}
