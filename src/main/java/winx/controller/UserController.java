@@ -45,22 +45,8 @@ public class UserController extends CommonMethod {
 
 		TaiKhoan tkdn = this.KTtaikhoan(email, pw);
 
-
-		Boolean isErrors = false;
-		if(email.isEmpty()) {
-			model.addAttribute("message1", "Nội dung không được để trống!");
-			isErrors = true;
-		}
-		if(pw.isEmpty()) {
-			model.addAttribute("message", "Nội dung không được để trống!");
-			isErrors = true;
-		}
-		if(isErrors) {
-			return "user/login";
-		}
-
 		if (tkdn == null) {
-			
+
 			model.addAttribute("message", "Sai thông tin đăng nhập!");
 			return "user/login";
 		}
@@ -71,14 +57,25 @@ public class UserController extends CommonMethod {
 			return "user/login";
 		}
 
+		Boolean isErrors = false;
+		if (email.isEmpty()) {
+			model.addAttribute("message1", "Nội dung không được để trống!");
+			isErrors = true;
+		}
+		if (pw.isEmpty()) {
+			model.addAttribute("message", "Nội dung không được để trống!");
+			isErrors = true;
+		}
+		if (isErrors) {
+			return "user/login";
+		}
+
 		if (tkdn.getQuyen() == true) {
 			KhachHang kh = this.getKhachHang(tkdn.getEmail());
 			if (kh != null) {
 				ss.setAttribute("user", kh);
 				ss.setAttribute("tkkh", tkdn);
 				ss.setAttribute("maKH", kh.getMaKH());
-				TaiKhoan tk = (TaiKhoan) ss.getAttribute("tkkh");
-				ss.setAttribute("vaitrokh", kh.getTaiKhoan().getQuyen());
 
 				return "redirect:/";
 			} else {
@@ -149,31 +146,20 @@ public class UserController extends CommonMethod {
 				tk.setQuyen(true);
 				tk.setMatKhau(pw);
 				session.save(tk);
-				t.commit();
-				model.addAttribute("taikhoan", new TaiKhoan());
 				KhachHang kh = new KhachHang();
-				Transaction ts = session.beginTransaction();
-				try {
-					kh.setMaKH(generatorId("KH", "KhachHang", "maKH"));
-					kh.setTaiKhoan(tk);
-					kh.setAnh("user.png");
-					session.save(kh);
-					ss.setAttribute("maKH", kh.getMaKH());
-					ts.commit();
-					return "redirect:account.htm";
-				} catch (Exception e) {
-					ts.rollback();
-					Transaction td = session.beginTransaction();
-					try {
-						session.delete(tk);
-						td.commit();
-					} catch (Exception e2) {
-						td.rollback();
-					}
+				kh.setMaKH(generatorId("KH", "KhachHang", "maKH"));
+				kh.setTaiKhoan(tk);
+				kh.setAnh("user.png");
+				session.save(kh);
+				ss.setAttribute("maKH", kh.getMaKH());
+				ss.setAttribute("user", kh);
+				ss.setAttribute("tkkh", tk);
+				t.commit();
 
-				}
+				model.addAttribute("taikhoan", new TaiKhoan());
 
-				return "user/register";
+				return "redirect:account.htm";
+
 			} catch (Exception e) {
 				t.rollback();
 			} finally {
