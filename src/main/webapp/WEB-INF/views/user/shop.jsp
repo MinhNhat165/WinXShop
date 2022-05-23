@@ -93,8 +93,8 @@
 										<div class="product-img-action-wrap">
 											<div class="product-img product-img-zoom bg-light">
 												<a href="product-detail/${p.maSP }.htm"> <img
-													style="min-height: 260px" class=" default-img"
-													src="./resources/imgs/${p.anh}" alt="" />
+													style="object-fit: contain; height: 240px;"
+													class=" default-img" src="./resources/imgs/${p.anh}" alt="" />
 
 												</a>
 											</div>
