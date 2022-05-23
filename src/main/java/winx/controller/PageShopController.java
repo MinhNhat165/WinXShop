@@ -38,7 +38,7 @@ public class PageShopController extends CommonMethod {
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);
 
-		pagedListHolder.setPageSize(12);
+		pagedListHolder.setPageSize(9);
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
 		if (!(maKH == null)) {
@@ -57,7 +57,7 @@ public class PageShopController extends CommonMethod {
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);
-		pagedListHolder.setPageSize(10);
+		pagedListHolder.setPageSize(9);
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
 		if (!(maKH == null)) {
@@ -108,7 +108,7 @@ public class PageShopController extends CommonMethod {
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);
-		pagedListHolder.setPageSize(10);
+		pagedListHolder.setPageSize(9);
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
 		if (!(maKH == null)) {
