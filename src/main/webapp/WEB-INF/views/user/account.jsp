@@ -9,8 +9,8 @@
 <body>
 	<%@include file="./common/header.jsp"%>
 	<div class="tab-flag" data="${tabId}"></div>
+	<div class="page-flag" data="account"></div>
 	<main class="main bg-light vh-90">
-
 		<section class="pt-50">
 			<div class="container">
 				<div class="row">
@@ -306,7 +306,7 @@
 							<div class="order_review border-0">
 								<div class="mb-20 d-flex justify-content-between">
 									<h4>
-										Đơn đặt:<span class="text-brand"> DD00001</span>
+										Mã đơn: <span class="text-brand">${o.maDD}</span>
 									</h4>
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>

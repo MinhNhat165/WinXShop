@@ -175,7 +175,7 @@
 																<div class="form-group mb-3">
 																	<label for="category">Nhãn hàng</label>
 																	<form:select class='fstdropdown-select'
-																		path="nhanHang.maNH" items="${dsnhanhang }"
+																		path="nhanHang.maNH" items="${dsnhanhang}"
 																		itemLabel="tenNH" itemValue="maNH">
 																	</form:select>
 

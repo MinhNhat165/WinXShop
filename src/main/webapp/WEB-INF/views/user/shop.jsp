@@ -43,15 +43,32 @@
 											<span><i class="fa-regular fa-grid-2"></i>Hiện:</span>
 										</div>
 										<div class="sort-by-dropdown-wrap">
-											<span> 50 <i class="fa-solid fa-angle-down"></i></span>
+											<span> <c:choose>
+													<c:when test="${limit == '9'}">${limit}</c:when>
+													<c:when test="${limit == '18'}">${limit}
+													</c:when>
+													<c:when test="${limit == '36'}">${limit}
+													</c:when>
+
+												</c:choose> <i class="fa-solid fa-angle-down"></i></span>
 										</div>
 									</div>
 									<div class="sort-by-dropdown">
+										<div class="invisible position-absolute">
+											<input type="radio" form="form-filter" id="limit0" value="9"
+												${limit=='9'?'checked':''} name="limit"> <input
+												${limit=='18'?'checked':''} form="form-filter" type="radio"
+												id="limit1" value="18" name="limit"> <input
+												${limit=='36'?'checked':''} form="form-filter" type="radio"
+												id="limit2" value="36" name="limit">
+										</div>
 										<ul>
-											<li><a class="active" href="#">10</a></li>
-											<li><a href="#">20</a></li>
-											<li><a href="#">50</a></li>
-											<li><a href="#">All</a></li>
+											<li><label for="limit0" class="d-block"><a
+													class="${limit=='9'?'active':''}">9</a> </label></li>
+											<li><label for="limit1" class="d-block"><a
+													class="${limit=='18'?'active':''}">18</a></label></li>
+											<li><label for="limit2" class="d-block"><a
+													class="${limit=='36'?'active':''}">36</a></label></li>
 										</ul>
 									</div>
 								</div>
@@ -62,16 +79,55 @@
 												xếp theo:</span>
 										</div>
 										<div class="sort-by-dropdown-wrap">
-											<span> Tên <i class="fa-solid fa-angle-down"></i></span>
+											<span> <c:choose>
+													<c:when test="${sortBy == '0'}">Tên</c:when>
+													<c:when test="${sortBy == '1'}">Giá <span><i
+															class="fa-solid fa-up-long"
+															style="font-size: 10px; margin-left: 0; top: 0"></i></span>
+													</c:when>
+													<c:when test="${sortBy == '2'}">Giá <span><i
+															class="fa-solid fa-down-long"
+															style="font-size: 10px; margin-left: 0; top: 0"></i></span>
+													</c:when>
+													<c:when test="${sortBy == '3'}">Ngày bán <span><i
+															class="fa-solid fa-down-long"
+															style="font-size: 10px; margin-left: 0; top: 0"></i></span>
+													</c:when>
+													<c:when test="${sortBy == '4'}">Điểm <span><i
+															class="fa-solid fa-down-long"
+															style="font-size: 10px; margin-left: 0; top: 0"></i></span>
+													</c:when>
+
+												</c:choose><i class="fa-solid fa-angle-down"></i>
+											</span>
 										</div>
 									</div>
 									<div class="sort-by-dropdown">
+										<div class="invisible position-absolute">
+											<input type="radio" form="form-filter" id="sort-by0"
+												value="0" ${sortBy=='0'?'checked':''} name="sort-by">
+											<input ${sortBy=='1'?'checked':''} form="form-filter"
+												type="radio" id="sort-by1" value="1" name="sort-by">
+											<input ${sortBy=='2'?'checked':''} form="form-filter"
+												type="radio" id="sort-by2" value="2" name="sort-by">
+											<input ${sortBy=='3'?'checked':''} form="form-filter"
+												type="radio" id="sort-by3" value="3" name="sort-by">
+											<input ${sortBy=='4'?'checked':''} form="form-filter"
+												type="radio" id="sort-by4" value="4" name="sort-by">
+										</div>
+
 										<ul>
-											<li><a class="active" href="#">Tên</a></li>
-											<li><a href="#">Giá: Thấp ến Cao</a></li>
-											<li><a href="#">Giá: Cao xuống Thấp</a></li>
-											<li><a href="#">Ngày bán</a></li>
-											<li><a href="#">Đánh giá</a></li>
+
+											<li><label for="sort-by0" class="d-block"><a
+													class="${sortBy=='0'?'active':''}">Giá: Tên</a></label></li>
+											<li><label for="sort-by1" class="d-block"><a
+													class="${sortBy=='1'?'active':''}">Giá: Thấp Đến Cao</a></label></li>
+											<li><label for="sort-by2" class="d-block"><a
+													class="${sortBy=='2'?'active':''}">Giá: Cao xuống Thấp</a></label></li>
+											<li><label for="sort-by3" class="d-block"><a
+													class="${sortBy=='3'?'active':''}">Ngày bán</a></label></li>
+											<li><label for="sort-by4" class="d-block"><a
+													class="${sortBy=='4'?'active':''}">Điểm đánh giá</a></label></li>
 										</ul>
 									</div>
 								</div>
@@ -174,7 +230,7 @@
 					</div>
 					<div class="col-lg-3 primary-sidebar sticky-sidebar">
 						<!-- my filter -->
-						<form action="shop.htm"
+						<form action="shop.htm" id="form-filter"
 							class="row d-flex justify-content-center filter-shop">
 							<div class="col-md-12">
 								<div class="card">
@@ -494,9 +550,17 @@
 	<%@include file="./common/footer.jsp"%>
 	<%@include file="./common/script.jsp"%>
 	<script type="text/javascript">
-		$("body").css("overflow", "hidden visible");
 		$(document).ready(function() {
+
+			$("body").css("overflow", "hidden visible");
 			$(".body-overlay-1").remove();
+			$('input[name="sort-by"]').change(function() {
+				$('button[name="btnFilter"]').click()
+			})
+
+			$('input[name="limit"]').change(function() {
+				$('button[name="btnFilter"]').click()
+			})
 
 		})
 	</script>
