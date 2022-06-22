@@ -41,12 +41,10 @@
 				<div class="header-right">
 					<div class="search-style-2 d-none d-lg-block">
 						<form action="shop.htm">
-							<select class="select-active">
-								<option>Mọi thể Loại</option>
-								<option>Nữ</option>
-								<option>Nam</option>
-								<option>Mới</option>
-								<option>Nổi bật</option>
+							<select class="select-active" name="theLoai">
+								<option value="2">Mọi thể Loại</option>
+								<option value="0">Nữ</option>
+								<option value="1">Nam</option>
 							</select> <input type="text" name="searchInput"
 								placeholder="Tìm kiếm sản phẩm..." />
 							<button class="fs-5 text-brand" name="btnSearch"

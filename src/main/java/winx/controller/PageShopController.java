@@ -47,13 +47,20 @@ public class PageShopController extends CommonMethod {
 		model.addAttribute("DSNH", getAllBrand());
 		model.addAttribute("pagedListHolder", pagedListHolder);
 		model.addAttribute("bestSales", getTopBestSaleProduct());
+		model.addAttribute("sortBy", "0");
+		model.addAttribute("limit", "9");
 		return "user/shop";
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET, params = "btnSearch")
 	public String shopSearch(HttpServletRequest request, ModelMap model) {
+		String theLoai = request.getParameter("theLoai");
+		String theLoaiHql = "";
+		if (!theLoai.equals("2")) {
+			theLoaiHql = "loai = '" + request.getParameter("theLoai") + "' AND";
+		}
 		PagedListHolder<SanPham> pagedListHolder = new PagedListHolder<SanPham>(
-				this.searchProduct(request.getParameter("searchInput")));
+				this.searchProduct(request.getParameter("searchInput"), theLoaiHql));
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);
@@ -65,6 +72,8 @@ public class PageShopController extends CommonMethod {
 		}
 		model.addAttribute("DSNH", getAllBrand());
 		model.addAttribute("pagedListHolder", pagedListHolder);
+		model.addAttribute("sortBy", "0");
+		model.addAttribute("limit", "9");
 		return "user/shop";
 	}
 
@@ -78,6 +87,22 @@ public class PageShopController extends CommonMethod {
 		String[] nhanHang = request.getParameterValues("nhanHang");
 		String[] dungTich = request.getParameterValues("dungTich");
 		String[] loai = request.getParameterValues("loai");
+		String sortBy = request.getParameter("sort-by");
+
+		String sortByHql = "";
+		if (sortBy.equals("0")) {
+			sortByHql = " ORDER BY tenSP ASC";
+		} else if (sortBy.equals("1")) {
+			sortByHql = " ORDER BY gia ASC";
+		} else if (sortBy.equals("2")) {
+			sortByHql = " ORDER BY gia DESC";
+		} else if (sortBy.equals("3")) {
+			sortByHql = " ORDER BY ngayThem ASC";
+		} else if (sortBy.equals("4")) {
+			sortByHql = " ORDER BY diemDG DESC";
+		}
+
+		String limit = request.getParameter("limit");
 
 		ToHql toHql = new ToHql();
 		String nhanHangHql = "";
@@ -102,13 +127,13 @@ public class PageShopController extends CommonMethod {
 		clauses.add(dungTichHql);
 		clauses.add(giaHql);
 		clauses.add(diemHql);
-
 		PagedListHolder<SanPham> pagedListHolder = new PagedListHolder<SanPham>(
-				getProductList(toHql.toHqlWhereClause(clauses), 0));
+				getProductList(toHql.toHqlWhereClause(clauses) + sortByHql, 0));
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(5);
-		pagedListHolder.setPageSize(9);
+
+		pagedListHolder.setPageSize(Integer.parseInt(limit));
 		HttpSession ss = request.getSession();
 		String maKH = (String) ss.getAttribute("maKH");
 		if (!(maKH == null)) {
@@ -116,12 +141,14 @@ public class PageShopController extends CommonMethod {
 		}
 		model.addAttribute("DSNH", getAllBrand());
 		model.addAttribute("pagedListHolder", pagedListHolder);
+		model.addAttribute("sortBy", sortBy);
+		model.addAttribute("limit", limit);
 		return "user/shop";
 	}
 
-	public List<SanPham> searchProduct(String tenSP) {
+	public List<SanPham> searchProduct(String tenSP, String loai) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM SanPham where slt > 0 AND tenSP LIKE :tenSP";
+		String hql = "FROM SanPham where " + loai + "  slt > 0 AND tenSP LIKE :tenSP";
 		Query query = session.createQuery(hql);
 		query.setParameter("tenSP", "%" + tenSP + "%");
 		List<SanPham> list = query.list();

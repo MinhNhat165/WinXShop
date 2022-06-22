@@ -38,27 +38,18 @@
 										</div>
 										<form action="login.htm" method="post">
 											<div class="form-group form-floating">
-												<input type="text" name="email" value="${email}"
+												<input type="text" name="email" value="${userName}"
 													class="form-control form-control-lg" placeholder="Email" />
 												<label for="">Email</label>
 											</div>
 											<span class="text-danger">${message1}</span>
 											<div class="form-floating">
-												<input type="password" name="password" class="form-control"
-													placeholder="Mật khẩu" /> <label for="">Password</label>
+												<input type="password" name="password" value="${password}"
+													class="form-control" placeholder="Mật khẩu" /> <label
+													for="">Password</label>
 											</div>
 											<span class="text-danger">${message}</span>
-											<div class="login_footer form-group">
-												<div class="chek-form">
-													<div class="custome-checkbox">
-														<input class="form-check-input" type="checkbox"
-															name="checkbox" id="exampleCheckbox1" value="" /> <label
-															class="form-check-label" for="exampleCheckbox1"><span>Remember
-																me</span></label>
-													</div>
-												</div>
-												<a class="text-muted" href="#">Forgot password?</a>
-											</div>
+											<div class="login_footer form-group"></div>
 											<div class="form-group">
 												<button type="submit"
 													class="btn btn-fill-out btn-block hover-up">Đăng

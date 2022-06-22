@@ -366,8 +366,8 @@
 		sliderrange.slider({
 			range: true,
 			min: 0,
-			max: 10000000,
-			values: [0, 10000000],
+			max: 100000000,
+			values: [0, 100000000],
 			step: 1000,
 			slide: function(event, ui) {
 				priceStart.val(ui.values[0]);
